@@ -11,6 +11,8 @@ interface NOICardProps {
 export function NOICard({ kpis }: NOICardProps) {
   const { totalNOI, totalGrossRentalIncome, totalOperatingExpenses, monthlyNOIData } = kpis;
 
+  const hasFutureData = monthlyNOIData.some((d) => d.isFuture);
+
   const options: ApexOptions = {
     chart: {
       type: 'bar',
@@ -20,7 +22,9 @@ export function NOICard({ kpis }: NOICardProps) {
       fontFamily: 'Inter, sans-serif',
     },
     theme: { mode: 'dark' },
-    colors: ['#22d4e8', '#f87171'],
+    colors: hasFutureData
+      ? ['#22d4e8', '#f87171', '#22d4e880', '#f8717180']
+      : ['#22d4e8', '#f87171'],
     plotOptions: {
       bar: {
         columnWidth: '60%',
@@ -57,10 +61,17 @@ export function NOICard({ kpis }: NOICardProps) {
     dataLabels: { enabled: false },
   };
 
-  const series = [
-    { name: 'Leieinntekter', data: monthlyNOIData.map((d) => Math.round(d.leieinntekter)) },
-    { name: 'Driftskostnader', data: monthlyNOIData.map((d) => Math.round(d.driftskostnader)) },
-  ];
+  const series = hasFutureData
+    ? [
+        { name: 'Leieinntekter', data: monthlyNOIData.map((d) => Math.round(d.leieinntekter)) },
+        { name: 'Driftskostnader', data: monthlyNOIData.map((d) => Math.round(d.driftskostnader)) },
+        { name: 'Estimert inntekt', data: monthlyNOIData.map((d) => Math.round(d.estimertInntekt)) },
+        { name: 'Budsjetterte kostnader', data: monthlyNOIData.map((d) => Math.round(d.budsjetterteKostnader)) },
+      ]
+    : [
+        { name: 'Leieinntekter', data: monthlyNOIData.map((d) => Math.round(d.leieinntekter)) },
+        { name: 'Driftskostnader', data: monthlyNOIData.map((d) => Math.round(d.driftskostnader)) },
+      ];
 
   return (
     <KPICard
@@ -71,7 +82,7 @@ export function NOICard({ kpis }: NOICardProps) {
         title: 'NOI (Netto driftsinntekt)',
         formula: 'Leieinntekter − Driftskostnader',
         values: `${formatNOK(totalGrossRentalIncome)} − ${formatNOK(totalOperatingExpenses)} = ${formatNOK(totalNOI)}`,
-        source: `${kpis.buildingNOIs.length} bygg, aktive kontrakter + manuell kost`,
+        source: `${kpis.buildingNOIs.length} bygg, aktive kontrakter + manuell kost. Fremtidige måneder viser estimert inntekt og budsjetterte kostnader.`,
       }}
     >
       {monthlyNOIData.length > 0 && (

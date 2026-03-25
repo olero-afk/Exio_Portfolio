@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { usePortfolioContext } from '../context/PortfolioContext.tsx';
 import { useFilterContext } from '../context/FilterContext.tsx';
-import type { Building, Contract, CostEntry } from '../types/index.ts';
+import type { Building, Contract, CostEntry, BudgetEntry } from '../types/index.ts';
 
 interface BuildingNOI {
   building: Building;
@@ -26,13 +26,22 @@ interface BuildingVacancyCost {
   vacancyCost: number;
 }
 
+export interface MonthlyNOIEntry {
+  month: string;
+  isFuture: boolean;
+  leieinntekter: number;
+  driftskostnader: number;
+  estimertInntekt: number;
+  budsjetterteKostnader: number;
+}
+
 export interface DashboardKPIs {
   // NOI
   totalNOI: number;
   totalGrossRentalIncome: number;
   totalOperatingExpenses: number;
   buildingNOIs: BuildingNOI[];
-  monthlyNOIData: { month: string; leieinntekter: number; driftskostnader: number }[];
+  monthlyNOIData: MonthlyNOIEntry[];
 
   // Occupancy
   portfolioOccupancyRate: number;
@@ -91,7 +100,7 @@ function getCostsInPeriod(
 }
 
 export function useKPI(): DashboardKPIs {
-  const { buildings, contracts, costs } = usePortfolioContext();
+  const { buildings, contracts, costs, budgets } = usePortfolioContext();
   const { selectedBuildingId, effectiveDateRange } = useFilterContext();
 
   return useMemo(() => {
@@ -105,7 +114,6 @@ export function useKPI(): DashboardKPIs {
       const grossRentalIncome = activeContracts.reduce((sum, c) => sum + c.annualRent, 0);
       const periodCosts = getCostsInPeriod(costs, building.id, effectiveDateRange.startDate, effectiveDateRange.endDate);
       const operatingExpenses = periodCosts.reduce((sum, c) => sum + c.amount, 0);
-      // Annualize: scale costs to full year if period < 12 months
       return {
         building,
         grossRentalIncome,
@@ -117,31 +125,63 @@ export function useKPI(): DashboardKPIs {
     const totalOperatingExpenses = buildingNOIs.reduce((s, b) => s + b.operatingExpenses, 0);
     const totalNOI = totalGrossRentalIncome - totalOperatingExpenses;
 
-    // --- Monthly NOI chart data ---
+    // --- Monthly NOI chart data (actual + projected) ---
     const start = new Date(effectiveDateRange.startDate);
     const end = new Date(effectiveDateRange.endDate);
-    const monthlyNOIData: { month: string; leieinntekter: number; driftskostnader: number }[] = [];
+    const monthlyNOIData: MonthlyNOIEntry[] = [];
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Des'];
+    const now = new Date();
+    // Current month is the last month with actual data
+    const currentYM = now.getFullYear() * 12 + now.getMonth();
+
+    const buildingIds = filteredBuildings.map((b) => b.id);
 
     const cursor = new Date(start.getFullYear(), start.getMonth(), 1);
     while (cursor <= end) {
       const y = cursor.getFullYear();
       const m = cursor.getMonth() + 1;
       const label = `${monthNames[m - 1]} ${y}`;
+      const ym = y * 12 + (m - 1);
+      const isFuture = ym > currentYM;
 
-      const buildingIds = filteredBuildings.map((b) => b.id);
-      const monthCosts = costs.filter(
-        (c) => c.year === y && c.month === m && buildingIds.includes(c.buildingId),
-      );
-      const driftskostnader = monthCosts.reduce((sum, c) => sum + c.amount, 0);
-
-      // Monthly rental income: annual / 12
-      const leieinntekter = filteredBuildings.reduce((sum, building) => {
+      // Monthly rental income from active contracts: annual / 12
+      const monthlyRent = filteredBuildings.reduce((sum, building) => {
         const active = getActiveContracts(contracts, building.id);
         return sum + active.reduce((s, c) => s + c.annualRent / 12, 0);
       }, 0);
 
-      monthlyNOIData.push({ month: label, leieinntekter, driftskostnader });
+      if (isFuture) {
+        // Future month: use budgets for costs, projected income from contracts
+        const monthBudgets = budgets.filter(
+          (b: BudgetEntry) => b.year === y && b.month === m && buildingIds.includes(b.buildingId),
+        );
+        const budsjetterteKostnader = monthBudgets.reduce((sum: number, b: BudgetEntry) => sum + b.amount, 0);
+
+        monthlyNOIData.push({
+          month: label,
+          isFuture: true,
+          leieinntekter: 0,
+          driftskostnader: 0,
+          estimertInntekt: monthlyRent,
+          budsjetterteKostnader,
+        });
+      } else {
+        // Past/current month: use actual costs and income
+        const monthCosts = costs.filter(
+          (c) => c.year === y && c.month === m && buildingIds.includes(c.buildingId),
+        );
+        const driftskostnader = monthCosts.reduce((sum, c) => sum + c.amount, 0);
+
+        monthlyNOIData.push({
+          month: label,
+          isFuture: false,
+          leieinntekter: monthlyRent,
+          driftskostnader,
+          estimertInntekt: 0,
+          budsjetterteKostnader: 0,
+        });
+      }
+
       cursor.setMonth(cursor.getMonth() + 1);
     }
 
@@ -203,5 +243,5 @@ export function useKPI(): DashboardKPIs {
       buildingCount,
       totalM2,
     };
-  }, [buildings, contracts, costs, selectedBuildingId, effectiveDateRange]);
+  }, [buildings, contracts, costs, budgets, selectedBuildingId, effectiveDateRange]);
 }
