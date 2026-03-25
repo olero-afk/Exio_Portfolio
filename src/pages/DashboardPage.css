@@ -10,12 +10,14 @@
   align-items: flex-start;
 }
 
-.dashboard__grid {
+.dashboard__row-top {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 2fr 1fr;
   gap: var(--gap-metric);
 }
 
-.dashboard__grid > :first-child {
-  grid-column: 1 / -1;
+.dashboard__row-bottom {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-metric);
 }

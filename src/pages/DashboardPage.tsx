@@ -3,11 +3,10 @@ import { ModuleTabs } from '../components/dashboard/ModuleTabs.tsx';
 import { BuildingFilter } from '../components/dashboard/BuildingFilter.tsx';
 import { PeriodSelector } from '../components/dashboard/PeriodSelector.tsx';
 import { NOICard } from '../components/dashboard/NOICard.tsx';
+import { PortfolioSummaryCard } from '../components/dashboard/PortfolioSummaryCard.tsx';
 import { OccupancyCard } from '../components/dashboard/OccupancyCard.tsx';
 import { WAULTCard } from '../components/dashboard/WAULTCard.tsx';
 import { VacancyCostCard } from '../components/dashboard/VacancyCostCard.tsx';
-import { BuildingCountCard } from '../components/dashboard/BuildingCountCard.tsx';
-import { TotalAreaCard } from '../components/dashboard/TotalAreaCard.tsx';
 import { AlertBanner } from '../components/dashboard/AlertBanner.tsx';
 import './DashboardPage.css';
 
@@ -24,13 +23,15 @@ export function DashboardPage() {
         <PeriodSelector />
       </div>
 
-      <div className="dashboard__grid">
+      <div className="dashboard__row-top">
         <NOICard kpis={kpis} />
+        <PortfolioSummaryCard kpis={kpis} />
+      </div>
+
+      <div className="dashboard__row-bottom">
         <OccupancyCard kpis={kpis} />
         <WAULTCard kpis={kpis} />
         <VacancyCostCard kpis={kpis} />
-        <BuildingCountCard kpis={kpis} />
-        <TotalAreaCard kpis={kpis} />
       </div>
     </div>
   );
