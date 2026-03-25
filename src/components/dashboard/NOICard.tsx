@@ -12,10 +12,73 @@ export function NOICard({ kpis }: NOICardProps) {
   const { totalNOI, totalGrossRentalIncome, totalOperatingExpenses, monthlyNOIData } = kpis;
 
   const hasFutureData = monthlyNOIData.some((d) => d.isFuture);
+  const hasActualData = monthlyNOIData.some((d) => !d.isFuture);
   const categories = monthlyNOIData.map((d) => d.month.split(' ')[0]);
 
-  // Find the index where future data starts (for annotation line)
-  const firstFutureIdx = monthlyNOIData.findIndex((d) => d.isFuture);
+  // Build series: if mixed actual+future, use 4 series with pattern fill on projected.
+  // If all actual or all future, use 2 series.
+  let series: { name: string; data: number[] }[];
+  let colors: string[];
+  let fillConfig: ApexOptions['fill'];
+
+  if (hasFutureData && hasActualData) {
+    // 4 series: actual pair (solid) + projected pair (hatched)
+    // Each month only has values in one pair, the other is null/0
+    series = [
+      {
+        name: 'Leieinntekter',
+        data: monthlyNOIData.map((d) => d.isFuture ? 0 : Math.round(d.income)),
+      },
+      {
+        name: 'Driftskostnader',
+        data: monthlyNOIData.map((d) => d.isFuture ? 0 : Math.round(d.costs)),
+      },
+      {
+        name: 'Estimert inntekt',
+        data: monthlyNOIData.map((d) => d.isFuture ? Math.round(d.income) : 0),
+      },
+      {
+        name: 'Budsjetterte kostnader',
+        data: monthlyNOIData.map((d) => d.isFuture ? Math.round(d.costs) : 0),
+      },
+    ];
+    colors = ['#22d4e8', '#f87171', '#22d4e8', '#f87171'];
+    fillConfig = {
+      type: ['solid', 'solid', 'pattern', 'pattern'],
+      pattern: {
+        style: ['', '', 'slantedLines', 'slantedLines'],
+        width: 4,
+        height: 4,
+        strokeWidth: 1,
+      },
+      opacity: [1, 1, 0.6, 0.6],
+    };
+  } else if (hasFutureData) {
+    // All future — 2 series, both hatched
+    series = [
+      { name: 'Estimert inntekt', data: monthlyNOIData.map((d) => Math.round(d.income)) },
+      { name: 'Budsjetterte kostnader', data: monthlyNOIData.map((d) => Math.round(d.costs)) },
+    ];
+    colors = ['#22d4e8', '#f87171'];
+    fillConfig = {
+      type: 'pattern',
+      pattern: {
+        style: 'slantedLines',
+        width: 4,
+        height: 4,
+        strokeWidth: 1,
+      },
+      opacity: 0.6,
+    };
+  } else {
+    // All actual — 2 series, both solid
+    series = [
+      { name: 'Leieinntekter', data: monthlyNOIData.map((d) => Math.round(d.income)) },
+      { name: 'Driftskostnader', data: monthlyNOIData.map((d) => Math.round(d.costs)) },
+    ];
+    colors = ['#22d4e8', '#f87171'];
+    fillConfig = { type: 'solid', opacity: 1 };
+  }
 
   const options: ApexOptions = {
     chart: {
@@ -27,10 +90,11 @@ export function NOICard({ kpis }: NOICardProps) {
       parentHeightOffset: 0,
     },
     theme: { mode: 'dark' },
-    colors: ['#22d4e8', '#f87171'],
+    colors,
+    fill: fillConfig,
     plotOptions: {
       bar: {
-        columnWidth: '50%',
+        columnWidth: hasFutureData && hasActualData ? '70%' : '50%',
         borderRadius: 2,
       },
     },
@@ -59,7 +123,9 @@ export function NOICard({ kpis }: NOICardProps) {
     },
     tooltip: {
       theme: 'dark',
-      y: { formatter: (val: number) => formatNOK(val) },
+      y: {
+        formatter: (val: number) => val === 0 ? '' : formatNOK(val),
+      },
     },
     legend: {
       show: true,
@@ -73,38 +139,7 @@ export function NOICard({ kpis }: NOICardProps) {
       offsetY: -4,
     },
     dataLabels: { enabled: false },
-    ...(hasFutureData && firstFutureIdx > 0 ? {
-      annotations: {
-        xaxis: [{
-          x: categories[firstFutureIdx],
-          borderColor: '#7a7a7a',
-          strokeDashArray: 4,
-          label: {
-            text: 'Estimert →',
-            orientation: 'horizontal',
-            style: {
-              color: '#7a7a7a',
-              background: 'transparent',
-              fontSize: '8px',
-              fontWeight: 500,
-              padding: { left: 4, right: 4, top: 2, bottom: 2 },
-            },
-          },
-        }],
-      },
-    } : {}),
   };
-
-  const series = [
-    {
-      name: hasFutureData ? 'Leieinntekter / Estimert inntekt' : 'Leieinntekter',
-      data: monthlyNOIData.map((d) => Math.round(d.income)),
-    },
-    {
-      name: hasFutureData ? 'Driftskostnader / Budsjetterte kostnader' : 'Driftskostnader',
-      data: monthlyNOIData.map((d) => Math.round(d.costs)),
-    },
-  ];
 
   return (
     <KPICard
@@ -116,7 +151,7 @@ export function NOICard({ kpis }: NOICardProps) {
         formula: 'Leieinntekter − Driftskostnader',
         values: `${formatNOK(totalGrossRentalIncome)} − ${formatNOK(totalOperatingExpenses)} = ${formatNOK(totalNOI)}`,
         source: hasFutureData
-          ? `${kpis.buildingNOIs.length} bygg. Stiplet linje markerer overgang til estimert/budsjettert.`
+          ? `${kpis.buildingNOIs.length} bygg. Skraverte søyler = estimert/budsjettert.`
           : `${kpis.buildingNOIs.length} bygg, aktive kontrakter + manuell kost.`,
       }}
     >
