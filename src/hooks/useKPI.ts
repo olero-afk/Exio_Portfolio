@@ -88,12 +88,14 @@ function getCostsInPeriod(
   startDate: string,
   endDate: string,
 ): CostEntry[] {
-  const start = new Date(startDate);
-  const end = new Date(endDate);
+  const [sY, sM] = startDate.split('-').map(Number);
+  const [eY, eM] = endDate.split('-').map(Number);
+  const startYM = sY * 12 + sM;
+  const endYM = eY * 12 + eM;
   return costs.filter((c) => {
     if (buildingId && c.buildingId !== buildingId) return false;
-    const costDate = new Date(c.year, c.month - 1, 1);
-    return costDate >= start && costDate <= end;
+    const costYM = c.year * 12 + c.month;
+    return costYM >= startYM && costYM <= endYM;
   });
 }
 
@@ -124,8 +126,9 @@ export function useKPI(): DashboardKPIs {
     const totalNOI = totalGrossRentalIncome - totalOperatingExpenses;
 
     // --- Monthly NOI chart data (actual + projected) ---
-    const start = new Date(effectiveDateRange.startDate);
-    const end = new Date(effectiveDateRange.endDate);
+    // Parse YYYY-MM-DD as local date parts to avoid UTC timezone shifts
+    const [startY, startM] = effectiveDateRange.startDate.split('-').map(Number);
+    const [endY, endM] = effectiveDateRange.endDate.split('-').map(Number);
     const monthlyNOIData: MonthlyNOIEntry[] = [];
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Des'];
     const now = new Date();
@@ -134,8 +137,9 @@ export function useKPI(): DashboardKPIs {
 
     const buildingIds = filteredBuildings.map((b) => b.id);
 
-    const cursor = new Date(start.getFullYear(), start.getMonth(), 1);
-    while (cursor <= end) {
+    const cursor = new Date(startY, startM - 1, 1);
+    const endDate = new Date(endY, endM - 1, 28); // safe: just need month comparison
+    while (cursor <= endDate) {
       const y = cursor.getFullYear();
       const m = cursor.getMonth() + 1;
       const label = `${monthNames[m - 1]} ${y}`;

@@ -13,6 +13,13 @@ interface FilterContextValue {
 
 const FilterContext = createContext<FilterContextValue | null>(null);
 
+function toLocalDateString(d: Date): string {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
+
 function getDateRangeForPeriod(period: TimePeriod, custom: DateRange | null): DateRange {
   const now = new Date();
   const year = now.getFullYear();
@@ -21,23 +28,23 @@ function getDateRangeForPeriod(period: TimePeriod, custom: DateRange | null): Da
   switch (period) {
     case 'denne_maaneden':
       return {
-        startDate: new Date(year, month, 1).toISOString().slice(0, 10),
-        endDate: new Date(year, month + 1, 0).toISOString().slice(0, 10),
+        startDate: toLocalDateString(new Date(year, month, 1)),
+        endDate: toLocalDateString(new Date(year, month + 1, 0)),
       };
     case 'forrige_maaned':
       return {
-        startDate: new Date(year, month - 1, 1).toISOString().slice(0, 10),
-        endDate: new Date(year, month, 0).toISOString().slice(0, 10),
+        startDate: toLocalDateString(new Date(year, month - 1, 1)),
+        endDate: toLocalDateString(new Date(year, month, 0)),
       };
     case 'siste_6_maaneder':
       return {
-        startDate: new Date(year, month - 5, 1).toISOString().slice(0, 10),
-        endDate: new Date(year, month + 1, 0).toISOString().slice(0, 10),
+        startDate: toLocalDateString(new Date(year, month - 5, 1)),
+        endDate: toLocalDateString(new Date(year, month + 1, 0)),
       };
     case 'neste_6_maaneder':
       return {
-        startDate: new Date(year, month, 1).toISOString().slice(0, 10),
-        endDate: new Date(year, month + 6, 0).toISOString().slice(0, 10),
+        startDate: toLocalDateString(new Date(year, month, 1)),
+        endDate: toLocalDateString(new Date(year, month + 6, 0)),
       };
     case 'dette_aaret':
       return {
