@@ -1,129 +1,5402 @@
 [
-  {"id":"cost-001","buildingId":"b-001","category":"drift","year":2026,"month":1,"amount":340000,"source":"manual"},
-  {"id":"cost-002","buildingId":"b-001","category":"drift","year":2026,"month":2,"amount":330000,"source":"manual"},
-  {"id":"cost-003","buildingId":"b-001","category":"drift","year":2026,"month":3,"amount":345000,"source":"manual"},
-  {"id":"cost-004","buildingId":"b-001","category":"vedlikehold","year":2026,"month":1,"amount":120000,"source":"manual"},
-  {"id":"cost-005","buildingId":"b-001","category":"vedlikehold","year":2026,"month":2,"amount":95000,"source":"manual"},
-  {"id":"cost-006","buildingId":"b-001","category":"vedlikehold","year":2026,"month":3,"amount":180000,"source":"manual"},
-  {"id":"cost-007","buildingId":"b-001","category":"forsikring","year":2026,"month":1,"amount":42000,"source":"manual"},
-  {"id":"cost-008","buildingId":"b-001","category":"forsikring","year":2026,"month":2,"amount":42000,"source":"manual"},
-  {"id":"cost-009","buildingId":"b-001","category":"forsikring","year":2026,"month":3,"amount":42000,"source":"manual"},
-  {"id":"cost-010","buildingId":"b-001","category":"administrasjon","year":2026,"month":1,"amount":85000,"source":"manual"},
-  {"id":"cost-011","buildingId":"b-001","category":"administrasjon","year":2026,"month":2,"amount":85000,"source":"manual"},
-  {"id":"cost-012","buildingId":"b-001","category":"administrasjon","year":2026,"month":3,"amount":85000,"source":"manual"},
-  {"id":"cost-013","buildingId":"b-001","category":"eiendomsskatt","year":2026,"month":1,"amount":55000,"source":"manual"},
-  {"id":"cost-014","buildingId":"b-001","category":"eiendomsskatt","year":2026,"month":2,"amount":55000,"source":"manual"},
-  {"id":"cost-015","buildingId":"b-001","category":"eiendomsskatt","year":2026,"month":3,"amount":55000,"source":"manual"},
-
-  {"id":"cost-016","buildingId":"b-002","category":"drift","year":2026,"month":1,"amount":245000,"source":"manual"},
-  {"id":"cost-017","buildingId":"b-002","category":"drift","year":2026,"month":2,"amount":240000,"source":"manual"},
-  {"id":"cost-018","buildingId":"b-002","category":"drift","year":2026,"month":3,"amount":250000,"source":"manual"},
-  {"id":"cost-019","buildingId":"b-002","category":"vedlikehold","year":2026,"month":1,"amount":85000,"source":"manual"},
-  {"id":"cost-020","buildingId":"b-002","category":"vedlikehold","year":2026,"month":2,"amount":90000,"source":"manual"},
-  {"id":"cost-021","buildingId":"b-002","category":"vedlikehold","year":2026,"month":3,"amount":110000,"source":"manual"},
-  {"id":"cost-022","buildingId":"b-002","category":"forsikring","year":2026,"month":1,"amount":30000,"source":"manual"},
-  {"id":"cost-023","buildingId":"b-002","category":"forsikring","year":2026,"month":2,"amount":30000,"source":"manual"},
-  {"id":"cost-024","buildingId":"b-002","category":"forsikring","year":2026,"month":3,"amount":30000,"source":"manual"},
-  {"id":"cost-025","buildingId":"b-002","category":"administrasjon","year":2026,"month":1,"amount":65000,"source":"manual"},
-  {"id":"cost-026","buildingId":"b-002","category":"administrasjon","year":2026,"month":2,"amount":65000,"source":"manual"},
-  {"id":"cost-027","buildingId":"b-002","category":"administrasjon","year":2026,"month":3,"amount":65000,"source":"manual"},
-  {"id":"cost-028","buildingId":"b-002","category":"eiendomsskatt","year":2026,"month":1,"amount":38000,"source":"manual"},
-  {"id":"cost-029","buildingId":"b-002","category":"eiendomsskatt","year":2026,"month":2,"amount":38000,"source":"manual"},
-  {"id":"cost-030","buildingId":"b-002","category":"eiendomsskatt","year":2026,"month":3,"amount":38000,"source":"manual"},
-
-  {"id":"cost-031","buildingId":"b-003","category":"drift","year":2026,"month":1,"amount":180000,"source":"manual"},
-  {"id":"cost-032","buildingId":"b-003","category":"drift","year":2026,"month":2,"amount":175000,"source":"manual"},
-  {"id":"cost-033","buildingId":"b-003","category":"drift","year":2026,"month":3,"amount":185000,"source":"manual"},
-  {"id":"cost-034","buildingId":"b-003","category":"vedlikehold","year":2026,"month":1,"amount":95000,"source":"manual"},
-  {"id":"cost-035","buildingId":"b-003","category":"vedlikehold","year":2026,"month":2,"amount":88000,"source":"manual"},
-  {"id":"cost-036","buildingId":"b-003","category":"vedlikehold","year":2026,"month":3,"amount":102000,"source":"manual"},
-  {"id":"cost-037","buildingId":"b-003","category":"forsikring","year":2026,"month":1,"amount":22000,"source":"manual"},
-  {"id":"cost-038","buildingId":"b-003","category":"forsikring","year":2026,"month":2,"amount":22000,"source":"manual"},
-  {"id":"cost-039","buildingId":"b-003","category":"forsikring","year":2026,"month":3,"amount":22000,"source":"manual"},
-  {"id":"cost-040","buildingId":"b-003","category":"administrasjon","year":2026,"month":1,"amount":48000,"source":"manual"},
-  {"id":"cost-041","buildingId":"b-003","category":"administrasjon","year":2026,"month":2,"amount":48000,"source":"manual"},
-  {"id":"cost-042","buildingId":"b-003","category":"administrasjon","year":2026,"month":3,"amount":48000,"source":"manual"},
-  {"id":"cost-043","buildingId":"b-003","category":"eiendomsskatt","year":2026,"month":1,"amount":28000,"source":"manual"},
-  {"id":"cost-044","buildingId":"b-003","category":"eiendomsskatt","year":2026,"month":2,"amount":28000,"source":"manual"},
-  {"id":"cost-045","buildingId":"b-003","category":"eiendomsskatt","year":2026,"month":3,"amount":28000,"source":"manual"},
-
-  {"id":"cost-046","buildingId":"b-004","category":"drift","year":2026,"month":1,"amount":310000,"source":"manual"},
-  {"id":"cost-047","buildingId":"b-004","category":"drift","year":2026,"month":2,"amount":305000,"source":"manual"},
-  {"id":"cost-048","buildingId":"b-004","category":"drift","year":2026,"month":3,"amount":315000,"source":"manual"},
-  {"id":"cost-049","buildingId":"b-004","category":"vedlikehold","year":2026,"month":1,"amount":75000,"source":"manual"},
-  {"id":"cost-050","buildingId":"b-004","category":"vedlikehold","year":2026,"month":2,"amount":70000,"source":"manual"},
-  {"id":"cost-051","buildingId":"b-004","category":"vedlikehold","year":2026,"month":3,"amount":80000,"source":"manual"},
-  {"id":"cost-052","buildingId":"b-004","category":"forsikring","year":2026,"month":1,"amount":45000,"source":"manual"},
-  {"id":"cost-053","buildingId":"b-004","category":"forsikring","year":2026,"month":2,"amount":45000,"source":"manual"},
-  {"id":"cost-054","buildingId":"b-004","category":"forsikring","year":2026,"month":3,"amount":45000,"source":"manual"},
-  {"id":"cost-055","buildingId":"b-004","category":"administrasjon","year":2026,"month":1,"amount":55000,"source":"manual"},
-  {"id":"cost-056","buildingId":"b-004","category":"administrasjon","year":2026,"month":2,"amount":55000,"source":"manual"},
-  {"id":"cost-057","buildingId":"b-004","category":"administrasjon","year":2026,"month":3,"amount":55000,"source":"manual"},
-  {"id":"cost-058","buildingId":"b-004","category":"eiendomsskatt","year":2026,"month":1,"amount":48000,"source":"manual"},
-  {"id":"cost-059","buildingId":"b-004","category":"eiendomsskatt","year":2026,"month":2,"amount":48000,"source":"manual"},
-  {"id":"cost-060","buildingId":"b-004","category":"eiendomsskatt","year":2026,"month":3,"amount":48000,"source":"manual"},
-
-  {"id":"cost-061","buildingId":"b-005","category":"drift","year":2026,"month":1,"amount":125000,"source":"manual"},
-  {"id":"cost-062","buildingId":"b-005","category":"drift","year":2026,"month":2,"amount":120000,"source":"manual"},
-  {"id":"cost-063","buildingId":"b-005","category":"drift","year":2026,"month":3,"amount":130000,"source":"manual"},
-  {"id":"cost-064","buildingId":"b-005","category":"vedlikehold","year":2026,"month":1,"amount":65000,"source":"manual"},
-  {"id":"cost-065","buildingId":"b-005","category":"vedlikehold","year":2026,"month":2,"amount":58000,"source":"manual"},
-  {"id":"cost-066","buildingId":"b-005","category":"vedlikehold","year":2026,"month":3,"amount":72000,"source":"manual"},
-  {"id":"cost-067","buildingId":"b-005","category":"forsikring","year":2026,"month":1,"amount":15000,"source":"manual"},
-  {"id":"cost-068","buildingId":"b-005","category":"forsikring","year":2026,"month":2,"amount":15000,"source":"manual"},
-  {"id":"cost-069","buildingId":"b-005","category":"forsikring","year":2026,"month":3,"amount":15000,"source":"manual"},
-  {"id":"cost-070","buildingId":"b-005","category":"administrasjon","year":2026,"month":1,"amount":35000,"source":"manual"},
-  {"id":"cost-071","buildingId":"b-005","category":"administrasjon","year":2026,"month":2,"amount":35000,"source":"manual"},
-  {"id":"cost-072","buildingId":"b-005","category":"administrasjon","year":2026,"month":3,"amount":35000,"source":"manual"},
-  {"id":"cost-073","buildingId":"b-005","category":"eiendomsskatt","year":2026,"month":1,"amount":18000,"source":"manual"},
-  {"id":"cost-074","buildingId":"b-005","category":"eiendomsskatt","year":2026,"month":2,"amount":18000,"source":"manual"},
-  {"id":"cost-075","buildingId":"b-005","category":"eiendomsskatt","year":2026,"month":3,"amount":18000,"source":"manual"},
-
-  {"id":"cost-076","buildingId":"b-006","category":"drift","year":2026,"month":1,"amount":195000,"source":"manual"},
-  {"id":"cost-077","buildingId":"b-006","category":"drift","year":2026,"month":2,"amount":190000,"source":"manual"},
-  {"id":"cost-078","buildingId":"b-006","category":"drift","year":2026,"month":3,"amount":200000,"source":"manual"},
-  {"id":"cost-079","buildingId":"b-006","category":"vedlikehold","year":2026,"month":1,"amount":55000,"source":"manual"},
-  {"id":"cost-080","buildingId":"b-006","category":"vedlikehold","year":2026,"month":2,"amount":50000,"source":"manual"},
-  {"id":"cost-081","buildingId":"b-006","category":"vedlikehold","year":2026,"month":3,"amount":60000,"source":"manual"},
-  {"id":"cost-082","buildingId":"b-006","category":"forsikring","year":2026,"month":1,"amount":25000,"source":"manual"},
-  {"id":"cost-083","buildingId":"b-006","category":"forsikring","year":2026,"month":2,"amount":25000,"source":"manual"},
-  {"id":"cost-084","buildingId":"b-006","category":"forsikring","year":2026,"month":3,"amount":25000,"source":"manual"},
-  {"id":"cost-085","buildingId":"b-006","category":"administrasjon","year":2026,"month":1,"amount":48000,"source":"manual"},
-  {"id":"cost-086","buildingId":"b-006","category":"administrasjon","year":2026,"month":2,"amount":48000,"source":"manual"},
-  {"id":"cost-087","buildingId":"b-006","category":"administrasjon","year":2026,"month":3,"amount":48000,"source":"manual"},
-  {"id":"cost-088","buildingId":"b-006","category":"eiendomsskatt","year":2026,"month":1,"amount":32000,"source":"manual"},
-  {"id":"cost-089","buildingId":"b-006","category":"eiendomsskatt","year":2026,"month":2,"amount":32000,"source":"manual"},
-  {"id":"cost-090","buildingId":"b-006","category":"eiendomsskatt","year":2026,"month":3,"amount":32000,"source":"manual"},
-
-  {"id":"cost-091","buildingId":"b-007","category":"drift","year":2026,"month":1,"amount":115000,"source":"manual"},
-  {"id":"cost-092","buildingId":"b-007","category":"drift","year":2026,"month":2,"amount":110000,"source":"manual"},
-  {"id":"cost-093","buildingId":"b-007","category":"drift","year":2026,"month":3,"amount":120000,"source":"manual"},
-  {"id":"cost-094","buildingId":"b-007","category":"vedlikehold","year":2026,"month":1,"amount":55000,"source":"manual"},
-  {"id":"cost-095","buildingId":"b-007","category":"vedlikehold","year":2026,"month":2,"amount":48000,"source":"manual"},
-  {"id":"cost-096","buildingId":"b-007","category":"vedlikehold","year":2026,"month":3,"amount":62000,"source":"manual"},
-  {"id":"cost-097","buildingId":"b-007","category":"forsikring","year":2026,"month":1,"amount":12000,"source":"manual"},
-  {"id":"cost-098","buildingId":"b-007","category":"forsikring","year":2026,"month":2,"amount":12000,"source":"manual"},
-  {"id":"cost-099","buildingId":"b-007","category":"forsikring","year":2026,"month":3,"amount":12000,"source":"manual"},
-  {"id":"cost-100","buildingId":"b-007","category":"administrasjon","year":2026,"month":1,"amount":28000,"source":"manual"},
-  {"id":"cost-101","buildingId":"b-007","category":"administrasjon","year":2026,"month":2,"amount":28000,"source":"manual"},
-  {"id":"cost-102","buildingId":"b-007","category":"administrasjon","year":2026,"month":3,"amount":28000,"source":"manual"},
-  {"id":"cost-103","buildingId":"b-007","category":"eiendomsskatt","year":2026,"month":1,"amount":15000,"source":"manual"},
-  {"id":"cost-104","buildingId":"b-007","category":"eiendomsskatt","year":2026,"month":2,"amount":15000,"source":"manual"},
-  {"id":"cost-105","buildingId":"b-007","category":"eiendomsskatt","year":2026,"month":3,"amount":15000,"source":"manual"},
-
-  {"id":"cost-106","buildingId":"b-008","category":"drift","year":2026,"month":1,"amount":165000,"source":"manual"},
-  {"id":"cost-107","buildingId":"b-008","category":"drift","year":2026,"month":2,"amount":160000,"source":"manual"},
-  {"id":"cost-108","buildingId":"b-008","category":"drift","year":2026,"month":3,"amount":170000,"source":"manual"},
-  {"id":"cost-109","buildingId":"b-008","category":"vedlikehold","year":2026,"month":1,"amount":45000,"source":"manual"},
-  {"id":"cost-110","buildingId":"b-008","category":"vedlikehold","year":2026,"month":2,"amount":42000,"source":"manual"},
-  {"id":"cost-111","buildingId":"b-008","category":"vedlikehold","year":2026,"month":3,"amount":48000,"source":"manual"},
-  {"id":"cost-112","buildingId":"b-008","category":"forsikring","year":2026,"month":1,"amount":22000,"source":"manual"},
-  {"id":"cost-113","buildingId":"b-008","category":"forsikring","year":2026,"month":2,"amount":22000,"source":"manual"},
-  {"id":"cost-114","buildingId":"b-008","category":"forsikring","year":2026,"month":3,"amount":22000,"source":"manual"},
-  {"id":"cost-115","buildingId":"b-008","category":"administrasjon","year":2026,"month":1,"amount":52000,"source":"manual"},
-  {"id":"cost-116","buildingId":"b-008","category":"administrasjon","year":2026,"month":2,"amount":52000,"source":"manual"},
-  {"id":"cost-117","buildingId":"b-008","category":"administrasjon","year":2026,"month":3,"amount":52000,"source":"manual"},
-  {"id":"cost-118","buildingId":"b-008","category":"eiendomsskatt","year":2026,"month":1,"amount":35000,"source":"manual"},
-  {"id":"cost-119","buildingId":"b-008","category":"eiendomsskatt","year":2026,"month":2,"amount":35000,"source":"manual"},
-  {"id":"cost-120","buildingId":"b-008","category":"eiendomsskatt","year":2026,"month":3,"amount":35000,"source":"manual"}
+  {
+    "id": "cost-200",
+    "buildingId": "b-001",
+    "category": "drift",
+    "year": 2025,
+    "month": 1,
+    "amount": 320000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-201",
+    "buildingId": "b-001",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 1,
+    "amount": 100000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-202",
+    "buildingId": "b-001",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 1,
+    "amount": 40000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-203",
+    "buildingId": "b-001",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 1,
+    "amount": 82000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-204",
+    "buildingId": "b-001",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 1,
+    "amount": 53000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-205",
+    "buildingId": "b-001",
+    "category": "drift",
+    "year": 2025,
+    "month": 2,
+    "amount": 325000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-206",
+    "buildingId": "b-001",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 2,
+    "amount": 95000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-207",
+    "buildingId": "b-001",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 2,
+    "amount": 40000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-208",
+    "buildingId": "b-001",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 2,
+    "amount": 82000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-209",
+    "buildingId": "b-001",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 2,
+    "amount": 53000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-210",
+    "buildingId": "b-001",
+    "category": "drift",
+    "year": 2025,
+    "month": 3,
+    "amount": 330000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-211",
+    "buildingId": "b-001",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 3,
+    "amount": 110000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-212",
+    "buildingId": "b-001",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 3,
+    "amount": 40000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-213",
+    "buildingId": "b-001",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 3,
+    "amount": 82000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-214",
+    "buildingId": "b-001",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 3,
+    "amount": 53000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-215",
+    "buildingId": "b-001",
+    "category": "drift",
+    "year": 2025,
+    "month": 4,
+    "amount": 335000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-216",
+    "buildingId": "b-001",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 4,
+    "amount": 120000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-217",
+    "buildingId": "b-001",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 4,
+    "amount": 40000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-218",
+    "buildingId": "b-001",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 4,
+    "amount": 82000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-219",
+    "buildingId": "b-001",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 4,
+    "amount": 53000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-220",
+    "buildingId": "b-001",
+    "category": "drift",
+    "year": 2025,
+    "month": 5,
+    "amount": 340000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-221",
+    "buildingId": "b-001",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 5,
+    "amount": 115000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-222",
+    "buildingId": "b-001",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 5,
+    "amount": 40000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-223",
+    "buildingId": "b-001",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 5,
+    "amount": 82000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-224",
+    "buildingId": "b-001",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 5,
+    "amount": 53000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-225",
+    "buildingId": "b-001",
+    "category": "drift",
+    "year": 2025,
+    "month": 6,
+    "amount": 345000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-226",
+    "buildingId": "b-001",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 6,
+    "amount": 105000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-227",
+    "buildingId": "b-001",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 6,
+    "amount": 40000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-228",
+    "buildingId": "b-001",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 6,
+    "amount": 82000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-229",
+    "buildingId": "b-001",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 6,
+    "amount": 53000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-230",
+    "buildingId": "b-001",
+    "category": "drift",
+    "year": 2025,
+    "month": 7,
+    "amount": 340000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-231",
+    "buildingId": "b-001",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 7,
+    "amount": 90000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-232",
+    "buildingId": "b-001",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 7,
+    "amount": 40000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-233",
+    "buildingId": "b-001",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 7,
+    "amount": 82000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-234",
+    "buildingId": "b-001",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 7,
+    "amount": 53000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-235",
+    "buildingId": "b-001",
+    "category": "drift",
+    "year": 2025,
+    "month": 8,
+    "amount": 335000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-236",
+    "buildingId": "b-001",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 8,
+    "amount": 100000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-237",
+    "buildingId": "b-001",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 8,
+    "amount": 40000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-238",
+    "buildingId": "b-001",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 8,
+    "amount": 82000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-239",
+    "buildingId": "b-001",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 8,
+    "amount": 53000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-240",
+    "buildingId": "b-001",
+    "category": "drift",
+    "year": 2025,
+    "month": 9,
+    "amount": 330000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-241",
+    "buildingId": "b-001",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 9,
+    "amount": 110000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-242",
+    "buildingId": "b-001",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 9,
+    "amount": 40000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-243",
+    "buildingId": "b-001",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 9,
+    "amount": 82000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-244",
+    "buildingId": "b-001",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 9,
+    "amount": 53000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-245",
+    "buildingId": "b-001",
+    "category": "drift",
+    "year": 2025,
+    "month": 10,
+    "amount": 335000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-246",
+    "buildingId": "b-001",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 10,
+    "amount": 120000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-247",
+    "buildingId": "b-001",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 10,
+    "amount": 40000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-248",
+    "buildingId": "b-001",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 10,
+    "amount": 82000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-249",
+    "buildingId": "b-001",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 10,
+    "amount": 53000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-250",
+    "buildingId": "b-001",
+    "category": "drift",
+    "year": 2025,
+    "month": 11,
+    "amount": 340000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-251",
+    "buildingId": "b-001",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 11,
+    "amount": 115000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-252",
+    "buildingId": "b-001",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 11,
+    "amount": 40000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-253",
+    "buildingId": "b-001",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 11,
+    "amount": 82000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-254",
+    "buildingId": "b-001",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 11,
+    "amount": 53000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-255",
+    "buildingId": "b-001",
+    "category": "drift",
+    "year": 2025,
+    "month": 12,
+    "amount": 345000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-256",
+    "buildingId": "b-001",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 12,
+    "amount": 125000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-257",
+    "buildingId": "b-001",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 12,
+    "amount": 40000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-258",
+    "buildingId": "b-001",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 12,
+    "amount": 82000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-259",
+    "buildingId": "b-001",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 12,
+    "amount": 53000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-260",
+    "buildingId": "b-002",
+    "category": "drift",
+    "year": 2025,
+    "month": 1,
+    "amount": 235000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-261",
+    "buildingId": "b-002",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 1,
+    "amount": 80000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-262",
+    "buildingId": "b-002",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 1,
+    "amount": 28000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-263",
+    "buildingId": "b-002",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 1,
+    "amount": 62000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-264",
+    "buildingId": "b-002",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 1,
+    "amount": 36000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-265",
+    "buildingId": "b-002",
+    "category": "drift",
+    "year": 2025,
+    "month": 2,
+    "amount": 230000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-266",
+    "buildingId": "b-002",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 2,
+    "amount": 75000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-267",
+    "buildingId": "b-002",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 2,
+    "amount": 28000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-268",
+    "buildingId": "b-002",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 2,
+    "amount": 62000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-269",
+    "buildingId": "b-002",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 2,
+    "amount": 36000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-270",
+    "buildingId": "b-002",
+    "category": "drift",
+    "year": 2025,
+    "month": 3,
+    "amount": 238000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-271",
+    "buildingId": "b-002",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 3,
+    "amount": 85000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-272",
+    "buildingId": "b-002",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 3,
+    "amount": 28000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-273",
+    "buildingId": "b-002",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 3,
+    "amount": 62000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-274",
+    "buildingId": "b-002",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 3,
+    "amount": 36000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-275",
+    "buildingId": "b-002",
+    "category": "drift",
+    "year": 2025,
+    "month": 4,
+    "amount": 242000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-276",
+    "buildingId": "b-002",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 4,
+    "amount": 90000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-277",
+    "buildingId": "b-002",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 4,
+    "amount": 28000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-278",
+    "buildingId": "b-002",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 4,
+    "amount": 62000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-279",
+    "buildingId": "b-002",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 4,
+    "amount": 36000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-280",
+    "buildingId": "b-002",
+    "category": "drift",
+    "year": 2025,
+    "month": 5,
+    "amount": 245000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-281",
+    "buildingId": "b-002",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 5,
+    "amount": 88000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-282",
+    "buildingId": "b-002",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 5,
+    "amount": 28000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-283",
+    "buildingId": "b-002",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 5,
+    "amount": 62000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-284",
+    "buildingId": "b-002",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 5,
+    "amount": 36000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-285",
+    "buildingId": "b-002",
+    "category": "drift",
+    "year": 2025,
+    "month": 6,
+    "amount": 248000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-286",
+    "buildingId": "b-002",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 6,
+    "amount": 82000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-287",
+    "buildingId": "b-002",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 6,
+    "amount": 28000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-288",
+    "buildingId": "b-002",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 6,
+    "amount": 62000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-289",
+    "buildingId": "b-002",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 6,
+    "amount": 36000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-290",
+    "buildingId": "b-002",
+    "category": "drift",
+    "year": 2025,
+    "month": 7,
+    "amount": 242000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-291",
+    "buildingId": "b-002",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 7,
+    "amount": 78000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-292",
+    "buildingId": "b-002",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 7,
+    "amount": 28000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-293",
+    "buildingId": "b-002",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 7,
+    "amount": 62000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-294",
+    "buildingId": "b-002",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 7,
+    "amount": 36000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-295",
+    "buildingId": "b-002",
+    "category": "drift",
+    "year": 2025,
+    "month": 8,
+    "amount": 238000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-296",
+    "buildingId": "b-002",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 8,
+    "amount": 82000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-297",
+    "buildingId": "b-002",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 8,
+    "amount": 28000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-298",
+    "buildingId": "b-002",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 8,
+    "amount": 62000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-299",
+    "buildingId": "b-002",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 8,
+    "amount": 36000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-300",
+    "buildingId": "b-002",
+    "category": "drift",
+    "year": 2025,
+    "month": 9,
+    "amount": 235000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-301",
+    "buildingId": "b-002",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 9,
+    "amount": 88000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-302",
+    "buildingId": "b-002",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 9,
+    "amount": 28000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-303",
+    "buildingId": "b-002",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 9,
+    "amount": 62000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-304",
+    "buildingId": "b-002",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 9,
+    "amount": 36000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-305",
+    "buildingId": "b-002",
+    "category": "drift",
+    "year": 2025,
+    "month": 10,
+    "amount": 240000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-306",
+    "buildingId": "b-002",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 10,
+    "amount": 92000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-307",
+    "buildingId": "b-002",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 10,
+    "amount": 28000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-308",
+    "buildingId": "b-002",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 10,
+    "amount": 62000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-309",
+    "buildingId": "b-002",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 10,
+    "amount": 36000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-310",
+    "buildingId": "b-002",
+    "category": "drift",
+    "year": 2025,
+    "month": 11,
+    "amount": 245000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-311",
+    "buildingId": "b-002",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 11,
+    "amount": 90000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-312",
+    "buildingId": "b-002",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 11,
+    "amount": 28000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-313",
+    "buildingId": "b-002",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 11,
+    "amount": 62000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-314",
+    "buildingId": "b-002",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 11,
+    "amount": 36000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-315",
+    "buildingId": "b-002",
+    "category": "drift",
+    "year": 2025,
+    "month": 12,
+    "amount": 250000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-316",
+    "buildingId": "b-002",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 12,
+    "amount": 95000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-317",
+    "buildingId": "b-002",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 12,
+    "amount": 28000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-318",
+    "buildingId": "b-002",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 12,
+    "amount": 62000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-319",
+    "buildingId": "b-002",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 12,
+    "amount": 36000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-320",
+    "buildingId": "b-003",
+    "category": "drift",
+    "year": 2025,
+    "month": 1,
+    "amount": 170000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-321",
+    "buildingId": "b-003",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 1,
+    "amount": 85000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-322",
+    "buildingId": "b-003",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 1,
+    "amount": 20000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-323",
+    "buildingId": "b-003",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 1,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-324",
+    "buildingId": "b-003",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 1,
+    "amount": 26000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-325",
+    "buildingId": "b-003",
+    "category": "drift",
+    "year": 2025,
+    "month": 2,
+    "amount": 165000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-326",
+    "buildingId": "b-003",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 2,
+    "amount": 80000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-327",
+    "buildingId": "b-003",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 2,
+    "amount": 20000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-328",
+    "buildingId": "b-003",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 2,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-329",
+    "buildingId": "b-003",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 2,
+    "amount": 26000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-330",
+    "buildingId": "b-003",
+    "category": "drift",
+    "year": 2025,
+    "month": 3,
+    "amount": 172000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-331",
+    "buildingId": "b-003",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 3,
+    "amount": 90000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-332",
+    "buildingId": "b-003",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 3,
+    "amount": 20000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-333",
+    "buildingId": "b-003",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 3,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-334",
+    "buildingId": "b-003",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 3,
+    "amount": 26000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-335",
+    "buildingId": "b-003",
+    "category": "drift",
+    "year": 2025,
+    "month": 4,
+    "amount": 178000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-336",
+    "buildingId": "b-003",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 4,
+    "amount": 95000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-337",
+    "buildingId": "b-003",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 4,
+    "amount": 20000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-338",
+    "buildingId": "b-003",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 4,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-339",
+    "buildingId": "b-003",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 4,
+    "amount": 26000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-340",
+    "buildingId": "b-003",
+    "category": "drift",
+    "year": 2025,
+    "month": 5,
+    "amount": 180000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-341",
+    "buildingId": "b-003",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 5,
+    "amount": 92000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-342",
+    "buildingId": "b-003",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 5,
+    "amount": 20000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-343",
+    "buildingId": "b-003",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 5,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-344",
+    "buildingId": "b-003",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 5,
+    "amount": 26000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-345",
+    "buildingId": "b-003",
+    "category": "drift",
+    "year": 2025,
+    "month": 6,
+    "amount": 182000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-346",
+    "buildingId": "b-003",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 6,
+    "amount": 88000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-347",
+    "buildingId": "b-003",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 6,
+    "amount": 20000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-348",
+    "buildingId": "b-003",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 6,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-349",
+    "buildingId": "b-003",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 6,
+    "amount": 26000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-350",
+    "buildingId": "b-003",
+    "category": "drift",
+    "year": 2025,
+    "month": 7,
+    "amount": 178000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-351",
+    "buildingId": "b-003",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 7,
+    "amount": 82000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-352",
+    "buildingId": "b-003",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 7,
+    "amount": 20000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-353",
+    "buildingId": "b-003",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 7,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-354",
+    "buildingId": "b-003",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 7,
+    "amount": 26000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-355",
+    "buildingId": "b-003",
+    "category": "drift",
+    "year": 2025,
+    "month": 8,
+    "amount": 175000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-356",
+    "buildingId": "b-003",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 8,
+    "amount": 85000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-357",
+    "buildingId": "b-003",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 8,
+    "amount": 20000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-358",
+    "buildingId": "b-003",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 8,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-359",
+    "buildingId": "b-003",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 8,
+    "amount": 26000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-360",
+    "buildingId": "b-003",
+    "category": "drift",
+    "year": 2025,
+    "month": 9,
+    "amount": 172000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-361",
+    "buildingId": "b-003",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 9,
+    "amount": 90000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-362",
+    "buildingId": "b-003",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 9,
+    "amount": 20000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-363",
+    "buildingId": "b-003",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 9,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-364",
+    "buildingId": "b-003",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 9,
+    "amount": 26000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-365",
+    "buildingId": "b-003",
+    "category": "drift",
+    "year": 2025,
+    "month": 10,
+    "amount": 175000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-366",
+    "buildingId": "b-003",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 10,
+    "amount": 95000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-367",
+    "buildingId": "b-003",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 10,
+    "amount": 20000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-368",
+    "buildingId": "b-003",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 10,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-369",
+    "buildingId": "b-003",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 10,
+    "amount": 26000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-370",
+    "buildingId": "b-003",
+    "category": "drift",
+    "year": 2025,
+    "month": 11,
+    "amount": 178000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-371",
+    "buildingId": "b-003",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 11,
+    "amount": 92000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-372",
+    "buildingId": "b-003",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 11,
+    "amount": 20000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-373",
+    "buildingId": "b-003",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 11,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-374",
+    "buildingId": "b-003",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 11,
+    "amount": 26000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-375",
+    "buildingId": "b-003",
+    "category": "drift",
+    "year": 2025,
+    "month": 12,
+    "amount": 182000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-376",
+    "buildingId": "b-003",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 12,
+    "amount": 98000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-377",
+    "buildingId": "b-003",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 12,
+    "amount": 20000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-378",
+    "buildingId": "b-003",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 12,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-379",
+    "buildingId": "b-003",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 12,
+    "amount": 26000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-380",
+    "buildingId": "b-004",
+    "category": "drift",
+    "year": 2025,
+    "month": 1,
+    "amount": 295000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-381",
+    "buildingId": "b-004",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 1,
+    "amount": 68000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-382",
+    "buildingId": "b-004",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 1,
+    "amount": 42000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-383",
+    "buildingId": "b-004",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 1,
+    "amount": 52000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-384",
+    "buildingId": "b-004",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 1,
+    "amount": 46000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-385",
+    "buildingId": "b-004",
+    "category": "drift",
+    "year": 2025,
+    "month": 2,
+    "amount": 290000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-386",
+    "buildingId": "b-004",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 2,
+    "amount": 65000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-387",
+    "buildingId": "b-004",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 2,
+    "amount": 42000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-388",
+    "buildingId": "b-004",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 2,
+    "amount": 52000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-389",
+    "buildingId": "b-004",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 2,
+    "amount": 46000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-390",
+    "buildingId": "b-004",
+    "category": "drift",
+    "year": 2025,
+    "month": 3,
+    "amount": 300000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-391",
+    "buildingId": "b-004",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 3,
+    "amount": 72000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-392",
+    "buildingId": "b-004",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 3,
+    "amount": 42000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-393",
+    "buildingId": "b-004",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 3,
+    "amount": 52000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-394",
+    "buildingId": "b-004",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 3,
+    "amount": 46000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-395",
+    "buildingId": "b-004",
+    "category": "drift",
+    "year": 2025,
+    "month": 4,
+    "amount": 305000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-396",
+    "buildingId": "b-004",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 4,
+    "amount": 75000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-397",
+    "buildingId": "b-004",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 4,
+    "amount": 42000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-398",
+    "buildingId": "b-004",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 4,
+    "amount": 52000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-399",
+    "buildingId": "b-004",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 4,
+    "amount": 46000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-400",
+    "buildingId": "b-004",
+    "category": "drift",
+    "year": 2025,
+    "month": 5,
+    "amount": 310000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-401",
+    "buildingId": "b-004",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 5,
+    "amount": 74000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-402",
+    "buildingId": "b-004",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 5,
+    "amount": 42000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-403",
+    "buildingId": "b-004",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 5,
+    "amount": 52000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-404",
+    "buildingId": "b-004",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 5,
+    "amount": 46000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-405",
+    "buildingId": "b-004",
+    "category": "drift",
+    "year": 2025,
+    "month": 6,
+    "amount": 315000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-406",
+    "buildingId": "b-004",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 6,
+    "amount": 70000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-407",
+    "buildingId": "b-004",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 6,
+    "amount": 42000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-408",
+    "buildingId": "b-004",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 6,
+    "amount": 52000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-409",
+    "buildingId": "b-004",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 6,
+    "amount": 46000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-410",
+    "buildingId": "b-004",
+    "category": "drift",
+    "year": 2025,
+    "month": 7,
+    "amount": 310000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-411",
+    "buildingId": "b-004",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 7,
+    "amount": 66000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-412",
+    "buildingId": "b-004",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 7,
+    "amount": 42000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-413",
+    "buildingId": "b-004",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 7,
+    "amount": 52000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-414",
+    "buildingId": "b-004",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 7,
+    "amount": 46000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-415",
+    "buildingId": "b-004",
+    "category": "drift",
+    "year": 2025,
+    "month": 8,
+    "amount": 305000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-416",
+    "buildingId": "b-004",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 8,
+    "amount": 68000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-417",
+    "buildingId": "b-004",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 8,
+    "amount": 42000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-418",
+    "buildingId": "b-004",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 8,
+    "amount": 52000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-419",
+    "buildingId": "b-004",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 8,
+    "amount": 46000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-420",
+    "buildingId": "b-004",
+    "category": "drift",
+    "year": 2025,
+    "month": 9,
+    "amount": 300000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-421",
+    "buildingId": "b-004",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 9,
+    "amount": 72000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-422",
+    "buildingId": "b-004",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 9,
+    "amount": 42000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-423",
+    "buildingId": "b-004",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 9,
+    "amount": 52000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-424",
+    "buildingId": "b-004",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 9,
+    "amount": 46000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-425",
+    "buildingId": "b-004",
+    "category": "drift",
+    "year": 2025,
+    "month": 10,
+    "amount": 305000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-426",
+    "buildingId": "b-004",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 10,
+    "amount": 75000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-427",
+    "buildingId": "b-004",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 10,
+    "amount": 42000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-428",
+    "buildingId": "b-004",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 10,
+    "amount": 52000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-429",
+    "buildingId": "b-004",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 10,
+    "amount": 46000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-430",
+    "buildingId": "b-004",
+    "category": "drift",
+    "year": 2025,
+    "month": 11,
+    "amount": 310000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-431",
+    "buildingId": "b-004",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 11,
+    "amount": 74000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-432",
+    "buildingId": "b-004",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 11,
+    "amount": 42000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-433",
+    "buildingId": "b-004",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 11,
+    "amount": 52000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-434",
+    "buildingId": "b-004",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 11,
+    "amount": 46000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-435",
+    "buildingId": "b-004",
+    "category": "drift",
+    "year": 2025,
+    "month": 12,
+    "amount": 318000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-436",
+    "buildingId": "b-004",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 12,
+    "amount": 78000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-437",
+    "buildingId": "b-004",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 12,
+    "amount": 42000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-438",
+    "buildingId": "b-004",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 12,
+    "amount": 52000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-439",
+    "buildingId": "b-004",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 12,
+    "amount": 46000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-440",
+    "buildingId": "b-005",
+    "category": "drift",
+    "year": 2025,
+    "month": 1,
+    "amount": 115000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-441",
+    "buildingId": "b-005",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 1,
+    "amount": 58000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-442",
+    "buildingId": "b-005",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 1,
+    "amount": 14000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-443",
+    "buildingId": "b-005",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 1,
+    "amount": 32000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-444",
+    "buildingId": "b-005",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 1,
+    "amount": 16000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-445",
+    "buildingId": "b-005",
+    "category": "drift",
+    "year": 2025,
+    "month": 2,
+    "amount": 112000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-446",
+    "buildingId": "b-005",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 2,
+    "amount": 55000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-447",
+    "buildingId": "b-005",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 2,
+    "amount": 14000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-448",
+    "buildingId": "b-005",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 2,
+    "amount": 32000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-449",
+    "buildingId": "b-005",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 2,
+    "amount": 16000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-450",
+    "buildingId": "b-005",
+    "category": "drift",
+    "year": 2025,
+    "month": 3,
+    "amount": 118000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-451",
+    "buildingId": "b-005",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 3,
+    "amount": 62000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-452",
+    "buildingId": "b-005",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 3,
+    "amount": 14000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-453",
+    "buildingId": "b-005",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 3,
+    "amount": 32000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-454",
+    "buildingId": "b-005",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 3,
+    "amount": 16000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-455",
+    "buildingId": "b-005",
+    "category": "drift",
+    "year": 2025,
+    "month": 4,
+    "amount": 122000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-456",
+    "buildingId": "b-005",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 4,
+    "amount": 65000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-457",
+    "buildingId": "b-005",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 4,
+    "amount": 14000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-458",
+    "buildingId": "b-005",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 4,
+    "amount": 32000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-459",
+    "buildingId": "b-005",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 4,
+    "amount": 16000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-460",
+    "buildingId": "b-005",
+    "category": "drift",
+    "year": 2025,
+    "month": 5,
+    "amount": 125000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-461",
+    "buildingId": "b-005",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 5,
+    "amount": 64000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-462",
+    "buildingId": "b-005",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 5,
+    "amount": 14000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-463",
+    "buildingId": "b-005",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 5,
+    "amount": 32000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-464",
+    "buildingId": "b-005",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 5,
+    "amount": 16000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-465",
+    "buildingId": "b-005",
+    "category": "drift",
+    "year": 2025,
+    "month": 6,
+    "amount": 128000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-466",
+    "buildingId": "b-005",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 6,
+    "amount": 60000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-467",
+    "buildingId": "b-005",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 6,
+    "amount": 14000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-468",
+    "buildingId": "b-005",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 6,
+    "amount": 32000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-469",
+    "buildingId": "b-005",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 6,
+    "amount": 16000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-470",
+    "buildingId": "b-005",
+    "category": "drift",
+    "year": 2025,
+    "month": 7,
+    "amount": 122000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-471",
+    "buildingId": "b-005",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 7,
+    "amount": 56000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-472",
+    "buildingId": "b-005",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 7,
+    "amount": 14000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-473",
+    "buildingId": "b-005",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 7,
+    "amount": 32000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-474",
+    "buildingId": "b-005",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 7,
+    "amount": 16000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-475",
+    "buildingId": "b-005",
+    "category": "drift",
+    "year": 2025,
+    "month": 8,
+    "amount": 118000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-476",
+    "buildingId": "b-005",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 8,
+    "amount": 58000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-477",
+    "buildingId": "b-005",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 8,
+    "amount": 14000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-478",
+    "buildingId": "b-005",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 8,
+    "amount": 32000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-479",
+    "buildingId": "b-005",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 8,
+    "amount": 16000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-480",
+    "buildingId": "b-005",
+    "category": "drift",
+    "year": 2025,
+    "month": 9,
+    "amount": 115000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-481",
+    "buildingId": "b-005",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 9,
+    "amount": 62000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-482",
+    "buildingId": "b-005",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 9,
+    "amount": 14000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-483",
+    "buildingId": "b-005",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 9,
+    "amount": 32000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-484",
+    "buildingId": "b-005",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 9,
+    "amount": 16000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-485",
+    "buildingId": "b-005",
+    "category": "drift",
+    "year": 2025,
+    "month": 10,
+    "amount": 118000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-486",
+    "buildingId": "b-005",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 10,
+    "amount": 65000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-487",
+    "buildingId": "b-005",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 10,
+    "amount": 14000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-488",
+    "buildingId": "b-005",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 10,
+    "amount": 32000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-489",
+    "buildingId": "b-005",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 10,
+    "amount": 16000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-490",
+    "buildingId": "b-005",
+    "category": "drift",
+    "year": 2025,
+    "month": 11,
+    "amount": 122000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-491",
+    "buildingId": "b-005",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 11,
+    "amount": 64000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-492",
+    "buildingId": "b-005",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 11,
+    "amount": 14000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-493",
+    "buildingId": "b-005",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 11,
+    "amount": 32000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-494",
+    "buildingId": "b-005",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 11,
+    "amount": 16000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-495",
+    "buildingId": "b-005",
+    "category": "drift",
+    "year": 2025,
+    "month": 12,
+    "amount": 128000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-496",
+    "buildingId": "b-005",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 12,
+    "amount": 68000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-497",
+    "buildingId": "b-005",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 12,
+    "amount": 14000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-498",
+    "buildingId": "b-005",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 12,
+    "amount": 32000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-499",
+    "buildingId": "b-005",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 12,
+    "amount": 16000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-500",
+    "buildingId": "b-006",
+    "category": "drift",
+    "year": 2025,
+    "month": 1,
+    "amount": 185000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-501",
+    "buildingId": "b-006",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 1,
+    "amount": 48000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-502",
+    "buildingId": "b-006",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 1,
+    "amount": 24000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-503",
+    "buildingId": "b-006",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 1,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-504",
+    "buildingId": "b-006",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 1,
+    "amount": 30000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-505",
+    "buildingId": "b-006",
+    "category": "drift",
+    "year": 2025,
+    "month": 2,
+    "amount": 180000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-506",
+    "buildingId": "b-006",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 2,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-507",
+    "buildingId": "b-006",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 2,
+    "amount": 24000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-508",
+    "buildingId": "b-006",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 2,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-509",
+    "buildingId": "b-006",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 2,
+    "amount": 30000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-510",
+    "buildingId": "b-006",
+    "category": "drift",
+    "year": 2025,
+    "month": 3,
+    "amount": 188000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-511",
+    "buildingId": "b-006",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 3,
+    "amount": 52000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-512",
+    "buildingId": "b-006",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 3,
+    "amount": 24000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-513",
+    "buildingId": "b-006",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 3,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-514",
+    "buildingId": "b-006",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 3,
+    "amount": 30000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-515",
+    "buildingId": "b-006",
+    "category": "drift",
+    "year": 2025,
+    "month": 4,
+    "amount": 192000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-516",
+    "buildingId": "b-006",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 4,
+    "amount": 55000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-517",
+    "buildingId": "b-006",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 4,
+    "amount": 24000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-518",
+    "buildingId": "b-006",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 4,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-519",
+    "buildingId": "b-006",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 4,
+    "amount": 30000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-520",
+    "buildingId": "b-006",
+    "category": "drift",
+    "year": 2025,
+    "month": 5,
+    "amount": 195000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-521",
+    "buildingId": "b-006",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 5,
+    "amount": 54000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-522",
+    "buildingId": "b-006",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 5,
+    "amount": 24000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-523",
+    "buildingId": "b-006",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 5,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-524",
+    "buildingId": "b-006",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 5,
+    "amount": 30000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-525",
+    "buildingId": "b-006",
+    "category": "drift",
+    "year": 2025,
+    "month": 6,
+    "amount": 198000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-526",
+    "buildingId": "b-006",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 6,
+    "amount": 50000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-527",
+    "buildingId": "b-006",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 6,
+    "amount": 24000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-528",
+    "buildingId": "b-006",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 6,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-529",
+    "buildingId": "b-006",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 6,
+    "amount": 30000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-530",
+    "buildingId": "b-006",
+    "category": "drift",
+    "year": 2025,
+    "month": 7,
+    "amount": 192000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-531",
+    "buildingId": "b-006",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 7,
+    "amount": 46000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-532",
+    "buildingId": "b-006",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 7,
+    "amount": 24000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-533",
+    "buildingId": "b-006",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 7,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-534",
+    "buildingId": "b-006",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 7,
+    "amount": 30000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-535",
+    "buildingId": "b-006",
+    "category": "drift",
+    "year": 2025,
+    "month": 8,
+    "amount": 188000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-536",
+    "buildingId": "b-006",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 8,
+    "amount": 48000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-537",
+    "buildingId": "b-006",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 8,
+    "amount": 24000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-538",
+    "buildingId": "b-006",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 8,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-539",
+    "buildingId": "b-006",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 8,
+    "amount": 30000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-540",
+    "buildingId": "b-006",
+    "category": "drift",
+    "year": 2025,
+    "month": 9,
+    "amount": 185000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-541",
+    "buildingId": "b-006",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 9,
+    "amount": 52000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-542",
+    "buildingId": "b-006",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 9,
+    "amount": 24000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-543",
+    "buildingId": "b-006",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 9,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-544",
+    "buildingId": "b-006",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 9,
+    "amount": 30000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-545",
+    "buildingId": "b-006",
+    "category": "drift",
+    "year": 2025,
+    "month": 10,
+    "amount": 190000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-546",
+    "buildingId": "b-006",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 10,
+    "amount": 55000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-547",
+    "buildingId": "b-006",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 10,
+    "amount": 24000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-548",
+    "buildingId": "b-006",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 10,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-549",
+    "buildingId": "b-006",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 10,
+    "amount": 30000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-550",
+    "buildingId": "b-006",
+    "category": "drift",
+    "year": 2025,
+    "month": 11,
+    "amount": 195000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-551",
+    "buildingId": "b-006",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 11,
+    "amount": 54000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-552",
+    "buildingId": "b-006",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 11,
+    "amount": 24000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-553",
+    "buildingId": "b-006",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 11,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-554",
+    "buildingId": "b-006",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 11,
+    "amount": 30000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-555",
+    "buildingId": "b-006",
+    "category": "drift",
+    "year": 2025,
+    "month": 12,
+    "amount": 200000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-556",
+    "buildingId": "b-006",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 12,
+    "amount": 58000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-557",
+    "buildingId": "b-006",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 12,
+    "amount": 24000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-558",
+    "buildingId": "b-006",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 12,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-559",
+    "buildingId": "b-006",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 12,
+    "amount": 30000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-560",
+    "buildingId": "b-007",
+    "category": "drift",
+    "year": 2025,
+    "month": 1,
+    "amount": 105000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-561",
+    "buildingId": "b-007",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 1,
+    "amount": 48000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-562",
+    "buildingId": "b-007",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 1,
+    "amount": 11000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-563",
+    "buildingId": "b-007",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 1,
+    "amount": 26000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-564",
+    "buildingId": "b-007",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 1,
+    "amount": 14000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-565",
+    "buildingId": "b-007",
+    "category": "drift",
+    "year": 2025,
+    "month": 2,
+    "amount": 102000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-566",
+    "buildingId": "b-007",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 2,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-567",
+    "buildingId": "b-007",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 2,
+    "amount": 11000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-568",
+    "buildingId": "b-007",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 2,
+    "amount": 26000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-569",
+    "buildingId": "b-007",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 2,
+    "amount": 14000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-570",
+    "buildingId": "b-007",
+    "category": "drift",
+    "year": 2025,
+    "month": 3,
+    "amount": 108000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-571",
+    "buildingId": "b-007",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 3,
+    "amount": 52000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-572",
+    "buildingId": "b-007",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 3,
+    "amount": 11000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-573",
+    "buildingId": "b-007",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 3,
+    "amount": 26000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-574",
+    "buildingId": "b-007",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 3,
+    "amount": 14000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-575",
+    "buildingId": "b-007",
+    "category": "drift",
+    "year": 2025,
+    "month": 4,
+    "amount": 112000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-576",
+    "buildingId": "b-007",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 4,
+    "amount": 55000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-577",
+    "buildingId": "b-007",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 4,
+    "amount": 11000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-578",
+    "buildingId": "b-007",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 4,
+    "amount": 26000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-579",
+    "buildingId": "b-007",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 4,
+    "amount": 14000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-580",
+    "buildingId": "b-007",
+    "category": "drift",
+    "year": 2025,
+    "month": 5,
+    "amount": 115000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-581",
+    "buildingId": "b-007",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 5,
+    "amount": 54000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-582",
+    "buildingId": "b-007",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 5,
+    "amount": 11000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-583",
+    "buildingId": "b-007",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 5,
+    "amount": 26000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-584",
+    "buildingId": "b-007",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 5,
+    "amount": 14000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-585",
+    "buildingId": "b-007",
+    "category": "drift",
+    "year": 2025,
+    "month": 6,
+    "amount": 118000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-586",
+    "buildingId": "b-007",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 6,
+    "amount": 50000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-587",
+    "buildingId": "b-007",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 6,
+    "amount": 11000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-588",
+    "buildingId": "b-007",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 6,
+    "amount": 26000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-589",
+    "buildingId": "b-007",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 6,
+    "amount": 14000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-590",
+    "buildingId": "b-007",
+    "category": "drift",
+    "year": 2025,
+    "month": 7,
+    "amount": 112000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-591",
+    "buildingId": "b-007",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 7,
+    "amount": 46000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-592",
+    "buildingId": "b-007",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 7,
+    "amount": 11000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-593",
+    "buildingId": "b-007",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 7,
+    "amount": 26000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-594",
+    "buildingId": "b-007",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 7,
+    "amount": 14000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-595",
+    "buildingId": "b-007",
+    "category": "drift",
+    "year": 2025,
+    "month": 8,
+    "amount": 108000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-596",
+    "buildingId": "b-007",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 8,
+    "amount": 48000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-597",
+    "buildingId": "b-007",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 8,
+    "amount": 11000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-598",
+    "buildingId": "b-007",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 8,
+    "amount": 26000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-599",
+    "buildingId": "b-007",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 8,
+    "amount": 14000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-600",
+    "buildingId": "b-007",
+    "category": "drift",
+    "year": 2025,
+    "month": 9,
+    "amount": 105000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-601",
+    "buildingId": "b-007",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 9,
+    "amount": 52000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-602",
+    "buildingId": "b-007",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 9,
+    "amount": 11000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-603",
+    "buildingId": "b-007",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 9,
+    "amount": 26000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-604",
+    "buildingId": "b-007",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 9,
+    "amount": 14000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-605",
+    "buildingId": "b-007",
+    "category": "drift",
+    "year": 2025,
+    "month": 10,
+    "amount": 108000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-606",
+    "buildingId": "b-007",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 10,
+    "amount": 55000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-607",
+    "buildingId": "b-007",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 10,
+    "amount": 11000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-608",
+    "buildingId": "b-007",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 10,
+    "amount": 26000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-609",
+    "buildingId": "b-007",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 10,
+    "amount": 14000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-610",
+    "buildingId": "b-007",
+    "category": "drift",
+    "year": 2025,
+    "month": 11,
+    "amount": 112000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-611",
+    "buildingId": "b-007",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 11,
+    "amount": 54000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-612",
+    "buildingId": "b-007",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 11,
+    "amount": 11000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-613",
+    "buildingId": "b-007",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 11,
+    "amount": 26000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-614",
+    "buildingId": "b-007",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 11,
+    "amount": 14000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-615",
+    "buildingId": "b-007",
+    "category": "drift",
+    "year": 2025,
+    "month": 12,
+    "amount": 118000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-616",
+    "buildingId": "b-007",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 12,
+    "amount": 58000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-617",
+    "buildingId": "b-007",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 12,
+    "amount": 11000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-618",
+    "buildingId": "b-007",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 12,
+    "amount": 26000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-619",
+    "buildingId": "b-007",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 12,
+    "amount": 14000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-620",
+    "buildingId": "b-008",
+    "category": "drift",
+    "year": 2025,
+    "month": 1,
+    "amount": 155000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-621",
+    "buildingId": "b-008",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 1,
+    "amount": 40000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-622",
+    "buildingId": "b-008",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 1,
+    "amount": 20000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-623",
+    "buildingId": "b-008",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 1,
+    "amount": 50000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-624",
+    "buildingId": "b-008",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 1,
+    "amount": 33000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-625",
+    "buildingId": "b-008",
+    "category": "drift",
+    "year": 2025,
+    "month": 2,
+    "amount": 152000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-626",
+    "buildingId": "b-008",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 2,
+    "amount": 38000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-627",
+    "buildingId": "b-008",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 2,
+    "amount": 20000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-628",
+    "buildingId": "b-008",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 2,
+    "amount": 50000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-629",
+    "buildingId": "b-008",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 2,
+    "amount": 33000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-630",
+    "buildingId": "b-008",
+    "category": "drift",
+    "year": 2025,
+    "month": 3,
+    "amount": 158000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-631",
+    "buildingId": "b-008",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 3,
+    "amount": 42000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-632",
+    "buildingId": "b-008",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 3,
+    "amount": 20000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-633",
+    "buildingId": "b-008",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 3,
+    "amount": 50000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-634",
+    "buildingId": "b-008",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 3,
+    "amount": 33000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-635",
+    "buildingId": "b-008",
+    "category": "drift",
+    "year": 2025,
+    "month": 4,
+    "amount": 162000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-636",
+    "buildingId": "b-008",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 4,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-637",
+    "buildingId": "b-008",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 4,
+    "amount": 20000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-638",
+    "buildingId": "b-008",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 4,
+    "amount": 50000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-639",
+    "buildingId": "b-008",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 4,
+    "amount": 33000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-640",
+    "buildingId": "b-008",
+    "category": "drift",
+    "year": 2025,
+    "month": 5,
+    "amount": 165000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-641",
+    "buildingId": "b-008",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 5,
+    "amount": 44000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-642",
+    "buildingId": "b-008",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 5,
+    "amount": 20000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-643",
+    "buildingId": "b-008",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 5,
+    "amount": 50000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-644",
+    "buildingId": "b-008",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 5,
+    "amount": 33000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-645",
+    "buildingId": "b-008",
+    "category": "drift",
+    "year": 2025,
+    "month": 6,
+    "amount": 168000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-646",
+    "buildingId": "b-008",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 6,
+    "amount": 42000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-647",
+    "buildingId": "b-008",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 6,
+    "amount": 20000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-648",
+    "buildingId": "b-008",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 6,
+    "amount": 50000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-649",
+    "buildingId": "b-008",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 6,
+    "amount": 33000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-650",
+    "buildingId": "b-008",
+    "category": "drift",
+    "year": 2025,
+    "month": 7,
+    "amount": 162000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-651",
+    "buildingId": "b-008",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 7,
+    "amount": 38000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-652",
+    "buildingId": "b-008",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 7,
+    "amount": 20000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-653",
+    "buildingId": "b-008",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 7,
+    "amount": 50000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-654",
+    "buildingId": "b-008",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 7,
+    "amount": 33000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-655",
+    "buildingId": "b-008",
+    "category": "drift",
+    "year": 2025,
+    "month": 8,
+    "amount": 158000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-656",
+    "buildingId": "b-008",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 8,
+    "amount": 40000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-657",
+    "buildingId": "b-008",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 8,
+    "amount": 20000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-658",
+    "buildingId": "b-008",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 8,
+    "amount": 50000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-659",
+    "buildingId": "b-008",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 8,
+    "amount": 33000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-660",
+    "buildingId": "b-008",
+    "category": "drift",
+    "year": 2025,
+    "month": 9,
+    "amount": 155000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-661",
+    "buildingId": "b-008",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 9,
+    "amount": 42000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-662",
+    "buildingId": "b-008",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 9,
+    "amount": 20000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-663",
+    "buildingId": "b-008",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 9,
+    "amount": 50000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-664",
+    "buildingId": "b-008",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 9,
+    "amount": 33000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-665",
+    "buildingId": "b-008",
+    "category": "drift",
+    "year": 2025,
+    "month": 10,
+    "amount": 158000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-666",
+    "buildingId": "b-008",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 10,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-667",
+    "buildingId": "b-008",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 10,
+    "amount": 20000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-668",
+    "buildingId": "b-008",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 10,
+    "amount": 50000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-669",
+    "buildingId": "b-008",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 10,
+    "amount": 33000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-670",
+    "buildingId": "b-008",
+    "category": "drift",
+    "year": 2025,
+    "month": 11,
+    "amount": 162000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-671",
+    "buildingId": "b-008",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 11,
+    "amount": 44000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-672",
+    "buildingId": "b-008",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 11,
+    "amount": 20000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-673",
+    "buildingId": "b-008",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 11,
+    "amount": 50000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-674",
+    "buildingId": "b-008",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 11,
+    "amount": 33000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-675",
+    "buildingId": "b-008",
+    "category": "drift",
+    "year": 2025,
+    "month": 12,
+    "amount": 168000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-676",
+    "buildingId": "b-008",
+    "category": "vedlikehold",
+    "year": 2025,
+    "month": 12,
+    "amount": 48000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-677",
+    "buildingId": "b-008",
+    "category": "forsikring",
+    "year": 2025,
+    "month": 12,
+    "amount": 20000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-678",
+    "buildingId": "b-008",
+    "category": "administrasjon",
+    "year": 2025,
+    "month": 12,
+    "amount": 50000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-679",
+    "buildingId": "b-008",
+    "category": "eiendomsskatt",
+    "year": 2025,
+    "month": 12,
+    "amount": 33000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-001",
+    "buildingId": "b-001",
+    "category": "drift",
+    "year": 2026,
+    "month": 1,
+    "amount": 340000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-002",
+    "buildingId": "b-001",
+    "category": "drift",
+    "year": 2026,
+    "month": 2,
+    "amount": 330000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-003",
+    "buildingId": "b-001",
+    "category": "drift",
+    "year": 2026,
+    "month": 3,
+    "amount": 345000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-004",
+    "buildingId": "b-001",
+    "category": "vedlikehold",
+    "year": 2026,
+    "month": 1,
+    "amount": 120000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-005",
+    "buildingId": "b-001",
+    "category": "vedlikehold",
+    "year": 2026,
+    "month": 2,
+    "amount": 95000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-006",
+    "buildingId": "b-001",
+    "category": "vedlikehold",
+    "year": 2026,
+    "month": 3,
+    "amount": 180000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-007",
+    "buildingId": "b-001",
+    "category": "forsikring",
+    "year": 2026,
+    "month": 1,
+    "amount": 42000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-008",
+    "buildingId": "b-001",
+    "category": "forsikring",
+    "year": 2026,
+    "month": 2,
+    "amount": 42000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-009",
+    "buildingId": "b-001",
+    "category": "forsikring",
+    "year": 2026,
+    "month": 3,
+    "amount": 42000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-010",
+    "buildingId": "b-001",
+    "category": "administrasjon",
+    "year": 2026,
+    "month": 1,
+    "amount": 85000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-011",
+    "buildingId": "b-001",
+    "category": "administrasjon",
+    "year": 2026,
+    "month": 2,
+    "amount": 85000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-012",
+    "buildingId": "b-001",
+    "category": "administrasjon",
+    "year": 2026,
+    "month": 3,
+    "amount": 85000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-013",
+    "buildingId": "b-001",
+    "category": "eiendomsskatt",
+    "year": 2026,
+    "month": 1,
+    "amount": 55000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-014",
+    "buildingId": "b-001",
+    "category": "eiendomsskatt",
+    "year": 2026,
+    "month": 2,
+    "amount": 55000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-015",
+    "buildingId": "b-001",
+    "category": "eiendomsskatt",
+    "year": 2026,
+    "month": 3,
+    "amount": 55000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-016",
+    "buildingId": "b-002",
+    "category": "drift",
+    "year": 2026,
+    "month": 1,
+    "amount": 245000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-017",
+    "buildingId": "b-002",
+    "category": "drift",
+    "year": 2026,
+    "month": 2,
+    "amount": 240000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-018",
+    "buildingId": "b-002",
+    "category": "drift",
+    "year": 2026,
+    "month": 3,
+    "amount": 250000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-019",
+    "buildingId": "b-002",
+    "category": "vedlikehold",
+    "year": 2026,
+    "month": 1,
+    "amount": 85000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-020",
+    "buildingId": "b-002",
+    "category": "vedlikehold",
+    "year": 2026,
+    "month": 2,
+    "amount": 90000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-021",
+    "buildingId": "b-002",
+    "category": "vedlikehold",
+    "year": 2026,
+    "month": 3,
+    "amount": 110000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-022",
+    "buildingId": "b-002",
+    "category": "forsikring",
+    "year": 2026,
+    "month": 1,
+    "amount": 30000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-023",
+    "buildingId": "b-002",
+    "category": "forsikring",
+    "year": 2026,
+    "month": 2,
+    "amount": 30000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-024",
+    "buildingId": "b-002",
+    "category": "forsikring",
+    "year": 2026,
+    "month": 3,
+    "amount": 30000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-025",
+    "buildingId": "b-002",
+    "category": "administrasjon",
+    "year": 2026,
+    "month": 1,
+    "amount": 65000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-026",
+    "buildingId": "b-002",
+    "category": "administrasjon",
+    "year": 2026,
+    "month": 2,
+    "amount": 65000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-027",
+    "buildingId": "b-002",
+    "category": "administrasjon",
+    "year": 2026,
+    "month": 3,
+    "amount": 65000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-028",
+    "buildingId": "b-002",
+    "category": "eiendomsskatt",
+    "year": 2026,
+    "month": 1,
+    "amount": 38000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-029",
+    "buildingId": "b-002",
+    "category": "eiendomsskatt",
+    "year": 2026,
+    "month": 2,
+    "amount": 38000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-030",
+    "buildingId": "b-002",
+    "category": "eiendomsskatt",
+    "year": 2026,
+    "month": 3,
+    "amount": 38000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-031",
+    "buildingId": "b-003",
+    "category": "drift",
+    "year": 2026,
+    "month": 1,
+    "amount": 180000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-032",
+    "buildingId": "b-003",
+    "category": "drift",
+    "year": 2026,
+    "month": 2,
+    "amount": 175000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-033",
+    "buildingId": "b-003",
+    "category": "drift",
+    "year": 2026,
+    "month": 3,
+    "amount": 185000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-034",
+    "buildingId": "b-003",
+    "category": "vedlikehold",
+    "year": 2026,
+    "month": 1,
+    "amount": 95000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-035",
+    "buildingId": "b-003",
+    "category": "vedlikehold",
+    "year": 2026,
+    "month": 2,
+    "amount": 88000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-036",
+    "buildingId": "b-003",
+    "category": "vedlikehold",
+    "year": 2026,
+    "month": 3,
+    "amount": 102000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-037",
+    "buildingId": "b-003",
+    "category": "forsikring",
+    "year": 2026,
+    "month": 1,
+    "amount": 22000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-038",
+    "buildingId": "b-003",
+    "category": "forsikring",
+    "year": 2026,
+    "month": 2,
+    "amount": 22000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-039",
+    "buildingId": "b-003",
+    "category": "forsikring",
+    "year": 2026,
+    "month": 3,
+    "amount": 22000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-040",
+    "buildingId": "b-003",
+    "category": "administrasjon",
+    "year": 2026,
+    "month": 1,
+    "amount": 48000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-041",
+    "buildingId": "b-003",
+    "category": "administrasjon",
+    "year": 2026,
+    "month": 2,
+    "amount": 48000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-042",
+    "buildingId": "b-003",
+    "category": "administrasjon",
+    "year": 2026,
+    "month": 3,
+    "amount": 48000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-043",
+    "buildingId": "b-003",
+    "category": "eiendomsskatt",
+    "year": 2026,
+    "month": 1,
+    "amount": 28000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-044",
+    "buildingId": "b-003",
+    "category": "eiendomsskatt",
+    "year": 2026,
+    "month": 2,
+    "amount": 28000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-045",
+    "buildingId": "b-003",
+    "category": "eiendomsskatt",
+    "year": 2026,
+    "month": 3,
+    "amount": 28000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-046",
+    "buildingId": "b-004",
+    "category": "drift",
+    "year": 2026,
+    "month": 1,
+    "amount": 310000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-047",
+    "buildingId": "b-004",
+    "category": "drift",
+    "year": 2026,
+    "month": 2,
+    "amount": 305000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-048",
+    "buildingId": "b-004",
+    "category": "drift",
+    "year": 2026,
+    "month": 3,
+    "amount": 315000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-049",
+    "buildingId": "b-004",
+    "category": "vedlikehold",
+    "year": 2026,
+    "month": 1,
+    "amount": 75000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-050",
+    "buildingId": "b-004",
+    "category": "vedlikehold",
+    "year": 2026,
+    "month": 2,
+    "amount": 70000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-051",
+    "buildingId": "b-004",
+    "category": "vedlikehold",
+    "year": 2026,
+    "month": 3,
+    "amount": 80000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-052",
+    "buildingId": "b-004",
+    "category": "forsikring",
+    "year": 2026,
+    "month": 1,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-053",
+    "buildingId": "b-004",
+    "category": "forsikring",
+    "year": 2026,
+    "month": 2,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-054",
+    "buildingId": "b-004",
+    "category": "forsikring",
+    "year": 2026,
+    "month": 3,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-055",
+    "buildingId": "b-004",
+    "category": "administrasjon",
+    "year": 2026,
+    "month": 1,
+    "amount": 55000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-056",
+    "buildingId": "b-004",
+    "category": "administrasjon",
+    "year": 2026,
+    "month": 2,
+    "amount": 55000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-057",
+    "buildingId": "b-004",
+    "category": "administrasjon",
+    "year": 2026,
+    "month": 3,
+    "amount": 55000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-058",
+    "buildingId": "b-004",
+    "category": "eiendomsskatt",
+    "year": 2026,
+    "month": 1,
+    "amount": 48000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-059",
+    "buildingId": "b-004",
+    "category": "eiendomsskatt",
+    "year": 2026,
+    "month": 2,
+    "amount": 48000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-060",
+    "buildingId": "b-004",
+    "category": "eiendomsskatt",
+    "year": 2026,
+    "month": 3,
+    "amount": 48000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-061",
+    "buildingId": "b-005",
+    "category": "drift",
+    "year": 2026,
+    "month": 1,
+    "amount": 125000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-062",
+    "buildingId": "b-005",
+    "category": "drift",
+    "year": 2026,
+    "month": 2,
+    "amount": 120000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-063",
+    "buildingId": "b-005",
+    "category": "drift",
+    "year": 2026,
+    "month": 3,
+    "amount": 130000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-064",
+    "buildingId": "b-005",
+    "category": "vedlikehold",
+    "year": 2026,
+    "month": 1,
+    "amount": 65000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-065",
+    "buildingId": "b-005",
+    "category": "vedlikehold",
+    "year": 2026,
+    "month": 2,
+    "amount": 58000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-066",
+    "buildingId": "b-005",
+    "category": "vedlikehold",
+    "year": 2026,
+    "month": 3,
+    "amount": 72000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-067",
+    "buildingId": "b-005",
+    "category": "forsikring",
+    "year": 2026,
+    "month": 1,
+    "amount": 15000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-068",
+    "buildingId": "b-005",
+    "category": "forsikring",
+    "year": 2026,
+    "month": 2,
+    "amount": 15000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-069",
+    "buildingId": "b-005",
+    "category": "forsikring",
+    "year": 2026,
+    "month": 3,
+    "amount": 15000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-070",
+    "buildingId": "b-005",
+    "category": "administrasjon",
+    "year": 2026,
+    "month": 1,
+    "amount": 35000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-071",
+    "buildingId": "b-005",
+    "category": "administrasjon",
+    "year": 2026,
+    "month": 2,
+    "amount": 35000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-072",
+    "buildingId": "b-005",
+    "category": "administrasjon",
+    "year": 2026,
+    "month": 3,
+    "amount": 35000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-073",
+    "buildingId": "b-005",
+    "category": "eiendomsskatt",
+    "year": 2026,
+    "month": 1,
+    "amount": 18000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-074",
+    "buildingId": "b-005",
+    "category": "eiendomsskatt",
+    "year": 2026,
+    "month": 2,
+    "amount": 18000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-075",
+    "buildingId": "b-005",
+    "category": "eiendomsskatt",
+    "year": 2026,
+    "month": 3,
+    "amount": 18000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-076",
+    "buildingId": "b-006",
+    "category": "drift",
+    "year": 2026,
+    "month": 1,
+    "amount": 195000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-077",
+    "buildingId": "b-006",
+    "category": "drift",
+    "year": 2026,
+    "month": 2,
+    "amount": 190000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-078",
+    "buildingId": "b-006",
+    "category": "drift",
+    "year": 2026,
+    "month": 3,
+    "amount": 200000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-079",
+    "buildingId": "b-006",
+    "category": "vedlikehold",
+    "year": 2026,
+    "month": 1,
+    "amount": 55000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-080",
+    "buildingId": "b-006",
+    "category": "vedlikehold",
+    "year": 2026,
+    "month": 2,
+    "amount": 50000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-081",
+    "buildingId": "b-006",
+    "category": "vedlikehold",
+    "year": 2026,
+    "month": 3,
+    "amount": 60000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-082",
+    "buildingId": "b-006",
+    "category": "forsikring",
+    "year": 2026,
+    "month": 1,
+    "amount": 25000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-083",
+    "buildingId": "b-006",
+    "category": "forsikring",
+    "year": 2026,
+    "month": 2,
+    "amount": 25000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-084",
+    "buildingId": "b-006",
+    "category": "forsikring",
+    "year": 2026,
+    "month": 3,
+    "amount": 25000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-085",
+    "buildingId": "b-006",
+    "category": "administrasjon",
+    "year": 2026,
+    "month": 1,
+    "amount": 48000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-086",
+    "buildingId": "b-006",
+    "category": "administrasjon",
+    "year": 2026,
+    "month": 2,
+    "amount": 48000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-087",
+    "buildingId": "b-006",
+    "category": "administrasjon",
+    "year": 2026,
+    "month": 3,
+    "amount": 48000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-088",
+    "buildingId": "b-006",
+    "category": "eiendomsskatt",
+    "year": 2026,
+    "month": 1,
+    "amount": 32000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-089",
+    "buildingId": "b-006",
+    "category": "eiendomsskatt",
+    "year": 2026,
+    "month": 2,
+    "amount": 32000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-090",
+    "buildingId": "b-006",
+    "category": "eiendomsskatt",
+    "year": 2026,
+    "month": 3,
+    "amount": 32000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-091",
+    "buildingId": "b-007",
+    "category": "drift",
+    "year": 2026,
+    "month": 1,
+    "amount": 115000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-092",
+    "buildingId": "b-007",
+    "category": "drift",
+    "year": 2026,
+    "month": 2,
+    "amount": 110000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-093",
+    "buildingId": "b-007",
+    "category": "drift",
+    "year": 2026,
+    "month": 3,
+    "amount": 120000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-094",
+    "buildingId": "b-007",
+    "category": "vedlikehold",
+    "year": 2026,
+    "month": 1,
+    "amount": 55000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-095",
+    "buildingId": "b-007",
+    "category": "vedlikehold",
+    "year": 2026,
+    "month": 2,
+    "amount": 48000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-096",
+    "buildingId": "b-007",
+    "category": "vedlikehold",
+    "year": 2026,
+    "month": 3,
+    "amount": 62000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-097",
+    "buildingId": "b-007",
+    "category": "forsikring",
+    "year": 2026,
+    "month": 1,
+    "amount": 12000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-098",
+    "buildingId": "b-007",
+    "category": "forsikring",
+    "year": 2026,
+    "month": 2,
+    "amount": 12000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-099",
+    "buildingId": "b-007",
+    "category": "forsikring",
+    "year": 2026,
+    "month": 3,
+    "amount": 12000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-100",
+    "buildingId": "b-007",
+    "category": "administrasjon",
+    "year": 2026,
+    "month": 1,
+    "amount": 28000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-101",
+    "buildingId": "b-007",
+    "category": "administrasjon",
+    "year": 2026,
+    "month": 2,
+    "amount": 28000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-102",
+    "buildingId": "b-007",
+    "category": "administrasjon",
+    "year": 2026,
+    "month": 3,
+    "amount": 28000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-103",
+    "buildingId": "b-007",
+    "category": "eiendomsskatt",
+    "year": 2026,
+    "month": 1,
+    "amount": 15000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-104",
+    "buildingId": "b-007",
+    "category": "eiendomsskatt",
+    "year": 2026,
+    "month": 2,
+    "amount": 15000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-105",
+    "buildingId": "b-007",
+    "category": "eiendomsskatt",
+    "year": 2026,
+    "month": 3,
+    "amount": 15000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-106",
+    "buildingId": "b-008",
+    "category": "drift",
+    "year": 2026,
+    "month": 1,
+    "amount": 165000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-107",
+    "buildingId": "b-008",
+    "category": "drift",
+    "year": 2026,
+    "month": 2,
+    "amount": 160000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-108",
+    "buildingId": "b-008",
+    "category": "drift",
+    "year": 2026,
+    "month": 3,
+    "amount": 170000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-109",
+    "buildingId": "b-008",
+    "category": "vedlikehold",
+    "year": 2026,
+    "month": 1,
+    "amount": 45000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-110",
+    "buildingId": "b-008",
+    "category": "vedlikehold",
+    "year": 2026,
+    "month": 2,
+    "amount": 42000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-111",
+    "buildingId": "b-008",
+    "category": "vedlikehold",
+    "year": 2026,
+    "month": 3,
+    "amount": 48000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-112",
+    "buildingId": "b-008",
+    "category": "forsikring",
+    "year": 2026,
+    "month": 1,
+    "amount": 22000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-113",
+    "buildingId": "b-008",
+    "category": "forsikring",
+    "year": 2026,
+    "month": 2,
+    "amount": 22000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-114",
+    "buildingId": "b-008",
+    "category": "forsikring",
+    "year": 2026,
+    "month": 3,
+    "amount": 22000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-115",
+    "buildingId": "b-008",
+    "category": "administrasjon",
+    "year": 2026,
+    "month": 1,
+    "amount": 52000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-116",
+    "buildingId": "b-008",
+    "category": "administrasjon",
+    "year": 2026,
+    "month": 2,
+    "amount": 52000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-117",
+    "buildingId": "b-008",
+    "category": "administrasjon",
+    "year": 2026,
+    "month": 3,
+    "amount": 52000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-118",
+    "buildingId": "b-008",
+    "category": "eiendomsskatt",
+    "year": 2026,
+    "month": 1,
+    "amount": 35000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-119",
+    "buildingId": "b-008",
+    "category": "eiendomsskatt",
+    "year": 2026,
+    "month": 2,
+    "amount": 35000,
+    "source": "manual"
+  },
+  {
+    "id": "cost-120",
+    "buildingId": "b-008",
+    "category": "eiendomsskatt",
+    "year": 2026,
+    "month": 3,
+    "amount": 35000,
+    "source": "manual"
+  }
 ]
