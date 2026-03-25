@@ -1,0 +1,22 @@
+[
+  {
+    "id": "c-001",
+    "orgNr": "987654321",
+    "name": "Fjordvest Eiendom AS",
+    "address": {
+      "street": "Strandgaten 45",
+      "postalCode": "5013",
+      "municipality": "Bergen",
+      "country": "Norway"
+    },
+    "orgForm": "AS",
+    "naceCode": "68.209",
+    "incorporationDate": "2005-03-15",
+    "employeeCount": 12,
+    "isBankrupt": false,
+    "isWindingUp": false,
+    "isPartOfGroup": false,
+    "shareCapital": 5000000,
+    "source": "brreg"
+  }
+]

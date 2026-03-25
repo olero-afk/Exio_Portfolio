@@ -1,0 +1,52 @@
+:root {
+  /* App (Dark UI) */
+  --app-bg: #1a1a1a;
+  --app-surface: #1e1e1e;
+  --app-surface-mid: #222222;
+  --app-surface-raised: #2a2a2a;
+  --app-tab-bar: #1e1a14;
+  --app-text: #e8e8e8;
+  --app-text-secondary: #c8c8c8;
+  --app-text-muted: #9a9a9a;
+  --app-text-dim: #7a7a7a;
+  --app-text-faint: #5a5a5a;
+  --app-border: rgba(255, 255, 255, 0.06);
+  --app-border-mid: rgba(255, 255, 255, 0.08);
+
+  /* Accents */
+  --color-champagne: #FED092;
+  --color-cyan: #22d4e8;
+  --color-green: #4ade80;
+  --color-red: #f87171;
+
+  /* Semantic backgrounds */
+  --color-green-bg: #dcfce7;
+  --color-yellow-bg: #fef9c3;
+  --color-red-bg: #fee2e2;
+  --color-blue-bg: #eef2ff;
+
+  /* Footer */
+  --app-footer-bg: #0e0c0a;
+
+  /* Typography */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-size-kpi: 2rem;
+  --font-weight-kpi: 800;
+  --font-size-label: 0.75rem;
+  --font-weight-label: 700;
+  --font-size-body: 0.8125rem;
+  --font-weight-body: 400;
+  --letter-spacing-label: 0.12em;
+
+  /* Spacing & Layout */
+  --radius-card: 8px;
+  --radius-badge: 4px;
+  --padding-card: 16px;
+  --padding-section: 20px;
+  --gap-metric: 12px;
+  --gap-section: 16px;
+  --transition: 0.25s ease;
+
+  /* Nav */
+  --nav-height: 68px;
+}

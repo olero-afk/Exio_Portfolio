@@ -1,0 +1,10 @@
+[
+  { "buildingId": "b-001", "placePointPricePerM2": 62000, "municipality": "Oslo", "area": "Aker Brygge", "lastUpdated": "2026-02-15", "disclaimer": "Markedsreferanse basert på offentlige data (PlacePoint/SSB). Ikke finansiell rådgivning." },
+  { "buildingId": "b-002", "placePointPricePerM2": 55000, "municipality": "Oslo", "area": "Vika", "lastUpdated": "2026-02-15", "disclaimer": "Markedsreferanse basert på offentlige data (PlacePoint/SSB). Ikke finansiell rådgivning." },
+  { "buildingId": "b-003", "placePointPricePerM2": 38000, "municipality": "Bergen", "area": "Sentrum", "lastUpdated": "2026-02-10", "disclaimer": "Markedsreferanse basert på offentlige data (PlacePoint/SSB). Ikke finansiell rådgivning." },
+  { "buildingId": "b-004", "placePointPricePerM2": 18000, "municipality": "Stavanger", "area": "Forus", "lastUpdated": "2026-02-10", "disclaimer": "Markedsreferanse basert på offentlige data (PlacePoint/SSB). Ikke finansiell rådgivning." },
+  { "buildingId": "b-005", "placePointPricePerM2": 42000, "municipality": "Oslo", "area": "Majorstuen", "lastUpdated": "2026-02-15", "disclaimer": "Markedsreferanse basert på offentlige data (PlacePoint/SSB). Ikke finansiell rådgivning." },
+  { "buildingId": "b-006", "placePointPricePerM2": 45000, "municipality": "Bærum", "area": "Lysaker", "lastUpdated": "2026-02-12", "disclaimer": "Markedsreferanse basert på offentlige data (PlacePoint/SSB). Ikke finansiell rådgivning." },
+  { "buildingId": "b-007", "placePointPricePerM2": 22000, "municipality": "Drammen", "area": "Sentrum", "lastUpdated": "2026-02-08", "disclaimer": "Markedsreferanse basert på offentlige data (PlacePoint/SSB). Ikke finansiell rådgivning." },
+  { "buildingId": "b-008", "placePointPricePerM2": 48000, "municipality": "Bærum", "area": "Sandvika", "lastUpdated": "2026-02-12", "disclaimer": "Markedsreferanse basert på offentlige data (PlacePoint/SSB). Ikke finansiell rådgivning." }
+]

@@ -1,0 +1,39 @@
+[
+  {
+    "id": "p-001",
+    "companyId": "c-001",
+    "name": "Hovedportefølje",
+    "description": "Samlet portefølje for Fjordvest Eiendom AS",
+    "subPortfolios": [
+      {
+        "id": "sp-001",
+        "portfolioId": "p-001",
+        "name": "Oslo Kontor",
+        "groupBy": "geography",
+        "buildingIds": ["b-001", "b-002", "b-005"]
+      },
+      {
+        "id": "sp-002",
+        "portfolioId": "p-001",
+        "name": "Bergen",
+        "groupBy": "geography",
+        "buildingIds": ["b-003"]
+      },
+      {
+        "id": "sp-003",
+        "portfolioId": "p-001",
+        "name": "Stavanger",
+        "groupBy": "geography",
+        "buildingIds": ["b-004"]
+      },
+      {
+        "id": "sp-004",
+        "portfolioId": "p-001",
+        "name": "Øvrig",
+        "groupBy": "geography",
+        "buildingIds": ["b-006", "b-007", "b-008"]
+      }
+    ],
+    "createdAt": "2024-01-10"
+  }
+]

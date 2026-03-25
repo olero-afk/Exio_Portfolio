@@ -1,0 +1,242 @@
+[
+  {
+    "id": "con-001", "buildingId": "b-001", "areaType": "Kontor", "areaM2": 1500,
+    "tenantName": "Nordisk Kontor AS", "tenantOrgNr": "912345678", "tenantIsBankrupt": false,
+    "annualRent": 4800000, "startDate": "2021-01-01", "endDate": "2031-01-01",
+    "kpiAdjustmentPercent": 3.5, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 4.77, "effectiveRemainingYears": 4.77
+  },
+  {
+    "id": "con-002", "buildingId": "b-001", "areaType": "Kontor", "areaM2": 1500,
+    "tenantName": "Fjord Tech AS", "tenantOrgNr": "923456789", "tenantIsBankrupt": false,
+    "annualRent": 5100000, "startDate": "2022-06-01", "endDate": "2032-06-01",
+    "kpiAdjustmentPercent": 3.5, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 6.19, "effectiveRemainingYears": 6.19
+  },
+  {
+    "id": "con-003", "buildingId": "b-001", "areaType": "Kontor", "areaM2": 1500,
+    "tenantName": "Kystadvokatene DA", "tenantOrgNr": "934567890", "tenantIsBankrupt": false,
+    "annualRent": 4600000, "startDate": "2020-03-01", "endDate": "2030-03-01",
+    "kpiAdjustmentPercent": 3.0, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 3.94, "effectiveRemainingYears": 3.94
+  },
+  {
+    "id": "con-004", "buildingId": "b-001", "areaType": "Kontor", "areaM2": 1380,
+    "tenantName": "Oslo Consulting Group AS", "tenantOrgNr": "945678901", "tenantIsBankrupt": false,
+    "annualRent": 4200000, "startDate": "2023-01-01", "endDate": "2028-01-01",
+    "breakClauseDate": "2026-07-01",
+    "kpiAdjustmentPercent": 3.5, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 1.77, "effectiveRemainingYears": 0.27
+  },
+  {
+    "id": "con-005", "buildingId": "b-001", "areaType": "Kontor", "areaM2": 1200,
+    "tenantName": "Digital Norge AS", "tenantOrgNr": "956789012", "tenantIsBankrupt": false,
+    "annualRent": 3900000, "startDate": "2019-09-01", "endDate": "2029-09-01",
+    "kpiAdjustmentPercent": 3.0, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 3.44, "effectiveRemainingYears": 3.44
+  },
+  {
+    "id": "con-006", "buildingId": "b-001", "areaType": "Kontor", "areaM2": 820,
+    "tenantName": "Havbruk Finans AS", "tenantOrgNr": "967890123", "tenantIsBankrupt": false,
+    "annualRent": 2800000, "startDate": "2024-01-01", "endDate": "2029-01-01",
+    "kpiAdjustmentPercent": 4.0, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 2.77, "effectiveRemainingYears": 2.77
+  },
+  {
+    "id": "con-007", "buildingId": "b-001", "areaType": "Kontor", "areaM2": 1500,
+    "tenantName": "Vestland Arkitekter AS", "tenantOrgNr": "978901234", "tenantIsBankrupt": false,
+    "annualRent": 5000000, "startDate": "2023-06-01", "endDate": "2033-06-01",
+    "kpiAdjustmentPercent": 3.5, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 7.19, "effectiveRemainingYears": 7.19
+  },
+
+  {
+    "id": "con-008", "buildingId": "b-002", "areaType": "Kontor", "areaM2": 1200,
+    "tenantName": "Scandinavian Media AS", "tenantOrgNr": "911111111", "tenantIsBankrupt": false,
+    "annualRent": 3500000, "startDate": "2021-09-01", "endDate": "2028-09-01",
+    "kpiAdjustmentPercent": 3.5, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 2.44, "effectiveRemainingYears": 2.44
+  },
+  {
+    "id": "con-009", "buildingId": "b-002", "areaType": "Kontor", "areaM2": 1400,
+    "tenantName": "Norsk Energi Rådgivning AS", "tenantOrgNr": "922222222", "tenantIsBankrupt": false,
+    "annualRent": 4100000, "startDate": "2020-01-01", "endDate": "2027-01-01",
+    "breakClauseDate": "2026-06-25",
+    "kpiAdjustmentPercent": 3.0, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 0.77, "effectiveRemainingYears": 0.25
+  },
+  {
+    "id": "con-010", "buildingId": "b-002", "areaType": "Kontor", "areaM2": 1400,
+    "tenantName": "Hovedstaden IT AS", "tenantOrgNr": "933333333", "tenantIsBankrupt": false,
+    "annualRent": 4000000, "startDate": "2022-03-01", "endDate": "2029-03-01",
+    "kpiAdjustmentPercent": 3.5, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 2.94, "effectiveRemainingYears": 2.94
+  },
+  {
+    "id": "con-011", "buildingId": "b-002", "areaType": "Kontor", "areaM2": 1300,
+    "tenantName": "Kapital Forvaltning AS", "tenantOrgNr": "944444444", "tenantIsBankrupt": false,
+    "annualRent": 3800000, "startDate": "2023-01-01", "endDate": "2030-01-01",
+    "kpiAdjustmentPercent": 3.5, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 3.77, "effectiveRemainingYears": 3.77
+  },
+  {
+    "id": "con-012", "buildingId": "b-002", "areaType": "Kontor", "areaM2": 550,
+    "tenantName": "Oslofjord Revisjon AS", "tenantOrgNr": "955555555", "tenantIsBankrupt": false,
+    "annualRent": 1600000, "startDate": "2024-06-01", "endDate": "2027-06-01",
+    "kpiAdjustmentPercent": 3.0, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 1.19, "effectiveRemainingYears": 1.19
+  },
+
+  {
+    "id": "con-013", "buildingId": "b-003", "areaType": "Handel", "areaM2": 1800,
+    "tenantName": "Bergen Sportsutstyr AS", "tenantOrgNr": "966666666", "tenantIsBankrupt": false,
+    "annualRent": 3200000, "startDate": "2019-06-01", "endDate": "2026-06-25",
+    "kpiAdjustmentPercent": 3.0, "kpiSource": "ssb",
+    "status": "expiring_soon", "remainingTermYears": 0.25, "effectiveRemainingYears": 0.25
+  },
+  {
+    "id": "con-014", "buildingId": "b-003", "areaType": "Handel", "areaM2": 900,
+    "tenantName": "Café Bryggen AS", "tenantOrgNr": "977777777", "tenantIsBankrupt": false,
+    "annualRent": 1600000, "startDate": "2022-01-01", "endDate": "2027-01-01",
+    "kpiAdjustmentPercent": 3.5, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 0.77, "effectiveRemainingYears": 0.77
+  },
+  {
+    "id": "con-015", "buildingId": "b-003", "areaType": "Handel", "areaM2": 1200,
+    "tenantName": "Vest Elektronikk AS", "tenantOrgNr": "988888888", "tenantIsBankrupt": false,
+    "annualRent": 2100000, "startDate": "2023-06-01", "endDate": "2028-06-01",
+    "kpiAdjustmentPercent": 3.5, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 2.19, "effectiveRemainingYears": 2.19
+  },
+  {
+    "id": "con-016", "buildingId": "b-003", "areaType": "Handel", "areaM2": 700,
+    "tenantName": "Fjellet Mote AS", "tenantOrgNr": "999999999", "tenantIsBankrupt": true,
+    "annualRent": 1100000, "startDate": "2021-03-01", "endDate": "2025-03-01",
+    "kpiAdjustmentPercent": 3.0, "kpiSource": "ssb",
+    "status": "expired", "remainingTermYears": -1.07, "effectiveRemainingYears": -1.07
+  },
+
+  {
+    "id": "con-017", "buildingId": "b-004", "areaType": "LogistikkLager", "areaM2": 5000,
+    "tenantName": "Bergen Logistikk AS", "tenantOrgNr": "911122233", "tenantIsBankrupt": false,
+    "annualRent": 4500000, "startDate": "2020-01-01", "endDate": "2030-01-01",
+    "kpiAdjustmentPercent": 3.0, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 3.77, "effectiveRemainingYears": 3.77
+  },
+  {
+    "id": "con-018", "buildingId": "b-004", "areaType": "LogistikkLager", "areaM2": 4200,
+    "tenantName": "Vest Transport AS", "tenantOrgNr": "922233344", "tenantIsBankrupt": false,
+    "annualRent": 3600000, "startDate": "2021-06-01", "endDate": "2028-06-01",
+    "kpiAdjustmentPercent": 3.0, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 2.19, "effectiveRemainingYears": 2.19
+  },
+  {
+    "id": "con-019", "buildingId": "b-004", "areaType": "Kontor", "areaM2": 2000,
+    "tenantName": "Stavanger Spedisjon AS", "tenantOrgNr": "933344455", "tenantIsBankrupt": false,
+    "annualRent": 2200000, "startDate": "2022-01-01", "endDate": "2027-01-01",
+    "kpiAdjustmentPercent": 3.5, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 0.77, "effectiveRemainingYears": 0.77
+  },
+
+  {
+    "id": "con-020", "buildingId": "b-005", "areaType": "Handel", "areaM2": 600,
+    "tenantName": "Majorstuen Delikatesse AS", "tenantOrgNr": "944455566", "tenantIsBankrupt": false,
+    "annualRent": 1200000, "startDate": "2023-01-01", "endDate": "2028-01-01",
+    "kpiAdjustmentPercent": 3.5, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 1.77, "effectiveRemainingYears": 1.77
+  },
+  {
+    "id": "con-021", "buildingId": "b-005", "areaType": "Kontor", "areaM2": 800,
+    "tenantName": "Kreativ Byrå AS", "tenantOrgNr": "955566677", "tenantIsBankrupt": false,
+    "annualRent": 1700000, "startDate": "2021-06-01", "endDate": "2026-06-25",
+    "kpiAdjustmentPercent": 3.0, "kpiSource": "ssb",
+    "status": "expiring_soon", "remainingTermYears": 0.25, "effectiveRemainingYears": 0.25
+  },
+  {
+    "id": "con-022", "buildingId": "b-005", "areaType": "Kontor", "areaM2": 800,
+    "tenantName": "Nordic Health Consulting AS", "tenantOrgNr": "966677788", "tenantIsBankrupt": false,
+    "annualRent": 1600000, "startDate": "2022-09-01", "endDate": "2027-09-01",
+    "kpiAdjustmentPercent": 3.5, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 1.44, "effectiveRemainingYears": 1.44
+  },
+  {
+    "id": "con-023", "buildingId": "b-005", "areaType": "Kontor", "areaM2": 700,
+    "tenantName": "Digitalt Verksted AS", "tenantOrgNr": "977788899", "tenantIsBankrupt": true,
+    "annualRent": 1400000, "startDate": "2020-01-01", "endDate": "2025-12-31",
+    "kpiAdjustmentPercent": 3.0, "kpiSource": "ssb",
+    "status": "expiring_soon", "remainingTermYears": -0.23, "effectiveRemainingYears": -0.23
+  },
+
+  {
+    "id": "con-024", "buildingId": "b-006", "areaType": "Kontor", "areaM2": 1100,
+    "tenantName": "Lysaker Teknologi AS", "tenantOrgNr": "988899900", "tenantIsBankrupt": false,
+    "annualRent": 2600000, "startDate": "2023-01-01", "endDate": "2028-01-01",
+    "kpiAdjustmentPercent": 3.5, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 1.77, "effectiveRemainingYears": 1.77
+  },
+  {
+    "id": "con-025", "buildingId": "b-006", "areaType": "Kontor", "areaM2": 1100,
+    "tenantName": "Bærum Regnskap AS", "tenantOrgNr": "911001122", "tenantIsBankrupt": false,
+    "annualRent": 2400000, "startDate": "2024-03-01", "endDate": "2027-03-01",
+    "kpiAdjustmentPercent": 3.0, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 0.94, "effectiveRemainingYears": 0.94
+  },
+  {
+    "id": "con-026", "buildingId": "b-006", "areaType": "Kontor", "areaM2": 1400,
+    "tenantName": "Omega Solutions AS", "tenantOrgNr": "922002233", "tenantIsBankrupt": false,
+    "annualRent": 3200000, "startDate": "2025-09-01", "endDate": "2030-09-01",
+    "kpiAdjustmentPercent": 3.5, "kpiSource": "ssb",
+    "status": "future", "remainingTermYears": 5.44, "effectiveRemainingYears": 5.44
+  },
+
+  {
+    "id": "con-027", "buildingId": "b-007", "areaType": "Handel", "areaM2": 1200,
+    "tenantName": "Drammen Sport AS", "tenantOrgNr": "933003344", "tenantIsBankrupt": false,
+    "annualRent": 1500000, "startDate": "2022-01-01", "endDate": "2027-01-01",
+    "kpiAdjustmentPercent": 3.0, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 0.77, "effectiveRemainingYears": 0.77
+  },
+  {
+    "id": "con-028", "buildingId": "b-007", "areaType": "LogistikkLager", "areaM2": 500,
+    "tenantName": "Buskerud Distribusjon AS", "tenantOrgNr": "944004455", "tenantIsBankrupt": false,
+    "annualRent": 400000, "startDate": "2023-06-01", "endDate": "2026-06-01",
+    "kpiAdjustmentPercent": 3.0, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 0.19, "effectiveRemainingYears": 0.19
+  },
+  {
+    "id": "con-029", "buildingId": "b-007", "areaType": "Handel", "areaM2": 300,
+    "tenantName": "Elvebyen Kafé AS", "tenantOrgNr": "955005566", "tenantIsBankrupt": false,
+    "annualRent": 350000, "startDate": "2021-01-01", "endDate": "2025-01-01",
+    "kpiAdjustmentPercent": 3.0, "kpiSource": "ssb",
+    "status": "expired", "remainingTermYears": -1.23, "effectiveRemainingYears": -1.23
+  },
+
+  {
+    "id": "con-030", "buildingId": "b-008", "areaType": "Helse", "areaM2": 1200,
+    "tenantName": "Sandvika Legesenter AS", "tenantOrgNr": "966006677", "tenantIsBankrupt": false,
+    "annualRent": 3000000, "startDate": "2021-04-01", "endDate": "2031-04-01",
+    "kpiAdjustmentPercent": 3.5, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 5.02, "effectiveRemainingYears": 5.02
+  },
+  {
+    "id": "con-031", "buildingId": "b-008", "areaType": "Helse", "areaM2": 1100,
+    "tenantName": "Vestre Bærum Tannklinikk AS", "tenantOrgNr": "977007788", "tenantIsBankrupt": false,
+    "annualRent": 2800000, "startDate": "2021-04-01", "endDate": "2031-04-01",
+    "kpiAdjustmentPercent": 3.5, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 5.02, "effectiveRemainingYears": 5.02
+  },
+  {
+    "id": "con-032", "buildingId": "b-008", "areaType": "Helse", "areaM2": 1000,
+    "tenantName": "Asker og Bærum Fysioterapi AS", "tenantOrgNr": "988008899", "tenantIsBankrupt": false,
+    "annualRent": 2400000, "startDate": "2022-01-01", "endDate": "2032-01-01",
+    "kpiAdjustmentPercent": 3.5, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 5.77, "effectiveRemainingYears": 5.77
+  },
+  {
+    "id": "con-033", "buildingId": "b-008", "areaType": "Helse", "areaM2": 1000,
+    "tenantName": "Helsehuset Psykologtjenester AS", "tenantOrgNr": "999009900", "tenantIsBankrupt": false,
+    "annualRent": 2500000, "startDate": "2021-09-01", "endDate": "2031-09-01",
+    "kpiAdjustmentPercent": 3.5, "kpiSource": "ssb",
+    "status": "active", "remainingTermYears": 5.44, "effectiveRemainingYears": 5.44
+  }
+]

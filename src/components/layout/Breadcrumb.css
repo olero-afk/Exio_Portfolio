@@ -1,0 +1,36 @@
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.breadcrumb__item {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb__separator {
+  margin: 0 8px;
+  color: var(--app-text-faint);
+  font-size: var(--font-size-label);
+}
+
+.breadcrumb__link {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--app-text-muted);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.breadcrumb__link:hover {
+  color: var(--color-champagne);
+}
+
+.breadcrumb__current {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--app-text);
+}
