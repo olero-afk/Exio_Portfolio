@@ -29,10 +29,8 @@ interface BuildingVacancyCost {
 export interface MonthlyNOIEntry {
   month: string;
   isFuture: boolean;
-  leieinntekter: number;
-  driftskostnader: number;
-  estimertInntekt: number;
-  budsjetterteKostnader: number;
+  income: number;
+  costs: number;
 }
 
 export interface DashboardKPIs {
@@ -157,14 +155,7 @@ export function useKPI(): DashboardKPIs {
         );
         const budsjetterteKostnader = monthBudgets.reduce((sum: number, b: BudgetEntry) => sum + b.amount, 0);
 
-        monthlyNOIData.push({
-          month: label,
-          isFuture: true,
-          leieinntekter: 0,
-          driftskostnader: 0,
-          estimertInntekt: monthlyRent,
-          budsjetterteKostnader,
-        });
+        monthlyNOIData.push({ month: label, isFuture: true, income: monthlyRent, costs: budsjetterteKostnader });
       } else {
         // Past/current month: use actual costs and income
         const monthCosts = costs.filter(
@@ -172,14 +163,7 @@ export function useKPI(): DashboardKPIs {
         );
         const driftskostnader = monthCosts.reduce((sum, c) => sum + c.amount, 0);
 
-        monthlyNOIData.push({
-          month: label,
-          isFuture: false,
-          leieinntekter: monthlyRent,
-          driftskostnader,
-          estimertInntekt: 0,
-          budsjetterteKostnader: 0,
-        });
+        monthlyNOIData.push({ month: label, isFuture: false, income: monthlyRent, costs: driftskostnader });
       }
 
       cursor.setMonth(cursor.getMonth() + 1);

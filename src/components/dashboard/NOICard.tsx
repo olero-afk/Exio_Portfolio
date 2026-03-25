@@ -15,24 +15,17 @@ export function NOICard({ kpis }: NOICardProps) {
 
   const labels = monthlyNOIData.map((d) => d.month.split(' ')[0]);
 
-  // Always 2 series — merge actual + projected per month
-  const incomeData = monthlyNOIData.map((d) =>
-    Math.round(d.isFuture ? d.estimertInntekt : d.leieinntekter),
-  );
-  const costData = monthlyNOIData.map((d) =>
-    Math.round(d.isFuture ? d.budsjetterteKostnader : d.driftskostnader),
-  );
-
-  // Per-point colors: solid for actual, faded for projected
-  const incomeColors = monthlyNOIData.map((d) =>
-    d.isFuture ? 'rgba(34,212,232,0.4)' : '#22d4e8',
-  );
-  const costColors = monthlyNOIData.map((d) =>
-    d.isFuture ? 'rgba(248,113,113,0.4)' : '#f87171',
-  );
-
-  const incomeName = hasFutureData ? 'Leieinntekter / Estimert inntekt' : 'Leieinntekter';
-  const costName = hasFutureData ? 'Driftskostnader / Budsjetterte kostnader' : 'Driftskostnader';
+  // Per-point data with fillColor for actual vs projected distinction
+  const incomePoints = monthlyNOIData.map((d) => ({
+    x: d.month.split(' ')[0],
+    y: Math.round(d.income),
+    fillColor: d.isFuture ? 'rgba(34,212,232,0.35)' : '#22d4e8',
+  }));
+  const costPoints = monthlyNOIData.map((d) => ({
+    x: d.month.split(' ')[0],
+    y: Math.round(d.costs),
+    fillColor: d.isFuture ? 'rgba(248,113,113,0.35)' : '#f87171',
+  }));
 
   const options: ApexOptions = {
     chart: {
@@ -49,19 +42,7 @@ export function NOICard({ kpis }: NOICardProps) {
       bar: {
         columnWidth: '50%',
         borderRadius: 2,
-        distributed: false,
       },
-    },
-    fill: {
-      type: 'solid',
-      colors: [
-        function({ dataPointIndex }: { dataPointIndex: number }) {
-          return incomeColors[dataPointIndex];
-        } as unknown as string,
-        function({ dataPointIndex }: { dataPointIndex: number }) {
-          return costColors[dataPointIndex];
-        } as unknown as string,
-      ],
     },
     xaxis: {
       categories: labels,
@@ -97,16 +78,21 @@ export function NOICard({ kpis }: NOICardProps) {
       labels: { colors: '#7a7a7a' },
       fontSize: '9px',
       fontWeight: 500,
-      markers: { size: 4, offsetX: -2 },
+      markers: hasFutureData
+        ? { size: 4, offsetX: -2, fillColors: ['#22d4e8', '#f87171', 'rgba(34,212,232,0.35)', 'rgba(248,113,113,0.35)'] }
+        : { size: 4, offsetX: -2 },
       itemMargin: { horizontal: 8, vertical: 0 },
       offsetY: -4,
+      customLegendItems: hasFutureData
+        ? ['Leieinntekter', 'Driftskostnader', 'Estimert', 'Budsjettert']
+        : undefined,
     },
     dataLabels: { enabled: false },
   };
 
   const series = [
-    { name: incomeName, data: incomeData },
-    { name: costName, data: costData },
+    { name: 'Leieinntekter', data: incomePoints },
+    { name: 'Driftskostnader', data: costPoints },
   ];
 
   return (
@@ -119,7 +105,7 @@ export function NOICard({ kpis }: NOICardProps) {
         formula: 'Leieinntekter − Driftskostnader',
         values: `${formatNOK(totalGrossRentalIncome)} − ${formatNOK(totalOperatingExpenses)} = ${formatNOK(totalNOI)}`,
         source: hasFutureData
-          ? `${kpis.buildingNOIs.length} bygg. Fargede søyler = faktisk, bleke søyler = estimert/budsjettert.`
+          ? `${kpis.buildingNOIs.length} bygg. Fargede = faktisk, bleke = estimert/budsjettert.`
           : `${kpis.buildingNOIs.length} bygg, aktive kontrakter + manuell kost.`,
       }}
     >
