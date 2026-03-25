@@ -13,6 +13,12 @@ export function NOICard({ kpis }: NOICardProps) {
 
   const hasFutureData = monthlyNOIData.some((d) => d.isFuture);
 
+  // Compact month labels — drop year, show only "Jan", "Feb", etc.
+  const labels = monthlyNOIData.map((d) => {
+    const parts = d.month.split(' ');
+    return parts[0];
+  });
+
   const options: ApexOptions = {
     chart: {
       type: 'bar',
@@ -20,43 +26,55 @@ export function NOICard({ kpis }: NOICardProps) {
       toolbar: { show: false },
       background: 'transparent',
       fontFamily: 'Inter, sans-serif',
+      parentHeightOffset: 0,
     },
     theme: { mode: 'dark' },
     colors: hasFutureData
-      ? ['#22d4e8', '#f87171', '#22d4e880', '#f8717180']
+      ? ['#22d4e8', '#f87171', 'rgba(34,212,232,0.4)', 'rgba(248,113,113,0.4)']
       : ['#22d4e8', '#f87171'],
     plotOptions: {
       bar: {
-        columnWidth: '60%',
-        borderRadius: 3,
+        columnWidth: '50%',
+        borderRadius: 2,
       },
     },
     xaxis: {
-      categories: monthlyNOIData.map((d) => d.month),
+      categories: labels,
       labels: {
-        style: { colors: '#9a9a9a', fontSize: '10px' },
+        style: { colors: '#7a7a7a', fontSize: '9px' },
+        rotate: 0,
       },
       axisBorder: { show: false },
       axisTicks: { show: false },
     },
     yaxis: {
       labels: {
-        style: { colors: '#9a9a9a', fontSize: '10px' },
-        formatter: (val: number) => formatNumber(val / 1000) + 'k',
+        style: { colors: '#7a7a7a', fontSize: '9px' },
+        formatter: (val: number) => {
+          if (Math.abs(val) >= 1000000) return formatNumber(val / 1000000, 1) + 'M';
+          return formatNumber(val / 1000) + 'k';
+        },
       },
     },
     grid: {
-      borderColor: 'rgba(255,255,255,0.06)',
+      borderColor: 'rgba(255,255,255,0.04)',
       strokeDashArray: 3,
+      padding: { left: 4, right: 4, top: 0, bottom: 0 },
     },
     tooltip: {
       theme: 'dark',
       y: { formatter: (val: number) => formatNOK(val) },
     },
     legend: {
-      position: 'bottom',
-      labels: { colors: '#9a9a9a' },
-      fontSize: '11px',
+      show: true,
+      position: 'top',
+      horizontalAlign: 'right',
+      labels: { colors: '#7a7a7a' },
+      fontSize: '9px',
+      fontWeight: 500,
+      markers: { size: 4, offsetX: -2 },
+      itemMargin: { horizontal: 8, vertical: 0 },
+      offsetY: -4,
     },
     dataLabels: { enabled: false },
   };
@@ -90,7 +108,7 @@ export function NOICard({ kpis }: NOICardProps) {
           options={options}
           series={series}
           type="bar"
-          height={180}
+          height={260}
         />
       )}
     </KPICard>
