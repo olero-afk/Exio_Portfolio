@@ -1,0 +1,26 @@
+.building-detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.building-detail__header {
+  margin-bottom: 16px;
+}
+
+.building-detail__name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--app-text);
+}
+
+.building-detail__address {
+  font-size: var(--font-size-body);
+  color: var(--app-text-muted);
+  margin-top: 4px;
+}
+
+.building-detail__not-found h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-red);
+}

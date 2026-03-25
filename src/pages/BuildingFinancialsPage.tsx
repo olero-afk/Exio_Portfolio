@@ -1,22 +1,15 @@
 import { useParams } from 'react-router-dom';
 import { usePortfolioContext } from '../context/PortfolioContext.tsx';
 import { BuildingTabs } from '../components/building/BuildingTabs.tsx';
-import { AreaCards } from '../components/building/AreaCards.tsx';
-import { BuildingInfo } from '../components/building/BuildingInfo.tsx';
-import './BuildingDetailPage.css';
+import { NOIBreakdown } from '../components/financial/NOIBreakdown.tsx';
+import { CostTable } from '../components/financial/CostTable.tsx';
 
-export function BuildingDetailPage() {
+export function BuildingFinancialsPage() {
   const { buildingId } = useParams();
   const { buildings } = usePortfolioContext();
   const building = buildings.find((b) => b.id === buildingId);
 
-  if (!building) {
-    return (
-      <div className="building-detail__not-found">
-        <h1>Bygning ikke funnet</h1>
-      </div>
-    );
-  }
+  if (!building || !buildingId) return null;
 
   return (
     <div className="building-detail">
@@ -27,8 +20,10 @@ export function BuildingDetailPage() {
         </p>
       </div>
       <BuildingTabs />
-      <AreaCards building={building} />
-      <BuildingInfo building={building} />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <NOIBreakdown buildingId={buildingId} />
+        <CostTable buildingId={buildingId} />
+      </div>
     </div>
   );
 }

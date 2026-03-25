@@ -1,22 +1,16 @@
 import { useParams } from 'react-router-dom';
 import { usePortfolioContext } from '../context/PortfolioContext.tsx';
 import { BuildingTabs } from '../components/building/BuildingTabs.tsx';
-import { AreaCards } from '../components/building/AreaCards.tsx';
-import { BuildingInfo } from '../components/building/BuildingInfo.tsx';
-import './BuildingDetailPage.css';
+import { ContractTable } from '../components/contracts/ContractTable.tsx';
+import { WAULTWidget } from '../components/contracts/WAULTWidget.tsx';
+import { ExpiryChart } from '../components/contracts/ExpiryChart.tsx';
 
-export function BuildingDetailPage() {
+export function BuildingContractsPage() {
   const { buildingId } = useParams();
   const { buildings } = usePortfolioContext();
   const building = buildings.find((b) => b.id === buildingId);
 
-  if (!building) {
-    return (
-      <div className="building-detail__not-found">
-        <h1>Bygning ikke funnet</h1>
-      </div>
-    );
-  }
+  if (!building || !buildingId) return null;
 
   return (
     <div className="building-detail">
@@ -27,8 +21,11 @@ export function BuildingDetailPage() {
         </p>
       </div>
       <BuildingTabs />
-      <AreaCards building={building} />
-      <BuildingInfo building={building} />
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+        <WAULTWidget buildingId={buildingId} />
+        <ExpiryChart buildingId={buildingId} />
+      </div>
+      <ContractTable buildingId={buildingId} />
     </div>
   );
 }

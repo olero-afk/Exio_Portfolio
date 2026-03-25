@@ -1,22 +1,17 @@
 import { useParams } from 'react-router-dom';
 import { usePortfolioContext } from '../context/PortfolioContext.tsx';
 import { BuildingTabs } from '../components/building/BuildingTabs.tsx';
-import { AreaCards } from '../components/building/AreaCards.tsx';
-import { BuildingInfo } from '../components/building/BuildingInfo.tsx';
-import './BuildingDetailPage.css';
 
-export function BuildingDetailPage() {
+interface BuildingTabPlaceholderProps {
+  tabName: string;
+}
+
+export function BuildingTabPlaceholder({ tabName }: BuildingTabPlaceholderProps) {
   const { buildingId } = useParams();
   const { buildings } = usePortfolioContext();
   const building = buildings.find((b) => b.id === buildingId);
 
-  if (!building) {
-    return (
-      <div className="building-detail__not-found">
-        <h1>Bygning ikke funnet</h1>
-      </div>
-    );
-  }
+  if (!building) return null;
 
   return (
     <div className="building-detail">
@@ -27,8 +22,9 @@ export function BuildingDetailPage() {
         </p>
       </div>
       <BuildingTabs />
-      <AreaCards building={building} />
-      <BuildingInfo building={building} />
+      <div style={{ padding: '32px', textAlign: 'center', color: 'var(--app-text-dim)' }}>
+        {tabName} — kommer snart
+      </div>
     </div>
   );
 }

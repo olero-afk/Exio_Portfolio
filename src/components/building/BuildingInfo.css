@@ -1,0 +1,51 @@
+.building-info {
+  background-color: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-card);
+  padding: var(--padding-section);
+}
+
+.building-info__title {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--app-text-muted);
+  margin-bottom: 16px;
+}
+
+.building-info__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.building-info__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--app-border);
+}
+
+.building-info__label {
+  font-size: var(--font-size-body);
+  color: var(--app-text-muted);
+}
+
+.building-info__value {
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--app-text);
+}
+
+.building-info__warning {
+  margin-top: 12px;
+  padding: 10px 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-red);
+  background-color: rgba(248, 113, 113, 0.08);
+  border: 1px solid rgba(248, 113, 113, 0.2);
+  border-radius: var(--radius-badge);
+}

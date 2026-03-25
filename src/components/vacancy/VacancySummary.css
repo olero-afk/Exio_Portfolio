@@ -1,0 +1,69 @@
+.vacancy-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.vacancy-summary__kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-metric);
+}
+
+.vacancy-summary__kpi {
+  background-color: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-card);
+  padding: var(--padding-card);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.vacancy-summary__label {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--app-text-muted);
+}
+
+.vacancy-summary__value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--app-text);
+}
+
+.vacancy-summary__chart,
+.vacancy-summary__ranking {
+  background-color: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-card);
+  padding: var(--padding-section);
+}
+
+.vacancy-summary__section-title {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--app-text-muted);
+  margin-bottom: 12px;
+}
+
+.vacancy-summary__row {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--app-border);
+}
+
+.vacancy-summary__row:last-child {
+  border-bottom: none;
+}
+
+.vacancy-summary__row-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 0.6875rem;
+  color: var(--app-text-dim);
+  margin-top: 2px;
+}

@@ -1,0 +1,58 @@
+.area-table {
+  background-color: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-card);
+  padding: var(--padding-section);
+  overflow-x: auto;
+}
+
+.area-table table {
+  min-width: 600px;
+}
+
+.area-table th {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--app-border-mid);
+}
+
+.area-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--app-border);
+}
+
+.area-table__group-row {
+  background-color: var(--app-surface-mid);
+}
+
+.area-table__group-row td {
+  font-size: var(--font-size-body);
+  color: var(--app-text);
+}
+
+.area-table__unit-row td {
+  font-size: var(--font-size-body);
+  color: var(--app-text-secondary);
+}
+
+.area-table__indent {
+  padding-left: 28px !important;
+}
+
+.area-table__status {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: var(--radius-badge);
+}
+
+.area-table__status--leased {
+  color: var(--color-green);
+  background-color: rgba(74, 222, 128, 0.1);
+}
+
+.area-table__status--vacant {
+  color: var(--color-red);
+  background-color: rgba(248, 113, 113, 0.1);
+}

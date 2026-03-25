@@ -1,0 +1,78 @@
+.contract-table {
+  background-color: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-card);
+  padding: var(--padding-section);
+  overflow-x: auto;
+}
+
+.contract-table table {
+  min-width: 800px;
+}
+
+.contract-table th {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--app-border-mid);
+}
+
+.contract-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--app-border);
+  font-size: var(--font-size-body);
+}
+
+.contract-table__tenant {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contract-table__bankrupt-badge {
+  font-size: 0.5625rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 6px;
+  border-radius: var(--radius-badge);
+  color: var(--color-red);
+  background-color: rgba(248, 113, 113, 0.15);
+}
+
+.contract-table__row--bankrupt td {
+  color: var(--color-red);
+}
+
+.contract-table__badge {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--radius-badge);
+  white-space: nowrap;
+}
+
+.contract-table__badge--active {
+  color: var(--color-green);
+  background-color: rgba(74, 222, 128, 0.1);
+}
+
+.contract-table__badge--expiring {
+  color: #facc15;
+  background-color: rgba(250, 204, 21, 0.1);
+}
+
+.contract-table__badge--expired {
+  color: var(--color-red);
+  background-color: rgba(248, 113, 113, 0.1);
+}
+
+.contract-table__badge--future {
+  color: var(--color-cyan);
+  background-color: rgba(34, 212, 232, 0.1);
+}
+
+.contract-table__empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--app-text-dim);
+  font-size: var(--font-size-body);
+}

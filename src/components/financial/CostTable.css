@@ -1,0 +1,42 @@
+.cost-table {
+  background-color: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-card);
+  padding: var(--padding-section);
+}
+
+.cost-table__title {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--app-text-muted);
+  margin-bottom: 12px;
+}
+
+.cost-table__scroll {
+  overflow-x: auto;
+}
+
+.cost-table table {
+  min-width: 600px;
+}
+
+.cost-table th {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--app-border-mid);
+  white-space: nowrap;
+}
+
+.cost-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--app-border);
+  font-size: var(--font-size-body);
+  white-space: nowrap;
+}
+
+.cost-table__total-row td {
+  border-top: 2px solid var(--app-border-mid);
+  border-bottom: none;
+  color: var(--app-text);
+}

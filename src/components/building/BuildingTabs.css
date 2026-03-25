@@ -1,0 +1,26 @@
+.building-tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--app-border);
+  margin-bottom: 20px;
+}
+
+.building-tabs__tab {
+  padding: 10px 16px;
+  font-size: var(--font-size-body);
+  font-weight: 500;
+  color: var(--app-text-muted);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: all var(--transition);
+  margin-bottom: -1px;
+}
+
+.building-tabs__tab:hover {
+  color: var(--app-text);
+}
+
+.building-tabs__tab--active {
+  color: var(--color-champagne);
+  border-bottom-color: var(--color-champagne);
+}

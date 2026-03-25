@@ -1,0 +1,50 @@
+.noi-breakdown {
+  background-color: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-card);
+  padding: var(--padding-section);
+}
+
+.noi-breakdown__title {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--app-text-muted);
+  margin-bottom: 16px;
+}
+
+.noi-breakdown__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.noi-breakdown__metric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  border-radius: var(--radius-badge);
+  background-color: var(--app-surface-mid);
+}
+
+.noi-breakdown__metric--highlight {
+  border: 1px solid var(--color-cyan);
+  background-color: rgba(34, 212, 232, 0.05);
+}
+
+.noi-breakdown__label {
+  font-size: 0.6875rem;
+  color: var(--app-text-dim);
+}
+
+.noi-breakdown__value {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--app-text);
+}
+
+.noi-breakdown__value--expense {
+  color: var(--color-red);
+}

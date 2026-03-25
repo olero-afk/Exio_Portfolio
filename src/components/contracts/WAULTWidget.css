@@ -1,0 +1,50 @@
+.wault-widget {
+  background-color: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-card);
+  padding: var(--padding-section);
+}
+
+.wault-widget__title {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--app-text-muted);
+  margin-bottom: 16px;
+}
+
+.wault-widget__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.wault-widget__metric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wault-widget__label {
+  font-size: 0.6875rem;
+  color: var(--app-text-dim);
+}
+
+.wault-widget__value {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--app-text);
+}
+
+.wault-widget__value--warning {
+  color: #facc15;
+}
+
+.wault-widget__footer {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--app-border);
+  font-size: 0.75rem;
+  color: var(--app-text-dim);
+}

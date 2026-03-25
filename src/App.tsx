@@ -5,6 +5,10 @@ import { MainLayout } from './components/layout/MainLayout.tsx';
 import { DashboardPage } from './pages/DashboardPage.tsx';
 import { BuildingListPage } from './pages/BuildingListPage.tsx';
 import { BuildingDetailPage } from './pages/BuildingDetailPage.tsx';
+import { BuildingAreasPage } from './pages/BuildingAreasPage.tsx';
+import { BuildingContractsPage } from './pages/BuildingContractsPage.tsx';
+import { BuildingFinancialsPage } from './pages/BuildingFinancialsPage.tsx';
+import { BuildingTabPlaceholder } from './pages/BuildingTabPlaceholder.tsx';
 import { PlaceholderPage } from './pages/PlaceholderPage.tsx';
 
 function App() {
@@ -17,9 +21,13 @@ function App() {
               <Route index element={<DashboardPage />} />
               <Route path="bygg" element={<BuildingListPage />} />
               <Route path="bygg/:buildingId" element={<BuildingDetailPage />} />
-              <Route path="bygg/:buildingId/arealer" element={<BuildingDetailPage />} />
-              <Route path="bygg/:buildingId/avtaler" element={<BuildingDetailPage />} />
-              <Route path="bygg/:buildingId/okonomi" element={<BuildingDetailPage />} />
+              <Route path="bygg/:buildingId/arealer" element={<BuildingAreasPage />} />
+              <Route path="bygg/:buildingId/avtaler" element={<BuildingContractsPage />} />
+              <Route path="bygg/:buildingId/leietakere" element={<BuildingTabPlaceholder tabName="Leietakere" />} />
+              <Route path="bygg/:buildingId/eiere" element={<BuildingTabPlaceholder tabName="Eiere" />} />
+              <Route path="bygg/:buildingId/forvalter" element={<BuildingTabPlaceholder tabName="Forvalter" />} />
+              <Route path="bygg/:buildingId/energi" element={<BuildingTabPlaceholder tabName="Energi" />} />
+              <Route path="bygg/:buildingId/okonomi" element={<BuildingFinancialsPage />} />
               <Route path="rapporter" element={<PlaceholderPage title="Rapporter" />} />
               <Route path="rapporter/styrerapport" element={<PlaceholderPage title="Styrerapport" />} />
               <Route path="avtaler" element={<PlaceholderPage title="Avtaler" />} />
