@@ -12,20 +12,26 @@ export function NOICard({ kpis }: NOICardProps) {
   const { totalNOI, totalGrossRentalIncome, totalOperatingExpenses, monthlyNOIData } = kpis;
 
   const hasFutureData = monthlyNOIData.some((d) => d.isFuture);
-
   const labels = monthlyNOIData.map((d) => d.month.split(' ')[0]);
 
-  // Per-point data with fillColor for actual vs projected distinction
-  const incomePoints = monthlyNOIData.map((d) => ({
-    x: d.month.split(' ')[0],
-    y: Math.round(d.income),
-    fillColor: d.isFuture ? 'rgba(34,212,232,0.35)' : '#22d4e8',
-  }));
-  const costPoints = monthlyNOIData.map((d) => ({
-    x: d.month.split(' ')[0],
-    y: Math.round(d.costs),
-    fillColor: d.isFuture ? 'rgba(248,113,113,0.35)' : '#f87171',
-  }));
+  const series = [
+    {
+      name: 'Leieinntekter',
+      data: monthlyNOIData.map((d, i) => ({
+        x: labels[i],
+        y: Math.round(d.income),
+        fillColor: d.isFuture ? 'rgba(34,212,232,0.35)' : '#22d4e8',
+      })),
+    },
+    {
+      name: 'Driftskostnader',
+      data: monthlyNOIData.map((d, i) => ({
+        x: labels[i],
+        y: Math.round(d.costs),
+        fillColor: d.isFuture ? 'rgba(248,113,113,0.35)' : '#f87171',
+      })),
+    },
+  ];
 
   const options: ApexOptions = {
     chart: {
@@ -45,7 +51,6 @@ export function NOICard({ kpis }: NOICardProps) {
       },
     },
     xaxis: {
-      categories: labels,
       labels: {
         style: { colors: '#7a7a7a', fontSize: '9px' },
         rotate: 0,
@@ -89,11 +94,6 @@ export function NOICard({ kpis }: NOICardProps) {
     },
     dataLabels: { enabled: false },
   };
-
-  const series = [
-    { name: 'Leieinntekter', data: incomePoints },
-    { name: 'Driftskostnader', data: costPoints },
-  ];
 
   return (
     <KPICard
