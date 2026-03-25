@@ -13,11 +13,26 @@ export function NOICard({ kpis }: NOICardProps) {
 
   const hasFutureData = monthlyNOIData.some((d) => d.isFuture);
 
-  // Compact month labels — drop year, show only "Jan", "Feb", etc.
-  const labels = monthlyNOIData.map((d) => {
-    const parts = d.month.split(' ');
-    return parts[0];
-  });
+  const labels = monthlyNOIData.map((d) => d.month.split(' ')[0]);
+
+  // Always 2 series — merge actual + projected per month
+  const incomeData = monthlyNOIData.map((d) =>
+    Math.round(d.isFuture ? d.estimertInntekt : d.leieinntekter),
+  );
+  const costData = monthlyNOIData.map((d) =>
+    Math.round(d.isFuture ? d.budsjetterteKostnader : d.driftskostnader),
+  );
+
+  // Per-point colors: solid for actual, faded for projected
+  const incomeColors = monthlyNOIData.map((d) =>
+    d.isFuture ? 'rgba(34,212,232,0.4)' : '#22d4e8',
+  );
+  const costColors = monthlyNOIData.map((d) =>
+    d.isFuture ? 'rgba(248,113,113,0.4)' : '#f87171',
+  );
+
+  const incomeName = hasFutureData ? 'Leieinntekter / Estimert inntekt' : 'Leieinntekter';
+  const costName = hasFutureData ? 'Driftskostnader / Budsjetterte kostnader' : 'Driftskostnader';
 
   const options: ApexOptions = {
     chart: {
@@ -29,14 +44,24 @@ export function NOICard({ kpis }: NOICardProps) {
       parentHeightOffset: 0,
     },
     theme: { mode: 'dark' },
-    colors: hasFutureData
-      ? ['#22d4e8', '#f87171', 'rgba(34,212,232,0.4)', 'rgba(248,113,113,0.4)']
-      : ['#22d4e8', '#f87171'],
+    colors: ['#22d4e8', '#f87171'],
     plotOptions: {
       bar: {
         columnWidth: '50%',
         borderRadius: 2,
+        distributed: false,
       },
+    },
+    fill: {
+      type: 'solid',
+      colors: [
+        function({ dataPointIndex }: { dataPointIndex: number }) {
+          return incomeColors[dataPointIndex];
+        } as unknown as string,
+        function({ dataPointIndex }: { dataPointIndex: number }) {
+          return costColors[dataPointIndex];
+        } as unknown as string,
+      ],
     },
     xaxis: {
       categories: labels,
@@ -79,17 +104,10 @@ export function NOICard({ kpis }: NOICardProps) {
     dataLabels: { enabled: false },
   };
 
-  const series = hasFutureData
-    ? [
-        { name: 'Leieinntekter', data: monthlyNOIData.map((d) => Math.round(d.leieinntekter)) },
-        { name: 'Driftskostnader', data: monthlyNOIData.map((d) => Math.round(d.driftskostnader)) },
-        { name: 'Estimert inntekt', data: monthlyNOIData.map((d) => Math.round(d.estimertInntekt)) },
-        { name: 'Budsjetterte kostnader', data: monthlyNOIData.map((d) => Math.round(d.budsjetterteKostnader)) },
-      ]
-    : [
-        { name: 'Leieinntekter', data: monthlyNOIData.map((d) => Math.round(d.leieinntekter)) },
-        { name: 'Driftskostnader', data: monthlyNOIData.map((d) => Math.round(d.driftskostnader)) },
-      ];
+  const series = [
+    { name: incomeName, data: incomeData },
+    { name: costName, data: costData },
+  ];
 
   return (
     <KPICard
@@ -100,7 +118,9 @@ export function NOICard({ kpis }: NOICardProps) {
         title: 'NOI (Netto driftsinntekt)',
         formula: 'Leieinntekter − Driftskostnader',
         values: `${formatNOK(totalGrossRentalIncome)} − ${formatNOK(totalOperatingExpenses)} = ${formatNOK(totalNOI)}`,
-        source: `${kpis.buildingNOIs.length} bygg, aktive kontrakter + manuell kost. Fremtidige måneder viser estimert inntekt og budsjetterte kostnader.`,
+        source: hasFutureData
+          ? `${kpis.buildingNOIs.length} bygg. Fargede søyler = faktisk, bleke søyler = estimert/budsjettert.`
+          : `${kpis.buildingNOIs.length} bygg, aktive kontrakter + manuell kost.`,
       }}
     >
       {monthlyNOIData.length > 0 && (
