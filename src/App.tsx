@@ -38,6 +38,7 @@ function App() {
               <Route path="aktoerer" element={<PlaceholderPage title="Aktører" />} />
               <Route path="sammenlign" element={<ComparisonPage />} />
               <Route path="innstillinger" element={<PlaceholderPage title="Innstillinger" />} />
+
             </Route>
           </Routes>
         </FilterProvider>
