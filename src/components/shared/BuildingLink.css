@@ -1,0 +1,29 @@
+.building-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.building-link:hover .building-link__name {
+  color: var(--color-champagne);
+}
+
+.building-link__name {
+  font-size: 0.75rem;
+  color: var(--app-text-secondary);
+  transition: color var(--transition);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.building-link__detail {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--app-text);
+  flex-shrink: 0;
+  margin-left: 8px;
+}

@@ -1,0 +1,41 @@
+.period-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.period-selector__label {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--app-text-muted);
+}
+
+.period-selector__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.period-selector__pill {
+  padding: 6px 14px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--app-text-muted);
+  background-color: transparent;
+  border: 1px solid var(--app-border-mid);
+  border-radius: var(--radius-badge);
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.period-selector__pill:hover {
+  color: var(--app-text);
+  border-color: var(--app-text-faint);
+}
+
+.period-selector__pill--active {
+  color: var(--color-champagne);
+  border-color: var(--color-champagne);
+}

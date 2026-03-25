@@ -1,0 +1,54 @@
+.module-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.module-tabs__label {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--app-text-muted);
+}
+
+.module-tabs__pills {
+  display: flex;
+  gap: 6px;
+  background-color: var(--app-tab-bar);
+  padding: 4px;
+  border-radius: var(--radius-card);
+  width: fit-content;
+}
+
+.module-tabs__pill {
+  padding: 8px 20px;
+  font-size: var(--font-size-body);
+  font-weight: 500;
+  color: var(--app-text-muted);
+  border-radius: 6px;
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.module-tabs__pill:hover:not(:disabled) {
+  color: var(--app-text);
+  background-color: var(--app-surface-raised);
+}
+
+.module-tabs__pill--active {
+  color: var(--color-champagne);
+  background-color: var(--app-surface-raised);
+}
+
+.module-tabs__pill--locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.module-tabs__lock {
+  font-size: 0.6875rem;
+}
