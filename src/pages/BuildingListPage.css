@@ -1,0 +1,93 @@
+.building-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.building-list__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--app-text);
+}
+
+.building-list__count {
+  font-size: var(--font-size-body);
+  color: var(--app-text-muted);
+}
+
+.building-list__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--gap-metric);
+}
+
+.building-list__card {
+  background-color: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-card);
+  padding: var(--padding-section);
+  text-decoration: none;
+  transition: border-color var(--transition);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.building-list__card:hover {
+  border-color: var(--color-champagne);
+}
+
+.building-list__card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.building-list__card-name {
+  font-size: var(--font-size-body);
+  font-weight: 700;
+  color: var(--app-text);
+}
+
+.building-list__card-address {
+  font-size: 0.6875rem;
+  color: var(--app-text-dim);
+}
+
+.building-list__card-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.building-list__card-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.building-list__card-metric-label {
+  font-size: 0.625rem;
+  color: var(--app-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.building-list__card-metric-value {
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--app-text);
+}
+
+.building-list__card-warning {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--color-red);
+  background-color: rgba(248, 113, 113, 0.08);
+  border: 1px solid rgba(248, 113, 113, 0.15);
+  border-radius: var(--radius-badge);
+  padding: 4px 8px;
+  margin-top: 4px;
+}

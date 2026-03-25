@@ -1,0 +1,45 @@
+.comparison-table {
+  background-color: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-card);
+  padding: var(--padding-section);
+  overflow-x: auto;
+}
+
+.comparison-table table {
+  min-width: 900px;
+}
+
+.comparison-table th {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--app-border-mid);
+  white-space: nowrap;
+}
+
+.comparison-table__sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: color var(--transition);
+}
+
+.comparison-table__sortable:hover {
+  color: var(--color-champagne);
+}
+
+.comparison-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--app-border);
+  font-size: var(--font-size-body);
+  white-space: nowrap;
+}
+
+.comparison-table__link {
+  color: var(--app-text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition);
+}
+
+.comparison-table__link:hover {
+  color: var(--color-champagne);
+}

@@ -1,0 +1,63 @@
+.alert-banner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.alert-banner__item {
+  display: flex;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: var(--radius-card);
+  border: 1px solid;
+}
+
+.alert-banner__item--warning {
+  background-color: rgba(250, 204, 21, 0.05);
+  border-color: rgba(250, 204, 21, 0.2);
+}
+
+.alert-banner__item--danger {
+  background-color: rgba(248, 113, 113, 0.05);
+  border-color: rgba(248, 113, 113, 0.2);
+}
+
+.alert-banner__icon {
+  font-size: 1.125rem;
+  flex-shrink: 0;
+  line-height: 1.4;
+}
+
+.alert-banner__content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: var(--font-size-body);
+  color: var(--app-text);
+}
+
+.alert-banner__detail {
+  font-size: 0.75rem;
+  color: var(--app-text-muted);
+}
+
+.alert-banner__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.alert-banner__link {
+  font-size: 0.6875rem;
+  color: var(--color-champagne);
+  text-decoration: none;
+  padding: 2px 8px;
+  background-color: rgba(254, 208, 146, 0.06);
+  border-radius: var(--radius-badge);
+  transition: background-color var(--transition);
+}
+
+.alert-banner__link:hover {
+  background-color: rgba(254, 208, 146, 0.12);
+}

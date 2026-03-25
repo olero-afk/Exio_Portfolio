@@ -8,6 +8,7 @@ import { WAULTCard } from '../components/dashboard/WAULTCard.tsx';
 import { VacancyCostCard } from '../components/dashboard/VacancyCostCard.tsx';
 import { BuildingCountCard } from '../components/dashboard/BuildingCountCard.tsx';
 import { TotalAreaCard } from '../components/dashboard/TotalAreaCard.tsx';
+import { AlertBanner } from '../components/dashboard/AlertBanner.tsx';
 import './DashboardPage.css';
 
 export function DashboardPage() {
@@ -15,6 +16,7 @@ export function DashboardPage() {
 
   return (
     <div className="dashboard">
+      <AlertBanner />
       <ModuleTabs />
 
       <div className="dashboard__controls">

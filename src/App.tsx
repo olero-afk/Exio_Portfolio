@@ -9,6 +9,9 @@ import { BuildingAreasPage } from './pages/BuildingAreasPage.tsx';
 import { BuildingContractsPage } from './pages/BuildingContractsPage.tsx';
 import { BuildingFinancialsPage } from './pages/BuildingFinancialsPage.tsx';
 import { BuildingTabPlaceholder } from './pages/BuildingTabPlaceholder.tsx';
+import { ComparisonPage } from './pages/ComparisonPage.tsx';
+import { ReportsPage } from './pages/ReportsPage.tsx';
+import { BoardReportPage } from './pages/BoardReportPage.tsx';
 import { PlaceholderPage } from './pages/PlaceholderPage.tsx';
 
 function App() {
@@ -28,12 +31,12 @@ function App() {
               <Route path="bygg/:buildingId/forvalter" element={<BuildingTabPlaceholder tabName="Forvalter" />} />
               <Route path="bygg/:buildingId/energi" element={<BuildingTabPlaceholder tabName="Energi" />} />
               <Route path="bygg/:buildingId/okonomi" element={<BuildingFinancialsPage />} />
-              <Route path="rapporter" element={<PlaceholderPage title="Rapporter" />} />
-              <Route path="rapporter/styrerapport" element={<PlaceholderPage title="Styrerapport" />} />
+              <Route path="rapporter" element={<ReportsPage />} />
+              <Route path="rapporter/styrerapport" element={<BoardReportPage />} />
               <Route path="avtaler" element={<PlaceholderPage title="Avtaler" />} />
               <Route path="produkter" element={<PlaceholderPage title="Produkter" />} />
               <Route path="aktoerer" element={<PlaceholderPage title="Aktører" />} />
-              <Route path="sammenlign" element={<PlaceholderPage title="Sammenlign bygninger" />} />
+              <Route path="sammenlign" element={<ComparisonPage />} />
               <Route path="innstillinger" element={<PlaceholderPage title="Innstillinger" />} />
             </Route>
           </Routes>
