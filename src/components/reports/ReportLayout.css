@@ -29,6 +29,11 @@
   color: var(--app-text);
 }
 
+.report-layout__scope {
+  font-weight: 400;
+  color: var(--color-champagne);
+}
+
 .report-layout__controls {
   display: flex;
   gap: 24px;
