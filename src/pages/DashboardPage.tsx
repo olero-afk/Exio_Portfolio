@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { usePortfolioKPI } from '../hooks/usePortfolioKPI.ts';
 import { usePersona, EIER_BUILDING_IDS } from '../context/PersonaContext.tsx';
-import { FundFilter } from '../components/dashboard/FundFilter.tsx';
-import { ClientFilter } from '../components/dashboard/ClientFilter.tsx';
-import { PeriodSelector } from '../components/dashboard/PeriodSelector.tsx';
+import { FilterBar } from '../components/dashboard/FilterBar.tsx';
+import { ContextBar } from '../components/dashboard/ContextBar.tsx';
 import { AlertBanner } from '../components/dashboard/AlertBanner.tsx';
 import { ContractExpirySection } from '../components/dashboard/ContractExpirySection.tsx';
 import { PortfolioValueCard } from '../components/dashboard/PortfolioValueCard.tsx';
@@ -42,15 +41,16 @@ export function DashboardPage() {
 
   return (
     <div className="dashboard">
+      {/* Zone 1 */}
       <SpørExio kpis={kpis} />
-      <AlertBanner />
 
-      <div className="dashboard__controls">
-        {config.showFundFilter && <FundFilter />}
-        {config.showClientFilter && <ClientFilter />}
-        <PeriodSelector />
+      {/* Zone 2 */}
+      <div className="dashboard__zone2">
+        <FilterBar />
+        <ContextBar kpis={kpis} />
       </div>
 
+      <AlertBanner />
       <InsightsPanel insights={insights} />
 
       <div className="dashboard__grid">

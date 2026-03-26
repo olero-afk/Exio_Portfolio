@@ -1,0 +1,93 @@
+.filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 38px;
+}
+
+.filter-bar__left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.filter-bar__dropdown {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filter-bar__label {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--app-text-dim);
+  white-space: nowrap;
+}
+
+.filter-bar__select {
+  padding: 4px 24px 4px 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--app-text);
+  background-color: var(--app-surface-raised);
+  border: 1px solid var(--app-border-mid);
+  border-radius: var(--radius-badge);
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='8' height='5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%239a9a9a'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  transition: border-color var(--transition);
+}
+
+.filter-bar__select:hover {
+  border-color: var(--app-text-faint);
+}
+
+.filter-bar__select:focus {
+  outline: none;
+  border-color: var(--color-champagne);
+}
+
+.filter-bar__select option {
+  background-color: var(--app-surface-raised);
+  color: var(--app-text);
+}
+
+.filter-bar__static {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--app-text-dim);
+}
+
+.filter-bar__pills {
+  display: flex;
+  gap: 4px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.filter-bar__pill {
+  padding: 4px 10px;
+  font-size: 0.625rem;
+  font-weight: 500;
+  color: var(--app-text-dim);
+  background: transparent;
+  border: 1px solid var(--app-border-mid);
+  border-radius: var(--radius-badge);
+  white-space: nowrap;
+  transition: all var(--transition);
+}
+
+.filter-bar__pill:hover {
+  color: var(--app-text);
+  border-color: var(--app-text-faint);
+}
+
+.filter-bar__pill--active {
+  color: var(--color-champagne);
+  border-color: var(--color-champagne);
+}

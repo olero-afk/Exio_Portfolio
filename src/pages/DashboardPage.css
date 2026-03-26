@@ -4,6 +4,12 @@
   gap: 20px;
 }
 
+.dashboard__zone2 {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
 .dashboard__controls {
   display: flex;
   gap: 32px;
