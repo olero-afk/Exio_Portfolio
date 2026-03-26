@@ -2,13 +2,14 @@ import { useMemo } from 'react';
 import { usePersona } from '../context/PersonaContext.tsx';
 import { usePortfolioContext } from '../context/PortfolioContext.tsx';
 import type { PortfolioKPIs } from './usePortfolioKPI.ts';
-import { formatNOK, formatPercent, formatYears } from '../utils/formatters.ts';
+import { formatNOK, formatPercent, formatYears, formatM2 } from '../utils/formatters.ts';
 
 export interface Insight {
   id: string;
   title: string;
   value: string;
   context: string;
+  bullets: string[];
   severity: 'info' | 'warning' | 'positive' | 'negative';
   link?: string;
 }
@@ -52,11 +53,21 @@ function buildEierInsights(kpis: PortfolioKPIs): Insight[] {
   const driverPct = kpis.totalVacancyCost > 0 && topDriver ? Math.round((topDriver.cost / kpis.totalVacancyCost) * 100) : 0;
   const under90 = kpis.filteredBuildings.filter((b) => b.occupancyRate < 0.9).length;
 
+  const last3Noi = actual.slice(-3).map((m) => `${m.month.split(' ')[0]}: ${formatNOK(m.income - m.costs)}`);
+
   return [
-    { id: 'noi', title: 'NOI', value: formatNOK(noiLast) + '/mnd', context: `Margin: ${formatPercent(kpis.noiMargin)} — ${change >= 0 ? '↑' : '↓'}${formatPercent(Math.abs(change))} vs. forrige`, severity: change >= 0 ? 'positive' : 'negative', link: '/rapporter/portefoljeoversikt' },
-    { id: 'risk', title: 'KONTRAKTSRISIKO', value: expiring ? `${expiring.contractCount} utløper` : '0', context: `${formatNOK(kpis.incomeAtRisk)} i risiko neste 12 mnd`, severity: kpis.incomeAtRiskPercent > 10 ? 'negative' : kpis.incomeAtRiskPercent > 5 ? 'warning' : 'positive', link: '/rapporter/kontraktsanalyse' },
-    { id: 'vacancy', title: 'LEDIGHETSKOSTNAD', value: formatNOK(kpis.totalVacancyCost), context: topDriver ? `${topDriver.name} driver ${driverPct}%` : 'Ingen ledighet', severity: kpis.totalVacancyCost > 5000000 ? 'negative' : kpis.totalVacancyCost > 1000000 ? 'warning' : 'positive', link: '/rapporter/ledighetsoversikt' },
-    { id: 'occ', title: 'UTLEIEGRAD', value: formatPercent(kpis.portfolioOccupancyRate * 100), context: `${under90} bygg under 90% — snitt 92%`, severity: occSeverity(kpis.portfolioOccupancyRate * 100), link: '/rapporter/portefoljeoversikt' },
+    { id: 'noi', title: 'NOI', value: formatNOK(noiLast) + '/mnd', context: `Margin: ${formatPercent(kpis.noiMargin)} — ${change >= 0 ? '↑' : '↓'}${formatPercent(Math.abs(change))} vs. forrige`,
+      bullets: last3Noi.length > 0 ? last3Noi : [`Årlig NOI: ${formatNOK(kpis.totalNOI)}`, `Yield: ${formatPercent(kpis.noiYield)}`, `${kpis.buildingCount} bygg i porteføljen`],
+      severity: change >= 0 ? 'positive' : 'negative', link: '/rapporter/portefoljeoversikt' },
+    { id: 'risk', title: 'KONTRAKTSRISIKO', value: expiring ? `${expiring.contractCount} utløper` : '0', context: `${formatNOK(kpis.incomeAtRisk)} i risiko neste 12 mnd`,
+      bullets: kpis.expiryProfile.slice(0, 3).map((e) => `${e.label}: ${formatNOK(e.expiringRent)} (${e.contractCount} kontr.)`),
+      severity: kpis.incomeAtRiskPercent > 10 ? 'negative' : kpis.incomeAtRiskPercent > 5 ? 'warning' : 'positive', link: '/rapporter/kontraktsanalyse' },
+    { id: 'vacancy', title: 'LEDIGHETSKOSTNAD', value: formatNOK(kpis.totalVacancyCost), context: topDriver ? `${topDriver.name} driver ${driverPct}%` : 'Ingen ledighet',
+      bullets: topVacancy.slice(0, 3).map((b) => `${b.name}: ${formatNOK(b.cost)}`),
+      severity: kpis.totalVacancyCost > 5000000 ? 'negative' : kpis.totalVacancyCost > 1000000 ? 'warning' : 'positive', link: '/rapporter/ledighetsoversikt' },
+    { id: 'occ', title: 'UTLEIEGRAD', value: formatPercent(kpis.portfolioOccupancyRate * 100), context: `${under90} bygg under 90% — snitt 92%`,
+      bullets: [`Utleid: ${formatM2(kpis.totalCommittedM2)} av ${formatM2(kpis.totalRentableM2)}`, `Ledig: ${formatM2(kpis.totalVacantM2)}`, `${kpis.buildingsHighVacancy} bygg >10% ledighet`],
+      severity: occSeverity(kpis.portfolioOccupancyRate * 100), link: '/rapporter/portefoljeoversikt' },
   ];
 }
 
@@ -66,11 +77,21 @@ function buildInvestorInsights(kpis: PortfolioKPIs, fundData: { name: string; yi
   const top = kpis.topTenants[0];
   const expiringCount = kpis.expiryProfile[0]?.contractCount ?? 0;
 
+  const top3 = kpis.topTenants.slice(0, 3);
+
   return [
-    { id: 'yield', title: 'YIELD-SPREAD', value: formatPercent(spread), context: sorted.length >= 2 ? `${sorted[0].name.split('—')[0].trim()}: ${formatPercent(sorted[0].yield_)} vs. ${sorted[1].name.split('—')[0].trim()}: ${formatPercent(sorted[1].yield_)}` : `NOI-yield: ${formatPercent(kpis.noiYield)}`, severity: yieldSeverity(sorted[0]?.yield_ ?? kpis.noiYield), link: '/rapporter/portefoljeoversikt' },
-    { id: 'conc', title: 'KONSENTRASJONSRISIKO', value: top ? formatPercent(top.percentOfPortfolio) : '—', context: top ? `${top.tenantName} — største leietaker` : 'Ingen data', severity: top ? concSeverity(top.percentOfPortfolio) : 'info', link: '/rapporter/leietakeranalyse' },
-    { id: 'wault', title: 'WAULT', value: formatYears(kpis.portfolioWAULT), context: `${expiringCount} kontrakter utløper innen 12 mnd`, severity: waultSeverity(kpis.portfolioWAULT), link: '/rapporter/kontraktsanalyse' },
-    { id: 'noiyield', title: 'NOI-YIELD', value: formatPercent(kpis.noiYield), context: `Porteføljeverdi: ${formatNOK(kpis.totalPortfolioValue)}`, severity: yieldSeverity(kpis.noiYield), link: '/rapporter/portefoljeoversikt' },
+    { id: 'yield', title: 'YIELD-SPREAD', value: formatPercent(spread), context: sorted.length >= 2 ? `${sorted[0].name.split('—')[0].trim()}: ${formatPercent(sorted[0].yield_)} vs. ${sorted[1].name.split('—')[0].trim()}: ${formatPercent(sorted[1].yield_)}` : `NOI-yield: ${formatPercent(kpis.noiYield)}`,
+      bullets: sorted.map((f) => `${f.name}: ${formatPercent(f.yield_)}`).concat([`NOI-margin: ${formatPercent(kpis.noiMargin)}`]).slice(0, 3),
+      severity: yieldSeverity(sorted[0]?.yield_ ?? kpis.noiYield), link: '/rapporter/portefoljeoversikt' },
+    { id: 'conc', title: 'KONSENTRASJONSRISIKO', value: top ? formatPercent(top.percentOfPortfolio) : '—', context: top ? `${top.tenantName} — største leietaker` : 'Ingen data',
+      bullets: top3.map((t) => `${t.tenantName}: ${formatPercent(t.percentOfPortfolio)}`),
+      severity: top ? concSeverity(top.percentOfPortfolio) : 'info', link: '/rapporter/leietakeranalyse' },
+    { id: 'wault', title: 'WAULT', value: formatYears(kpis.portfolioWAULT), context: `${expiringCount} kontrakter utløper innen 12 mnd`,
+      bullets: [`Effektiv WAULT: ${formatYears(kpis.effectiveWAULT)}`, `Inntekt i risiko: ${formatNOK(kpis.incomeAtRisk)}`, `Y+1: ${kpis.expiryProfile[0]?.contractCount ?? 0} kontrakter`],
+      severity: waultSeverity(kpis.portfolioWAULT), link: '/rapporter/kontraktsanalyse' },
+    { id: 'noiyield', title: 'NOI-YIELD', value: formatPercent(kpis.noiYield), context: `Porteføljeverdi: ${formatNOK(kpis.totalPortfolioValue)}`,
+      bullets: [`Total NOI: ${formatNOK(kpis.totalNOI)}`, `Verdi: ${formatNOK(kpis.totalPortfolioValue)}`, `${kpis.buildingCount} bygg`],
+      severity: yieldSeverity(kpis.noiYield), link: '/rapporter/portefoljeoversikt' },
   ];
 }
 
@@ -88,10 +109,18 @@ function buildForvalterInsights(kpis: PortfolioKPIs, clientData: { name: string;
   const fee = Math.round(totalForvaltet * 0.005); // 0.5% management fee estimate
 
   return [
-    { id: 'clients', title: 'KUNDESTATUS', value: `${clientData.length} kunder`, context: worst ? `${worst.name} trenger oppmerksomhet` : 'Alle kunder stabile', severity: worst && worst.occupancy < 0.8 ? 'warning' : 'positive', link: '/rapporter/portefoljeoversikt' },
-    { id: 'contracts', title: 'KONTRAKTER', value: `${expiringCount} utløper`, context: `${formatNOK(kpis.incomeAtRisk)} utløper på tvers av alle kunder`, severity: kpis.incomeAtRiskPercent > 10 ? 'negative' : kpis.incomeAtRiskPercent > 5 ? 'warning' : 'positive', link: '/rapporter/kontraktsanalyse' },
-    { id: 'cost', title: 'DRIFTSKOSTNAD', value: `${formatNOK(costPerM2)}/m²`, context: highestCostClient ? `${highestCostClient.name} høyest kostnadsnivå` : 'Jevnt fordelt', severity: 'info', link: '/rapporter/portefoljeoversikt' },
-    { id: 'aum', title: 'FORVALTET KAPITAL', value: formatNOK(totalForvaltet), context: `${clientData.length} kunder — honorar ~${formatNOK(fee)}/år`, severity: 'positive', link: '/rapporter/portefoljeoversikt' },
+    { id: 'clients', title: 'KUNDESTATUS', value: `${clientData.length} kunder`, context: worst ? `${worst.name} trenger oppmerksomhet` : 'Alle kunder stabile',
+      bullets: sorted.slice(0, 3).map((c) => `${c.name}: ${formatPercent(c.occupancy * 100)} utleie`),
+      severity: worst && worst.occupancy < 0.8 ? 'warning' : 'positive', link: '/rapporter/portefoljeoversikt' },
+    { id: 'contracts', title: 'KONTRAKTER', value: `${expiringCount} utløper`, context: `${formatNOK(kpis.incomeAtRisk)} utløper på tvers av alle kunder`,
+      bullets: kpis.expiryProfile.slice(0, 3).map((e) => `${e.label}: ${formatNOK(e.expiringRent)} (${e.contractCount})`),
+      severity: kpis.incomeAtRiskPercent > 10 ? 'negative' : kpis.incomeAtRiskPercent > 5 ? 'warning' : 'positive', link: '/rapporter/kontraktsanalyse' },
+    { id: 'cost', title: 'DRIFTSKOSTNAD', value: `${formatNOK(costPerM2)}/m²`, context: highestCostClient ? `${highestCostClient.name} høyest kostnadsnivå` : 'Jevnt fordelt',
+      bullets: clientData.map((c) => `${c.name}: ${formatNOK(c.value > 0 ? (c.value - c.noi) / c.buildings : 0)}/bygg`).slice(0, 3),
+      severity: 'info', link: '/rapporter/portefoljeoversikt' },
+    { id: 'aum', title: 'FORVALTET KAPITAL', value: formatNOK(totalForvaltet), context: `${clientData.length} kunder — honorar ~${formatNOK(fee)}/år`,
+      bullets: clientData.sort((a, b) => b.value - a.value).slice(0, 3).map((c) => `${c.name}: ${formatNOK(c.value)}`),
+      severity: 'positive', link: '/rapporter/portefoljeoversikt' },
   ];
 }
 

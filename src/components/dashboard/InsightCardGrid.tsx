@@ -13,56 +13,57 @@ const SEV_COLORS: Record<string, string> = {
   info: '#22d4e8', warning: '#FED092', positive: '#4ade80', negative: '#f87171',
 };
 
+function KpiCard({ c }: { c: Insight }) {
+  const color = SEV_COLORS[c.severity];
+  const inner = (
+    <div className="cg__kpi" style={{ borderLeftColor: color }}>
+      <span className="cg__kpi-title">{c.title}</span>
+      <span className="cg__kpi-value" style={{ color }}>{c.value}</span>
+      <span className="cg__kpi-ctx">{c.context}</span>
+      {c.bullets.length > 0 && (
+        <ul className="cg__kpi-bullets">
+          {c.bullets.slice(0, 3).map((b, i) => <li key={i}>{b}</li>)}
+        </ul>
+      )}
+      <span className="cg__kpi-link">Se detaljer →</span>
+    </div>
+  );
+  return c.link ? <Link to={c.link} className="cg__wrap">{inner}</Link> : <div className="cg__wrap">{inner}</div>;
+}
+
+function SumCard({ card, variant }: { card: SummaryCard; variant: 'green' | 'red' }) {
+  return (
+    <Link to={card.link} className="cg__wrap">
+      <div className={`cg__sum cg__sum--${variant}`}>
+        <span className={`cg__sum-title cg__sum-title--${variant}`}>{variant === 'green' ? 'MULIGHETER' : 'RISIKO'}</span>
+        <ul className="cg__sum-list">
+          {card.bullets.map((b, i) => (
+            <li key={i} className="cg__sum-bullet">
+              <span className="cg__sum-text">{b.action}{b.detail ? ` — ${b.detail}` : ''}</span>
+              {b.amount && <span className={`cg__sum-amt cg__sum-amt--${variant}`}>{b.amount}</span>}
+            </li>
+          ))}
+        </ul>
+        <div className={`cg__sum-bottom cg__sum-bottom--${variant}`}>{card.bottomLine}</div>
+        <span className="cg__kpi-link">{variant === 'green' ? 'Se muligheter' : 'Se risikoer'} →</span>
+      </div>
+    </Link>
+  );
+}
+
 export function InsightCardGrid({ insights, muligheter, risiko }: Props) {
   const cards = insights.slice(0, 4);
-  while (cards.length < 4) cards.push({ id: `e${cards.length}`, title: '—', value: '—', context: '', severity: 'info' });
+  while (cards.length < 4) cards.push({ id: `e${cards.length}`, title: '—', value: '—', context: '', bullets: [], severity: 'info' });
 
+  // Layout: [Card1, Card2, Muligheter] top row, [Card3, Card4, Risiko] bottom row
   return (
     <div className="cg">
-      {cards.map((c) => {
-        const color = SEV_COLORS[c.severity];
-        const inner = (
-          <div className="cg__kpi" style={{ borderLeftColor: color }}>
-            <span className="cg__kpi-title">{c.title}</span>
-            <span className="cg__kpi-value" style={{ color }}>{c.value}</span>
-            <span className="cg__kpi-ctx">{c.context}</span>
-            <span className="cg__kpi-link">Se detaljer →</span>
-          </div>
-        );
-        return c.link ? <Link key={c.id} to={c.link} className="cg__wrap">{inner}</Link> : <div key={c.id} className="cg__wrap">{inner}</div>;
-      })}
-
-      <Link to={muligheter.link} className="cg__wrap">
-        <div className="cg__sum cg__sum--green">
-          <span className="cg__sum-title cg__sum-title--green">MULIGHETER</span>
-          <ul className="cg__sum-list">
-            {muligheter.bullets.map((b, i) => (
-              <li key={i} className="cg__sum-bullet">
-                <span className="cg__sum-text">{b.action}{b.detail ? ` — ${b.detail}` : ''}</span>
-                {b.amount && <span className="cg__sum-amt cg__sum-amt--green">{b.amount}</span>}
-              </li>
-            ))}
-          </ul>
-          <div className="cg__sum-bottom cg__sum-bottom--green">{muligheter.bottomLine}</div>
-          <span className="cg__kpi-link">Se muligheter →</span>
-        </div>
-      </Link>
-
-      <Link to={risiko.link} className="cg__wrap">
-        <div className="cg__sum cg__sum--red">
-          <span className="cg__sum-title cg__sum-title--red">RISIKO</span>
-          <ul className="cg__sum-list">
-            {risiko.bullets.map((b, i) => (
-              <li key={i} className="cg__sum-bullet">
-                <span className="cg__sum-text">{b.action}{b.detail ? ` — ${b.detail}` : ''}</span>
-                {b.amount && <span className="cg__sum-amt cg__sum-amt--red">{b.amount}</span>}
-              </li>
-            ))}
-          </ul>
-          <div className="cg__sum-bottom cg__sum-bottom--red">{risiko.bottomLine}</div>
-          <span className="cg__kpi-link">Se risikoer →</span>
-        </div>
-      </Link>
+      <KpiCard c={cards[0]} />
+      <KpiCard c={cards[1]} />
+      <SumCard card={muligheter} variant="green" />
+      <KpiCard c={cards[2]} />
+      <KpiCard c={cards[3]} />
+      <SumCard card={risiko} variant="red" />
     </div>
   );
 }

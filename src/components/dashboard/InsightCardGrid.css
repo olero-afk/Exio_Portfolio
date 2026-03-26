@@ -1,10 +1,10 @@
-/* Grid */
+/* 3×2 grid — all cards same size */
 .cg { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr 1fr; gap: 8px; flex: 1; min-height: 0; }
 .cg__wrap { text-decoration: none; display: flex; min-height: 0; }
 .cg__wrap:hover .cg__kpi, .cg__wrap:hover .cg__sum { border-color: var(--app-text-faint); }
 .cg__wrap:hover .cg__kpi-link { opacity: 1; }
 
-/* --- KPI Cards 1-4: Big number centered --- */
+/* --- KPI Cards 1-4 --- */
 .cg__kpi {
   flex: 1; background: var(--app-surface); border: 1px solid var(--app-border);
   border-left: 4px solid; border-radius: var(--radius-card);
@@ -28,16 +28,31 @@
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
 }
 
+.cg__kpi-bullets {
+  list-style: none; padding: 0; margin: 4px 0 0; display: flex; flex-direction: column;
+  gap: 1px; width: 100%; text-align: left;
+}
+
+.cg__kpi-bullets li {
+  font-size: 0.7rem; color: var(--app-text-dim); line-height: 1.4;
+  padding-left: 10px; position: relative;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+.cg__kpi-bullets li::before {
+  content: '•'; position: absolute; left: 0; color: var(--app-text-faint);
+}
+
 .cg__kpi-link {
   font-size: 0.7rem; font-weight: 600; color: var(--color-cyan);
   opacity: 0; transition: opacity var(--transition); margin-top: auto;
 }
 
-/* --- Summary Cards 5-6 --- */
+/* --- Summary Cards 5-6 (Muligheter / Risiko) --- */
 .cg__sum {
   flex: 1; background: var(--app-surface); border: 1px solid var(--app-border);
-  border-radius: var(--radius-card); padding: 10px 14px;
-  display: flex; flex-direction: column; gap: 4px;
+  border-radius: var(--radius-card); padding: 12px 16px;
+  display: flex; flex-direction: column; gap: 6px;
   overflow: hidden; min-height: 0; transition: border-color var(--transition);
 }
 .cg__sum--green { border-left: 4px solid #4ade80; }
@@ -47,11 +62,9 @@
 .cg__sum-title--green { color: #4ade80; }
 .cg__sum-title--red { color: #f87171; }
 
-.cg__sum-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; flex: 1; overflow: hidden; }
+.cg__sum-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; flex: 1; overflow: hidden; }
 
-.cg__sum-bullet {
-  display: flex; align-items: center; justify-content: space-between; gap: 8px;
-}
+.cg__sum-bullet { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 
 .cg__sum-text {
   font-size: 0.9rem; color: var(--app-text-secondary); line-height: 1.5;
