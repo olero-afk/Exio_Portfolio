@@ -1,0 +1,42 @@
+.building-kpis {
+  background-color: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-card);
+  padding: var(--padding-section);
+  margin-bottom: 16px;
+}
+
+.building-kpis__title {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+  color: var(--app-text-muted);
+  margin-bottom: 16px;
+}
+
+.building-kpis__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.building-kpis__metric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  background-color: var(--app-surface-mid);
+  border-radius: var(--radius-badge);
+}
+
+.building-kpis__label {
+  font-size: 0.6875rem;
+  color: var(--app-text-dim);
+}
+
+.building-kpis__value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--app-text);
+}

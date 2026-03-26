@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { usePortfolioContext } from '../context/PortfolioContext.tsx';
 import { BuildingTabs } from '../components/building/BuildingTabs.tsx';
 import { AreaCards } from '../components/building/AreaCards.tsx';
+import { BuildingKPIs } from '../components/building/BuildingKPIs.tsx';
 import { BuildingInfo } from '../components/building/BuildingInfo.tsx';
 import './BuildingDetailPage.css';
 
@@ -28,6 +29,7 @@ export function BuildingDetailPage() {
       </div>
       <BuildingTabs />
       <AreaCards building={building} />
+      <BuildingKPIs building={building} />
       <BuildingInfo building={building} />
     </div>
   );

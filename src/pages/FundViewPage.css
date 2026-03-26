@@ -8,11 +8,13 @@
   padding: 3px 10px; border-radius: var(--radius-badge);
   color: var(--color-champagne); background-color: rgba(254, 208, 146, 0.1);
 }
+.fund-view__vintage { font-size: 0.75rem; color: var(--app-text-dim); }
 .fund-view__controls { display: flex; gap: 32px; align-items: flex-start; }
 .fund-view__buildings {
   background-color: var(--app-surface); border: 1px solid var(--app-border);
-  border-radius: var(--radius-card); padding: var(--padding-section); overflow-x: auto;
+  border-radius: var(--radius-card); padding: var(--padding-section);
 }
+.fund-view__table-scroll { overflow-x: auto; }
 .fund-view__section-title {
   font-size: var(--font-size-label); font-weight: var(--font-weight-label);
   letter-spacing: var(--letter-spacing-label); text-transform: uppercase;
@@ -25,3 +27,5 @@
   color: var(--app-text); text-decoration: none; font-weight: 500; transition: color var(--transition);
 }
 .fund-view__building-link:hover { color: var(--color-champagne); }
+.fund-view__table-row:hover { background-color: var(--app-surface-mid); }
+.fund-view__table-row { transition: background-color var(--transition); cursor: pointer; }
