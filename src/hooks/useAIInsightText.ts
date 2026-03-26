@@ -131,5 +131,5 @@ function generateInsightForCard(ins: Insight, kpis: PortfolioKPIs, persona: stri
     if (id === 'aum') return `Total forvaltet kapital på ${formatNOK(kpis.totalPortfolioValue)} gir godt grunnlag for skalafordeler og honorarinntekter.`;
   }
 
-  return ins.detail;
+  return ins.context;
 }

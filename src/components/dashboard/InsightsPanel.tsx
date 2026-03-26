@@ -53,7 +53,7 @@ export function InsightsPanel({ insights }: InsightsPanelProps) {
             <div className="insights-panel__card-value" style={{ color: severityColors[insight.severity] }}>
               {insight.value}
             </div>
-            <p className="insights-panel__card-detail">{insight.detail}</p>
+            <p className="insights-panel__card-detail">{insight.context}</p>
           </div>
         ))}
       </div>
