@@ -17,6 +17,7 @@ import { TenantConcentrationCard } from '../components/dashboard/TenantConcentra
 import { ExpiryProfileCard } from '../components/dashboard/ExpiryProfileCard.tsx';
 import { CovenantCard } from '../components/dashboard/CovenantCard.tsx';
 import { InsightsPanel } from '../components/dashboard/InsightsPanel.tsx';
+import { SpørExio } from '../components/dashboard/SpørExio.tsx';
 import { WelcomeWizard } from '../components/shared/WelcomeWizard.tsx';
 import { usePersonaInsights } from '../hooks/usePersonaInsights.ts';
 import './DashboardPage.css';
@@ -41,6 +42,7 @@ export function DashboardPage() {
 
   return (
     <div className="dashboard">
+      <SpørExio kpis={kpis} />
       <AlertBanner />
 
       <div className="dashboard__controls">

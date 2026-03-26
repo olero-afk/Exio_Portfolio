@@ -1,0 +1,180 @@
+.spor-exio {
+  background-color: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-card);
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all var(--transition);
+}
+
+.spor-exio--expanded {
+  border-color: var(--color-cyan);
+  border-color: rgba(34, 212, 232, 0.3);
+}
+
+.spor-exio__input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.spor-exio__sparkle {
+  font-size: 1rem;
+  color: var(--color-cyan);
+  flex-shrink: 0;
+}
+
+.spor-exio__input {
+  flex: 1;
+  padding: 0;
+  font-size: var(--font-size-body);
+  color: var(--app-text);
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.spor-exio__input::placeholder {
+  color: var(--app-text-dim);
+}
+
+.spor-exio__send {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  color: var(--app-bg);
+  background-color: var(--color-cyan);
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: opacity var(--transition);
+}
+
+.spor-exio__send:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.spor-exio__send:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.spor-exio__chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.spor-exio__chip {
+  padding: 4px 12px;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--app-text-muted);
+  background-color: transparent;
+  border: 1px solid rgba(34, 212, 232, 0.25);
+  border-radius: var(--radius-badge);
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.spor-exio__chip:hover {
+  color: var(--color-cyan);
+  border-color: var(--color-cyan);
+  background-color: rgba(34, 212, 232, 0.05);
+}
+
+.spor-exio__loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+}
+
+.spor-exio__loading-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-cyan);
+  animation: exio-pulse 1s ease-in-out infinite;
+}
+
+@keyframes exio-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+.spor-exio__loading-text {
+  font-size: 0.75rem;
+  color: var(--app-text-dim);
+  font-style: italic;
+}
+
+.spor-exio__response {
+  position: relative;
+  padding: 12px 14px;
+  background-color: var(--app-surface-mid);
+  border-radius: var(--radius-badge);
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.spor-exio__close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.625rem;
+  color: var(--app-text-dim);
+  border-radius: 50%;
+  transition: all var(--transition);
+}
+
+.spor-exio__close:hover {
+  color: var(--app-text);
+  background-color: var(--app-surface-raised);
+}
+
+.spor-exio__response-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.spor-exio__response-heading {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--app-text);
+  margin-bottom: 2px;
+}
+
+.spor-exio__response-para {
+  font-size: 0.75rem;
+  color: var(--app-text-secondary);
+  line-height: 1.5;
+}
+
+.spor-exio__response-bullet {
+  font-size: 0.75rem;
+  color: var(--app-text-secondary);
+  line-height: 1.5;
+  padding-left: 8px;
+}
+
+.spor-exio__response-bullet strong {
+  color: var(--app-text);
+}
+
+.spor-exio__response-warning {
+  font-size: 0.75rem;
+  color: #facc15;
+  font-weight: 500;
+  line-height: 1.5;
+}
