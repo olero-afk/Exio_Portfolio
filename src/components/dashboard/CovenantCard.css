@@ -1,0 +1,21 @@
+.cov-card {
+  background-color: var(--app-surface); border: 1px solid var(--app-border);
+  border-radius: var(--radius-card); padding: var(--padding-card);
+  display: flex; flex-direction: column; gap: 12px;
+}
+.cov-card__title {
+  font-size: var(--font-size-label); font-weight: var(--font-weight-label);
+  text-transform: uppercase; letter-spacing: var(--letter-spacing-label); color: var(--app-text-muted);
+}
+.cov-card__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.cov-card__placeholder {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 20px 12px; background-color: var(--app-surface-mid); border-radius: var(--radius-badge);
+}
+.cov-card__metric-title { font-size: 0.875rem; font-weight: 700; color: var(--app-text-dim); }
+.cov-card__badge {
+  font-size: 0.6875rem; font-weight: 700; padding: 3px 12px;
+  border-radius: var(--radius-badge); color: var(--app-bg);
+  background-color: var(--color-champagne);
+}
+.cov-card__footer { font-size: 0.6875rem; color: var(--app-text-dim); text-align: center; }

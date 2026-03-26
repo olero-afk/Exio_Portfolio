@@ -13,6 +13,7 @@ import { ComparisonPage } from './pages/ComparisonPage.tsx';
 import { ReportsPage } from './pages/ReportsPage.tsx';
 import { BoardReportPage } from './pages/BoardReportPage.tsx';
 import { PlaceholderPage } from './pages/PlaceholderPage.tsx';
+import { FundViewPage } from './pages/FundViewPage.tsx';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Routes>
             <Route element={<MainLayout />}>
               <Route index element={<DashboardPage />} />
+              <Route path="fond/:fondId" element={<FundViewPage />} />
               <Route path="bygg" element={<BuildingListPage />} />
               <Route path="bygg/:buildingId" element={<BuildingDetailPage />} />
               <Route path="bygg/:buildingId/arealer" element={<BuildingAreasPage />} />

@@ -8,6 +8,7 @@ import type {
   CostEntry,
   BudgetEntry,
   MarketData,
+  Fund,
   ViewMode,
 } from '../types/index.ts';
 
@@ -19,6 +20,7 @@ import contractsData from '../data/contracts.json';
 import costsData from '../data/costs.json';
 import budgetsData from '../data/budgets.json';
 import marketDataData from '../data/marketData.json';
+import fundsData from '../data/funds.json';
 
 interface PortfolioContextValue {
   companies: Company[];
@@ -29,6 +31,7 @@ interface PortfolioContextValue {
   costs: CostEntry[];
   budgets: BudgetEntry[];
   marketData: MarketData[];
+  funds: Fund[];
   activeCompanyId: string;
   setActiveCompanyId: (id: string) => void;
   activePortfolioId: string;
@@ -53,6 +56,7 @@ export function PortfolioProvider({ children }: { children: ReactNode }) {
     costs: costsData as CostEntry[],
     budgets: budgetsData as BudgetEntry[],
     marketData: marketDataData as MarketData[],
+    funds: fundsData as Fund[],
     activeCompanyId,
     setActiveCompanyId,
     activePortfolioId,

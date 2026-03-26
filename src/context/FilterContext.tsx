@@ -2,6 +2,8 @@ import { createContext, useContext, useState, useMemo, type ReactNode } from 're
 import type { TimePeriod, DateRange } from '../types/index.ts';
 
 interface FilterContextValue {
+  selectedFundId: string | null;
+  setSelectedFundId: (id: string | null) => void;
   selectedBuildingId: string | null;
   setSelectedBuildingId: (id: string | null) => void;
   timePeriod: TimePeriod;
@@ -70,6 +72,7 @@ function getDateRangeForPeriod(period: TimePeriod, custom: DateRange | null): Da
 }
 
 export function FilterProvider({ children }: { children: ReactNode }) {
+  const [selectedFundId, setSelectedFundId] = useState<string | null>(null);
   const [selectedBuildingId, setSelectedBuildingId] = useState<string | null>(null);
   const [timePeriod, setTimePeriod] = useState<TimePeriod>('dette_aaret');
   const [customDateRange, setCustomDateRange] = useState<DateRange | null>(null);
@@ -80,6 +83,8 @@ export function FilterProvider({ children }: { children: ReactNode }) {
   );
 
   const value: FilterContextValue = {
+    selectedFundId,
+    setSelectedFundId,
     selectedBuildingId,
     setSelectedBuildingId,
     timePeriod,

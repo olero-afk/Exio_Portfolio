@@ -1,0 +1,17 @@
+.occ-p-card {
+  background-color: var(--app-surface); border: 1px solid var(--app-border);
+  border-radius: var(--radius-card); padding: var(--padding-card);
+  display: flex; flex-direction: column; gap: 6px;
+}
+.occ-p-card__title {
+  font-size: var(--font-size-label); font-weight: var(--font-weight-label);
+  text-transform: uppercase; letter-spacing: var(--letter-spacing-label); color: var(--app-text-muted);
+}
+.occ-p-card__value { font-size: var(--font-size-kpi); font-weight: var(--font-weight-kpi); color: var(--app-text); line-height: 1.1; }
+.occ-p-card__sub { font-size: 0.6875rem; color: var(--app-text-dim); }
+.occ-p-card__bar {
+  height: 8px; background-color: var(--app-surface-raised); border-radius: 4px;
+  margin-top: 8px; overflow: hidden;
+}
+.occ-p-card__bar-fill { height: 100%; background-color: var(--color-cyan); border-radius: 4px; transition: width var(--transition); }
+.occ-p-card__bar-label { font-size: 0.6875rem; color: var(--app-text-dim); text-align: right; }

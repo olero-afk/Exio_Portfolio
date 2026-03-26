@@ -1,17 +1,22 @@
-import { useKPI } from '../hooks/useKPI.ts';
+import { usePortfolioKPI } from '../hooks/usePortfolioKPI.ts';
 import { ModuleTabs } from '../components/dashboard/ModuleTabs.tsx';
-import { BuildingFilter } from '../components/dashboard/BuildingFilter.tsx';
+import { FundFilter } from '../components/dashboard/FundFilter.tsx';
 import { PeriodSelector } from '../components/dashboard/PeriodSelector.tsx';
-import { NOICard } from '../components/dashboard/NOICard.tsx';
-import { PortfolioSummaryCard } from '../components/dashboard/PortfolioSummaryCard.tsx';
-import { OccupancyCard } from '../components/dashboard/OccupancyCard.tsx';
-import { WAULTCard } from '../components/dashboard/WAULTCard.tsx';
-import { VacancyCostCard } from '../components/dashboard/VacancyCostCard.tsx';
 import { AlertBanner } from '../components/dashboard/AlertBanner.tsx';
+import { PortfolioValueCard } from '../components/dashboard/PortfolioValueCard.tsx';
+import { NOIYieldCard } from '../components/dashboard/NOIYieldCard.tsx';
+import { CashFlowCard } from '../components/dashboard/CashFlowCard.tsx';
+import { WAULTPortfolioCard } from '../components/dashboard/WAULTPortfolioCard.tsx';
+import { OccupancyPortfolioCard } from '../components/dashboard/OccupancyPortfolioCard.tsx';
+import { VacancyCostPortfolioCard } from '../components/dashboard/VacancyCostPortfolioCard.tsx';
+import { DiversificationCard } from '../components/dashboard/DiversificationCard.tsx';
+import { TenantConcentrationCard } from '../components/dashboard/TenantConcentrationCard.tsx';
+import { ExpiryProfileCard } from '../components/dashboard/ExpiryProfileCard.tsx';
+import { CovenantCard } from '../components/dashboard/CovenantCard.tsx';
 import './DashboardPage.css';
 
 export function DashboardPage() {
-  const kpis = useKPI();
+  const kpis = usePortfolioKPI();
 
   return (
     <div className="dashboard">
@@ -19,19 +24,30 @@ export function DashboardPage() {
       <ModuleTabs />
 
       <div className="dashboard__controls">
-        <BuildingFilter />
+        <FundFilter />
         <PeriodSelector />
       </div>
 
-      <div className="dashboard__row-top">
-        <NOICard kpis={kpis} />
-        <PortfolioSummaryCard kpis={kpis} />
-      </div>
+      <div className="dashboard__grid">
+        <div className="dashboard__row-2-1">
+          <NOIYieldCard kpis={kpis} />
+          <PortfolioValueCard kpis={kpis} />
+        </div>
 
-      <div className="dashboard__row-bottom">
-        <OccupancyCard kpis={kpis} />
-        <WAULTCard kpis={kpis} />
-        <VacancyCostCard kpis={kpis} />
+        <div className="dashboard__row-3">
+          <CashFlowCard kpis={kpis} />
+          <WAULTPortfolioCard kpis={kpis} />
+          <OccupancyPortfolioCard kpis={kpis} />
+        </div>
+
+        <div className="dashboard__row-3">
+          <VacancyCostPortfolioCard kpis={kpis} />
+          <ExpiryProfileCard kpis={kpis} />
+          <CovenantCard />
+        </div>
+
+        <DiversificationCard kpis={kpis} />
+        <TenantConcentrationCard kpis={kpis} />
       </div>
     </div>
   );

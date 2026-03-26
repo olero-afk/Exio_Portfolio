@@ -1,0 +1,20 @@
+[
+  {
+    "id": "f-001",
+    "portfolioId": "p-001",
+    "name": "Fond I — Core",
+    "strategy": "core",
+    "buildingIds": ["b-001", "b-002", "b-003", "b-005", "b-008"],
+    "targetReturn": 7.5,
+    "vintage": 2022
+  },
+  {
+    "id": "f-002",
+    "portfolioId": "p-001",
+    "name": "Fond II — Value-Add",
+    "strategy": "value_add",
+    "buildingIds": ["b-004", "b-006", "b-007"],
+    "targetReturn": 12.0,
+    "vintage": 2024
+  }
+]

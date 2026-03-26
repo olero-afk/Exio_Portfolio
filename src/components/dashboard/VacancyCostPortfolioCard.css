@@ -1,0 +1,13 @@
+.vc-p-card {
+  background-color: var(--app-surface); border: 1px solid var(--app-border);
+  border-radius: var(--radius-card); padding: var(--padding-card);
+  display: flex; flex-direction: column; gap: 6px;
+}
+.vc-p-card__title {
+  font-size: var(--font-size-label); font-weight: var(--font-weight-label);
+  text-transform: uppercase; letter-spacing: var(--letter-spacing-label); color: var(--app-text-muted);
+}
+.vc-p-card__value { font-size: var(--font-size-kpi); font-weight: var(--font-weight-kpi); color: var(--app-text); line-height: 1.1; }
+.vc-p-card__details { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--app-border); display: flex; flex-direction: column; gap: 6px; }
+.vc-p-card__row { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--app-text-muted); }
+.vc-p-card__row-value { font-weight: 600; color: var(--app-text); }

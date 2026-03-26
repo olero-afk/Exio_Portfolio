@@ -1,0 +1,10 @@
+.exp-card {
+  background-color: var(--app-surface); border: 1px solid var(--app-border);
+  border-radius: var(--radius-card); padding: var(--padding-card);
+  display: flex; flex-direction: column; gap: 4px;
+}
+.exp-card__title {
+  font-size: var(--font-size-label); font-weight: var(--font-weight-label);
+  text-transform: uppercase; letter-spacing: var(--letter-spacing-label); color: var(--app-text-muted);
+}
+.exp-card__footer { font-size: 0.75rem; color: var(--color-red); font-weight: 600; padding-top: 4px; border-top: 1px solid var(--app-border); }

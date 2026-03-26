@@ -1,0 +1,27 @@
+.pv-card {
+  background-color: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-card);
+  padding: var(--padding-card);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.pv-card__header { display: flex; align-items: center; justify-content: space-between; }
+.pv-card__title {
+  font-size: var(--font-size-label); font-weight: var(--font-weight-label);
+  text-transform: uppercase; letter-spacing: var(--letter-spacing-label); color: var(--app-text-muted);
+}
+.pv-card__label { font-size: 0.6875rem; color: var(--app-text-dim); }
+.pv-card__value { font-size: var(--font-size-kpi); font-weight: var(--font-weight-kpi); color: var(--app-text); line-height: 1.1; }
+.pv-card__funds {
+  display: flex; flex-direction: column; gap: 4px;
+  margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--app-border);
+}
+.pv-card__fund-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 4px 0; text-decoration: none; transition: color var(--transition);
+}
+.pv-card__fund-row:hover .pv-card__fund-name { color: var(--color-champagne); }
+.pv-card__fund-name { font-size: 0.75rem; color: var(--app-text-secondary); transition: color var(--transition); }
+.pv-card__fund-value { font-size: 0.75rem; font-weight: 600; color: var(--app-text); }

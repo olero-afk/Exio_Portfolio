@@ -1,0 +1,27 @@
+.fund-view {
+  display: flex; flex-direction: column; gap: 20px;
+}
+.fund-view__header { display: flex; align-items: center; gap: 12px; }
+.fund-view__title { font-size: 1.25rem; font-weight: 700; color: var(--app-text); }
+.fund-view__strategy {
+  font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+  padding: 3px 10px; border-radius: var(--radius-badge);
+  color: var(--color-champagne); background-color: rgba(254, 208, 146, 0.1);
+}
+.fund-view__controls { display: flex; gap: 32px; align-items: flex-start; }
+.fund-view__buildings {
+  background-color: var(--app-surface); border: 1px solid var(--app-border);
+  border-radius: var(--radius-card); padding: var(--padding-section); overflow-x: auto;
+}
+.fund-view__section-title {
+  font-size: var(--font-size-label); font-weight: var(--font-weight-label);
+  letter-spacing: var(--letter-spacing-label); text-transform: uppercase;
+  color: var(--app-text-muted); margin-bottom: 12px;
+}
+.fund-view__table { min-width: 700px; }
+.fund-view__table th { padding: 8px 12px; border-bottom: 1px solid var(--app-border-mid); }
+.fund-view__table td { padding: 10px 12px; border-bottom: 1px solid var(--app-border); font-size: var(--font-size-body); }
+.fund-view__building-link {
+  color: var(--app-text); text-decoration: none; font-weight: 500; transition: color var(--transition);
+}
+.fund-view__building-link:hover { color: var(--color-champagne); }

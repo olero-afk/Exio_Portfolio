@@ -121,6 +121,7 @@ export interface Contract {
   tenantName: string;
   tenantOrgNr?: string;
   tenantIsBankrupt: boolean;
+  tenantIndustry?: string;
 
   annualRent: number;
   startDate: string;
@@ -171,6 +172,57 @@ export interface MarketData {
   area: string;
   lastUpdated: string;
   disclaimer: 'Markedsreferanse basert på offentlige data (PlacePoint/SSB). Ikke finansiell rådgivning.';
+}
+
+// Fund
+export interface Fund {
+  id: string;
+  portfolioId: string;
+  name: string;
+  strategy: 'core' | 'core_plus' | 'value_add' | 'opportunistic';
+  buildingIds: string[];
+  targetReturn?: number;
+  vintage?: number;
+}
+
+// Portfolio-level analytics
+export interface TenantConcentration {
+  tenantName: string;
+  tenantOrgNr?: string;
+  totalAnnualRent: number;
+  percentOfPortfolio: number;
+  buildingCount: number;
+  isBankrupt: boolean;
+}
+
+export interface CashFlowPeriod {
+  year: number;
+  month: number;
+  label: string;
+  isFuture: boolean;
+  rentalIncome: number;
+  operatingCosts: number;
+  netCashFlow: number;
+}
+
+export interface ExpiryProfileYear {
+  year: number;
+  label: string;
+  expiringRent: number;
+  percentOfTotal: number;
+  contractCount: number;
+}
+
+export interface DiversificationSlice {
+  label: string;
+  value: number;
+  percent: number;
+}
+
+export interface PortfolioDiversification {
+  byGeography: DiversificationSlice[];
+  byAssetType: DiversificationSlice[];
+  byTenantIndustry: DiversificationSlice[];
 }
 
 // §4.7 View Mode

@@ -1,0 +1,19 @@
+.fund-filter {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.fund-filter__label {
+  font-size: var(--font-size-label); font-weight: var(--font-weight-label);
+  letter-spacing: var(--letter-spacing-label); text-transform: uppercase; color: var(--app-text-muted);
+}
+.fund-filter__select {
+  width: 240px; padding: 8px 12px; font-size: var(--font-size-body);
+  color: var(--app-text); background-color: var(--app-surface-raised);
+  border: 1px solid var(--app-border-mid); border-radius: var(--radius-badge);
+  cursor: pointer; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%239a9a9a'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px;
+  transition: border-color var(--transition);
+}
+.fund-filter__select:hover { border-color: var(--app-text-faint); }
+.fund-filter__select:focus { outline: none; border-color: var(--color-champagne); }
+.fund-filter__select option { background-color: var(--app-surface-raised); color: var(--app-text); }

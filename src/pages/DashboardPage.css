@@ -10,13 +10,19 @@
   align-items: flex-start;
 }
 
-.dashboard__row-top {
+.dashboard__grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-metric);
+}
+
+.dashboard__row-2-1 {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: var(--gap-metric);
 }
 
-.dashboard__row-bottom {
+.dashboard__row-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--gap-metric);
