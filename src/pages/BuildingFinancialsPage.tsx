@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { usePortfolioContext } from '../context/PortfolioContext.tsx';
 import { BuildingTabs } from '../components/building/BuildingTabs.tsx';
-import { NOIBreakdown } from '../components/financial/NOIBreakdown.tsx';
-import { CostTable } from '../components/financial/CostTable.tsx';
+import { CostSpreadsheet } from '../components/financial/CostSpreadsheet.tsx';
+import './BuildingDetailPage.css';
 
 export function BuildingFinancialsPage() {
   const { buildingId } = useParams();
@@ -20,10 +20,7 @@ export function BuildingFinancialsPage() {
         </p>
       </div>
       <BuildingTabs />
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-        <NOIBreakdown buildingId={buildingId} />
-        <CostTable buildingId={buildingId} />
-      </div>
+      <CostSpreadsheet building={building} />
     </div>
   );
 }
