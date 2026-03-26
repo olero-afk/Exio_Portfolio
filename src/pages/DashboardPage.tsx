@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { usePortfolioKPI } from '../hooks/usePortfolioKPI.ts';
 import { ModuleTabs } from '../components/dashboard/ModuleTabs.tsx';
 import { FundFilter } from '../components/dashboard/FundFilter.tsx';
 import { PeriodSelector } from '../components/dashboard/PeriodSelector.tsx';
 import { AlertBanner } from '../components/dashboard/AlertBanner.tsx';
+import { ContractExpirySection } from '../components/dashboard/ContractExpirySection.tsx';
 import { PortfolioValueCard } from '../components/dashboard/PortfolioValueCard.tsx';
 import { NOIYieldCard } from '../components/dashboard/NOIYieldCard.tsx';
 import { CashFlowCard } from '../components/dashboard/CashFlowCard.tsx';
@@ -13,10 +15,20 @@ import { DiversificationCard } from '../components/dashboard/DiversificationCard
 import { TenantConcentrationCard } from '../components/dashboard/TenantConcentrationCard.tsx';
 import { ExpiryProfileCard } from '../components/dashboard/ExpiryProfileCard.tsx';
 import { CovenantCard } from '../components/dashboard/CovenantCard.tsx';
+import { WelcomeWizard } from '../components/shared/WelcomeWizard.tsx';
 import './DashboardPage.css';
 
 export function DashboardPage() {
+  const [showWizard, setShowWizard] = useState(false);
+  const [demoLoaded, setDemoLoaded] = useState(true); // Demo data already loaded by default
   const kpis = usePortfolioKPI();
+
+  // Show wizard if no data (simulated by toggling demoLoaded)
+  if (showWizard || !demoLoaded) {
+    return (
+      <WelcomeWizard onLoadDemo={() => { setDemoLoaded(true); setShowWizard(false); }} />
+    );
+  }
 
   return (
     <div className="dashboard">
@@ -48,6 +60,7 @@ export function DashboardPage() {
 
         <DiversificationCard kpis={kpis} />
         <TenantConcentrationCard kpis={kpis} />
+        <ContractExpirySection />
       </div>
     </div>
   );

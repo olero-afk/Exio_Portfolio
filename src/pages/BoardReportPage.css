@@ -6,8 +6,15 @@
 
 .board-report__toolbar {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  gap: 16px;
+}
+.board-report__toolbar-right {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .board-report__page-title {
@@ -133,6 +140,17 @@
 .board-report__disclaimer {
   font-style: italic;
   margin-top: 4px;
+}
+.board-report__table--compact td,
+.board-report__table--compact th { padding: 6px 12px; }
+.board-report__div-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.board-report__div-subtitle {
+  font-size: 0.8125rem; font-weight: 700; color: var(--app-text-secondary);
+  margin-bottom: 8px; padding-bottom: 4px; border-bottom: 1px solid var(--app-border);
+}
+.board-report__div-row {
+  display: flex; justify-content: space-between; font-size: 0.75rem;
+  color: var(--app-text-muted); padding: 3px 0;
 }
 
 @media print {

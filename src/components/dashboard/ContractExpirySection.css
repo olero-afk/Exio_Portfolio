@@ -1,0 +1,106 @@
+.expiry-section {
+  background-color: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-card);
+  padding: var(--padding-card);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.expiry-section__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(250, 204, 21, 0.15);
+}
+
+.expiry-section__header--danger {
+  border-bottom-color: rgba(248, 113, 113, 0.15);
+  margin-top: 8px;
+}
+
+.expiry-section__icon { font-size: 1rem; }
+
+.expiry-section__title {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--app-text-muted);
+  flex: 1;
+}
+
+.expiry-section__count {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-badge);
+  color: #facc15;
+  background-color: rgba(250, 204, 21, 0.1);
+}
+
+.expiry-section__summary {
+  display: flex;
+  gap: 24px;
+  font-size: 0.75rem;
+  color: var(--app-text-muted);
+}
+
+.expiry-section__summary strong { color: var(--app-text); }
+.expiry-section__warning { color: #facc15; }
+
+.expiry-section__list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.expiry-section__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: var(--radius-badge);
+  text-decoration: none;
+  transition: background-color var(--transition);
+}
+
+.expiry-section__item:hover { background-color: var(--app-surface-mid); }
+.expiry-section__item--danger { border-left: 2px solid var(--color-red); }
+
+.expiry-section__item-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.expiry-section__tenant {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--app-text-secondary);
+}
+
+.expiry-section__building {
+  font-size: 0.625rem;
+  color: var(--app-text-dim);
+}
+
+.expiry-section__item-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+}
+
+.expiry-section__rent {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--app-text);
+}
+
+.expiry-section__date {
+  font-size: 0.625rem;
+  color: #facc15;
+}

@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { EntitySwitcher } from './EntitySwitcher.tsx';
+import { NotificationBell } from './NotificationBell.tsx';
 import './TopNav.css';
 
 const navItems = [
@@ -35,6 +36,7 @@ export function TopNav() {
       </ul>
 
       <div className="top-nav__right">
+        <NotificationBell />
         <EntitySwitcher />
         <div className="top-nav__user">
           <div className="top-nav__avatar">OL</div>

@@ -1,0 +1,167 @@
+.wizard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - var(--nav-height) - 100px);
+  padding: 40px 20px;
+}
+
+.wizard__card {
+  width: 100%;
+  max-width: 480px;
+  background-color: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-card);
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.wizard__logo {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--app-text);
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.wizard__step-badge {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 12px;
+  border-radius: var(--radius-badge);
+  color: var(--color-champagne);
+  background-color: rgba(254, 208, 146, 0.1);
+}
+
+.wizard__title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--app-text);
+}
+
+.wizard__subtitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--app-text);
+}
+
+.wizard__desc {
+  font-size: var(--font-size-body);
+  color: var(--app-text-muted);
+  line-height: 1.6;
+  max-width: 380px;
+}
+
+.wizard__field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.wizard__label {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--app-text-muted);
+}
+
+.wizard__input {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: var(--font-size-body);
+  background-color: var(--app-surface-raised);
+  border: 1px solid var(--app-border-mid);
+  border-radius: var(--radius-badge);
+  color: var(--app-text);
+}
+
+.wizard__input:focus {
+  outline: none;
+  border-color: var(--color-champagne);
+}
+
+.wizard__enriched {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background-color: var(--app-surface-mid);
+  border-radius: var(--radius-badge);
+  text-align: left;
+}
+
+.wizard__enriched-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--app-text-muted);
+}
+
+.wizard__enriched-row strong {
+  color: var(--app-text);
+}
+
+.wizard__source {
+  font-size: 0.625rem;
+  color: var(--app-text-faint);
+  font-style: italic;
+}
+
+.wizard__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.wizard__btn {
+  width: 100%;
+  padding: 10px 20px;
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  border-radius: var(--radius-badge);
+  transition: all var(--transition);
+}
+
+.wizard__btn--primary {
+  color: var(--app-bg);
+  background-color: var(--color-champagne);
+}
+
+.wizard__btn--primary:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.wizard__btn--primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.wizard__btn--secondary {
+  color: var(--app-text);
+  border: 1px solid var(--app-border-mid);
+}
+
+.wizard__btn--secondary:hover {
+  border-color: var(--app-text-faint);
+}
+
+.wizard__btn--ghost {
+  color: var(--app-text-muted);
+  font-weight: 400;
+}
+
+.wizard__btn--ghost:hover {
+  color: var(--app-text);
+}
