@@ -24,7 +24,7 @@ function groupAreaUnits(units: AreaUnit[]): UnitGroup[] {
 function BuildingTreeItem({ building, areaUnits }: { building: Building; areaUnits: AreaUnit[] }) {
   const { buildingId } = useParams();
   const isActive = buildingId === building.id;
-  const [isExpanded, setIsExpanded] = useState(isActive);
+  const [isExpanded, setIsExpanded] = useState(false);
   const groups = useMemo(() => groupAreaUnits(areaUnits), [areaUnits]);
   const hasUnits = groups.length > 0;
 
