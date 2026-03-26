@@ -17,7 +17,9 @@ import { DiversificationCard } from '../components/dashboard/DiversificationCard
 import { TenantConcentrationCard } from '../components/dashboard/TenantConcentrationCard.tsx';
 import { ExpiryProfileCard } from '../components/dashboard/ExpiryProfileCard.tsx';
 import { CovenantCard } from '../components/dashboard/CovenantCard.tsx';
+import { InsightsPanel } from '../components/dashboard/InsightsPanel.tsx';
 import { WelcomeWizard } from '../components/shared/WelcomeWizard.tsx';
+import { usePersonaInsights } from '../hooks/usePersonaInsights.ts';
 import './DashboardPage.css';
 
 export function DashboardPage() {
@@ -32,6 +34,7 @@ export function DashboardPage() {
       : null;
 
   const kpis = usePortfolioKPI(personaBuildingIds);
+  const insights = usePersonaInsights(kpis);
 
   if (showWizard || !demoLoaded) {
     return <WelcomeWizard onLoadDemo={() => { setDemoLoaded(true); setShowWizard(false); }} />;
@@ -54,6 +57,8 @@ export function DashboardPage() {
         {config.showClientFilter && <ClientFilter />}
         <PeriodSelector />
       </div>
+
+      <InsightsPanel insights={insights} />
 
       <div className="dashboard__grid">
         <div className="dashboard__row-2-1">
