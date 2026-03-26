@@ -20,10 +20,10 @@
   border: 1px solid var(--app-border);
   border-top: 3px solid;
   border-radius: var(--radius-card);
-  padding: 12px 14px;
+  padding: 10px 12px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
   transition: border-color var(--transition);
   overflow: hidden;
   min-height: 0;
@@ -57,20 +57,20 @@
 }
 
 .insight-grid__card-value {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 800;
   line-height: 1.1;
   flex-shrink: 0;
 }
 
 .insight-grid__card-detail {
-  font-size: 0.625rem;
+  font-size: 0.5625rem;
   color: var(--app-text-muted);
-  line-height: 1.45;
+  line-height: 1.4;
   flex: 1;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   min-height: 0;
 }
@@ -81,35 +81,30 @@
 }
 
 .insight-grid__card-link {
-  font-size: 0.5625rem;
+  font-size: 0.5rem;
   font-weight: 600;
   color: var(--color-champagne);
   margin-top: auto;
   flex-shrink: 0;
 }
 
-/* Cards 5-6: Summary cards (Muligheter / Risiko) */
+/* Cards 5-6: Summary cards */
 .insight-grid__summary-card {
   flex: 1;
   background-color: var(--app-surface);
   border: 1px solid var(--app-border);
   border-radius: var(--radius-card);
-  padding: 12px 14px;
+  padding: 10px 12px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
   transition: border-color var(--transition);
   overflow: hidden;
   min-height: 0;
 }
 
-.insight-grid__summary-card--muligheter {
-  border-left: 3px solid #4ade80;
-}
-
-.insight-grid__summary-card--risiko {
-  border-left: 3px solid #f87171;
-}
+.insight-grid__summary-card--muligheter { border-left: 3px solid #4ade80; }
+.insight-grid__summary-card--risiko { border-left: 3px solid #f87171; }
 
 .insight-grid__summary-title {
   font-size: 0.5625rem;
@@ -128,17 +123,17 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
   flex: 1;
   overflow: hidden;
   min-height: 0;
 }
 
 .insight-grid__summary-bullets li {
-  font-size: 0.625rem;
+  font-size: 0.5625rem;
   color: var(--app-text-muted);
-  line-height: 1.35;
-  padding-left: 10px;
+  line-height: 1.3;
+  padding-left: 8px;
   position: relative;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -153,9 +148,9 @@
 }
 
 .insight-grid__summary-bottom {
-  font-size: 0.625rem;
+  font-size: 0.5625rem;
   font-weight: 700;
-  padding-top: 4px;
+  padding-top: 3px;
   border-top: 1px solid var(--app-border);
   flex-shrink: 0;
   overflow: hidden;

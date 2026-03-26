@@ -121,7 +121,7 @@ function generateInsightForCard(ins: Insight, kpis: PortfolioKPIs, persona: stri
     if (id === 'yield-spread') return `Yield-forskjellen mellom fondene indikerer ${kpis.noiYield > 5 ? 'god avkastning' : 'potensial for optimalisering'}. Vurder rebalansering mellom core og value-add.`;
     if (id === 'concentration') return `Konsentrasjonsrisikoen er ${kpis.topTenCoverage > 70 ? 'høy — topp 10 dekker ' + formatPercent(kpis.topTenCoverage) : 'moderat'}. Diversifiser leietakerbasen for å redusere enkelteksponering.`;
     if (id === 'wault-benchmark') return `WAULT på ${formatYears(kpis.portfolioWAULT)} gir ${kpis.portfolioWAULT > 5 ? 'god kontantstrømprediktabilitet' : 'kortsiktig reforhandlingsrisiko'}. Effektiv WAULT er ${formatYears(kpis.effectiveWAULT)}.`;
-    if (id === 'value-dev') return `Porteføljen er verdsatt til ${formatNOK(kpis.totalPortfolioValue)} med ${formatPercent(kpis.noiYield)} yield. ${kpis.noiYield > 5 ? 'Attraktiv avkastning for institusjonelle investorer.' : 'Yield under markedsnivå — vurder verdiøkende tiltak.'}`;
+    if (id === 'value-dev') return `${formatPercent(kpis.noiYield)} yield på ${formatNOK(kpis.totalPortfolioValue)}. ${kpis.noiYield > 5 ? 'Attraktiv for institusjonelle investorer. Fond II har verdipotensial ved full utleie.' : 'Under markedsnivå — vurder verdiøkende tiltak i underperformende bygg.'}`;
   }
 
   if (persona === 'forvalter') {

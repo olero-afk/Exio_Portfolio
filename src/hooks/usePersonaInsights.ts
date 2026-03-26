@@ -108,10 +108,14 @@ function buildInvestorInsights(kpis: PortfolioKPIs, fundData: { name: string; yi
     severity: kpis.portfolioWAULT >= benchmark ? 'positive' : 'warning', link: '/rapporter/kontraktsanalyse',
   });
 
+  // Card 4: Verdiutvikling — richer than just a flat value
+  const vacancyUplift = kpis.totalVacancyCost; // potential NOI uplift at full occupancy
+  const impliedValueUplift = kpis.noiYield > 0 ? (vacancyUplift / (kpis.noiYield / 100)) : 0;
   insights.push({
-    id: 'value-dev', title: 'Porteføljeverdi', value: formatNOK(kpis.totalPortfolioValue),
-    detail: `NOI-yield: ${formatPercent(kpis.noiYield)}. Margin: ${formatPercent(kpis.noiMargin)}. ${kpis.buildingCount} bygg`,
-    severity: kpis.noiYield > 5 ? 'positive' : 'info', link: '/rapporter/portefoljeoversikt',
+    id: 'value-dev', title: 'Verdiutvikling',
+    value: `${formatPercent(kpis.noiYield)} yield`,
+    detail: `Verdi: ${formatNOK(kpis.totalPortfolioValue)}. ${kpis.noiYield > 5 ? '↑ Attraktiv yield.' : '↓ Under markedsnivå.'} Verdipotensial ved full utleie: +${formatNOK(impliedValueUplift)}`,
+    severity: kpis.noiYield > 5 ? 'positive' : 'warning', link: '/rapporter/portefoljeoversikt',
   });
 
   const topGeo = kpis.diversification.byGeography[0];
