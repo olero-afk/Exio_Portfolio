@@ -2,7 +2,6 @@ import { useMemo } from 'react';
 import { usePersona } from '../context/PersonaContext.tsx';
 import { usePortfolioContext } from '../context/PortfolioContext.tsx';
 import type { PortfolioKPIs } from './usePortfolioKPI.ts';
-import type { } from '../types/index.ts';
 import { formatNOK, formatPercent, formatYears, formatM2 } from '../utils/formatters.ts';
 
 export interface Insight {
@@ -11,12 +10,12 @@ export interface Insight {
   value: string;
   detail: string;
   severity: 'info' | 'warning' | 'positive' | 'negative';
+  link?: string;
 }
 
 function buildEierInsights(kpis: PortfolioKPIs): Insight[] {
   const insights: Insight[] = [];
 
-  // 1. NOI-trend
   const actual = kpis.monthlyNOIData.filter((m) => !m.isFuture);
   if (actual.length >= 2) {
     const last = actual[actual.length - 1];
@@ -25,52 +24,51 @@ function buildEierInsights(kpis: PortfolioKPIs): Insight[] {
     const noiPrev = prev.income - prev.costs;
     const change = noiPrev > 0 ? ((noiLast - noiPrev) / noiPrev) * 100 : 0;
     insights.push({
-      id: 'noi-trend',
-      title: 'NOI-trend',
-      value: formatNOK(noiLast) + '/mnd',
+      id: 'noi-trend', title: 'NOI-trend', value: formatNOK(noiLast) + '/mnd',
       detail: `${change >= 0 ? '↑' : '↓'} ${formatPercent(Math.abs(change))} vs. forrige måned (${formatNOK(noiPrev)})`,
-      severity: change >= 0 ? 'positive' : 'negative',
+      severity: change >= 0 ? 'positive' : 'negative', link: '/rapporter/portefoljeoversikt',
     });
-  }
-
-  // 2. Kontraktsrisiko
-  const expiringY1 = kpis.expiryProfile[0];
-  if (expiringY1) {
+  } else {
     insights.push({
-      id: 'contract-risk',
-      title: 'Kontraktsrisiko',
-      value: formatNOK(kpis.incomeAtRisk),
-      detail: `${formatPercent(kpis.incomeAtRiskPercent)} av porteføljeleie utløper innen 12 mnd. Y+1: ${formatNOK(expiringY1.expiringRent)} (${expiringY1.contractCount} kontrakter)`,
-      severity: kpis.incomeAtRiskPercent > 10 ? 'warning' : 'info',
+      id: 'noi-trend', title: 'NOI-trend', value: formatNOK(kpis.totalNOI),
+      detail: `Total NOI for perioden. NOI-yield: ${formatPercent(kpis.noiYield)}`,
+      severity: 'info', link: '/rapporter/portefoljeoversikt',
     });
   }
 
-  // 3. Ledighetskostnad
+  const expiringY1 = kpis.expiryProfile[0];
   insights.push({
-    id: 'vacancy-cost',
-    title: 'Ledighetskostnad',
-    value: formatNOK(kpis.totalVacancyCost),
-    detail: `${formatM2(kpis.totalVacantM2)} ledig areal fordelt på ${kpis.buildingsHighVacancy} bygg med >10% ledighet`,
-    severity: kpis.totalVacancyCost > 5000000 ? 'warning' : 'info',
+    id: 'contract-risk', title: 'Kontraktsrisiko', value: formatNOK(kpis.incomeAtRisk),
+    detail: `${formatPercent(kpis.incomeAtRiskPercent)} av porteføljeleie utløper innen 12 mnd.${expiringY1 ? ` Y+1: ${formatNOK(expiringY1.expiringRent)} (${expiringY1.contractCount} kontr.)` : ''}`,
+    severity: kpis.incomeAtRiskPercent > 10 ? 'warning' : 'info', link: '/rapporter/kontraktsanalyse',
   });
 
-  // 4. Utleiegrad-trend
   insights.push({
-    id: 'occupancy',
-    title: 'Utleiegrad',
-    value: formatPercent(kpis.portfolioOccupancyRate * 100),
-    detail: `${formatM2(kpis.totalCommittedM2)} utleid av ${formatM2(kpis.totalRentableM2)} ekslusivt areal`,
-    severity: kpis.portfolioOccupancyRate >= 0.9 ? 'positive' : kpis.portfolioOccupancyRate < 0.8 ? 'negative' : 'info',
+    id: 'vacancy-cost', title: 'Ledighetskostnad', value: formatNOK(kpis.totalVacancyCost),
+    detail: `${formatM2(kpis.totalVacantM2)} ledig. ${kpis.buildingsHighVacancy} bygg >10% ledighet`,
+    severity: kpis.totalVacancyCost > 5000000 ? 'warning' : 'info', link: '/rapporter/ledighetsoversikt',
   });
 
-  // 5. Kostnad/m²
+  insights.push({
+    id: 'occupancy', title: 'Utleiegrad', value: formatPercent(kpis.portfolioOccupancyRate * 100),
+    detail: `${formatM2(kpis.totalCommittedM2)} utleid av ${formatM2(kpis.totalRentableM2)}`,
+    severity: kpis.portfolioOccupancyRate >= 0.9 ? 'positive' : kpis.portfolioOccupancyRate < 0.8 ? 'negative' : 'info', link: '/rapporter/portefoljeoversikt',
+  });
+
   const costPerM2 = kpis.totalRentableM2 > 0 ? kpis.totalOperatingExpenses / kpis.totalRentableM2 : 0;
   insights.push({
-    id: 'cost-per-m2',
-    title: 'Kostnad per m²',
-    value: formatNOK(costPerM2),
-    detail: `Totale driftskostnader ${formatNOK(kpis.totalOperatingExpenses)} / ${formatM2(kpis.totalRentableM2)} ekslusivt areal`,
-    severity: 'info',
+    id: 'cost-per-m2', title: 'Kostnad per m²', value: formatNOK(costPerM2),
+    detail: `Totale driftskostnader ${formatNOK(kpis.totalOperatingExpenses)}`,
+    severity: 'info', link: '/rapporter/portefoljeoversikt',
+  });
+
+  const topTenant = kpis.topTenants[0];
+  insights.push({
+    id: 'top-tenant', title: 'Største leietaker',
+    value: topTenant ? `${topTenant.tenantName.split(' ')[0]} ${formatPercent(topTenant.percentOfPortfolio)}` : '—',
+    detail: topTenant ? `${formatNOK(topTenant.totalAnnualRent)}/år, ${topTenant.buildingCount} bygg${topTenant.isBankrupt ? ' ⚠ KONKURS' : ''}` : 'Ingen leietakere',
+    severity: topTenant?.isBankrupt ? 'negative' : topTenant && topTenant.percentOfPortfolio > 20 ? 'warning' : 'info',
+    link: '/rapporter/leietakeranalyse',
   });
 
   return insights;
@@ -79,61 +77,57 @@ function buildEierInsights(kpis: PortfolioKPIs): Insight[] {
 function buildInvestorInsights(kpis: PortfolioKPIs, fundData: { name: string; yield_: number }[]): Insight[] {
   const insights: Insight[] = [];
 
-  // 1. Yield-spread mellom fond
   if (fundData.length >= 2) {
     const sorted = [...fundData].sort((a, b) => b.yield_ - a.yield_);
     const spread = sorted[0].yield_ - sorted[sorted.length - 1].yield_;
     insights.push({
-      id: 'yield-spread',
-      title: 'Yield-spread mellom fond',
-      value: formatPercent(spread) + ' spread',
+      id: 'yield-spread', title: 'Yield-spread mellom fond', value: formatPercent(spread) + ' spread',
       detail: `Høyest: ${sorted[0].name} (${formatPercent(sorted[0].yield_)}). Lavest: ${sorted[sorted.length - 1].name} (${formatPercent(sorted[sorted.length - 1].yield_)})`,
-      severity: spread > 3 ? 'warning' : 'info',
+      severity: spread > 3 ? 'warning' : 'info', link: '/rapporter/portefoljeoversikt',
     });
-  }
-
-  // 2. Konsentrasjonsrisiko
-  const topTenant = kpis.topTenants[0];
-  if (topTenant) {
+  } else {
     insights.push({
-      id: 'concentration',
-      title: 'Konsentrasjonsrisiko',
-      value: formatPercent(topTenant.percentOfPortfolio),
-      detail: `Største leietaker: ${topTenant.tenantName} (${formatNOK(topTenant.totalAnnualRent)}, ${topTenant.buildingCount} bygg). Topp 10 dekker ${formatPercent(kpis.topTenCoverage)}`,
-      severity: topTenant.percentOfPortfolio > 15 ? 'warning' : 'info',
+      id: 'yield-spread', title: 'NOI-yield', value: formatPercent(kpis.noiYield),
+      detail: `NOI: ${formatNOK(kpis.totalNOI)} / Verdi: ${formatNOK(kpis.totalPortfolioValue)}`,
+      severity: kpis.noiYield > 5 ? 'positive' : 'info', link: '/rapporter/portefoljeoversikt',
     });
   }
 
-  // 3. WAULT vs. benchmark (5 år som benchmark)
+  const topTenant = kpis.topTenants[0];
+  insights.push({
+    id: 'concentration', title: 'Konsentrasjonsrisiko',
+    value: topTenant ? formatPercent(topTenant.percentOfPortfolio) : '—',
+    detail: topTenant ? `${topTenant.tenantName} (${formatNOK(topTenant.totalAnnualRent)}, ${topTenant.buildingCount} bygg). Topp 10: ${formatPercent(kpis.topTenCoverage)}` : '',
+    severity: topTenant && topTenant.percentOfPortfolio > 15 ? 'warning' : 'info', link: '/rapporter/leietakeranalyse',
+  });
+
   const benchmark = 5;
   insights.push({
-    id: 'wault-benchmark',
-    title: 'WAULT vs. benchmark',
-    value: formatYears(kpis.portfolioWAULT),
-    detail: `Benchmark: ${formatYears(benchmark)}. ${kpis.portfolioWAULT >= benchmark ? 'Over' : 'Under'} benchmark med ${formatYears(Math.abs(kpis.portfolioWAULT - benchmark))}. Effektiv WAULT: ${formatYears(kpis.effectiveWAULT)}`,
-    severity: kpis.portfolioWAULT >= benchmark ? 'positive' : 'warning',
+    id: 'wault-benchmark', title: 'WAULT vs. benchmark', value: formatYears(kpis.portfolioWAULT),
+    detail: `Benchmark: ${formatYears(benchmark)}. ${kpis.portfolioWAULT >= benchmark ? 'Over' : 'Under'} med ${formatYears(Math.abs(kpis.portfolioWAULT - benchmark))}. Effektiv: ${formatYears(kpis.effectiveWAULT)}`,
+    severity: kpis.portfolioWAULT >= benchmark ? 'positive' : 'warning', link: '/rapporter/kontraktsanalyse',
   });
 
-  // 4. Verdiutvikling
   insights.push({
-    id: 'value-dev',
-    title: 'Verdiutvikling',
-    value: formatNOK(kpis.totalPortfolioValue),
-    detail: `NOI-yield: ${formatPercent(kpis.noiYield)}. NOI-margin: ${formatPercent(kpis.noiMargin)}. ${kpis.buildingCount} bygninger i porteføljen`,
-    severity: kpis.noiYield > 5 ? 'positive' : 'info',
+    id: 'value-dev', title: 'Porteføljeverdi', value: formatNOK(kpis.totalPortfolioValue),
+    detail: `NOI-yield: ${formatPercent(kpis.noiYield)}. Margin: ${formatPercent(kpis.noiMargin)}. ${kpis.buildingCount} bygg`,
+    severity: kpis.noiYield > 5 ? 'positive' : 'info', link: '/rapporter/portefoljeoversikt',
   });
 
-  // 5. Geografisk eksponering
   const topGeo = kpis.diversification.byGeography[0];
-  if (topGeo) {
-    insights.push({
-      id: 'geo-exposure',
-      title: 'Geografisk eksponering',
-      value: `${topGeo.label}: ${formatPercent(topGeo.percent)}`,
-      detail: kpis.diversification.byGeography.map((g) => `${g.label} ${formatPercent(g.percent)}`).join(', '),
-      severity: topGeo.percent > 60 ? 'warning' : 'info',
-    });
-  }
+  insights.push({
+    id: 'geo-exposure', title: 'Geografisk eksponering',
+    value: topGeo ? `${topGeo.label}: ${formatPercent(topGeo.percent)}` : '—',
+    detail: kpis.diversification.byGeography.slice(0, 4).map((g) => `${g.label} ${formatPercent(g.percent)}`).join(' · '),
+    severity: topGeo && topGeo.percent > 60 ? 'warning' : 'info', link: '/rapporter/diversifisering',
+  });
+
+  insights.push({
+    id: 'expiry-profile', title: 'Kontraktsutløp Y+1',
+    value: kpis.expiryProfile[0] ? formatNOK(kpis.expiryProfile[0].expiringRent) : '0 kr',
+    detail: kpis.expiryProfile[0] ? `${kpis.expiryProfile[0].contractCount} kontrakter (${formatPercent(kpis.expiryProfile[0].percentOfTotal)} av total). Inntekt i risiko: ${formatNOK(kpis.incomeAtRisk)}` : 'Ingen utløp Y+1',
+    severity: kpis.expiryProfile[0] && kpis.expiryProfile[0].percentOfTotal > 15 ? 'warning' : 'info', link: '/rapporter/kontraktsanalyse',
+  });
 
   return insights;
 }
@@ -143,55 +137,44 @@ function buildForvalterInsights(
   clientData: { name: string; value: number; noi: number; buildings: number }[],
 ): Insight[] {
   const insights: Insight[] = [];
-
-  // 1. Kunderanking
   const sorted = [...clientData].sort((a, b) => b.value - a.value);
-  if (sorted.length > 0) {
-    insights.push({
-      id: 'client-ranking',
-      title: 'Kunderanking',
-      value: `${sorted.length} kunder`,
-      detail: sorted.map((c, i) => `${i + 1}. ${c.name}: ${formatNOK(c.value)} (${c.buildings} bygg)`).join('. '),
-      severity: 'info',
-    });
-  }
 
-  // 2. Utløpende kontrakter (cross-client)
   insights.push({
-    id: 'expiring-cross',
-    title: 'Utløpende kontrakter',
-    value: formatNOK(kpis.incomeAtRisk),
-    detail: `${formatPercent(kpis.incomeAtRiskPercent)} av total porteføljeleie. ${kpis.expiryProfile[0]?.contractCount ?? 0} kontrakter utløper Y+1`,
-    severity: kpis.incomeAtRiskPercent > 10 ? 'warning' : 'info',
+    id: 'client-ranking', title: 'Kunderanking', value: `${sorted.length} kunder`,
+    detail: sorted.map((c, i) => `${i + 1}. ${c.name}: ${formatNOK(c.value)}`).join('. '),
+    severity: 'info', link: '/rapporter/portefoljeoversikt',
   });
 
-  // 3. Driftskostnader sammenligning
+  insights.push({
+    id: 'expiring-cross', title: 'Utløpende kontrakter', value: formatNOK(kpis.incomeAtRisk),
+    detail: `${formatPercent(kpis.incomeAtRiskPercent)} av total. ${kpis.expiryProfile[0]?.contractCount ?? 0} kontr. utløper Y+1`,
+    severity: kpis.incomeAtRiskPercent > 10 ? 'warning' : 'info', link: '/rapporter/kontraktsanalyse',
+  });
+
   const costPerM2 = kpis.totalRentableM2 > 0 ? kpis.totalOperatingExpenses / kpis.totalRentableM2 : 0;
   insights.push({
-    id: 'cost-comparison',
-    title: 'Driftskostnader',
-    value: `${formatNOK(costPerM2)}/m²`,
-    detail: `Totale kostnader: ${formatNOK(kpis.totalOperatingExpenses)}. Snitt per bygg: ${formatNOK(kpis.totalOperatingExpenses / Math.max(kpis.buildingCount, 1))}`,
-    severity: 'info',
+    id: 'cost-comparison', title: 'Driftskostnader', value: `${formatNOK(costPerM2)}/m²`,
+    detail: `Totalt: ${formatNOK(kpis.totalOperatingExpenses)}. Snitt/bygg: ${formatNOK(kpis.totalOperatingExpenses / Math.max(kpis.buildingCount, 1))}`,
+    severity: 'info', link: '/rapporter/portefoljeoversikt',
   });
 
-  // 4. Kundeverdi / total forvaltet
   const totalForvaltet = clientData.reduce((s, c) => s + c.value, 0);
   insights.push({
-    id: 'aum',
-    title: 'Forvaltet kapital',
-    value: formatNOK(totalForvaltet),
+    id: 'aum', title: 'Forvaltet kapital', value: formatNOK(totalForvaltet),
     detail: sorted.map((c) => `${c.name}: ${formatNOK(c.value)}`).join('. '),
-    severity: 'positive',
+    severity: 'positive', link: '/rapporter/portefoljeoversikt',
   });
 
-  // 5. Rapportstatus (simulated)
   insights.push({
-    id: 'report-status',
-    title: 'Rapportstatus',
-    value: `${sorted.length} rapporter klare`,
-    detail: `Alle ${sorted.length} kunderapporter kan genereres med oppdaterte data for gjeldende periode`,
-    severity: 'positive',
+    id: 'vacancy', title: 'Ledighetskostnad', value: formatNOK(kpis.totalVacancyCost),
+    detail: `${formatM2(kpis.totalVacantM2)} ledig. ${kpis.buildingsHighVacancy} bygg >10%`,
+    severity: kpis.totalVacancyCost > 5000000 ? 'warning' : 'info', link: '/rapporter/ledighetsoversikt',
+  });
+
+  insights.push({
+    id: 'report-status', title: 'Rapportstatus', value: `${sorted.length} klare`,
+    detail: `Alle ${sorted.length} kunderapporter kan genereres med oppdaterte data`,
+    severity: 'positive', link: '/rapporter',
   });
 
   return insights;
@@ -202,12 +185,9 @@ export function usePersonaInsights(kpis: PortfolioKPIs): Insight[] {
   const { buildings, contracts, costs, funds } = usePortfolioContext();
 
   return useMemo(() => {
-    if (persona === 'eier') {
-      return buildEierInsights(kpis);
-    }
+    if (persona === 'eier') return buildEierInsights(kpis);
 
     if (persona === 'investor') {
-      // Calculate per-fund yield
       const fundData = funds.map((fund) => {
         const fundBuildings = buildings.filter((b) => fund.buildingIds.includes(b.id) && !b.isArchived);
         const fundBuildingIds = fundBuildings.map((b) => b.id);
@@ -226,7 +206,6 @@ export function usePersonaInsights(kpis: PortfolioKPIs): Insight[] {
       return buildInvestorInsights(kpis, fundData);
     }
 
-    // Forvalter
     const clientData = clients.map((client) => {
       const clientBuildings = buildings.filter((b) => client.buildingIds.includes(b.id) && !b.isArchived);
       const value = clientBuildings.reduce((s, b) => s + (b.estimatedMarketValue ?? 0), 0);
