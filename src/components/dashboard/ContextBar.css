@@ -1,13 +1,13 @@
 .context-bar {
   display: flex;
   align-items: center;
-  height: 32px;
+  height: 28px;
   padding: 0 4px;
   border-bottom: 1px solid var(--app-border);
 }
 
 .context-bar__segment {
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 500;
   color: var(--app-text-muted);
   white-space: nowrap;

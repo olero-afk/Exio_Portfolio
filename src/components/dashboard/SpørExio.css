@@ -1,23 +1,21 @@
 .spor-exio {
+  position: relative;
   background-color: var(--app-surface);
   border: 1px solid var(--app-border);
   border-radius: var(--radius-card);
-  padding: 12px 16px;
+  padding: 10px 16px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  transition: all var(--transition);
-}
-
-.spor-exio--expanded {
-  border-color: var(--color-cyan);
-  border-color: rgba(34, 212, 232, 0.3);
+  gap: 6px;
+  flex-shrink: 0;
+  z-index: 10;
 }
 
 .spor-exio__input-row {
   display: flex;
   align-items: center;
   gap: 10px;
+  height: 28px;
 }
 
 .spor-exio__sparkle {
@@ -41,12 +39,12 @@
 }
 
 .spor-exio__send {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--app-bg);
   background-color: var(--color-cyan);
   border-radius: 50%;
@@ -65,13 +63,14 @@
 
 .spor-exio__chips {
   display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
+  gap: 5px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
 }
 
 .spor-exio__chip {
-  padding: 4px 12px;
-  font-size: 0.6875rem;
+  padding: 3px 10px;
+  font-size: 0.625rem;
   font-weight: 500;
   color: var(--app-text-muted);
   background-color: transparent;
@@ -87,16 +86,16 @@
   background-color: rgba(34, 212, 232, 0.05);
 }
 
+/* Loading indicator — inline, no height change */
 .spor-exio__loading {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 0;
 }
 
 .spor-exio__loading-dot {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background-color: var(--color-cyan);
   animation: exio-pulse 1s ease-in-out infinite;
@@ -108,26 +107,34 @@
 }
 
 .spor-exio__loading-text {
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   color: var(--app-text-dim);
   font-style: italic;
 }
 
+/* Response panel — OVERLAY, does not push content */
 .spor-exio__response {
-  position: relative;
-  padding: 12px 14px;
-  background-color: var(--app-surface-mid);
-  border-radius: var(--radius-badge);
-  max-height: 240px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+  padding: 14px 16px;
+  background-color: var(--app-surface);
+  border: 1px solid rgba(34, 212, 232, 0.3);
+  border-radius: var(--radius-card);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  max-height: 320px;
   overflow-y: auto;
+  z-index: 50;
 }
 
 .spor-exio__close {
   position: absolute;
-  top: 8px;
-  right: 10px;
-  width: 20px;
-  height: 20px;
+  top: 10px;
+  right: 12px;
+  width: 22px;
+  height: 22px;
   display: flex;
   align-items: center;
   justify-content: center;

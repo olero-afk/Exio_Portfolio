@@ -1,10 +1,10 @@
 .dashboard {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   height: calc(100vh - var(--nav-height));
   overflow: hidden;
-  padding-bottom: 12px;
+  padding-bottom: 8px;
 }
 
 .dashboard__zone2 {

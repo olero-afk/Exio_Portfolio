@@ -15,3 +15,9 @@
   min-width: 0;
   overflow-y: auto;
 }
+
+/* Dashboard route: no padding-bottom, no scroll — dashboard manages its own height */
+.layout__content:has(.dashboard) {
+  padding-bottom: 0;
+  overflow-y: hidden;
+}

@@ -99,7 +99,7 @@ export function SpørExio({ kpis }: SpørExioProps) {
   }, []);
 
   return (
-    <div className={`spor-exio ${response ? 'spor-exio--expanded' : ''}`}>
+    <div className="spor-exio">
       <div className="spor-exio__input-row">
         <span className="spor-exio__sparkle">✦</span>
         <input
