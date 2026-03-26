@@ -7,7 +7,7 @@ import './TopNav.css';
 const navItems = [
   { to: '/', label: 'Dashboard' },
   { to: '/rapporter', label: 'Rapporter' },
-  { to: '/bygg', label: 'Bygg' },
+  { to: '/bygg', label: 'Portefølje' },
   { to: '/avtaler', label: 'Avtaler' },
   { to: '/produkter', label: 'Produkter' },
   { to: '/aktoerer', label: 'Aktører' },

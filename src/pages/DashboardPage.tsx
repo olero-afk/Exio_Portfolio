@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { usePortfolioKPI } from '../hooks/usePortfolioKPI.ts';
 import { usePersona, EIER_BUILDING_IDS } from '../context/PersonaContext.tsx';
-import { ModuleTabs } from '../components/dashboard/ModuleTabs.tsx';
 import { FundFilter } from '../components/dashboard/FundFilter.tsx';
 import { ClientFilter } from '../components/dashboard/ClientFilter.tsx';
 import { PeriodSelector } from '../components/dashboard/PeriodSelector.tsx';
@@ -40,17 +39,9 @@ export function DashboardPage() {
     return <WelcomeWizard onLoadDemo={() => { setDemoLoaded(true); setShowWizard(false); }} />;
   }
 
-  const heading = persona === 'eier'
-    ? 'Min portefølje'
-    : persona === 'forvalter'
-      ? 'Forvaltningsoversikt'
-      : 'Porteføljeoversikt';
-
   return (
     <div className="dashboard">
       <AlertBanner />
-      <h1 className="dashboard__heading">{heading}</h1>
-      <ModuleTabs />
 
       <div className="dashboard__controls">
         {config.showFundFilter && <FundFilter />}
