@@ -8,6 +8,7 @@ const reports = [
   { id: 'ledighetsoversikt', icon: '🏢', title: 'Ledighetsoversikt', description: 'Ledighetskostnad per bygg med ranking og detaljer.', path: '/rapporter/ledighetsoversikt' },
   { id: 'diversifisering', icon: '🌍', title: 'Diversifisering', description: 'Geografi, segment og bransjefordeling med datatabeller.', path: '/rapporter/diversifisering' },
   { id: 'styrerapport', icon: '📄', title: 'Styrerapport', description: 'Komplett rapport for styremøter. Optimalisert for utskrift.', path: '/rapporter/styrerapport' },
+  { id: 'benchmark', icon: '📍', title: 'Markedsreferanse', description: 'Sammenlign leieinntekter mot PlacePoint markedsdata.', path: '/rapporter/benchmark' },
   { id: 'covenant', icon: '🔒', title: 'Covenant-status', description: 'LTV og DSCR. Planlagt Q4 2026.', path: '/rapporter/covenant' },
 ];
 

@@ -19,6 +19,7 @@ import { TenantAnalysisReport } from './pages/reports/TenantAnalysisReport.tsx';
 import { VacancyReport } from './pages/reports/VacancyReport.tsx';
 import { DiversificationReport } from './pages/reports/DiversificationReport.tsx';
 import { CovenantReport } from './pages/reports/CovenantReport.tsx';
+import { BenchmarkReport } from './pages/reports/BenchmarkReport.tsx';
 import { PlaceholderPage } from './pages/PlaceholderPage.tsx';
 import { FundViewPage } from './pages/FundViewPage.tsx';
 
@@ -48,6 +49,7 @@ function App() {
               <Route path="rapporter/ledighetsoversikt" element={<VacancyReport />} />
               <Route path="rapporter/diversifisering" element={<DiversificationReport />} />
               <Route path="rapporter/styrerapport" element={<BoardReportPage />} />
+              <Route path="rapporter/benchmark" element={<BenchmarkReport />} />
               <Route path="rapporter/covenant" element={<CovenantReport />} />
               <Route path="avtaler" element={<PlaceholderPage title="Avtaler" />} />
               <Route path="produkter" element={<PlaceholderPage title="Produkter" />} />

@@ -1,0 +1,60 @@
+.market-ref {
+  background-color: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-card);
+  padding: var(--padding-section);
+}
+
+.market-ref__title {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-label);
+  color: var(--app-text-muted);
+  margin-bottom: 4px;
+}
+
+.market-ref__disclaimer {
+  font-size: 0.625rem;
+  color: var(--app-text-faint);
+  font-style: italic;
+  margin-bottom: 14px;
+}
+
+.market-ref__metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.market-ref__metric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  background-color: var(--app-surface-mid);
+  border-radius: var(--radius-badge);
+}
+
+.market-ref__label {
+  font-size: 0.6875rem;
+  color: var(--app-text-dim);
+}
+
+.market-ref__value {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--app-text);
+}
+
+.market-ref__value--muted { color: var(--app-text-dim); }
+.market-ref__value--positive { color: var(--color-green); }
+.market-ref__value--negative { color: var(--color-red); }
+
+.market-ref__info {
+  font-size: 0.6875rem;
+  color: var(--app-text-dim);
+  line-height: 1.5;
+  margin-top: 10px;
+}

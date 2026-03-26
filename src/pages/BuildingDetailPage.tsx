@@ -4,6 +4,7 @@ import { BuildingTabs } from '../components/building/BuildingTabs.tsx';
 import { AreaCards } from '../components/building/AreaCards.tsx';
 import { BuildingKPIs } from '../components/building/BuildingKPIs.tsx';
 import { BuildingInfo } from '../components/building/BuildingInfo.tsx';
+import { MarketReference } from '../components/building/MarketReference.tsx';
 import './BuildingDetailPage.css';
 
 export function BuildingDetailPage() {
@@ -31,6 +32,7 @@ export function BuildingDetailPage() {
       <AreaCards building={building} />
       <BuildingKPIs building={building} />
       <BuildingInfo building={building} />
+      <MarketReference building={building} />
     </div>
   );
 }
