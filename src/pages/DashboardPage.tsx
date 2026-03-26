@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { usePortfolioKPI } from '../hooks/usePortfolioKPI.ts';
 import { usePersona, EIER_BUILDING_IDS } from '../context/PersonaContext.tsx';
+import { usePersonaInsights } from '../hooks/usePersonaInsights.ts';
+import { useOpportunityRisk } from '../hooks/useOpportunityRisk.ts';
+import { useAIInsightText } from '../hooks/useAIInsightText.ts';
 import { FilterBar } from '../components/dashboard/FilterBar.tsx';
 import { ContextBar } from '../components/dashboard/ContextBar.tsx';
 import { SpørExio } from '../components/dashboard/SpørExio.tsx';
 import { InsightCardGrid } from '../components/dashboard/InsightCardGrid.tsx';
 import { WelcomeWizard } from '../components/shared/WelcomeWizard.tsx';
-import { usePersonaInsights } from '../hooks/usePersonaInsights.ts';
 import './DashboardPage.css';
 
 export function DashboardPage() {
@@ -22,6 +24,8 @@ export function DashboardPage() {
 
   const kpis = usePortfolioKPI(personaBuildingIds);
   const insights = usePersonaInsights(kpis);
+  const { muligheter, risiko } = useOpportunityRisk(kpis);
+  const aiTexts = useAIInsightText(kpis, insights);
 
   if (showWizard || !demoLoaded) {
     return <WelcomeWizard onLoadDemo={() => { setDemoLoaded(true); setShowWizard(false); }} />;
@@ -38,8 +42,13 @@ export function DashboardPage() {
         <ContextBar kpis={kpis} />
       </div>
 
-      {/* Zone 3: 6 Insight Cards */}
-      <InsightCardGrid insights={insights} />
+      {/* Zone 3: 4 KPI cards + Muligheter + Risiko */}
+      <InsightCardGrid
+        insights={insights}
+        aiTexts={aiTexts}
+        muligheter={muligheter}
+        risiko={risiko}
+      />
     </div>
   );
 }

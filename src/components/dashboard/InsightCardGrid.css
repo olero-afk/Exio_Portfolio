@@ -13,6 +13,7 @@
   min-height: 0;
 }
 
+/* Cards 1-4: KPI cards */
 .insight-grid__card {
   flex: 1;
   background-color: var(--app-surface);
@@ -28,7 +29,8 @@
   min-height: 0;
 }
 
-.insight-grid__card-wrapper:hover .insight-grid__card {
+.insight-grid__card-wrapper:hover .insight-grid__card,
+.insight-grid__card-wrapper:hover .insight-grid__summary-card {
   border-color: var(--app-text-faint);
 }
 
@@ -61,13 +63,18 @@
 
 .insight-grid__card-detail {
   font-size: 0.6875rem;
-  color: var(--app-text-dim);
-  line-height: 1.45;
+  color: var(--app-text-muted);
+  line-height: 1.5;
   flex: 1;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+}
+
+.insight-grid__card-detail--loading {
+  color: var(--app-text-dim);
+  font-style: italic;
 }
 
 .insight-grid__card-link {
@@ -76,3 +83,72 @@
   color: var(--color-champagne);
   margin-top: auto;
 }
+
+/* Cards 5-6: Summary cards (Muligheter / Risiko) */
+.insight-grid__summary-card {
+  flex: 1;
+  background-color: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-card);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color var(--transition);
+  overflow: hidden;
+  min-height: 0;
+}
+
+.insight-grid__summary-card--muligheter {
+  border-left: 3px solid #4ade80;
+}
+
+.insight-grid__summary-card--risiko {
+  border-left: 3px solid #f87171;
+}
+
+.insight-grid__summary-title {
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.insight-grid__summary-title--green { color: #4ade80; }
+.insight-grid__summary-title--red { color: #f87171; }
+
+.insight-grid__summary-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.insight-grid__summary-bullets li {
+  font-size: 0.6875rem;
+  color: var(--app-text-muted);
+  line-height: 1.4;
+  padding-left: 12px;
+  position: relative;
+}
+
+.insight-grid__summary-bullets li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--app-text-faint);
+}
+
+.insight-grid__summary-bottom {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding-top: 6px;
+  border-top: 1px solid var(--app-border);
+}
+
+.insight-grid__summary-bottom--green { color: #4ade80; }
+.insight-grid__summary-bottom--red { color: #f87171; }
