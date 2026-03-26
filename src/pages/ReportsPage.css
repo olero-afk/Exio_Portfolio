@@ -12,7 +12,7 @@
 
 .reports-page__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--gap-section);
 }
 
@@ -30,6 +30,11 @@
 
 .reports-page__card:hover {
   border-color: var(--color-champagne);
+}
+
+.reports-page__card-icon {
+  font-size: 1.5rem;
+  line-height: 1;
 }
 
 .reports-page__card-title {

@@ -1,0 +1,43 @@
+.report-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1200px;
+}
+
+.report-layout__header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.report-layout__back {
+  font-size: 0.75rem;
+  color: var(--app-text-dim);
+  text-decoration: none;
+  transition: color var(--transition);
+  width: fit-content;
+}
+
+.report-layout__back:hover {
+  color: var(--color-champagne);
+}
+
+.report-layout__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--app-text);
+}
+
+.report-layout__controls {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.report-layout__content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

@@ -13,6 +13,12 @@ import { BuildingTabPlaceholder } from './pages/BuildingTabPlaceholder.tsx';
 import { ComparisonPage } from './pages/ComparisonPage.tsx';
 import { ReportsPage } from './pages/ReportsPage.tsx';
 import { BoardReportPage } from './pages/BoardReportPage.tsx';
+import { PortfolioOverviewReport } from './pages/reports/PortfolioOverviewReport.tsx';
+import { ContractAnalysisReport } from './pages/reports/ContractAnalysisReport.tsx';
+import { TenantAnalysisReport } from './pages/reports/TenantAnalysisReport.tsx';
+import { VacancyReport } from './pages/reports/VacancyReport.tsx';
+import { DiversificationReport } from './pages/reports/DiversificationReport.tsx';
+import { CovenantReport } from './pages/reports/CovenantReport.tsx';
 import { PlaceholderPage } from './pages/PlaceholderPage.tsx';
 import { FundViewPage } from './pages/FundViewPage.tsx';
 
@@ -36,13 +42,18 @@ function App() {
               <Route path="bygg/:buildingId/energi" element={<BuildingTabPlaceholder tabName="Energi" />} />
               <Route path="bygg/:buildingId/okonomi" element={<BuildingFinancialsPage />} />
               <Route path="rapporter" element={<ReportsPage />} />
+              <Route path="rapporter/portefoljeoversikt" element={<PortfolioOverviewReport />} />
+              <Route path="rapporter/kontraktsanalyse" element={<ContractAnalysisReport />} />
+              <Route path="rapporter/leietakeranalyse" element={<TenantAnalysisReport />} />
+              <Route path="rapporter/ledighetsoversikt" element={<VacancyReport />} />
+              <Route path="rapporter/diversifisering" element={<DiversificationReport />} />
               <Route path="rapporter/styrerapport" element={<BoardReportPage />} />
+              <Route path="rapporter/covenant" element={<CovenantReport />} />
               <Route path="avtaler" element={<PlaceholderPage title="Avtaler" />} />
               <Route path="produkter" element={<PlaceholderPage title="Produkter" />} />
               <Route path="aktoerer" element={<PlaceholderPage title="Aktører" />} />
               <Route path="sammenlign" element={<ComparisonPage />} />
               <Route path="innstillinger" element={<PlaceholderPage title="Innstillinger" />} />
-
             </Route>
           </Routes>
         </FilterProvider>
