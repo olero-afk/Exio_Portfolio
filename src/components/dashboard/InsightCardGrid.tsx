@@ -11,72 +11,85 @@ interface InsightCardGridProps {
 }
 
 const severityColors: Record<string, string> = {
-  info: '#22d4e8',
-  warning: '#facc15',
-  positive: '#4ade80',
-  negative: '#f87171',
+  info: '#22d4e8', warning: '#facc15', positive: '#4ade80', negative: '#f87171',
 };
 
 export function InsightCardGrid({ insights, aiTexts, muligheter, risiko }: InsightCardGridProps) {
-  const kpiCards = insights.slice(0, 4);
-
-  // Pad to 4 if needed
-  while (kpiCards.length < 4) {
-    kpiCards.push({ id: `empty-${kpiCards.length}`, title: '—', value: '—', detail: '', severity: 'info' });
-  }
+  const cards = insights.slice(0, 4);
+  while (cards.length < 4) cards.push({ id: `empty-${cards.length}`, title: '—', value: '—', detail: '', severity: 'info', breakdown: [] });
 
   return (
-    <div className="insight-grid">
-      {/* Cards 1-4: KPI cards with AI text */}
-      {kpiCards.map((insight) => {
-        const color = severityColors[insight.severity] ?? severityColors.info;
-        const aiText = aiTexts.get(insight.id);
-        const isLoading = aiTexts.has(insight.id) && aiText === null;
+    <div className="ig">
+      {cards.map((ins) => {
+        const color = severityColors[ins.severity] ?? severityColors.info;
+        const aiText = aiTexts.get(ins.id);
+        const isLoading = aiTexts.has(ins.id) && aiText === null;
 
-        const content = (
-          <div className="insight-grid__card" style={{ borderTopColor: color }}>
-            <div className="insight-grid__card-header">
-              <span className="insight-grid__card-title">{insight.title}</span>
-              <span className="insight-grid__card-dot" style={{ backgroundColor: color }} />
-            </div>
-            <div className="insight-grid__card-value" style={{ color }}>{insight.value}</div>
-            {isLoading ? (
-              <p className="insight-grid__card-detail insight-grid__card-detail--loading">Analyserer...</p>
-            ) : (
-              <p className="insight-grid__card-detail">{aiText ?? insight.detail}</p>
+        const inner = (
+          <div className="ig__card" style={{ borderTopColor: color }}>
+            <div className="ig__head"><span className="ig__title">{ins.title}</span><span className="ig__dot" style={{ backgroundColor: color }} /></div>
+            <div className="ig__val" style={{ color }}>{ins.value}</div>
+            {ins.trend && <div className="ig__trend">{ins.trend}</div>}
+            {ins.breakdown.length > 0 && (
+              <div className="ig__breakdown">
+                {ins.breakdown.map((b, i) => (
+                  <div key={i} className="ig__bk-row"><span className="ig__bk-label">{b.label}</span><span className="ig__bk-value">{b.value}</span></div>
+                ))}
+              </div>
             )}
-            {insight.link && <span className="insight-grid__card-link">Se detaljer →</span>}
+            {isLoading ? (
+              <p className="ig__detail ig__detail--loading">Analyserer...</p>
+            ) : (
+              <p className="ig__detail">{aiText ?? ins.detail}</p>
+            )}
+            {ins.link && <span className="ig__link">Se detaljer →</span>}
           </div>
         );
 
-        return insight.link ? (
-          <Link key={insight.id} to={insight.link} className="insight-grid__card-wrapper">{content}</Link>
+        return ins.link ? (
+          <Link key={ins.id} to={ins.link} className="ig__wrap">{inner}</Link>
         ) : (
-          <div key={insight.id} className="insight-grid__card-wrapper">{content}</div>
+          <div key={ins.id} className="ig__wrap">{inner}</div>
         );
       })}
 
       {/* Card 5: Muligheter */}
-      <Link to={muligheter.link} className="insight-grid__card-wrapper">
-        <div className="insight-grid__summary-card insight-grid__summary-card--muligheter">
-          <span className="insight-grid__summary-title insight-grid__summary-title--green">MULIGHETER</span>
-          <ul className="insight-grid__summary-bullets">
-            {muligheter.bullets.map((b, i) => <li key={i}>{b}</li>)}
-          </ul>
-          <div className="insight-grid__summary-bottom insight-grid__summary-bottom--green">{muligheter.bottomLine}</div>
-          <span className="insight-grid__card-link">Se muligheter →</span>
+      <Link to={muligheter.link} className="ig__wrap">
+        <div className="ig__sum ig__sum--green">
+          <span className="ig__sum-title ig__sum-title--green">MULIGHETER</span>
+          <div className="ig__sum-bullets">
+            {muligheter.bullets.map((b, i) => (
+              <div key={i} className="ig__bullet">
+                <div className="ig__bullet-main">
+                  <span className="ig__bullet-action">{b.action}</span>
+                  <span className="ig__bullet-detail">{b.detail}</span>
+                </div>
+                {b.amount && <span className="ig__bullet-amount ig__bullet-amount--green">{b.amount}</span>}
+              </div>
+            ))}
+          </div>
+          <div className="ig__sum-bottom ig__sum-bottom--green">{muligheter.bottomLine}</div>
+          <span className="ig__link">Se muligheter →</span>
         </div>
       </Link>
 
       {/* Card 6: Risiko */}
-      <Link to={risiko.link} className="insight-grid__card-wrapper">
-        <div className="insight-grid__summary-card insight-grid__summary-card--risiko">
-          <span className="insight-grid__summary-title insight-grid__summary-title--red">RISIKO</span>
-          <ul className="insight-grid__summary-bullets">
-            {risiko.bullets.map((b, i) => <li key={i}>{b}</li>)}
-          </ul>
-          <div className="insight-grid__summary-bottom insight-grid__summary-bottom--red">{risiko.bottomLine}</div>
-          <span className="insight-grid__card-link">Se risikoer →</span>
+      <Link to={risiko.link} className="ig__wrap">
+        <div className="ig__sum ig__sum--red">
+          <span className="ig__sum-title ig__sum-title--red">RISIKO</span>
+          <div className="ig__sum-bullets">
+            {risiko.bullets.map((b, i) => (
+              <div key={i} className="ig__bullet">
+                <div className="ig__bullet-main">
+                  <span className="ig__bullet-action">{b.action}</span>
+                  <span className="ig__bullet-detail">{b.detail}</span>
+                </div>
+                {b.amount && <span className="ig__bullet-amount ig__bullet-amount--red">{b.amount}</span>}
+              </div>
+            ))}
+          </div>
+          <div className="ig__sum-bottom ig__sum-bottom--red">{risiko.bottomLine}</div>
+          <span className="ig__link">Se risikoer →</span>
         </div>
       </Link>
     </div>

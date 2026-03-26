@@ -1,33 +1,50 @@
 .spor-exio {
   position: relative;
-  background-color: var(--app-surface);
-  border: 1px solid var(--app-border);
+  background-color: var(--app-surface-mid);
+  border: 1px solid rgba(254, 208, 146, 0.15);
   border-radius: var(--radius-card);
-  padding: 10px 16px;
+  padding: 14px 20px 12px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   flex-shrink: 0;
   z-index: 10;
+  box-shadow: 0 0 20px rgba(254, 208, 146, 0.04);
+}
+
+.spor-exio__badge {
+  font-size: 0.55rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-champagne);
+  font-variant: small-caps;
 }
 
 .spor-exio__input-row {
   display: flex;
   align-items: center;
-  gap: 10px;
-  height: 28px;
+  gap: 12px;
+  height: 36px;
 }
 
 .spor-exio__sparkle {
-  font-size: 1rem;
-  color: var(--color-cyan);
+  font-size: 1.5rem;
+  color: var(--color-champagne);
   flex-shrink: 0;
+  animation: sparkle-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes sparkle-pulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.08); }
 }
 
 .spor-exio__input {
   flex: 1;
-  padding: 0;
-  font-size: var(--font-size-body);
+  padding: 8px 0;
+  font-size: 1rem;
+  font-weight: 400;
   color: var(--app-text);
   background: transparent;
   border: none;
@@ -35,58 +52,51 @@
 }
 
 .spor-exio__input::placeholder {
-  color: var(--app-text-dim);
+  color: var(--app-text-muted);
 }
 
 .spor-exio__send {
-  width: 26px;
-  height: 26px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.8125rem;
+  font-size: 1rem;
   color: var(--app-bg);
-  background-color: var(--color-cyan);
+  background-color: var(--color-champagne);
   border-radius: 50%;
   flex-shrink: 0;
   transition: opacity var(--transition);
 }
 
-.spor-exio__send:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
-.spor-exio__send:hover:not(:disabled) {
-  opacity: 0.85;
-}
+.spor-exio__send:disabled { opacity: 0.25; cursor: not-allowed; }
+.spor-exio__send:hover:not(:disabled) { opacity: 0.85; }
 
 .spor-exio__chips {
   display: flex;
-  gap: 5px;
+  gap: 6px;
   flex-wrap: nowrap;
   overflow-x: auto;
 }
 
 .spor-exio__chip {
-  padding: 3px 10px;
-  font-size: 0.625rem;
-  font-weight: 500;
+  padding: 6px 14px;
+  font-size: 0.6875rem;
+  font-weight: 600;
   color: var(--app-text-muted);
   background-color: transparent;
-  border: 1px solid rgba(34, 212, 232, 0.25);
+  border: 1px solid rgba(254, 208, 146, 0.2);
   border-radius: var(--radius-badge);
   transition: all var(--transition);
   white-space: nowrap;
 }
 
 .spor-exio__chip:hover {
-  color: var(--color-cyan);
-  border-color: var(--color-cyan);
-  background-color: rgba(34, 212, 232, 0.05);
+  color: var(--color-champagne);
+  border-color: var(--color-champagne);
+  background-color: rgba(254, 208, 146, 0.05);
 }
 
-/* Loading indicator — inline, no height change */
 .spor-exio__loading {
   display: flex;
   align-items: center;
@@ -94,10 +104,10 @@
 }
 
 .spor-exio__loading-dot {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background-color: var(--color-cyan);
+  background-color: var(--color-champagne);
   animation: exio-pulse 1s ease-in-out infinite;
 }
 
@@ -107,81 +117,47 @@
 }
 
 .spor-exio__loading-text {
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   color: var(--app-text-dim);
   font-style: italic;
 }
 
-/* Response panel — OVERLAY, does not push content */
+/* Response overlay */
 .spor-exio__response {
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
   margin-top: 4px;
-  padding: 14px 16px;
-  background-color: var(--app-surface);
-  border: 1px solid rgba(34, 212, 232, 0.3);
+  padding: 18px 20px;
+  background-color: var(--app-surface-mid);
+  border: 1px solid rgba(254, 208, 146, 0.2);
   border-radius: var(--radius-card);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-  max-height: 320px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+  max-height: 340px;
   overflow-y: auto;
   z-index: 50;
 }
 
 .spor-exio__close {
   position: absolute;
-  top: 10px;
-  right: 12px;
-  width: 22px;
-  height: 22px;
+  top: 12px;
+  right: 14px;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.625rem;
+  font-size: 0.75rem;
   color: var(--app-text-dim);
   border-radius: 50%;
   transition: all var(--transition);
 }
+.spor-exio__close:hover { color: var(--app-text); background-color: var(--app-surface-raised); }
 
-.spor-exio__close:hover {
-  color: var(--app-text);
-  background-color: var(--app-surface-raised);
-}
-
-.spor-exio__response-text {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.spor-exio__response-heading {
-  font-size: 0.8125rem;
-  font-weight: 700;
-  color: var(--app-text);
-  margin-bottom: 2px;
-}
-
-.spor-exio__response-para {
-  font-size: 0.75rem;
-  color: var(--app-text-secondary);
-  line-height: 1.5;
-}
-
-.spor-exio__response-bullet {
-  font-size: 0.75rem;
-  color: var(--app-text-secondary);
-  line-height: 1.5;
-  padding-left: 8px;
-}
-
-.spor-exio__response-bullet strong {
-  color: var(--app-text);
-}
-
-.spor-exio__response-warning {
-  font-size: 0.75rem;
-  color: #facc15;
-  font-weight: 500;
-  line-height: 1.5;
-}
+.spor-exio__response-text { display: flex; flex-direction: column; gap: 6px; }
+.spor-exio__response-heading { font-size: 0.875rem; font-weight: 700; color: var(--app-text); margin-bottom: 2px; }
+.spor-exio__response-para { font-size: 0.8125rem; color: var(--app-text-secondary); line-height: 1.6; }
+.spor-exio__response-bullet { font-size: 0.8125rem; color: var(--app-text-secondary); line-height: 1.6; padding-left: 10px; }
+.spor-exio__response-bullet strong { color: var(--app-text); }
+.spor-exio__response-warning { font-size: 0.8125rem; color: #facc15; font-weight: 600; line-height: 1.6; }

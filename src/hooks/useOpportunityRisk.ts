@@ -5,9 +5,15 @@ import type { PortfolioKPIs } from './usePortfolioKPI.ts';
 import type { Building, Contract, CostEntry, Fund, ClientCompany } from '../types/index.ts';
 import { formatNOK, formatPercent, formatYears, formatM2 } from '../utils/formatters.ts';
 
+export interface SummaryBullet {
+  action: string;
+  detail: string;
+  amount: string;
+}
+
 export interface SummaryCard {
   type: 'muligheter' | 'risiko';
-  bullets: string[];
+  bullets: SummaryBullet[];
   bottomLine: string;
   link: string;
 }
@@ -62,11 +68,11 @@ function buildEier(
   const muligheter: SummaryCard = {
     type: 'muligheter',
     bullets: [
-      worstVacancy ? `Utleie ${worstVacancy.b.name} (${formatM2(worstVacancy.vacant)}) = +${formatNOK(worstVacancy.cost)}/år` : 'Ingen ledige arealer',
-      largestExpiring ? `Reforhandling ${largestExpiring.tenantName} = potensial +10-15% leieøkning` : 'Ingen kontrakter utløper snart',
-      highestCostBuilding.overAvg > 10 ? `Reduser vedlikeholdskost ${highestCostBuilding.name} — ${formatPercent(highestCostBuilding.overAvg)} over snitt` : 'Driftskostnader innenfor normalt nivå',
+      { action: worstVacancy ? `Utleie ${worstVacancy.b.name}` : 'Ingen ledige arealer', detail: worstVacancy ? `${formatM2(worstVacancy.vacant)} ledig → ${formatNOK(worstVacancy.cost)}/år` : '', amount: worstVacancy ? `+${formatNOK(worstVacancy.cost)}` : '' },
+      { action: largestExpiring ? `Reforhandling ${largestExpiring.tenantName}` : 'Ingen utløp snart', detail: largestExpiring ? `Potensial +10-15% leieøkning` : '', amount: largestExpiring ? `+${formatNOK(reforhandlingPotential)}` : '' },
+      { action: highestCostBuilding.overAvg > 10 ? `Reduser kost ${highestCostBuilding.name}` : 'Kostnader normalt', detail: highestCostBuilding.overAvg > 10 ? `${formatPercent(highestCostBuilding.overAvg)} over snitt` : 'Innenfor normalt nivå', amount: '' },
     ],
-    bottomLine: `Estimert verdipotensial: +${formatNOK(totalPotential + reforhandlingPotential)}/år`,
+    bottomLine: `✅ Estimert verdipotensial: +${formatNOK(totalPotential + reforhandlingPotential)}/år`,
     link: '/rapporter/ledighetsoversikt',
   };
 
@@ -76,11 +82,11 @@ function buildEier(
   const risiko: SummaryCard = {
     type: 'risiko',
     bullets: [
-      `${expiring.length} kontrakter (${formatNOK(expiringNOK)}) utløper innen 12 mnd`,
-      highestCostBuilding.overAvg > 10 ? `${highestCostBuilding.name} driftskostnad ${formatPercent(highestCostBuilding.overAvg)} over porteføljesnitt` : `Driftskostnader jevnt fordelt — ingen utliggere`,
-      `Utleiegrad ${formatPercent(kpis.portfolioOccupancyRate * 100)} — ${kpis.portfolioOccupancyRate * 100 < occupancyBenchmark ? 'under' : 'over'} markedssnitt (${occupancyBenchmark}%)`,
+      { action: `${expiring.length} kontrakter utløper`, detail: `Innen 12 mnd — start reforhandling`, amount: formatNOK(expiringNOK) },
+      { action: highestCostBuilding.overAvg > 10 ? `${highestCostBuilding.name} over snitt` : 'Ingen kostutliggere', detail: highestCostBuilding.overAvg > 10 ? `Driftskostnad ${formatPercent(highestCostBuilding.overAvg)} over portefølje` : 'Jevnt fordelt', amount: '' },
+      { action: `Utleiegrad ${formatPercent(kpis.portfolioOccupancyRate * 100)}`, detail: `${kpis.portfolioOccupancyRate * 100 < occupancyBenchmark ? 'Under' : 'Over'} markedssnitt (${occupancyBenchmark}%)`, amount: formatNOK(kpis.totalVacancyCost) },
     ],
-    bottomLine: `Total risikoeksponering: ${formatNOK(expiringNOK + kpis.totalVacancyCost)}`,
+    bottomLine: `⚠️ Total risikoeksponering: ${formatNOK(expiringNOK + kpis.totalVacancyCost)}`,
     link: '/rapporter/kontraktsanalyse',
   };
 
@@ -122,11 +128,11 @@ function buildInvestor(
   const muligheter: SummaryCard = {
     type: 'muligheter',
     bullets: [
-      worstFund ? `Full utleie ${worstFund.fund.name} = +${formatNOK(noiUplift)} NOI = ~${formatNOK(noiUplift * 15)} verdiøkning` : 'Alle fond fullt utleid',
-      `Yield compress 25bps = +${formatNOK(yieldCompress)} porteføljeverdi`,
-      underweight ? `${underweight.label} underallokert (${formatPercent(underweight.percent)}) — diversifiseringsmulighet` : 'God segmentdiversifisering',
+      { action: worstFund ? `Full utleie ${worstFund.fund.name}` : 'Alle fond fullt utleid', detail: worstFund ? `+${formatNOK(noiUplift)} NOI → ~${formatNOK(noiUplift * 15)} verdiøkning` : '', amount: `+${formatNOK(noiUplift * 15)}` },
+      { action: 'Yield compress 25bps', detail: `+${formatNOK(yieldCompress)} porteføljeverdi`, amount: `+${formatNOK(yieldCompress)}` },
+      { action: underweight ? `${underweight.label} underallokert` : 'God diversifisering', detail: underweight ? `${formatPercent(underweight.percent)} — diversifiseringsmulighet` : 'Balansert segmentfordeling', amount: '' },
     ],
-    bottomLine: `Estimert verdipotensial: +${formatNOK(noiUplift * 15 + yieldCompress)}/år`,
+    bottomLine: `✅ Estimert verdipotensial: +${formatNOK(noiUplift * 15 + yieldCompress)}`,
     link: '/rapporter/ledighetsoversikt',
   };
 
@@ -137,11 +143,11 @@ function buildInvestor(
   const risiko: SummaryCard = {
     type: 'risiko',
     bullets: [
-      topTenant ? `${topTenant.tenantName} = ${formatPercent(topTenant.percentOfPortfolio)} konsentrasjon — ${formatNOK(topTenant.totalAnnualRent)} NOI-tap ved konkurs` : 'Ingen dominerende leietaker',
-      lowWaultFund ? `${lowWaultFund.fund.name} WAULT ${formatYears(lowWaultFund.wault)} — ${lowWaultFund.wault < 3 ? 'under target (5 år)' : 'akseptabelt'}` : 'WAULT data mangler',
-      topGeo ? `${formatPercent(topGeo.percent)} ${topGeo.label}-eksponering — ${topGeo.percent > 50 ? 'geografisk konsentrert' : 'akseptabel'}` : 'Geografisk data mangler',
+      { action: topTenant ? `${topTenant.tenantName} — ${formatPercent(topTenant.percentOfPortfolio)}` : 'Ingen dominant leietaker', detail: topTenant ? `NOI-tap ved konkurs` : '', amount: topTenant ? formatNOK(topTenant.totalAnnualRent) : '' },
+      { action: lowWaultFund ? `${lowWaultFund.fund.name} WAULT ${formatYears(lowWaultFund.wault)}` : 'WAULT OK', detail: lowWaultFund?.wault < 3 ? 'Under target (5 år)' : 'Akseptabelt nivå', amount: '' },
+      { action: topGeo ? `${topGeo.label} ${formatPercent(topGeo.percent)}` : 'Geo OK', detail: topGeo?.percent > 50 ? 'Geografisk konsentrert' : 'Akseptabel eksponering', amount: '' },
     ],
-    bottomLine: `Total risikoeksponering: ${formatNOK(kpis.incomeAtRisk + kpis.totalVacancyCost)}`,
+    bottomLine: `⚠️ Total risikoeksponering: ${formatNOK(kpis.incomeAtRisk + kpis.totalVacancyCost)}`,
     link: '/rapporter/kontraktsanalyse',
   };
 
@@ -171,11 +177,11 @@ function buildForvalter(
   const muligheter: SummaryCard = {
     type: 'muligheter',
     bullets: [
-      `Felles vedlikeholdsavtale = ~${formatNOK(savings)} besparelse (8%)`,
-      bestVacancy ? `Utleie ledige arealer ${bestVacancy.client.name} = +${formatNOK(bestVacancy.vacancyCost)}/år` : 'Ingen vesentlig ledighet',
-      'Nytt mandat-potensial basert på porteføljeytelse',
+      { action: 'Felles vedlikeholdsavtale', detail: `~8% besparelse på tvers av kunder`, amount: `+${formatNOK(savings)}` },
+      { action: bestVacancy ? `Utleie ${bestVacancy.client.name}` : 'Ingen ledighet', detail: bestVacancy ? `Ledige arealer → inntektspotensial` : '', amount: bestVacancy ? `+${formatNOK(bestVacancy.vacancyCost)}` : '' },
+      { action: 'Nytt mandat-potensial', detail: 'Basert på porteføljeytelse og kundetilfredshet', amount: '' },
     ],
-    bottomLine: `Estimert verdipotensial: +${formatNOK(savings + (bestVacancy?.vacancyCost ?? 0))}/år`,
+    bottomLine: `✅ Estimert verdipotensial: +${formatNOK(savings + (bestVacancy?.vacancyCost ?? 0))}/år`,
     link: '/rapporter/ledighetsoversikt',
   };
 
@@ -185,11 +191,11 @@ function buildForvalter(
   const risiko: SummaryCard = {
     type: 'risiko',
     bullets: [
-      worstClient ? `${worstClient.client.name} under ${formatPercent(worstClient.occupancy * 100)} utleie — mandatreforhandling mulig` : 'Alle kunder over target',
-      totalExpiring > 0 ? `${totalExpiring} kontrakter utløper samtidig hos ${expiringClients.map((c) => c.client.name).join(', ')}` : 'Ingen kritiske utløp',
-      'Følg opp kostnadsdata for alle kunder — sikre komplett rapportering',
+      { action: worstClient ? `${worstClient.client.name} lav utleie` : 'Alle over target', detail: worstClient ? `${formatPercent(worstClient.occupancy * 100)} — mandatreforhandling mulig` : '', amount: worstClient ? formatNOK(worstClient.vacancyCost) : '' },
+      { action: totalExpiring > 0 ? `${totalExpiring} kontrakter utløper` : 'Ingen kritiske utløp', detail: expiringClients.length > 0 ? `Hos ${expiringClients.map((c) => c.client.name).join(', ')}` : 'Stabil kontraktsbase', amount: '' },
+      { action: 'Kostnadsdata-oppfølging', detail: 'Sikre komplett rapportering for alle kunder', amount: '' },
     ],
-    bottomLine: `Total risikoeksponering: ${formatNOK(kpis.incomeAtRisk + kpis.totalVacancyCost)}`,
+    bottomLine: `⚠️ Total risikoeksponering: ${formatNOK(kpis.incomeAtRisk + kpis.totalVacancyCost)}`,
     link: '/rapporter/kontraktsanalyse',
   };
 

@@ -100,6 +100,7 @@ export function SpørExio({ kpis }: SpørExioProps) {
 
   return (
     <div className="spor-exio">
+      <span className="spor-exio__badge">✦ EXIO AI</span>
       <div className="spor-exio__input-row">
         <span className="spor-exio__sparkle">✦</span>
         <input
