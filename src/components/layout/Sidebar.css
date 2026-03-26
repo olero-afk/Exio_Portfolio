@@ -210,3 +210,24 @@
   color: var(--color-red);
   background-color: rgba(248, 113, 113, 0.1);
 }
+
+/* Top-level group (fund/client) */
+.sidebar__top-group { margin-bottom: 4px; }
+
+.sidebar__top-group-header {
+  display: flex; align-items: center; gap: 6px;
+  width: 100%; padding: 8px 12px; text-align: left;
+  border-bottom: 1px solid var(--app-border);
+  transition: background-color var(--transition);
+}
+.sidebar__top-group-header:hover { background-color: var(--app-surface-raised); }
+
+.sidebar__top-group-name {
+  font-size: var(--font-size-label); font-weight: var(--font-weight-label);
+  text-transform: uppercase; letter-spacing: var(--letter-spacing-label);
+  color: var(--color-champagne); flex: 1;
+}
+
+.sidebar__top-group-list {
+  list-style: none; padding: 4px 0 4px 4px; margin: 0;
+}

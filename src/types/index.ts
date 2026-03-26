@@ -243,3 +243,65 @@ export interface DateRange {
   startDate: string;
   endDate: string;
 }
+
+// Personas
+export type PersonaType = 'eier' | 'investor' | 'forvalter';
+
+export interface PersonaConfig {
+  type: PersonaType;
+  label: string;
+  description: string;
+  showFundFilter: boolean;
+  showClientFilter: boolean;
+  showCovenantWidget: boolean;
+  showFundBreakdown: boolean;
+  showClientBreakdown: boolean;
+  sidebarGrouping: 'flat' | 'fund' | 'client';
+  reportTemplates: string[];
+}
+
+export interface ClientCompany {
+  id: string;
+  name: string;
+  orgNr: string;
+  buildingIds: string[];
+}
+
+export const PERSONA_CONFIGS: Record<PersonaType, PersonaConfig> = {
+  eier: {
+    type: 'eier',
+    label: 'Eier',
+    description: 'Eier av eiendommer',
+    showFundFilter: false,
+    showClientFilter: false,
+    showCovenantWidget: true,
+    showFundBreakdown: false,
+    showClientBreakdown: false,
+    sidebarGrouping: 'flat',
+    reportTemplates: ['styrerapport'],
+  },
+  investor: {
+    type: 'investor',
+    label: 'Investor',
+    description: 'Investeringsselskap / fond',
+    showFundFilter: true,
+    showClientFilter: false,
+    showCovenantWidget: true,
+    showFundBreakdown: true,
+    showClientBreakdown: false,
+    sidebarGrouping: 'fund',
+    reportTemplates: ['investorrapport', 'fondsrapport'],
+  },
+  forvalter: {
+    type: 'forvalter',
+    label: 'Forvalter',
+    description: 'Forvaltningsselskap',
+    showFundFilter: false,
+    showClientFilter: true,
+    showCovenantWidget: false,
+    showFundBreakdown: false,
+    showClientBreakdown: true,
+    sidebarGrouping: 'client',
+    reportTemplates: ['kunderapport'],
+  },
+};

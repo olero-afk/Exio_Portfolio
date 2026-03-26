@@ -4,6 +4,12 @@
   gap: 20px;
 }
 
+.dashboard__heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--app-text);
+}
+
 .dashboard__controls {
   display: flex;
   gap: 32px;

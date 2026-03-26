@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { usePortfolioKPI } from '../hooks/usePortfolioKPI.ts';
+import { usePersona, EIER_BUILDING_IDS } from '../context/PersonaContext.tsx';
 import { ModuleTabs } from '../components/dashboard/ModuleTabs.tsx';
 import { FundFilter } from '../components/dashboard/FundFilter.tsx';
+import { ClientFilter } from '../components/dashboard/ClientFilter.tsx';
 import { PeriodSelector } from '../components/dashboard/PeriodSelector.tsx';
 import { AlertBanner } from '../components/dashboard/AlertBanner.tsx';
 import { ContractExpirySection } from '../components/dashboard/ContractExpirySection.tsx';
@@ -20,23 +22,36 @@ import './DashboardPage.css';
 
 export function DashboardPage() {
   const [showWizard, setShowWizard] = useState(false);
-  const [demoLoaded, setDemoLoaded] = useState(true); // Demo data already loaded by default
-  const kpis = usePortfolioKPI();
+  const [demoLoaded, setDemoLoaded] = useState(true);
+  const { persona, config, clientBuildingIds } = usePersona();
 
-  // Show wizard if no data (simulated by toggling demoLoaded)
+  const personaBuildingIds = persona === 'eier'
+    ? EIER_BUILDING_IDS
+    : persona === 'forvalter'
+      ? clientBuildingIds
+      : null;
+
+  const kpis = usePortfolioKPI(personaBuildingIds);
+
   if (showWizard || !demoLoaded) {
-    return (
-      <WelcomeWizard onLoadDemo={() => { setDemoLoaded(true); setShowWizard(false); }} />
-    );
+    return <WelcomeWizard onLoadDemo={() => { setDemoLoaded(true); setShowWizard(false); }} />;
   }
+
+  const heading = persona === 'eier'
+    ? 'Min portefølje'
+    : persona === 'forvalter'
+      ? 'Forvaltningsoversikt'
+      : 'Porteføljeoversikt';
 
   return (
     <div className="dashboard">
       <AlertBanner />
+      <h1 className="dashboard__heading">{heading}</h1>
       <ModuleTabs />
 
       <div className="dashboard__controls">
-        <FundFilter />
+        {config.showFundFilter && <FundFilter />}
+        {config.showClientFilter && <ClientFilter />}
         <PeriodSelector />
       </div>
 
@@ -55,7 +70,7 @@ export function DashboardPage() {
         <div className="dashboard__row-3">
           <VacancyCostPortfolioCard kpis={kpis} />
           <ExpiryProfileCard kpis={kpis} />
-          <CovenantCard />
+          {config.showCovenantWidget ? <CovenantCard /> : <div />}
         </div>
 
         <DiversificationCard kpis={kpis} />

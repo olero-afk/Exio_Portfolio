@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { PortfolioProvider } from './context/PortfolioContext.tsx';
 import { FilterProvider } from './context/FilterContext.tsx';
+import { PersonaProvider } from './context/PersonaContext.tsx';
 import { MainLayout } from './components/layout/MainLayout.tsx';
 import { DashboardPage } from './pages/DashboardPage.tsx';
 import { BuildingListPage } from './pages/BuildingListPage.tsx';
@@ -19,6 +20,7 @@ function App() {
   return (
     <BrowserRouter>
       <PortfolioProvider>
+        <PersonaProvider>
         <FilterProvider>
           <Routes>
             <Route element={<MainLayout />}>
@@ -44,6 +46,7 @@ function App() {
             </Route>
           </Routes>
         </FilterProvider>
+        </PersonaProvider>
       </PortfolioProvider>
     </BrowserRouter>
   );

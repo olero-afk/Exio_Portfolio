@@ -1,0 +1,20 @@
+[
+  {
+    "id": "cl-001",
+    "name": "Havnegården Eiendom AS",
+    "orgNr": "911223344",
+    "buildingIds": ["b-001", "b-002", "b-005"]
+  },
+  {
+    "id": "cl-002",
+    "name": "Vestkysten Invest AS",
+    "orgNr": "922334455",
+    "buildingIds": ["b-003", "b-004"]
+  },
+  {
+    "id": "cl-003",
+    "name": "Øst-Norge Holding AS",
+    "orgNr": "933445566",
+    "buildingIds": ["b-006", "b-007", "b-008"]
+  }
+]

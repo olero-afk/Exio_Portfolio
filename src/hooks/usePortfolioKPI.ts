@@ -93,16 +93,24 @@ function calcWAULT(contracts: Contract[], useEffective: boolean): number {
   }, 0) / totalRent;
 }
 
-export function usePortfolioKPI(): PortfolioKPIs {
+export function usePortfolioKPI(personaBuildingIds?: string[] | null): PortfolioKPIs {
   const { buildings, contracts, costs, budgets, funds } = usePortfolioContext();
   const { selectedFundId, effectiveDateRange } = useFilterContext();
 
   return useMemo(() => {
-    // Determine buildings in scope based on fund filter
+    // Start with all non-archived buildings
+    let baseBuildings = buildings.filter((b) => !b.isArchived);
+
+    // Persona-level filtering (eier sees subset, forvalter scoped by client)
+    if (personaBuildingIds && personaBuildingIds.length > 0) {
+      baseBuildings = baseBuildings.filter((b) => personaBuildingIds.includes(b.id));
+    }
+
+    // Fund filter narrows further
     const selectedFund = selectedFundId ? funds.find((f) => f.id === selectedFundId) : null;
     const filteredBuildings = selectedFund
-      ? buildings.filter((b) => selectedFund.buildingIds.includes(b.id))
-      : buildings.filter((b) => !b.isArchived);
+      ? baseBuildings.filter((b) => selectedFund.buildingIds.includes(b.id))
+      : baseBuildings;
     const buildingIds = filteredBuildings.map((b) => b.id);
 
     // Active contracts scoped to filtered buildings
@@ -320,5 +328,5 @@ export function usePortfolioKPI(): PortfolioKPIs {
       totalM2,
       filteredBuildings,
     };
-  }, [buildings, contracts, costs, budgets, funds, selectedFundId, effectiveDateRange]);
+  }, [buildings, contracts, costs, budgets, funds, selectedFundId, effectiveDateRange, personaBuildingIds]);
 }

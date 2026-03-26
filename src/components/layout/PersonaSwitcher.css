@@ -1,0 +1,58 @@
+.persona-switcher { position: relative; }
+
+.persona-switcher__trigger {
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 10px;
+  background-color: var(--app-surface-raised);
+  border: 1px solid var(--app-border-mid);
+  border-radius: var(--radius-badge);
+  cursor: pointer; transition: border-color var(--transition); white-space: nowrap;
+}
+.persona-switcher__trigger:hover { border-color: var(--app-text-faint); }
+
+.persona-switcher__icon { color: var(--app-text-dim); flex-shrink: 0; }
+
+.persona-switcher__label {
+  font-size: var(--font-size-body); font-weight: 600; color: var(--app-text);
+}
+
+.persona-switcher__chevron {
+  color: var(--app-text-dim); font-size: 0.625rem; transition: transform var(--transition);
+}
+.persona-switcher__chevron--open { transform: rotate(180deg); }
+
+.persona-switcher__dropdown {
+  position: absolute; top: calc(100% + 4px); right: 0;
+  min-width: 220px; background-color: var(--app-surface-mid);
+  border: 1px solid var(--app-border-mid); border-radius: var(--radius-card);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); overflow: hidden; z-index: 200;
+}
+
+.persona-switcher__dropdown-header {
+  padding: 8px 14px; font-size: 0.625rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--app-text-dim);
+  border-bottom: 1px solid var(--app-border);
+}
+
+.persona-switcher__option {
+  display: flex; flex-direction: column; gap: 1px; width: 100%;
+  padding: 10px 14px; text-align: left; cursor: pointer;
+  transition: background-color var(--transition);
+}
+.persona-switcher__option:hover { background-color: var(--app-surface-raised); }
+
+.persona-switcher__option--active {
+  background-color: var(--app-surface-raised);
+  border-left: 2px solid var(--color-champagne);
+}
+
+.persona-switcher__option-label {
+  font-size: var(--font-size-body); font-weight: 600; color: var(--app-text);
+}
+.persona-switcher__option--active .persona-switcher__option-label {
+  color: var(--color-champagne);
+}
+
+.persona-switcher__option-desc {
+  font-size: 0.625rem; color: var(--app-text-dim);
+}
