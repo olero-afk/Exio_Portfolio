@@ -1,26 +1,57 @@
+import ReactApexChart from 'react-apexcharts';
+import type { ApexOptions } from 'apexcharts';
 import { ReportLayout } from '../../components/reports/ReportLayout.tsx';
-import { DiversificationCard } from '../../components/dashboard/DiversificationCard.tsx';
-import { formatNOK, formatPercent } from '../../utils/formatters.ts';
+import { usePortfolioContext } from '../../context/PortfolioContext.tsx';
+import { formatNOK, formatPercent, formatM2, formatNumber } from '../../utils/formatters.ts';
 import type { DiversificationSlice } from '../../types/index.ts';
+import type { PortfolioKPIs } from '../../hooks/usePortfolioKPI.ts';
+import './report-shared.css';
 
-function DataTable({ title, slices }: { title: string; slices: DiversificationSlice[] }) {
+const COLORS = ['#22d4e8', '#FED092', '#4ade80', '#a78bfa', '#fb923c', '#38bdf8', '#e879f9'];
+
+function DonutWithTable({
+  title,
+  slices,
+  columns,
+}: {
+  title: string;
+  slices: DiversificationSlice[];
+  columns: { header: string; align?: 'right'; render: (s: DiversificationSlice) => React.ReactNode }[];
+}) {
+  const display = slices.length > 7
+    ? [...slices.slice(0, 6), { label: 'Øvrige', value: slices.slice(6).reduce((s, x) => s + x.value, 0), percent: slices.slice(6).reduce((s, x) => s + x.percent, 0) }]
+    : slices;
+
+  const donutOpts: ApexOptions = {
+    chart: { type: 'donut', background: 'transparent', fontFamily: 'Inter, sans-serif' },
+    theme: { mode: 'dark' },
+    colors: COLORS.slice(0, display.length),
+    labels: display.map((s) => s.label),
+    legend: { position: 'bottom', labels: { colors: '#7a7a7a' }, fontSize: '9px', markers: { size: 4 }, itemMargin: { horizontal: 6, vertical: 2 } },
+    dataLabels: { enabled: false },
+    plotOptions: { pie: { donut: { size: '58%', labels: { show: false } } } },
+    stroke: { width: 1, colors: ['#1e1e1e'] },
+    tooltip: { theme: 'dark', y: { formatter: (v: number) => formatPercent(v) } },
+  };
+
   return (
-    <div style={{ backgroundColor: 'var(--app-surface)', border: '1px solid var(--app-border)', borderRadius: 'var(--radius-card)', padding: 'var(--padding-section)' }}>
-      <h3 style={{ fontSize: 'var(--font-size-label)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--app-text-muted)', marginBottom: 12 }}>{title}</h3>
-      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <div className="report-section">
+      <h3 className="report-section__title">{title}</h3>
+      <ReactApexChart options={donutOpts} series={display.map((s) => s.percent)} type="donut" height={240} />
+      <table className="report-table" style={{ marginTop: 14 }}>
         <thead>
           <tr>
-            <th style={{ padding: '8px 12px', borderBottom: '1px solid var(--app-border-mid)', textAlign: 'left', fontSize: 'var(--font-size-label)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--app-text-muted)' }}>Kategori</th>
-            <th style={{ padding: '8px 12px', borderBottom: '1px solid var(--app-border-mid)', textAlign: 'right', fontSize: 'var(--font-size-label)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--app-text-muted)' }}>Årlig leie</th>
-            <th style={{ padding: '8px 12px', borderBottom: '1px solid var(--app-border-mid)', textAlign: 'right', fontSize: 'var(--font-size-label)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--app-text-muted)' }}>Andel</th>
+            {columns.map((col) => (
+              <th key={col.header} data-align={col.align}>{col.header}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
           {slices.map((s) => (
             <tr key={s.label}>
-              <td style={{ padding: '10px 12px', borderBottom: '1px solid var(--app-border)', fontSize: 'var(--font-size-body)', color: 'var(--app-text-secondary)' }}>{s.label}</td>
-              <td style={{ padding: '10px 12px', borderBottom: '1px solid var(--app-border)', textAlign: 'right', fontSize: 'var(--font-size-body)', color: 'var(--app-text-secondary)' }}>{formatNOK(s.value)}</td>
-              <td style={{ padding: '10px 12px', borderBottom: '1px solid var(--app-border)', textAlign: 'right', fontSize: 'var(--font-size-body)', color: 'var(--app-text)' }}>{formatPercent(s.percent)}</td>
+              {columns.map((col) => (
+                <td key={col.header} data-align={col.align}>{col.render(s)}</td>
+              ))}
             </tr>
           ))}
         </tbody>
@@ -30,18 +61,76 @@ function DataTable({ title, slices }: { title: string; slices: DiversificationSl
 }
 
 export function DiversificationReport() {
+  const { contracts } = usePortfolioContext();
+
   return (
     <ReportLayout title="Diversifisering">
-      {(kpis) => (
-        <>
-          <DiversificationCard kpis={kpis} />
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
-            <DataTable title="Geografi" slices={kpis.diversification.byGeography} />
-            <DataTable title="Segment" slices={kpis.diversification.byAssetType} />
-            <DataTable title="Bransje" slices={kpis.diversification.byTenantIndustry} />
+      {(kpis: PortfolioKPIs) => {
+        const geoExtra = new Map<string, { count: number; m2: number }>();
+        for (const b of kpis.filteredBuildings) {
+          const key = b.address.municipality;
+          const e = geoExtra.get(key);
+          if (e) { e.count++; e.m2 += b.totalAreaM2; }
+          else geoExtra.set(key, { count: 1, m2: b.totalAreaM2 });
+        }
+
+        const typeExtra = new Map<string, { count: number; m2: number }>();
+        for (const b of kpis.filteredBuildings) {
+          const key = b.buildingType;
+          const e = typeExtra.get(key);
+          if (e) { e.count++; e.m2 += b.totalAreaM2; }
+          else typeExtra.set(key, { count: 1, m2: b.totalAreaM2 });
+        }
+
+        const industryTenants = new Map<string, Set<string>>();
+        const activeContracts = contracts.filter((c) =>
+          kpis.filteredBuildings.some((b) => b.id === c.buildingId) &&
+          (c.status === 'active' || c.status === 'expiring_soon'),
+        );
+        for (const c of activeContracts) {
+          const key = c.tenantIndustry ?? 'Ukjent';
+          const s = industryTenants.get(key);
+          if (s) s.add(c.tenantName);
+          else industryTenants.set(key, new Set([c.tenantName]));
+        }
+
+        return (
+          <div className="report-grid-3">
+            <DonutWithTable
+              title="Geografi"
+              slices={kpis.diversification.byGeography}
+              columns={[
+                { header: 'Kommune', render: (s) => s.label },
+                { header: 'Bygg', align: 'right', render: (s) => formatNumber(geoExtra.get(s.label)?.count ?? 0) },
+                { header: 'Total m²', align: 'right', render: (s) => formatM2(geoExtra.get(s.label)?.m2 ?? 0) },
+                { header: 'Årlig leie', align: 'right', render: (s) => formatNOK(s.value) },
+                { header: 'Andel', align: 'right', render: (s) => formatPercent(s.percent) },
+              ]}
+            />
+            <DonutWithTable
+              title="Segment"
+              slices={kpis.diversification.byAssetType}
+              columns={[
+                { header: 'Type', render: (s) => s.label },
+                { header: 'Bygg', align: 'right', render: (s) => formatNumber(typeExtra.get(s.label)?.count ?? 0) },
+                { header: 'Total m²', align: 'right', render: (s) => formatM2(typeExtra.get(s.label)?.m2 ?? 0) },
+                { header: 'Årlig leie', align: 'right', render: (s) => formatNOK(s.value) },
+                { header: 'Andel', align: 'right', render: (s) => formatPercent(s.percent) },
+              ]}
+            />
+            <DonutWithTable
+              title="Bransje"
+              slices={kpis.diversification.byTenantIndustry}
+              columns={[
+                { header: 'Bransje', render: (s) => s.label },
+                { header: 'Leietakere', align: 'right', render: (s) => formatNumber(industryTenants.get(s.label)?.size ?? 0) },
+                { header: 'Årlig leie', align: 'right', render: (s) => formatNOK(s.value) },
+                { header: 'Andel', align: 'right', render: (s) => formatPercent(s.percent) },
+              ]}
+            />
           </div>
-        </>
-      )}
+        );
+      }}
     </ReportLayout>
   );
 }
