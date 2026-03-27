@@ -18,27 +18,34 @@ export interface SummaryCard {
   link: string;
 }
 
-function buildEmpty(): { muligheter: SummaryCard; risiko: SummaryCard } {
+function buildEmpty(kpis: PortfolioKPIs): { muligheter: SummaryCard; risiko: SummaryCard } {
+  const topVacancy = [...kpis.filteredBuildings]
+    .map((b) => ({ name: b.name, cost: b.totalRentableM2 * (b.marketRentPerM2 ?? 0) }))
+    .filter((x) => x.cost > 0)
+    .sort((a, b) => b.cost - a.cost);
+
   return {
     muligheter: {
       type: 'muligheter',
       bullets: [
-        { action: 'Legg til kontrakter', detail: 'For å identifisere reforhandlingsmuligheter', amount: '' },
-        { action: 'Legg til driftskostnader', detail: 'For å avdekke kostnadsbesparelser', amount: '' },
-        { action: 'Sett markedsleie', detail: 'For å beregne ledighetskostnad', amount: '' },
+        { action: 'Legg til kontrakter', detail: 'For å identifisere reforhandlingsmuligheter og beregne NOI', amount: '' },
+        { action: 'Legg til driftskostnader', detail: 'For å avdekke kostnadsbesparelser per bygg', amount: '' },
+        { action: topVacancy[0] ? `Utleie ${topVacancy[0].name}` : 'Fullt utleibart areal', detail: topVacancy[0] ? `${formatM2(kpis.totalRentableM2)} ledig — markedsleie fra PlacePoint` : '', amount: topVacancy[0] ? `+${formatNOK(topVacancy[0].cost)}` : '' },
       ],
-      bottomLine: 'Legg til kontrakter og kostnader for AI-innsikt',
+      bottomLine: topVacancy.length > 0
+        ? `Ledighetskostnad: ${formatNOK(kpis.totalVacancyCost)}/år — legg til kontrakter for full analyse`
+        : 'Legg til kontrakter og kostnader for AI-innsikt',
       link: '/avtaler',
     },
     risiko: {
       type: 'risiko',
       bullets: [
-        { action: 'Kontraktsdata mangler', detail: 'Kan ikke vurdere utløpsrisiko', amount: '' },
-        { action: 'Kostnadsdata mangler', detail: 'Kan ikke identifisere kostutliggere', amount: '' },
-        { action: 'Fullfør datagrunnlaget', detail: 'For komplett risikoanalyse', amount: '' },
+        { action: `${formatNOK(kpis.totalVacancyCost)} ledighetskostnad`, detail: `100% av ${formatM2(kpis.totalRentableM2)} er ledig — ingen kontrakter registrert`, amount: formatNOK(kpis.totalVacancyCost) },
+        { action: 'Kontraktsdata mangler', detail: 'Kan ikke vurdere utløpsrisiko eller WAULT', amount: '' },
+        { action: 'Kostnadsdata mangler', detail: 'Kan ikke identifisere kostutliggere eller beregne NOI', amount: '' },
       ],
-      bottomLine: 'Legg til kontrakter og kostnader for AI-innsikt',
-      link: '/avtaler',
+      bottomLine: `Total risikoeksponering: ${formatNOK(kpis.totalVacancyCost)} i årlig ledighetskostnad`,
+      link: '/rapporter/ledighetsoversikt',
     },
   };
 }
@@ -49,7 +56,7 @@ export function useOpportunityRisk(kpis: PortfolioKPIs): { muligheter: SummaryCa
 
   return useMemo(() => {
     if (!kpis.hasContracts && !kpis.hasCosts) {
-      return buildEmpty();
+      return buildEmpty(kpis);
     }
     if (persona === 'eier') return buildEier(kpis, buildings, contracts, costs);
     if (persona === 'investor') return buildInvestor(kpis, buildings, contracts, costs, funds);

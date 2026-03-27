@@ -125,44 +125,68 @@ function buildForvalterInsights(kpis: PortfolioKPIs, clientData: { name: string;
 }
 
 function buildEmptyInsights(kpis: PortfolioKPIs): Insight[] {
+  // Build type breakdown
+  const typeMap = new Map<string, number>();
+  for (const b of kpis.filteredBuildings) {
+    typeMap.set(b.buildingType, (typeMap.get(b.buildingType) ?? 0) + 1);
+  }
+  const typeBreakdown = Array.from(typeMap.entries())
+    .sort((a, b) => b[1] - a[1])
+    .map(([type, count]) => `${count} ${type.toLowerCase()}`)
+    .join(', ');
+
+  // Top vacancy buildings
+  const vacancyRanked = [...kpis.filteredBuildings]
+    .map((b) => ({ name: b.name, cost: b.totalRentableM2 * (b.marketRentPerM2 ?? 0) }))
+    .filter((b) => b.cost > 0)
+    .sort((a, b) => b.cost - a.cost);
+
   return [
     {
-      id: 'yield',
-      title: 'YIELD-SPREAD',
-      value: '—',
-      context: 'Mangler kostnadsdata',
-      bullets: ['Legg til driftskostnader for å beregne yield', `${kpis.buildingCount} bygg registrert`],
-      severity: 'info',
-      link: '/bygg',
+      id: 'vacancy',
+      title: 'LEDIGHETSKOSTNAD',
+      value: formatNOK(kpis.totalVacancyCost),
+      context: `${kpis.buildingCount} bygg · ${formatM2(kpis.totalRentableM2)} utleibart · 100% ledig`,
+      bullets: vacancyRanked.slice(0, 3).map((b) => `${b.name}: ${formatNOK(b.cost)}/år`),
+      severity: kpis.totalVacancyCost > 0 ? 'negative' : 'info',
+      link: '/rapporter/ledighetsoversikt',
     },
     {
-      id: 'conc',
-      title: 'KONSENTRASJONSRISIKO',
-      value: '—',
-      context: 'Mangler kontraktsdata',
-      bullets: ['Legg til leiekontrakter for å se konsentrasjonsrisiko'],
-      severity: 'info',
+      id: 'occ',
+      title: 'UTLEIEGRAD',
+      value: '0,0 %',
+      context: `0 av ${formatM2(kpis.totalRentableM2)} utleid — legg til kontrakter`,
+      bullets: [
+        `Totalt: ${formatM2(kpis.totalM2)} BRA`,
+        `Utleibart: ${formatM2(kpis.totalRentableM2)}`,
+        'Legg til kontrakter for utleieberegning',
+      ],
+      severity: 'warning',
       link: '/avtaler',
     },
     {
       id: 'wault',
       title: 'WAULT',
-      value: '—',
-      context: 'Mangler kontraktsdata',
-      bullets: ['Legg til leiekontrakter for å beregne WAULT'],
+      value: '— år',
+      context: 'Ingen kontrakter registrert',
+      bullets: [
+        'Legg til leiekontrakter for å beregne WAULT',
+        `${kpis.buildingCount} bygg venter på kontraktsdata`,
+      ],
       severity: 'info',
       link: '/avtaler',
     },
     {
-      id: 'noiyield',
-      title: 'NOI-YIELD',
-      value: '—',
-      context: 'Mangler kostnadsdata',
+      id: 'portfolio',
+      title: 'PORTEFØLJE',
+      value: `${kpis.buildingCount} bygg`,
+      context: `${formatM2(kpis.totalM2)} BRA · ${typeBreakdown}`,
       bullets: [
         `Porteføljeverdi: ${formatNOK(kpis.totalPortfolioValue)}`,
-        'Legg til kostnader og kontrakter for NOI-beregning',
+        `Tomt: ${formatM2(kpis.filteredBuildings.reduce((s, b) => s + (b.plotAreaM2 ?? 0), 0))}`,
+        'Data hentet automatisk fra PlacePoint',
       ],
-      severity: 'info',
+      severity: 'positive',
       link: '/bygg',
     },
   ];

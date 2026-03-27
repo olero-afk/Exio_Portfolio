@@ -29,13 +29,20 @@ export function StepGjennomgang() {
     return role?.confirmedRole === 'forvalter';
   });
 
+  const totalArea = selectedBuildings.reduce((s, b) => s + (b.bruksareal ?? 0), 0);
+
   // Warnings
   const warnings: string[] = [];
   const missingEnergy = selectedBuildings.filter((b) => !b.energimerke).length;
   if (missingEnergy > 0) {
     warnings.push(`${missingEnergy} bygg mangler energimerke`);
   }
-  warnings.push('Ingen kontrakter registrert ennå');
+  const oldBuildings = selectedBuildings.filter((b) => b.byggeaar && b.byggeaar < 1980).length;
+  if (oldBuildings > 0) {
+    warnings.push(`${oldBuildings} bygg eldre enn 1980 — vurder tilstandsvurdering`);
+  }
+  warnings.push('Ingen kontrakter registrert ennå — legg til etter onboarding');
+  warnings.push('Ingen driftskostnader registrert — NOI kan ikke beregnes før data er lagt til');
 
   return (
     <OnboardingLayout
@@ -51,7 +58,9 @@ export function StepGjennomgang() {
       <div className="onb-card step-review__summary-card">
         <div className="step-review__summary-name">{companyDisplayName}</div>
         <div className="step-review__summary-stats">
-          <span>{selectedBuildings.length} bygg totalt</span>
+          <span>{selectedBuildings.length} bygg</span>
+          <span className="step-review__dot">·</span>
+          <span>{totalArea.toLocaleString('nb-NO')} m²</span>
           <span className="step-review__dot">·</span>
           <span style={{ color: ROLE_COLORS.eier }}>{eierBuildings.length} eid</span>
           <span className="step-review__dot">·</span>
@@ -70,9 +79,9 @@ export function StepGjennomgang() {
             <div className="step-review__group-list">
               {eierBuildings.map((b) => (
                 <div key={b.id} className="step-review__building-item">
-                  <span>{b.adresse.adressetekst}</span>
+                  <span>{b.adresse.adressetekst}, {b.adresse.poststed}</span>
                   <span className="step-review__building-meta">
-                    {b.adresse.kommunenavn} · {b.bruksareal?.toLocaleString('nb-NO')} m²
+                    {b.bygningstype.beskrivelse} · {b.bruksareal?.toLocaleString('nb-NO')} m² · {b.energimerke?.karakter ?? '—'}
                   </span>
                 </div>
               ))}
@@ -88,9 +97,9 @@ export function StepGjennomgang() {
             <div className="step-review__group-list">
               {investorBuildings.map((b) => (
                 <div key={b.id} className="step-review__building-item">
-                  <span>{b.adresse.adressetekst}</span>
+                  <span>{b.adresse.adressetekst}, {b.adresse.poststed}</span>
                   <span className="step-review__building-meta">
-                    {b.adresse.kommunenavn} · {b.bruksareal?.toLocaleString('nb-NO')} m²
+                    {b.bygningstype.beskrivelse} · {b.bruksareal?.toLocaleString('nb-NO')} m² · {b.energimerke?.karakter ?? '—'}
                   </span>
                 </div>
               ))}
@@ -106,9 +115,9 @@ export function StepGjennomgang() {
             <div className="step-review__group-list">
               {forvalterBuildings.map((b) => (
                 <div key={b.id} className="step-review__building-item">
-                  <span>{b.adresse.adressetekst}</span>
+                  <span>{b.adresse.adressetekst}, {b.adresse.poststed}</span>
                   <span className="step-review__building-meta">
-                    {b.adresse.kommunenavn} · {b.bruksareal?.toLocaleString('nb-NO')} m²
+                    {b.bygningstype.beskrivelse} · {b.bruksareal?.toLocaleString('nb-NO')} m² · {b.energimerke?.karakter ?? '—'}
                   </span>
                 </div>
               ))}

@@ -498,7 +498,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .step-bygg__toggle-all {
@@ -521,113 +521,9 @@
 .step-bygg__list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  max-height: 440px;
-  overflow-y: auto;
-}
-
-.step-bygg__card {
-  display: flex;
-  gap: 16px;
-  padding: 16px;
-  transition: all 0.25s ease;
-}
-
-.step-bygg__card--selected {
-  border-color: rgba(254, 208, 146, 0.3);
-  background: rgba(254, 208, 146, 0.04);
-}
-
-.step-bygg__card-check {
-  display: flex;
-  align-items: flex-start;
-  padding-top: 2px;
-}
-
-.step-bygg__checkbox {
-  width: 20px;
-  height: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.15);
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.25s ease;
-  flex-shrink: 0;
-}
-
-.step-bygg__checkbox--checked {
-  background: #FED092;
-  border-color: #FED092;
-}
-
-.step-bygg__card-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.step-bygg__card-top {
-  display: flex;
-  align-items: center;
   gap: 10px;
-  flex-wrap: wrap;
-}
-
-.step-bygg__card-address {
-  font-size: 14px;
-  font-weight: 600;
-  color: #e8e8e8;
-}
-
-.step-bygg__card-type-badge {
-  padding: 2px 8px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 4px;
-  font-size: 11px;
-  color: #9a9a9a;
-}
-
-.step-bygg__card-year {
-  font-size: 12px;
-  color: #7a7a7a;
-}
-
-.step-bygg__card-meta {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 12px;
-  color: #9a9a9a;
-}
-
-.step-bygg__energy-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 3px;
-  font-size: 11px;
-  font-weight: 700;
-  color: #fff;
-}
-
-.step-bygg__no-energy {
-  color: #5a5a5a;
-  font-style: italic;
-}
-
-.step-bygg__card-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.step-bygg__card-owner {
-  font-size: 12px;
-  color: #7a7a7a;
+  max-height: 560px;
+  overflow-y: auto;
 }
 
 .step-bygg__manual-add {
@@ -655,6 +551,223 @@
   text-align: center;
   color: #7a7a7a;
   font-size: 13px;
+}
+
+/* --- Discovery Card (enriched PlacePoint card) --- */
+.disc-card {
+  display: flex;
+  gap: 14px;
+  padding: 16px;
+  background: #1e1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-left: 3px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.disc-card:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.12);
+  border-left-color: rgba(255, 255, 255, 0.12);
+}
+
+.disc-card--selected {
+  border-left-color: #FED092;
+  background: rgba(254, 208, 146, 0.03);
+}
+
+.disc-card--selected:hover {
+  border-left-color: #FED092;
+}
+
+.disc-card__check {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 2px;
+  flex-shrink: 0;
+}
+
+.disc-card__checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+.disc-card__checkbox--checked {
+  background: #FED092;
+  border-color: #FED092;
+}
+
+.disc-card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.disc-card__row1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.disc-card__address {
+  font-size: 14px;
+  font-weight: 700;
+  color: #e8e8e8;
+}
+
+.disc-card__type-badge {
+  padding: 3px 10px;
+  background: rgba(34, 212, 232, 0.12);
+  color: #22d4e8;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.disc-card__owner {
+  font-size: 12px;
+  color: #9a9a9a;
+}
+
+.disc-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #c8c8c8;
+  flex-wrap: wrap;
+}
+
+.disc-card__meta-label {
+  color: #7a7a7a;
+}
+
+.disc-card__sep {
+  color: #5a5a5a;
+}
+
+.disc-card__energy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.disc-card__na {
+  color: #5a5a5a;
+  font-style: italic;
+  font-size: 12px;
+}
+
+.disc-card__units {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #c8c8c8;
+  flex-wrap: wrap;
+}
+
+.disc-card__market {
+  font-size: 12px;
+  color: #9a9a9a;
+}
+
+.disc-card__market-source {
+  font-size: 10px;
+  color: #5a5a5a;
+  margin-left: 6px;
+}
+
+.disc-card__role-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.disc-card__role-select {
+  padding: 4px 10px;
+  background: #2a2a2a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.25s ease;
+}
+
+.disc-card__role-select:focus {
+  border-color: #FED092;
+}
+
+/* --- Shimmer skeleton loading --- */
+.step-bygg__skeleton-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.step-bygg__skeleton-label {
+  font-size: 13px;
+  color: #9a9a9a;
+  margin-bottom: 4px;
+}
+
+.disc-card--skeleton {
+  pointer-events: none;
+  cursor: default;
+}
+
+.disc-card__shimmer {
+  border-radius: 4px;
+  background: linear-gradient(90deg, #2a2a2a 25%, #333 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+  animation: disc-shimmer 1.5s ease-in-out infinite;
+}
+
+.disc-card__shimmer--title {
+  width: 65%;
+  height: 16px;
+}
+
+.disc-card__shimmer--subtitle {
+  width: 45%;
+  height: 12px;
+}
+
+.disc-card__shimmer--meta {
+  width: 80%;
+  height: 12px;
+}
+
+.disc-card__shimmer--meta2 {
+  width: 55%;
+  height: 12px;
+}
+
+@keyframes disc-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 /* ====== Step 4: Roller ====== */
@@ -717,8 +830,25 @@
   vertical-align: middle;
 }
 
-.step-roller__cell-name {
+.step-roller__cell-addr {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.step-roller__cell-street {
+  font-size: 13px;
   font-weight: 600;
+  color: #e8e8e8;
+}
+
+.step-roller__cell-city {
+  font-size: 11px;
+  color: #7a7a7a;
+}
+
+.step-roller__summary-item--total {
+  border-left-color: #5a5a5a;
 }
 
 .step-roller__cell-num {

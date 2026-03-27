@@ -110,7 +110,7 @@ export function StepFerdig() {
         ownerName: ppb.hjemmelshaver.navn,
         ownershipMismatch: false,
         priceStatsPerM2: ppb.prisstatistikk?.prisPerKvm ?? null,
-        marketRentPerM2: ppb.bygningstype.beskrivelse === 'Lagerbygg' ? 1200 : ppb.bygningstype.beskrivelse === 'Butikkbygning' ? 2800 : 2400,
+        marketRentPerM2: ppb.prisstatistikk?.prisPerKvm ?? (ppb.bygningstype.beskrivelse === 'Lagerbygg' ? 1100 : 2400),
         purchasePrice: null,
         estimatedMarketValue: (ppb.bruksareal ?? 0) * (ppb.prisstatistikk?.prisPerKvm ?? 40000),
         acquisitionDate: null,

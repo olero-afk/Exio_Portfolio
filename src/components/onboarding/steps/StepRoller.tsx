@@ -22,7 +22,9 @@ export function StepRoller() {
     selectedBuildingIds.includes(b.id),
   );
 
-  const roleCounts = buildingRoles.reduce(
+  // Count roles only for selected buildings
+  const selectedRoles = buildingRoles.filter((r) => selectedBuildingIds.includes(r.buildingId));
+  const roleCounts = selectedRoles.reduce(
     (acc, r) => {
       acc[r.confirmedRole] = (acc[r.confirmedRole] || 0) + 1;
       return acc;
@@ -30,11 +32,13 @@ export function StepRoller() {
     {} as Record<string, number>,
   );
 
+  const totalArea = selectedBuildings.reduce((s, b) => s + (b.bruksareal ?? 0), 0);
+
   return (
     <OnboardingLayout onNext={() => setStep(5)} onBack={() => setStep(3)}>
       <h2 className="onb-heading">Roller per bygg</h2>
       <p className="onb-subheading">
-        Vi har automatisk detektert din rolle per bygg. Du kan endre roller og tildele fond.
+        Automatisk detektert basert på hjemmelshaver og konsernstruktur. Endre roller eller tildel fond nedenfor.
       </p>
 
       <div className="step-roller__summary">
@@ -44,16 +48,19 @@ export function StepRoller() {
             <span className="step-roller__summary-label">bygg som {ROLE_LABELS[role]}</span>
           </div>
         ))}
+        <div className="step-roller__summary-item step-roller__summary-item--total">
+          <span className="step-roller__summary-count">{totalArea.toLocaleString('nb-NO')}</span>
+          <span className="step-roller__summary-label">m² totalt</span>
+        </div>
       </div>
 
       <div className="step-roller__table-wrap">
         <table className="step-roller__table">
           <thead>
             <tr>
-              <th>Bygg</th>
               <th>Adresse</th>
               <th>Type</th>
-              <th>m²</th>
+              <th>BRA</th>
               <th>Hjemmelshaver</th>
               <th>Din rolle</th>
               <th>Fond</th>
@@ -66,10 +73,12 @@ export function StepRoller() {
               const currentRole = roleAssignment.confirmedRole;
               return (
                 <tr key={b.id}>
-                  <td className="step-roller__cell-name">
-                    {b.adresse.kommunenavn}
+                  <td>
+                    <div className="step-roller__cell-addr">
+                      <span className="step-roller__cell-street">{b.adresse.adressetekst}</span>
+                      <span className="step-roller__cell-city">{b.adresse.postnummer} {b.adresse.poststed}</span>
+                    </div>
                   </td>
-                  <td>{b.adresse.adressetekst}</td>
                   <td>
                     <span className="step-roller__type-badge">
                       {b.bygningstype.beskrivelse}
