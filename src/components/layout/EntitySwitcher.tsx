@@ -1,13 +1,15 @@
 import { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { usePortfolioContext } from '../../context/PortfolioContext.tsx';
 import './EntitySwitcher.css';
 
 export function EntitySwitcher() {
-  const { companies, activeCompanyId, setActiveCompanyId } = usePortfolioContext();
+  const { kundebaser, activeKundebaseId, setActiveKundebaseId } = usePortfolioContext();
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
-  const activeCompany = companies.find((c) => c.id === activeCompanyId);
+  const activeKb = kundebaser.find((kb) => kb.id === activeKundebaseId);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -27,7 +29,7 @@ export function EntitySwitcher() {
       >
         <span className="entity-switcher__label">Kundebase:</span>
         <span className="entity-switcher__name">
-          {activeCompany?.name ?? 'Velg selskap'}
+          {activeKb?.name ?? 'Velg kundebase'}
         </span>
         <span className={`entity-switcher__chevron ${isOpen ? 'entity-switcher__chevron--open' : ''}`}>
           ▾
@@ -36,19 +38,44 @@ export function EntitySwitcher() {
 
       {isOpen && (
         <div className="entity-switcher__dropdown">
-          {companies.map((company) => (
-            <button
-              key={company.id}
-              className={`entity-switcher__option ${company.id === activeCompanyId ? 'entity-switcher__option--active' : ''}`}
-              onClick={() => {
-                setActiveCompanyId(company.id);
-                setIsOpen(false);
-              }}
-            >
-              <span className="entity-switcher__option-name">{company.name}</span>
-              <span className="entity-switcher__option-org">Org.nr: {company.orgNr}</span>
-            </button>
-          ))}
+          {kundebaser.map((kb) => {
+            const isActive = kb.id === activeKundebaseId;
+            return (
+              <button
+                key={kb.id}
+                className={`entity-switcher__option ${isActive ? 'entity-switcher__option--active' : ''}`}
+                onClick={() => {
+                  setActiveKundebaseId(kb.id);
+                  setIsOpen(false);
+                }}
+              >
+                <div className="entity-switcher__option-row">
+                  <span className="entity-switcher__option-name">{kb.name}</span>
+                  {isActive && (
+                    <svg className="entity-switcher__check" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <path d="M2 7L5.5 10.5L12 3.5" stroke="#FED092" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  )}
+                </div>
+                <span className="entity-switcher__option-org">
+                  Org.nr: {kb.orgNr} · {kb.buildings.length} bygg
+                </span>
+              </button>
+            );
+          })}
+
+          <div className="entity-switcher__divider" />
+
+          <button
+            className="entity-switcher__add-btn"
+            onClick={() => {
+              setIsOpen(false);
+              navigate('/onboarding');
+            }}
+          >
+            <span className="entity-switcher__add-icon">+</span>
+            Legg til kundebase
+          </button>
         </div>
       )}
     </div>

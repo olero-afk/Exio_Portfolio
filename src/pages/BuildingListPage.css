@@ -4,6 +4,13 @@
   gap: 16px;
 }
 
+.building-list__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
 .building-list__title {
   font-size: 1.25rem;
   font-weight: 700;
@@ -13,6 +20,26 @@
 .building-list__count {
   font-size: var(--font-size-body);
   color: var(--app-text-muted);
+  margin-top: 2px;
+}
+
+.building-list__add-btn {
+  padding: 8px 20px;
+  background: var(--color-champagne);
+  color: #1a1a1a;
+  border: none;
+  border-radius: var(--radius-card);
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background var(--transition);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.building-list__add-btn:hover {
+  background: #ffc56e;
 }
 
 .building-list__grid {

@@ -1,0 +1,924 @@
+/* ====== Step 1: Selskap ====== */
+.step-selskap__search {
+  margin-bottom: 24px;
+}
+
+.step-selskap__label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #9a9a9a;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.step-selskap__search-row {
+  display: flex;
+  gap: 12px;
+}
+
+.step-selskap__search-row .onb-input {
+  flex: 1;
+}
+
+.step-selskap__not-found {
+  padding: 16px;
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.2);
+  border-radius: 8px;
+  color: #f87171;
+  font-size: 13px;
+  margin-top: 16px;
+}
+
+.step-selskap__result {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 16px;
+}
+
+.step-selskap__company-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.step-selskap__company-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #e8e8e8;
+}
+
+.step-selskap__company-meta {
+  font-size: 12px;
+  color: #9a9a9a;
+  margin-top: 4px;
+}
+
+.step-selskap__status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.step-selskap__status--ok {
+  color: #4ade80;
+}
+
+.step-selskap__details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.step-selskap__detail {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.step-selskap__detail-label {
+  color: #7a7a7a;
+  min-width: 100px;
+  flex-shrink: 0;
+}
+
+.step-selskap__konsern {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.step-selskap__konsern-list {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.step-selskap__konsern-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #2a2a2a;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.step-selskap__konsern-name {
+  color: #e8e8e8;
+}
+
+.step-selskap__konsern-org {
+  color: #7a7a7a;
+  font-size: 12px;
+  font-family: monospace;
+}
+
+.step-selskap__edit-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.step-selskap__logo-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.step-selskap__logo-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  width: fit-content;
+}
+
+.step-selskap__logo-tab {
+  padding: 8px 20px;
+  background: transparent;
+  border: none;
+  color: #9a9a9a;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.25s ease;
+}
+
+.step-selskap__logo-tab--active {
+  background: #2a2a2a;
+  color: #FED092;
+}
+
+.step-selskap__logo-tab:not(.step-selskap__logo-tab--active):hover {
+  color: #e8e8e8;
+}
+
+.step-selskap__logo-url-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.step-selskap__logo-url-row {
+  display: flex;
+  gap: 12px;
+}
+
+.step-selskap__logo-url-row .onb-input {
+  flex: 1;
+}
+
+.step-selskap__logo-hint {
+  font-size: 12px;
+  color: #5a5a5a;
+  margin: 0;
+}
+
+.step-selskap__logo-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 32px;
+  border: 2px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #7a7a7a;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.step-selskap__logo-dropzone:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.step-selskap__logo-dropzone--dragover {
+  border-color: #FED092;
+  background: rgba(254, 208, 146, 0.04);
+}
+
+.step-selskap__logo-formats {
+  font-size: 11px;
+  color: #5a5a5a;
+}
+
+.step-selskap__logo-preview {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 12px;
+  padding: 12px 16px;
+  background: #1e1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+}
+
+.step-selskap__logo-preview-img-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: #2a2a2a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.step-selskap__logo-preview-img {
+  max-width: 48px;
+  max-height: 48px;
+  object-fit: contain;
+}
+
+.step-selskap__logo-remove {
+  background: none;
+  border: none;
+  color: #f87171;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  text-decoration: underline;
+  margin-left: auto;
+}
+
+.step-selskap__logo-remove:hover {
+  color: #ef4444;
+}
+
+.step-selskap__logo-error {
+  padding: 10px 14px;
+  background: rgba(248, 113, 113, 0.08);
+  border: 1px solid rgba(248, 113, 113, 0.15);
+  border-radius: 8px;
+  color: #f87171;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+/* Building list inline in company card */
+.step-selskap__buildings-inline {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.step-selskap__buildings-inline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.step-selskap__buildings-inline-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #9a9a9a;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.step-selskap__buildings-inline-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.step-selskap__buildings-toggle {
+  background: none;
+  border: none;
+  color: #FED092;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.step-selskap__buildings-count {
+  font-size: 12px;
+  color: #7a7a7a;
+}
+
+.step-selskap__buildings-inline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+.step-selskap__building-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: #2a2a2a;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: 1px solid transparent;
+}
+
+.step-selskap__building-row:hover {
+  background: #303030;
+}
+
+.step-selskap__building-row--selected {
+  border-color: rgba(254, 208, 146, 0.25);
+  background: rgba(254, 208, 146, 0.06);
+}
+
+.step-selskap__building-check {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+.step-selskap__building-check--checked {
+  background: #FED092;
+  border-color: #FED092;
+}
+
+.step-selskap__building-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.step-selskap__building-address {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e8e8e8;
+}
+
+.step-selskap__building-owner {
+  font-size: 11px;
+  color: #7a7a7a;
+}
+
+.step-selskap__buildings-inline-loading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 0;
+  margin-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  color: #9a9a9a;
+  font-size: 13px;
+}
+
+.step-selskap__buildings-inline-loading .onb-spinner {
+  width: 20px;
+  height: 20px;
+}
+
+.step-selskap__buildings-inline-empty {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  color: #7a7a7a;
+  font-size: 13px;
+  text-align: center;
+  padding-bottom: 8px;
+}
+
+/* ====== Step 2: Team ====== */
+.step-team__add-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.step-team__email-input {
+  flex: 1;
+}
+
+.step-team__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 48px 0;
+  color: #7a7a7a;
+  font-size: 13px;
+  text-align: center;
+}
+
+.step-team__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.step-team__member {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+}
+
+.step-team__member-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.step-team__member-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #2a2a2a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #FED092;
+}
+
+.step-team__member-email {
+  font-size: 14px;
+  font-weight: 500;
+  color: #e8e8e8;
+}
+
+.step-team__member-role {
+  font-size: 12px;
+  color: #9a9a9a;
+}
+
+.step-team__remove-btn {
+  background: none;
+  border: none;
+  color: #7a7a7a;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color 0.25s ease;
+}
+
+.step-team__remove-btn:hover {
+  color: #f87171;
+}
+
+/* ====== Step 3: Bygg ====== */
+.step-bygg__search-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.step-bygg__search-row .onb-input {
+  flex: 1;
+}
+
+.step-bygg__toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.step-bygg__toggle-all {
+  background: none;
+  border: none;
+  color: #FED092;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.step-bygg__counter {
+  font-size: 13px;
+  color: #9a9a9a;
+}
+
+.step-bygg__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 440px;
+  overflow-y: auto;
+}
+
+.step-bygg__card {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  transition: all 0.25s ease;
+}
+
+.step-bygg__card--selected {
+  border-color: rgba(254, 208, 146, 0.3);
+  background: rgba(254, 208, 146, 0.04);
+}
+
+.step-bygg__card-check {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 2px;
+}
+
+.step-bygg__checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+
+.step-bygg__checkbox--checked {
+  background: #FED092;
+  border-color: #FED092;
+}
+
+.step-bygg__card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.step-bygg__card-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.step-bygg__card-address {
+  font-size: 14px;
+  font-weight: 600;
+  color: #e8e8e8;
+}
+
+.step-bygg__card-type-badge {
+  padding: 2px 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  font-size: 11px;
+  color: #9a9a9a;
+}
+
+.step-bygg__card-year {
+  font-size: 12px;
+  color: #7a7a7a;
+}
+
+.step-bygg__card-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: #9a9a9a;
+}
+
+.step-bygg__energy-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.step-bygg__no-energy {
+  color: #5a5a5a;
+  font-style: italic;
+}
+
+.step-bygg__card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.step-bygg__card-owner {
+  font-size: 12px;
+  color: #7a7a7a;
+}
+
+.step-bygg__manual-add {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.step-bygg__manual-btn {
+  background: none;
+  border: none;
+  color: #9a9a9a;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  text-decoration: underline;
+  padding: 8px 16px;
+}
+
+.step-bygg__manual-btn:hover {
+  color: #e8e8e8;
+}
+
+.step-bygg__empty {
+  padding: 48px 0;
+  text-align: center;
+  color: #7a7a7a;
+  font-size: 13px;
+}
+
+/* ====== Step 4: Roller ====== */
+.step-roller__summary {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.step-roller__summary-item {
+  flex: 1;
+  padding: 12px 16px;
+  background: #1e1e1e;
+  border-left: 3px solid;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.step-roller__summary-count {
+  font-size: 24px;
+  font-weight: 800;
+  color: #e8e8e8;
+}
+
+.step-roller__summary-label {
+  font-size: 11px;
+  color: #9a9a9a;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.step-roller__table-wrap {
+  overflow-x: auto;
+}
+
+.step-roller__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.step-roller__table th {
+  text-align: left;
+  padding: 10px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #7a7a7a;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  white-space: nowrap;
+}
+
+.step-roller__table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: #e8e8e8;
+  vertical-align: middle;
+}
+
+.step-roller__cell-name {
+  font-weight: 600;
+}
+
+.step-roller__cell-num {
+  text-align: right;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+.step-roller__cell-owner {
+  color: #9a9a9a;
+  font-size: 12px;
+}
+
+.step-roller__type-badge {
+  padding: 2px 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  font-size: 11px;
+  color: #9a9a9a;
+  white-space: nowrap;
+}
+
+.step-roller__role-select {
+  font-weight: 600;
+}
+
+/* ====== Step 5: Gjennomgang ====== */
+.step-review__summary-card {
+  text-align: center;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.step-review__summary-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #e8e8e8;
+  margin-bottom: 8px;
+}
+
+.step-review__summary-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #9a9a9a;
+}
+
+.step-review__dot {
+  color: #5a5a5a;
+}
+
+.step-review__sections {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.step-review__group {
+  background: #1e1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.step-review__group-header {
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #e8e8e8;
+  border-left: 3px solid;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.step-review__group-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.step-review__building-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  font-size: 13px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.step-review__building-meta {
+  font-size: 12px;
+  color: #7a7a7a;
+}
+
+.step-review__warnings {
+  background: rgba(234, 179, 8, 0.06);
+  border: 1px solid rgba(234, 179, 8, 0.15);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.step-review__warnings-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #eab308;
+  margin-bottom: 10px;
+}
+
+.step-review__warning-item {
+  font-size: 13px;
+  color: #c8c8c8;
+  padding: 4px 0 4px 24px;
+  position: relative;
+}
+
+.step-review__warning-item::before {
+  content: '•';
+  position: absolute;
+  left: 10px;
+  color: #eab308;
+}
+
+/* ====== Step 6: Ferdig ====== */
+.step-ferdig {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 0;
+}
+
+.step-ferdig__icon {
+  margin-bottom: 24px;
+  animation: step-ferdig-pop 0.5s ease;
+}
+
+@keyframes step-ferdig-pop {
+  0% { transform: scale(0.5); opacity: 0; }
+  60% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.step-ferdig__heading {
+  font-size: 24px;
+  font-weight: 800;
+  color: #e8e8e8;
+  margin: 0 0 8px;
+}
+
+.step-ferdig__stats {
+  font-size: 14px;
+  color: #9a9a9a;
+  margin-bottom: 32px;
+}
+
+.step-ferdig__checklist {
+  width: 100%;
+  max-width: 400px;
+  text-align: left;
+  margin-bottom: 40px;
+}
+
+.step-ferdig__checklist-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #7a7a7a;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+.step-ferdig__checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  font-size: 14px;
+  color: #c8c8c8;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.step-ferdig__checklist-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #2a2a2a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #7a7a7a;
+  flex-shrink: 0;
+}
+
+.step-ferdig__cta {
+  padding: 14px 40px;
+  font-size: 16px;
+}

@@ -18,11 +18,39 @@ export interface SummaryCard {
   link: string;
 }
 
+function buildEmpty(): { muligheter: SummaryCard; risiko: SummaryCard } {
+  return {
+    muligheter: {
+      type: 'muligheter',
+      bullets: [
+        { action: 'Legg til kontrakter', detail: 'For å identifisere reforhandlingsmuligheter', amount: '' },
+        { action: 'Legg til driftskostnader', detail: 'For å avdekke kostnadsbesparelser', amount: '' },
+        { action: 'Sett markedsleie', detail: 'For å beregne ledighetskostnad', amount: '' },
+      ],
+      bottomLine: 'Legg til kontrakter og kostnader for AI-innsikt',
+      link: '/avtaler',
+    },
+    risiko: {
+      type: 'risiko',
+      bullets: [
+        { action: 'Kontraktsdata mangler', detail: 'Kan ikke vurdere utløpsrisiko', amount: '' },
+        { action: 'Kostnadsdata mangler', detail: 'Kan ikke identifisere kostutliggere', amount: '' },
+        { action: 'Fullfør datagrunnlaget', detail: 'For komplett risikoanalyse', amount: '' },
+      ],
+      bottomLine: 'Legg til kontrakter og kostnader for AI-innsikt',
+      link: '/avtaler',
+    },
+  };
+}
+
 export function useOpportunityRisk(kpis: PortfolioKPIs): { muligheter: SummaryCard; risiko: SummaryCard } {
   const { persona, clients } = usePersona();
   const { buildings, contracts, costs, funds } = usePortfolioContext();
 
   return useMemo(() => {
+    if (!kpis.hasContracts && !kpis.hasCosts) {
+      return buildEmpty();
+    }
     if (persona === 'eier') return buildEier(kpis, buildings, contracts, costs);
     if (persona === 'investor') return buildInvestor(kpis, buildings, contracts, costs, funds);
     return buildForvalter(kpis, buildings, contracts, costs, clients);

@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { PortfolioProvider } from './context/PortfolioContext.tsx';
 import { FilterProvider } from './context/FilterContext.tsx';
 import { PersonaProvider } from './context/PersonaContext.tsx';
+import { OnboardingProvider } from './context/OnboardingContext.tsx';
 import { MainLayout } from './components/layout/MainLayout.tsx';
 import { DashboardPage } from './pages/DashboardPage.tsx';
 import { BuildingListPage } from './pages/BuildingListPage.tsx';
@@ -22,14 +23,17 @@ import { CovenantReport } from './pages/reports/CovenantReport.tsx';
 import { BenchmarkReport } from './pages/reports/BenchmarkReport.tsx';
 import { PlaceholderPage } from './pages/PlaceholderPage.tsx';
 import { FundViewPage } from './pages/FundViewPage.tsx';
+import { OnboardingPage } from './pages/OnboardingPage.tsx';
 
 function App() {
   return (
     <BrowserRouter>
       <PortfolioProvider>
+        <OnboardingProvider>
         <PersonaProvider>
         <FilterProvider>
           <Routes>
+            <Route path="onboarding" element={<OnboardingPage />} />
             <Route element={<MainLayout />}>
               <Route index element={<DashboardPage />} />
               <Route path="fond/:fondId" element={<FundViewPage />} />
@@ -60,6 +64,7 @@ function App() {
           </Routes>
         </FilterProvider>
         </PersonaProvider>
+        </OnboardingProvider>
       </PortfolioProvider>
     </BrowserRouter>
   );

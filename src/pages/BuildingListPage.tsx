@@ -1,17 +1,27 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { usePortfolioContext } from '../context/PortfolioContext.tsx';
 import { formatM2, formatPercent } from '../utils/formatters.ts';
 import { StatusBadge } from '../components/shared/StatusBadge.tsx';
+import { AddBuildingModal } from '../components/building/AddBuildingModal.tsx';
 import './BuildingListPage.css';
 
 export function BuildingListPage() {
   const { buildings } = usePortfolioContext();
   const active = buildings.filter((b) => !b.isArchived);
+  const [showAddModal, setShowAddModal] = useState(false);
 
   return (
     <div className="building-list">
-      <h1 className="building-list__title">Bygg</h1>
-      <p className="building-list__count">{active.length} bygninger i porteføljen</p>
+      <div className="building-list__header">
+        <div>
+          <h1 className="building-list__title">Bygg</h1>
+          <p className="building-list__count">{active.length} bygninger i porteføljen</p>
+        </div>
+        <button className="building-list__add-btn" onClick={() => setShowAddModal(true)}>
+          + Legg til bygg
+        </button>
+      </div>
 
       <div className="building-list__grid">
         {active.map((b) => (
@@ -52,6 +62,8 @@ export function BuildingListPage() {
           </Link>
         ))}
       </div>
+
+      {showAddModal && <AddBuildingModal onClose={() => setShowAddModal(false)} />}
     </div>
   );
 }

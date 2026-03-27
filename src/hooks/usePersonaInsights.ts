@@ -124,11 +124,60 @@ function buildForvalterInsights(kpis: PortfolioKPIs, clientData: { name: string;
   ];
 }
 
+function buildEmptyInsights(kpis: PortfolioKPIs): Insight[] {
+  return [
+    {
+      id: 'yield',
+      title: 'YIELD-SPREAD',
+      value: '—',
+      context: 'Mangler kostnadsdata',
+      bullets: ['Legg til driftskostnader for å beregne yield', `${kpis.buildingCount} bygg registrert`],
+      severity: 'info',
+      link: '/bygg',
+    },
+    {
+      id: 'conc',
+      title: 'KONSENTRASJONSRISIKO',
+      value: '—',
+      context: 'Mangler kontraktsdata',
+      bullets: ['Legg til leiekontrakter for å se konsentrasjonsrisiko'],
+      severity: 'info',
+      link: '/avtaler',
+    },
+    {
+      id: 'wault',
+      title: 'WAULT',
+      value: '—',
+      context: 'Mangler kontraktsdata',
+      bullets: ['Legg til leiekontrakter for å beregne WAULT'],
+      severity: 'info',
+      link: '/avtaler',
+    },
+    {
+      id: 'noiyield',
+      title: 'NOI-YIELD',
+      value: '—',
+      context: 'Mangler kostnadsdata',
+      bullets: [
+        `Porteføljeverdi: ${formatNOK(kpis.totalPortfolioValue)}`,
+        'Legg til kostnader og kontrakter for NOI-beregning',
+      ],
+      severity: 'info',
+      link: '/bygg',
+    },
+  ];
+}
+
 export function usePersonaInsights(kpis: PortfolioKPIs): Insight[] {
   const { persona, clients } = usePersona();
   const { buildings, contracts, costs, funds } = usePortfolioContext();
 
   return useMemo(() => {
+    // Return placeholder insights when no contract/cost data exists
+    if (!kpis.hasContracts && !kpis.hasCosts) {
+      return buildEmptyInsights(kpis);
+    }
+
     if (persona === 'eier') return buildEierInsights(kpis);
 
     if (persona === 'investor') {

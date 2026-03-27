@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useMemo, type ReactNode } from 'react';
 import type { PersonaType, PersonaConfig, ClientCompany } from '../types/index.ts';
 import { PERSONA_CONFIGS } from '../types/index.ts';
-import clientsData from '../data/clients.json';
+import { usePortfolioContext } from './PortfolioContext.tsx';
 
 interface PersonaContextValue {
   persona: PersonaType;
@@ -22,9 +22,10 @@ const EIER_BUILDING_IDS = ['b-001', 'b-002', 'b-003', 'b-005', 'b-008'];
 export function PersonaProvider({ children }: { children: ReactNode }) {
   const [persona, setPersona] = useState<PersonaType>('investor');
   const [selectedClientId, setSelectedClientId] = useState<string | null>(null);
+  const { clients: contextClients } = usePortfolioContext();
 
   const config = PERSONA_CONFIGS[persona];
-  const clients = clientsData as ClientCompany[];
+  const clients = contextClients;
 
   const clientBuildingIds = useMemo(() => {
     if (persona === 'forvalter' && selectedClientId) {

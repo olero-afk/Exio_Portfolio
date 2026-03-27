@@ -72,6 +72,10 @@ export interface PortfolioKPIs {
   buildingCount: number;
   totalM2: number;
 
+  // Data availability flags
+  hasContracts: boolean;
+  hasCosts: boolean;
+
   // Filtered buildings (for fund view table)
   filteredBuildings: Building[];
 }
@@ -300,6 +304,10 @@ export function usePortfolioKPI(personaBuildingIds?: string[] | null): Portfolio
     const buildingCount = filteredBuildings.length;
     const totalM2 = filteredBuildings.reduce((s, b) => s + b.totalAreaM2, 0);
 
+    // --- Data availability ---
+    const hasContracts = scopedContracts.length > 0;
+    const hasCosts = periodCosts.length > 0;
+
     return {
       totalPortfolioValue,
       fundValues,
@@ -326,6 +334,8 @@ export function usePortfolioKPI(personaBuildingIds?: string[] | null): Portfolio
       expiryProfile,
       buildingCount,
       totalM2,
+      hasContracts,
+      hasCosts,
       filteredBuildings,
     };
   }, [buildings, contracts, costs, budgets, funds, selectedFundId, effectiveDateRange, personaBuildingIds]);
