@@ -4,6 +4,7 @@ import type { ApexOptions } from 'apexcharts';
 import { usePortfolioContext } from '../../context/PortfolioContext.tsx';
 import { formatNOK, formatPercent, formatNumber } from '../../utils/formatters.ts';
 import type { Building } from '../../types/index.ts';
+import { CostModal } from './CostModal.tsx';
 import './CostSpreadsheet.css';
 
 interface CostSpreadsheetProps {
@@ -35,6 +36,7 @@ export function CostSpreadsheet({ building }: CostSpreadsheetProps) {
   const [year, setYear] = useState(2026);
   const [toast, setToast] = useState<string | null>(null);
   const [addingCategory, setAddingCategory] = useState(false);
+  const [showCostModal, setShowCostModal] = useState(false);
   const [newCatName, setNewCatName] = useState('');
 
   // Build grid from existing cost data
@@ -224,10 +226,14 @@ export function CostSpreadsheet({ building }: CostSpreadsheetProps) {
       <div className="cost-sheet__section">
         <div className="cost-sheet__header">
           <h3 className="cost-sheet__title">Driftskostnader</h3>
-          <select className="cost-sheet__year" value={year} onChange={(e) => setYear(Number(e.target.value))}>
-            <option value={2025}>2025</option>
-            <option value={2026}>2026</option>
-          </select>
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            <button className="cost-sheet__quick-add" onClick={() => setShowCostModal(true)}>+ Legg til kostnad</button>
+            <select className="cost-sheet__year" value={year} onChange={(e) => setYear(Number(e.target.value))}>
+              <option value={2024}>2024</option>
+              <option value={2025}>2025</option>
+              <option value={2026}>2026</option>
+            </select>
+          </div>
         </div>
         <div className="cost-sheet__scroll" onPaste={handlePaste}>
           <table className="cost-sheet__grid">
@@ -341,6 +347,8 @@ export function CostSpreadsheet({ building }: CostSpreadsheetProps) {
           <p className="cost-sheet__empty">Ingen budsjettdata registrert for {year}</p>
         )}
       </div>
+
+      {showCostModal && <CostModal buildingId={building.id} onClose={() => setShowCostModal(false)} />}
     </div>
   );
 }

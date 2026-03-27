@@ -269,3 +269,21 @@
   font-style: italic;
   padding: 20px 0;
 }
+
+.cost-sheet__quick-add {
+  padding: 6px 14px;
+  background: var(--color-champagne);
+  color: #1a1a1a;
+  border: none;
+  border-radius: var(--radius-badge);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background var(--transition);
+  white-space: nowrap;
+}
+
+.cost-sheet__quick-add:hover {
+  background: #ffc56e;
+}

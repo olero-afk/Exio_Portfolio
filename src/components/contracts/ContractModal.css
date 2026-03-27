@@ -1,0 +1,243 @@
+/* Shared modal styles — used by ContractModal + CostModal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 640px;
+  max-height: 90vh;
+  background: #1e1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+}
+
+.modal-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px 12px;
+}
+
+.modal-card__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #e8e8e8;
+  margin: 0;
+}
+
+.modal-card__close {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7a7a7a;
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-card__close:hover {
+  color: #e8e8e8;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.modal-card__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-card__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.modal-card__btn-cancel {
+  padding: 10px 20px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: #e8e8e8;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+}
+
+.modal-card__btn-cancel:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.modal-card__btn-primary {
+  padding: 10px 24px;
+  background: #FED092;
+  color: #1a1a1a;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+}
+
+.modal-card__btn-primary:hover:not(:disabled) {
+  background: #ffc56e;
+}
+
+.modal-card__btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Field styles */
+.modal-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #7a7a7a;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.modal-field__label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #9a9a9a;
+}
+
+.modal-field__input {
+  padding: 8px 12px;
+  background: #2a2a2a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: #e8e8e8;
+  font-size: 13px;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+}
+
+.modal-field__input:focus {
+  border-color: #FED092;
+}
+
+.modal-field__input::placeholder {
+  color: #5a5a5a;
+}
+
+.modal-field__input--narrow {
+  width: 80px;
+}
+
+.modal-field__select {
+  padding: 8px 12px;
+  background: #2a2a2a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: #e8e8e8;
+  font-size: 13px;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  cursor: pointer;
+}
+
+.modal-field__select:focus {
+  border-color: #FED092;
+}
+
+.modal-field__row {
+  display: flex;
+  gap: 12px;
+}
+
+.modal-field__inline {
+  display: flex;
+  gap: 8px;
+}
+
+.modal-field__inline .modal-field__input {
+  flex: 1;
+}
+
+.modal-field__btn-sm {
+  padding: 8px 14px;
+  background: #2a2a2a;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  color: #e8e8e8;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.modal-field__btn-sm:hover:not(:disabled) {
+  border-color: #FED092;
+  color: #FED092;
+}
+
+.modal-field__computed {
+  padding: 8px 12px;
+  background: #222;
+  border-radius: 6px;
+  color: #7a7a7a;
+  font-size: 13px;
+  font-feature-settings: "tnum";
+}
+
+.modal-field__bankrupt {
+  font-size: 11px;
+  font-weight: 600;
+  color: #f87171;
+  padding: 4px 8px;
+  background: rgba(248, 113, 113, 0.1);
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.modal-field__radio-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.modal-field__radio {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #e8e8e8;
+  cursor: pointer;
+}
+
+.modal-field__radio input[type="radio"] {
+  accent-color: #FED092;
+}

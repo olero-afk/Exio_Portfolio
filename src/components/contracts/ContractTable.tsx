@@ -1,7 +1,8 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { usePortfolioContext } from '../../context/PortfolioContext.tsx';
 import { formatNOK, formatM2, formatYears } from '../../utils/formatters.ts';
 import type { Contract } from '../../types/index.ts';
+import { ContractModal } from './ContractModal.tsx';
 import './ContractTable.css';
 
 interface ContractTableProps {
@@ -30,6 +31,7 @@ function statusClass(status: string): string {
 
 export function ContractTable({ buildingId }: ContractTableProps) {
   const { contracts } = usePortfolioContext();
+  const [showModal, setShowModal] = useState(false);
 
   const buildingContracts = useMemo(
     () => contracts
@@ -41,30 +43,54 @@ export function ContractTable({ buildingId }: ContractTableProps) {
     [contracts, buildingId],
   );
 
+  const totalArea = buildingContracts.reduce((s, c) => s + c.areaM2, 0);
+  const totalRent = buildingContracts.reduce((s, c) => s + c.annualRent, 0);
+
   return (
     <div className="contract-table">
-      <table>
-        <thead>
-          <tr>
-            <th>Leietaker</th>
-            <th>Type</th>
-            <th style={{ textAlign: 'right' }}>m²</th>
-            <th style={{ textAlign: 'right' }}>Årlig leie</th>
-            <th>Startdato</th>
-            <th>Sluttdato</th>
-            <th style={{ textAlign: 'right' }}>Gjenstående</th>
-            <th style={{ textAlign: 'center' }}>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {buildingContracts.map((contract) => (
-            <ContractRow key={contract.id} contract={contract} />
-          ))}
-        </tbody>
-      </table>
-      {buildingContracts.length === 0 && (
-        <p className="contract-table__empty">Ingen avtaler registrert</p>
+      <div className="contract-table__header">
+        <div className="contract-table__summary">
+          {buildingContracts.length > 0 && (
+            <span>
+              {buildingContracts.length} avtaler · {formatM2(totalArea)} utleid · {formatNOK(totalRent)}/år
+            </span>
+          )}
+        </div>
+        <button className="contract-table__add-btn" onClick={() => setShowModal(true)}>
+          + Ny avtale
+        </button>
+      </div>
+
+      {buildingContracts.length > 0 ? (
+        <table>
+          <thead>
+            <tr>
+              <th>Leietaker</th>
+              <th>Type</th>
+              <th style={{ textAlign: 'right' }}>m²</th>
+              <th style={{ textAlign: 'right' }}>Årlig leie</th>
+              <th>Startdato</th>
+              <th>Sluttdato</th>
+              <th style={{ textAlign: 'right' }}>Gjenstående</th>
+              <th style={{ textAlign: 'center' }}>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {buildingContracts.map((contract) => (
+              <ContractRow key={contract.id} contract={contract} />
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <div className="contract-table__empty-state">
+          <p className="contract-table__empty-title">Ingen kontrakter registrert</p>
+          <p className="contract-table__empty-desc">
+            Legg til leiekontrakter for å beregne WAULT, utleiegrad og leieinntekter.
+          </p>
+        </div>
       )}
+
+      {showModal && <ContractModal buildingId={buildingId} onClose={() => setShowModal(false)} />}
     </div>
   );
 }

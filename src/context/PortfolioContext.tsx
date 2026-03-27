@@ -85,6 +85,8 @@ interface PortfolioContextValue {
   setActiveKundebaseId: (id: string) => void;
   addKundebase: (kb: Kundebase) => void;
   addBuildingsToActiveKundebase: (buildings: Building[], areaUnits: AreaUnit[]) => void;
+  addContractToActiveKundebase: (contract: Contract) => void;
+  addCostToActiveKundebase: (cost: CostEntry) => void;
   activeKundebase: Kundebase;
 }
 
@@ -143,6 +145,32 @@ export function PortfolioProvider({ children }: { children: ReactNode }) {
     );
   }, [activeKundebaseId]);
 
+  const addContractToActiveKundebase = useCallback((contract: Contract) => {
+    setKundebaser((prev) =>
+      prev.map((kb) => {
+        if (kb.id !== activeKundebaseId) return kb;
+        // Also update building's committedM2 and occupancy
+        const updatedBuildings = kb.buildings.map((b) => {
+          if (b.id !== contract.buildingId) return b;
+          const buildingContracts = [...kb.contracts.filter((c) => c.buildingId === b.id && (c.status === 'active' || c.status === 'expiring_soon')), contract];
+          const committedM2 = buildingContracts.reduce((s, c) => s + c.areaM2, 0);
+          const occupancyRate = b.totalRentableM2 > 0 ? Math.min(committedM2 / b.totalRentableM2, 1) : 0;
+          return { ...b, committedM2, occupancyRate, vacancyRate: 1 - occupancyRate };
+        });
+        return { ...kb, contracts: [...kb.contracts, contract], buildings: updatedBuildings };
+      }),
+    );
+  }, [activeKundebaseId]);
+
+  const addCostToActiveKundebase = useCallback((cost: CostEntry) => {
+    setKundebaser((prev) =>
+      prev.map((kb) => {
+        if (kb.id !== activeKundebaseId) return kb;
+        return { ...kb, costs: [...kb.costs, cost] };
+      }),
+    );
+  }, [activeKundebaseId]);
+
   const value: PortfolioContextValue = {
     companies: activeKundebase.companies,
     portfolios: activeKundebase.portfolios,
@@ -165,6 +193,8 @@ export function PortfolioProvider({ children }: { children: ReactNode }) {
     setActiveKundebaseId,
     addKundebase,
     addBuildingsToActiveKundebase,
+    addContractToActiveKundebase,
+    addCostToActiveKundebase,
     activeKundebase,
   };
 

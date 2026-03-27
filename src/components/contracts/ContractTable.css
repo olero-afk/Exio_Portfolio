@@ -70,9 +70,49 @@
   background-color: rgba(34, 212, 232, 0.1);
 }
 
-.contract-table__empty {
-  padding: 24px;
-  text-align: center;
-  color: var(--app-text-dim);
+.contract-table__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.contract-table__summary {
   font-size: var(--font-size-body);
+  color: var(--app-text-muted);
+}
+
+.contract-table__add-btn {
+  padding: 8px 16px;
+  background: var(--color-champagne);
+  color: #1a1a1a;
+  border: none;
+  border-radius: var(--radius-badge);
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.contract-table__add-btn:hover {
+  background: #ffc56e;
+}
+
+.contract-table__empty-state {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.contract-table__empty-title {
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--app-text-muted);
+  margin: 0 0 6px;
+}
+
+.contract-table__empty-desc {
+  font-size: 0.75rem;
+  color: var(--app-text-dim);
+  margin: 0;
 }
