@@ -120,7 +120,7 @@ export function Sidebar() {
   return (
     <aside className={`sidebar ${isCollapsed ? 'sidebar--collapsed' : ''}`}>
       <div className="sidebar__header">
-        {!isCollapsed && <span className="sidebar__title">Bygninger</span>}
+        {!isCollapsed && <span className="sidebar__title">Bygg</span>}
         <button className="sidebar__collapse-btn" onClick={() => setIsCollapsed(!isCollapsed)}>
           {isCollapsed ? '»' : '«'}
         </button>

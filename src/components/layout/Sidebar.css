@@ -1,6 +1,6 @@
 .sidebar {
-  width: 280px;
-  min-width: 280px;
+  width: 240px;
+  min-width: 240px;
   height: calc(100vh - var(--nav-height));
   position: sticky;
   top: var(--nav-height);
@@ -11,15 +11,15 @@
 }
 
 .sidebar--collapsed {
-  width: 48px;
-  min-width: 48px;
+  width: 40px;
+  min-width: 40px;
 }
 
 .sidebar__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px;
+  padding: 12px 14px;
   border-bottom: 1px solid var(--app-border);
 }
 
@@ -32,38 +32,37 @@
 }
 
 .sidebar__collapse-btn {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   color: var(--app-text-dim);
-  border-radius: var(--radius-badge);
-  transition: color var(--transition), background-color var(--transition);
+  border-radius: 2px;
+  transition: color var(--transition);
 }
 
 .sidebar__collapse-btn:hover {
   color: var(--app-text);
-  background-color: var(--app-surface-raised);
 }
 
 .sidebar__tree {
   list-style: none;
-  padding: 8px 0;
+  padding: 6px 0;
   margin: 0;
 }
 
 /* Building level */
 .sidebar__building {
-  margin-bottom: 2px;
+  margin-bottom: 1px;
 }
 
 .sidebar__building-header {
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 0 8px;
+  padding: 0 6px;
 }
 
 .sidebar__building-header--active {
@@ -73,15 +72,16 @@
 
 .sidebar__toggle {
   flex-shrink: 0;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.875rem;
+  font-size: 0.7rem;
   color: var(--app-text-dim);
   border-radius: 2px;
   transition: transform var(--transition), color var(--transition);
+  display: inline-block;
 }
 
 .sidebar__toggle:hover {
@@ -93,16 +93,17 @@
 }
 
 .sidebar__toggle--small {
-  width: 16px;
-  height: 16px;
-  font-size: 0.75rem;
+  width: 12px;
+  height: 12px;
+  font-size: 0.6rem;
 }
 
 .sidebar__building-link {
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 8px 8px;
+  gap: 1px;
+  padding: 5px 8px;
   border-radius: var(--radius-badge);
   text-decoration: none;
   transition: background-color var(--transition);
@@ -122,15 +123,19 @@
   text-overflow: ellipsis;
 }
 
+.sidebar__building-header--active .sidebar__building-name {
+  color: var(--color-champagne);
+}
+
 .sidebar__building-type {
-  font-size: 0.6875rem;
+  font-size: 0.55rem;
   color: var(--app-text-dim);
 }
 
-/* Group level */
+/* Group level (area units) */
 .sidebar__groups {
   list-style: none;
-  padding: 0 0 0 28px;
+  padding: 0 0 0 24px;
   margin: 0;
 }
 
@@ -143,9 +148,8 @@
   align-items: center;
   gap: 4px;
   width: 100%;
-  padding: 4px 8px;
+  padding: 3px 8px;
   text-align: left;
-  border-radius: var(--radius-badge);
   transition: background-color var(--transition);
 }
 
@@ -154,24 +158,24 @@
 }
 
 .sidebar__group-name {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 600;
   color: var(--app-text-secondary);
 }
 
 .sidebar__group-count {
-  font-size: 0.625rem;
+  font-size: 0.55rem;
   color: var(--app-text-dim);
   margin-left: auto;
   background-color: var(--app-surface-raised);
-  padding: 1px 6px;
+  padding: 1px 5px;
   border-radius: 8px;
 }
 
 /* Unit level */
 .sidebar__units {
   list-style: none;
-  padding: 0 0 0 20px;
+  padding: 0 0 0 16px;
   margin: 0;
 }
 
@@ -179,12 +183,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 3px 8px;
-  gap: 8px;
+  padding: 2px 8px;
+  gap: 6px;
 }
 
 .sidebar__unit-name {
-  font-size: 0.6875rem;
+  font-size: 0.6rem;
   color: var(--app-text-muted);
   white-space: nowrap;
   overflow: hidden;
@@ -192,11 +196,11 @@
 }
 
 .sidebar__unit-status {
-  font-size: 0.5625rem;
+  font-size: 0.5rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 1px 6px;
+  letter-spacing: 0.04em;
+  padding: 1px 5px;
   border-radius: var(--radius-badge);
   flex-shrink: 0;
 }
@@ -212,22 +216,22 @@
 }
 
 /* Top-level group (fund/client) */
-.sidebar__top-group { margin-bottom: 4px; }
+.sidebar__top-group { margin-bottom: 1px; }
 
 .sidebar__top-group-header {
   display: flex; align-items: center; gap: 6px;
-  width: 100%; padding: 8px 12px; text-align: left;
+  width: 100%; padding: 8px 14px; text-align: left;
   border-bottom: 1px solid var(--app-border);
   transition: background-color var(--transition);
 }
 .sidebar__top-group-header:hover { background-color: var(--app-surface-raised); }
 
 .sidebar__top-group-name {
-  font-size: var(--font-size-label); font-weight: var(--font-weight-label);
-  text-transform: uppercase; letter-spacing: var(--letter-spacing-label);
+  font-size: 0.7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
   color: var(--color-champagne); flex: 1;
 }
 
 .sidebar__top-group-list {
-  list-style: none; padding: 4px 0 4px 4px; margin: 0;
+  list-style: none; padding: 2px 0; margin: 0;
 }
