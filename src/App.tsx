@@ -21,6 +21,7 @@ import { VacancyReport } from './pages/reports/VacancyReport.tsx';
 import { DiversificationReport } from './pages/reports/DiversificationReport.tsx';
 import { CovenantReport } from './pages/reports/CovenantReport.tsx';
 import { BenchmarkReport } from './pages/reports/BenchmarkReport.tsx';
+import { NOIReport } from './pages/reports/NOIReport.tsx';
 import { PlaceholderPage } from './pages/PlaceholderPage.tsx';
 import { FundViewPage } from './pages/FundViewPage.tsx';
 import { OnboardingPage } from './pages/OnboardingPage.tsx';
@@ -48,6 +49,7 @@ function App() {
               <Route path="bygg/:buildingId/okonomi" element={<BuildingFinancialsPage />} />
               <Route path="rapporter" element={<ReportsPage />} />
               <Route path="rapporter/portefoljeoversikt" element={<PortfolioOverviewReport />} />
+              <Route path="rapporter/noi" element={<NOIReport />} />
               <Route path="rapporter/kontraktsanalyse" element={<ContractAnalysisReport />} />
               <Route path="rapporter/leietakeranalyse" element={<TenantAnalysisReport />} />
               <Route path="rapporter/ledighetsoversikt" element={<VacancyReport />} />

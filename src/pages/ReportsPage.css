@@ -55,3 +55,27 @@
   color: var(--color-champagne);
   margin-top: auto;
 }
+
+.reports-page__grid--core {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.reports-page__card--core {
+  border-left: 3px solid var(--color-champagne);
+}
+
+.reports-page__card-summary {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--app-text);
+  margin: 0;
+}
+
+.reports-page__subtitle {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--app-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 8px;
+}

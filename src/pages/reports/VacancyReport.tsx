@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ReactApexChart from 'react-apexcharts';
 import type { ApexOptions } from 'apexcharts';
@@ -7,22 +8,25 @@ import type { PortfolioKPIs } from '../../hooks/usePortfolioKPI.ts';
 import './report-shared.css';
 
 function SectionA({ kpis }: { kpis: PortfolioKPIs }) {
+  const vacancyRate = (1 - kpis.portfolioOccupancyRate) * 100;
   return (
     <div className="report-metrics">
       <div className="report-metric">
-        <span className="report-metric__label">Total ledighetskostnad</span>
-        <span className="report-metric__value report-metric__value--danger">{formatNOK(kpis.totalVacancyCost)}</span>
-      </div>
-      <div className="report-metric">
-        <span className="report-metric__label">Ledighetsgrad</span>
-        <span className="report-metric__value">{formatPercent((1 - kpis.portfolioOccupancyRate) * 100)}</span>
-      </div>
-      <div className="report-metric">
-        <span className="report-metric__label">Ledig m²</span>
+        <span className="report-metric__label">Ledig areal</span>
         <span className="report-metric__value">{formatM2(kpis.totalVacantM2)}</span>
       </div>
       <div className="report-metric">
-        <span className="report-metric__label">Bygg &gt;10% ledighet</span>
+        <span className="report-metric__label">Ledighetsrate</span>
+        <span className={`report-metric__value ${vacancyRate > 15 ? 'report-metric__value--danger' : vacancyRate > 5 ? 'report-metric__value--warning' : 'report-metric__value--positive'}`}>
+          {formatPercent(vacancyRate)}
+        </span>
+      </div>
+      <div className="report-metric">
+        <span className="report-metric__label">Ledighetskostnad</span>
+        <span className="report-metric__value report-metric__value--danger">{formatNOK(kpis.totalVacancyCost)}</span>
+      </div>
+      <div className="report-metric">
+        <span className="report-metric__label">Bygg &gt;10% ledig</span>
         <span className={`report-metric__value ${kpis.buildingsHighVacancy > 0 ? 'report-metric__value--warning' : 'report-metric__value--positive'}`}>{kpis.buildingsHighVacancy}</span>
       </div>
     </div>
@@ -91,14 +95,59 @@ function SectionC({ kpis }: { kpis: PortfolioKPIs }) {
   );
 }
 
+type SortKey = 'name' | 'totalM2' | 'committedM2' | 'vacantM2' | 'vacancyRate' | 'marketRent' | 'vacancyCost';
+
 function SectionD({ kpis }: { kpis: PortfolioKPIs }) {
-  const data = kpis.filteredBuildings
-    .map((b) => ({
+  const [sortKey, setSortKey] = useState<SortKey>('vacancyCost');
+  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('desc');
+
+  const data = kpis.filteredBuildings.map((b) => {
+    const vacantM2 = b.totalRentableM2 - b.committedM2;
+    return {
       building: b,
-      vacantM2: b.totalRentableM2 - b.committedM2,
-      vacancyCost: (b.totalRentableM2 - b.committedM2) * (b.marketRentPerM2 ?? 0),
-    }))
-    .sort((a, b) => b.vacancyCost - a.vacancyCost);
+      vacantM2,
+      vacancyRate: b.totalRentableM2 > 0 ? (vacantM2 / b.totalRentableM2) * 100 : 0,
+      vacancyCost: vacantM2 * (b.marketRentPerM2 ?? 0),
+    };
+  });
+
+  const sorted = [...data].sort((a, b) => {
+    let av: number | string = 0;
+    let bv: number | string = 0;
+    switch (sortKey) {
+      case 'name': av = a.building.name; bv = b.building.name; break;
+      case 'totalM2': av = a.building.totalRentableM2; bv = b.building.totalRentableM2; break;
+      case 'committedM2': av = a.building.committedM2; bv = b.building.committedM2; break;
+      case 'vacantM2': av = a.vacantM2; bv = b.vacantM2; break;
+      case 'vacancyRate': av = a.vacancyRate; bv = b.vacancyRate; break;
+      case 'marketRent': av = a.building.marketRentPerM2 ?? 0; bv = b.building.marketRentPerM2 ?? 0; break;
+      case 'vacancyCost': av = a.vacancyCost; bv = b.vacancyCost; break;
+    }
+    const cmp = typeof av === 'string' ? av.localeCompare(bv as string, 'nb') : (av as number) - (bv as number);
+    return sortDir === 'asc' ? cmp : -cmp;
+  });
+
+  const toggleSort = (key: SortKey) => {
+    if (sortKey === key) { setSortDir((d) => d === 'asc' ? 'desc' : 'asc'); }
+    else { setSortKey(key); setSortDir(key === 'name' ? 'asc' : 'desc'); }
+  };
+
+  const arrow = (key: SortKey) => sortKey === key ? (sortDir === 'asc' ? ' ▲' : ' ▼') : '';
+  const activeStyle = (key: SortKey) => sortKey === key ? { color: '#FED092' } : undefined;
+
+  const totals = data.reduce((acc, r) => ({
+    totalM2: acc.totalM2 + r.building.totalRentableM2,
+    committedM2: acc.committedM2 + r.building.committedM2,
+    vacantM2: acc.vacantM2 + r.vacantM2,
+    vacancyCost: acc.vacancyCost + r.vacancyCost,
+  }), { totalM2: 0, committedM2: 0, vacantM2: 0, vacancyCost: 0 });
+  const totalVacancyRate = totals.totalM2 > 0 ? (totals.vacantM2 / totals.totalM2) * 100 : 0;
+
+  const vacancyColor = (rate: number) => {
+    if (rate < 5) return 'var(--color-green)';
+    if (rate <= 15) return '#facc15';
+    return 'var(--color-red)';
+  };
 
   return (
     <div className="report-section">
@@ -106,29 +155,70 @@ function SectionD({ kpis }: { kpis: PortfolioKPIs }) {
       <table className="report-table">
         <thead>
           <tr>
-            <th>Bygg</th>
-            <th data-align="right">Total m²</th>
-            <th data-align="right">Utleid m²</th>
-            <th data-align="right">Ledig m²</th>
-            <th data-align="right">Utleiegrad</th>
-            <th data-align="right">Markedsleie/m²</th>
-            <th data-align="right">Ledighetskostnad</th>
+            <th onClick={() => toggleSort('name')} style={activeStyle('name')}>Bygg{arrow('name')}</th>
+            <th data-align="right" onClick={() => toggleSort('totalM2')} style={activeStyle('totalM2')}>Total m²{arrow('totalM2')}</th>
+            <th data-align="right" onClick={() => toggleSort('committedM2')} style={activeStyle('committedM2')}>Utleid m²{arrow('committedM2')}</th>
+            <th data-align="right" onClick={() => toggleSort('vacantM2')} style={activeStyle('vacantM2')}>Ledig m²{arrow('vacantM2')}</th>
+            <th data-align="right" onClick={() => toggleSort('vacancyRate')} style={activeStyle('vacancyRate')}>Ledighetsrate{arrow('vacancyRate')}</th>
+            <th data-align="right" onClick={() => toggleSort('marketRent')} style={activeStyle('marketRent')}>Markedsleie/m²{arrow('marketRent')}</th>
+            <th data-align="right" onClick={() => toggleSort('vacancyCost')} style={activeStyle('vacancyCost')}>Ledighetskostnad{arrow('vacancyCost')}</th>
           </tr>
         </thead>
         <tbody>
-          {data.map((r) => (
+          {sorted.map((r) => (
             <tr key={r.building.id}>
               <td><Link to={`/bygg/${r.building.id}`} className="report-table__link">{r.building.name}</Link></td>
               <td data-align="right">{formatM2(r.building.totalRentableM2)}</td>
               <td data-align="right">{formatM2(r.building.committedM2)}</td>
               <td data-align="right">{formatM2(r.vacantM2)}</td>
-              <td data-align="right">{formatPercent(r.building.occupancyRate * 100)}</td>
+              <td data-align="right" style={{ color: vacancyColor(r.vacancyRate) }}>{formatPercent(r.vacancyRate)}</td>
               <td data-align="right">{r.building.marketRentPerM2 ? formatNOK(r.building.marketRentPerM2) : '—'}</td>
               <td data-align="right" style={{ color: r.vacancyCost > 0 ? 'var(--color-red)' : 'var(--color-green)' }}>{formatNOK(r.vacancyCost)}</td>
             </tr>
           ))}
         </tbody>
+        <tfoot>
+          <tr style={{ fontWeight: 700, borderTop: '2px solid var(--app-border-mid)' }}>
+            <td>Totalt</td>
+            <td data-align="right">{formatM2(totals.totalM2)}</td>
+            <td data-align="right">{formatM2(totals.committedM2)}</td>
+            <td data-align="right">{formatM2(totals.vacantM2)}</td>
+            <td data-align="right" style={{ color: vacancyColor(totalVacancyRate) }}>{formatPercent(totalVacancyRate)}</td>
+            <td data-align="right">—</td>
+            <td data-align="right" style={{ color: 'var(--color-red)' }}>{formatNOK(totals.vacancyCost)}</td>
+          </tr>
+        </tfoot>
       </table>
+    </div>
+  );
+}
+
+function SectionE({ kpis }: { kpis: PortfolioKPIs }) {
+  const byType = new Map<string, { vacantM2: number; totalM2: number }>();
+  for (const b of kpis.filteredBuildings) {
+    const vacantM2 = b.totalRentableM2 - b.committedM2;
+    if (vacantM2 <= 0) continue;
+    const existing = byType.get(b.buildingType) ?? { vacantM2: 0, totalM2: 0 };
+    existing.vacantM2 += vacantM2;
+    existing.totalM2 += b.totalRentableM2;
+    byType.set(b.buildingType, existing);
+  }
+
+  const entries = [...byType.entries()].sort((a, b) => b[1].vacantM2 - a[1].vacantM2);
+
+  if (entries.length === 0) return null;
+
+  return (
+    <div className="report-section">
+      <h3 className="report-section__title">Ledighet etter bygningstype</h3>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px 32px' }}>
+        {entries.map(([type, data]) => (
+          <span key={type} style={{ color: 'var(--app-text-secondary)', fontSize: 'var(--font-size-body)' }}>
+            <strong style={{ color: 'var(--app-text)' }}>{type}:</strong>{' '}
+            {formatM2(data.vacantM2)} ledig
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
@@ -144,6 +234,7 @@ export function VacancyReport() {
             <SectionC kpis={kpis} />
           </div>
           <SectionD kpis={kpis} />
+          <SectionE kpis={kpis} />
         </>
       )}
     </ReportLayout>
