@@ -9,6 +9,7 @@ import type {
   BudgetEntry,
   MarketData,
   Fund,
+  Loan,
   ViewMode,
   ClientCompany,
 } from '../types/index.ts';
@@ -23,6 +24,7 @@ import budgetsData from '../data/budgets.json';
 import marketDataData from '../data/marketData.json';
 import fundsData from '../data/funds.json';
 import clientsData from '../data/clients.json';
+import loansData from '../data/loans.json';
 
 export interface Kundebase {
   id: string;
@@ -39,6 +41,7 @@ export interface Kundebase {
   marketData: MarketData[];
   funds: Fund[];
   clients: ClientCompany[];
+  loans: Loan[];
 }
 
 const DEFAULT_KUNDEBASE: Kundebase = {
@@ -56,6 +59,7 @@ const DEFAULT_KUNDEBASE: Kundebase = {
   marketData: marketDataData as MarketData[],
   funds: fundsData as Fund[],
   clients: clientsData as ClientCompany[],
+  loans: loansData as Loan[],
 };
 
 interface PortfolioContextValue {
@@ -70,6 +74,7 @@ interface PortfolioContextValue {
   marketData: MarketData[];
   funds: Fund[];
   clients: ClientCompany[];
+  loans: Loan[];
 
   // Active state
   activeCompanyId: string;
@@ -87,6 +92,7 @@ interface PortfolioContextValue {
   addBuildingsToActiveKundebase: (buildings: Building[], areaUnits: AreaUnit[]) => void;
   addContractToActiveKundebase: (contract: Contract) => void;
   addCostToActiveKundebase: (cost: CostEntry) => void;
+  addLoanToActiveKundebase: (loan: Loan) => void;
   activeKundebase: Kundebase;
 }
 
@@ -171,6 +177,15 @@ export function PortfolioProvider({ children }: { children: ReactNode }) {
     );
   }, [activeKundebaseId]);
 
+  const addLoanToActiveKundebase = useCallback((loan: Loan) => {
+    setKundebaser((prev) =>
+      prev.map((kb) => {
+        if (kb.id !== activeKundebaseId) return kb;
+        return { ...kb, loans: [...kb.loans, loan] };
+      }),
+    );
+  }, [activeKundebaseId]);
+
   const value: PortfolioContextValue = {
     companies: activeKundebase.companies,
     portfolios: activeKundebase.portfolios,
@@ -182,6 +197,7 @@ export function PortfolioProvider({ children }: { children: ReactNode }) {
     marketData: activeKundebase.marketData,
     funds: activeKundebase.funds,
     clients: activeKundebase.clients,
+    loans: activeKundebase.loans,
     activeCompanyId,
     setActiveCompanyId,
     activePortfolioId,
@@ -195,6 +211,7 @@ export function PortfolioProvider({ children }: { children: ReactNode }) {
     addBuildingsToActiveKundebase,
     addContractToActiveKundebase,
     addCostToActiveKundebase,
+    addLoanToActiveKundebase,
     activeKundebase,
   };
 

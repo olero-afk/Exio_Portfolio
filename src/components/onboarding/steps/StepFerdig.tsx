@@ -123,6 +123,7 @@ export function StepFerdig() {
         standard: null,
         isArchived: false,
         source: 'placepoint',
+        ownershipShare: 100,
       };
       allBuildings.push(building);
 
@@ -181,6 +182,7 @@ export function StepFerdig() {
       marketData: [],
       funds: newFunds,
       clients: [],
+      loans: [],
     };
 
     addKundebase(kundebase);

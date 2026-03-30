@@ -47,6 +47,9 @@ export function ReportLayout({ title, children }: ReportLayoutProps) {
       </div>
       <div className="report-layout__controls">
         <PeriodSelector />
+        <span style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: 6, padding: '6px 14px', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 6, color: '#7a7a7a', fontSize: '0.75rem', fontWeight: 600, cursor: 'default', opacity: 0.7 }}>
+          Eksporter PDF <span style={{ fontSize: '0.6rem', background: 'rgba(254,208,146,0.15)', color: '#FED092', padding: '1px 5px', borderRadius: 3, marginLeft: 4 }}>Kommer snart</span>
+        </span>
       </div>
       <div className="report-layout__content">
         {children(kpis)}

@@ -10,6 +10,7 @@ const tabs = [
   { path: '/forvalter', label: 'Forvalter' },
   { path: '/energi', label: 'Energi' },
   { path: '/okonomi', label: 'Økonomi' },
+  { path: '/finansiering', label: 'Finansiering' },
 ] as const;
 
 export function BuildingTabs() {

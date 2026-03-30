@@ -2,7 +2,8 @@ import { useMemo } from 'react';
 import { usePersona } from '../context/PersonaContext.tsx';
 import { usePortfolioContext } from '../context/PortfolioContext.tsx';
 import type { PortfolioKPIs } from './usePortfolioKPI.ts';
-import { formatNOK, formatPercent, formatYears, formatM2 } from '../utils/formatters.ts';
+import type { Loan } from '../types/index.ts';
+import { formatNOK, formatPercent, formatYears, formatM2, formatNumber } from '../utils/formatters.ts';
 
 export interface Insight {
   id: string;
@@ -32,13 +33,33 @@ function waultSeverity(w: number): Insight['severity'] {
   return 'negative';
 }
 
-function occSeverity(o: number): Insight['severity'] {
-  if (o > 90) return 'positive';
-  if (o >= 75) return 'warning';
-  return 'negative';
+
+function buildFinancingInsight(kpis: PortfolioKPIs, loans: Loan[]): Insight {
+  const totalDebt = loans.reduce((s, l) => s + l.outstandingBalance, 0);
+  const totalMarketValue = kpis.filteredBuildings.reduce((s, b) => s + (b.estimatedMarketValue ?? 0), 0);
+  const portfolioLTV = totalMarketValue > 0 ? (totalDebt / totalMarketValue) * 100 : 0;
+  const totalDebtService = loans.reduce((s, l) => s + (l.annualPayment ?? 0), 0);
+  const portfolioDSCR = totalDebtService > 0 ? kpis.totalNOI / totalDebtService : 0;
+  const covenantWarnings = loans.filter(l => l.covenants?.some(c => c.status === 'advarsel' || c.status === 'brudd'));
+
+  return {
+    id: 'financing',
+    title: 'FINANSIERING',
+    value: formatPercent(portfolioLTV) + ' LTV',
+    context: `Total gjeld: ${formatNOK(totalDebt)} — DSCR: ${formatNumber(portfolioDSCR, 2)}`,
+    bullets: [
+      `Årlig betjening: ${formatNOK(totalDebtService)}`,
+      `DSCR: ${formatNumber(portfolioDSCR, 2)}`,
+      covenantWarnings.length > 0
+        ? `⚠ ${covenantWarnings.length} bygg med covenant-advarsel`
+        : 'Alle covenants OK',
+    ],
+    severity: portfolioLTV > 70 ? 'negative' : portfolioLTV > 60 ? 'warning' : 'positive',
+    link: '/rapporter/covenant',
+  };
 }
 
-function buildEierInsights(kpis: PortfolioKPIs): Insight[] {
+function buildEierInsights(kpis: PortfolioKPIs, loans: Loan[]): Insight[] {
   const actual = kpis.monthlyNOIData.filter((m) => !m.isFuture);
   const noiLast = actual.length > 0 ? actual[actual.length - 1].income - actual[actual.length - 1].costs : kpis.totalNOI;
   const noiPrev = actual.length > 1 ? actual[actual.length - 2].income - actual[actual.length - 2].costs : 0;
@@ -51,13 +72,11 @@ function buildEierInsights(kpis: PortfolioKPIs): Insight[] {
     .sort((a, b) => b.cost - a.cost);
   const topDriver = topVacancy[0];
   const driverPct = kpis.totalVacancyCost > 0 && topDriver ? Math.round((topDriver.cost / kpis.totalVacancyCost) * 100) : 0;
-  const under90 = kpis.filteredBuildings.filter((b) => b.occupancyRate < 0.9).length;
-
   const last3Noi = actual.slice(-3).map((m) => `${m.month.split(' ')[0]}: ${formatNOK(m.income - m.costs)}`);
 
   return [
-    { id: 'noi', title: 'NOI', value: formatNOK(noiLast) + '/mnd', context: `Margin: ${formatPercent(kpis.noiMargin)} — ${change >= 0 ? '↑' : '↓'}${formatPercent(Math.abs(change))} vs. forrige`,
-      bullets: last3Noi.length > 0 ? last3Noi : [`Årlig NOI: ${formatNOK(kpis.totalNOI)}`, `Yield: ${formatPercent(kpis.noiYield)}`, `${kpis.buildingCount} bygg i porteføljen`],
+    { id: 'noi', title: 'NOI', value: formatNOK(noiLast) + '/mnd', context: `Brutto leie: ${formatNOK(kpis.totalGrossRentalIncome)} — ${change >= 0 ? '↑' : '↓'}${formatPercent(Math.abs(change))} vs. forrige`,
+      bullets: [`Brutto leie: ${formatNOK(kpis.totalGrossRentalIncome)}`, ...(last3Noi.length > 0 ? last3Noi : [`Årlig NOI: ${formatNOK(kpis.totalNOI)}`, `Yield: ${formatPercent(kpis.noiYield)}`, `${kpis.buildingCount} bygg i porteføljen`])],
       severity: change >= 0 ? 'positive' : 'negative', link: '/rapporter/portefoljeoversikt' },
     { id: 'risk', title: 'KONTRAKTSRISIKO', value: expiring ? `${expiring.contractCount} utløper` : '0', context: `${formatNOK(kpis.incomeAtRisk)} i risiko neste 12 mnd`,
       bullets: kpis.expiryProfile.slice(0, 3).map((e) => `${e.label}: ${formatNOK(e.expiringRent)} (${e.contractCount} kontr.)`),
@@ -65,13 +84,11 @@ function buildEierInsights(kpis: PortfolioKPIs): Insight[] {
     { id: 'vacancy', title: 'LEDIGHETSKOSTNAD', value: formatNOK(kpis.totalVacancyCost), context: topDriver ? `${topDriver.name} driver ${driverPct}%` : 'Ingen ledighet',
       bullets: topVacancy.slice(0, 3).map((b) => `${b.name}: ${formatNOK(b.cost)}`),
       severity: kpis.totalVacancyCost > 5000000 ? 'negative' : kpis.totalVacancyCost > 1000000 ? 'warning' : 'positive', link: '/rapporter/ledighetsoversikt' },
-    { id: 'occ', title: 'UTLEIEGRAD', value: formatPercent(kpis.portfolioOccupancyRate * 100), context: `${under90} bygg under 90% — snitt 92%`,
-      bullets: [`Utleid: ${formatM2(kpis.totalCommittedM2)} av ${formatM2(kpis.totalRentableM2)}`, `Ledig: ${formatM2(kpis.totalVacantM2)}`, `${kpis.buildingsHighVacancy} bygg >10% ledighet`],
-      severity: occSeverity(kpis.portfolioOccupancyRate * 100), link: '/rapporter/portefoljeoversikt' },
+    buildFinancingInsight(kpis, loans),
   ];
 }
 
-function buildInvestorInsights(kpis: PortfolioKPIs, fundData: { name: string; yield_: number }[]): Insight[] {
+function buildInvestorInsights(kpis: PortfolioKPIs, fundData: { name: string; yield_: number }[], loans: Loan[]): Insight[] {
   const sorted = [...fundData].sort((a, b) => b.yield_ - a.yield_);
   const spread = sorted.length >= 2 ? sorted[0].yield_ - sorted[sorted.length - 1].yield_ : kpis.noiYield;
   const top = kpis.topTenants[0];
@@ -89,9 +106,7 @@ function buildInvestorInsights(kpis: PortfolioKPIs, fundData: { name: string; yi
     { id: 'wault', title: 'WAULT', value: formatYears(kpis.portfolioWAULT), context: `${expiringCount} kontrakter utløper innen 12 mnd`,
       bullets: [`Effektiv WAULT: ${formatYears(kpis.effectiveWAULT)}`, `Inntekt i risiko: ${formatNOK(kpis.incomeAtRisk)}`, `Y+1: ${kpis.expiryProfile[0]?.contractCount ?? 0} kontrakter`],
       severity: waultSeverity(kpis.portfolioWAULT), link: '/rapporter/kontraktsanalyse' },
-    { id: 'noiyield', title: 'NOI-YIELD', value: formatPercent(kpis.noiYield), context: `Porteføljeverdi: ${formatNOK(kpis.totalPortfolioValue)}`,
-      bullets: [`Total NOI: ${formatNOK(kpis.totalNOI)}`, `Verdi: ${formatNOK(kpis.totalPortfolioValue)}`, `${kpis.buildingCount} bygg`],
-      severity: yieldSeverity(kpis.noiYield), link: '/rapporter/portefoljeoversikt' },
+    buildFinancingInsight(kpis, loans),
   ];
 }
 
@@ -124,17 +139,7 @@ function buildForvalterInsights(kpis: PortfolioKPIs, clientData: { name: string;
   ];
 }
 
-function buildEmptyInsights(kpis: PortfolioKPIs): Insight[] {
-  // Build type breakdown
-  const typeMap = new Map<string, number>();
-  for (const b of kpis.filteredBuildings) {
-    typeMap.set(b.buildingType, (typeMap.get(b.buildingType) ?? 0) + 1);
-  }
-  const typeBreakdown = Array.from(typeMap.entries())
-    .sort((a, b) => b[1] - a[1])
-    .map(([type, count]) => `${count} ${type.toLowerCase()}`)
-    .join(', ');
-
+function buildEmptyInsights(kpis: PortfolioKPIs, loans: Loan[]): Insight[] {
   // Top vacancy buildings
   const vacancyRanked = [...kpis.filteredBuildings]
     .map((b) => ({ name: b.name, cost: b.totalRentableM2 * (b.marketRentPerM2 ?? 0) }))
@@ -176,33 +181,21 @@ function buildEmptyInsights(kpis: PortfolioKPIs): Insight[] {
       severity: 'info',
       link: '/avtaler',
     },
-    {
-      id: 'portfolio',
-      title: 'PORTEFØLJE',
-      value: `${kpis.buildingCount} bygg`,
-      context: `${formatM2(kpis.totalM2)} BRA · ${typeBreakdown}`,
-      bullets: [
-        `Porteføljeverdi: ${formatNOK(kpis.totalPortfolioValue)}`,
-        `Tomt: ${formatM2(kpis.filteredBuildings.reduce((s, b) => s + (b.plotAreaM2 ?? 0), 0))}`,
-        'Data hentet automatisk fra PlacePoint',
-      ],
-      severity: 'positive',
-      link: '/bygg',
-    },
+    buildFinancingInsight(kpis, loans),
   ];
 }
 
 export function usePersonaInsights(kpis: PortfolioKPIs): Insight[] {
   const { persona, clients } = usePersona();
-  const { buildings, contracts, costs, funds } = usePortfolioContext();
+  const { buildings, contracts, costs, funds, loans } = usePortfolioContext();
 
   return useMemo(() => {
     // Return placeholder insights when no contract/cost data exists
     if (!kpis.hasContracts && !kpis.hasCosts) {
-      return buildEmptyInsights(kpis);
+      return buildEmptyInsights(kpis, loans);
     }
 
-    if (persona === 'eier') return buildEierInsights(kpis);
+    if (persona === 'eier') return buildEierInsights(kpis, loans);
 
     if (persona === 'investor') {
       const fundData = funds.map((fund) => {
@@ -218,7 +211,7 @@ export function usePersonaInsights(kpis: PortfolioKPIs): Insight[] {
         const value = fb.reduce((s, b) => s + (b.estimatedMarketValue ?? 0), 0);
         return { name: fund.name, yield_: value > 0 ? (noi / value) * 100 : 0 };
       });
-      return buildInvestorInsights(kpis, fundData);
+      return buildInvestorInsights(kpis, fundData, loans);
     }
 
     const clientData = clients.map((client) => {
@@ -235,5 +228,5 @@ export function usePersonaInsights(kpis: PortfolioKPIs): Insight[] {
       return { name: client.name, value, noi: income - ann, buildings: cb.length, occupancy: occ };
     });
     return buildForvalterInsights(kpis, clientData);
-  }, [persona, kpis, funds, buildings, contracts, costs, clients]);
+  }, [persona, kpis, funds, buildings, contracts, costs, loans, clients]);
 }

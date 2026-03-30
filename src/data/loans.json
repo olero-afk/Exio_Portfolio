@@ -1,0 +1,103 @@
+[
+  {
+    "id": "loan-001",
+    "buildingId": "b-001",
+    "lender": "DNB",
+    "loanAmount": 230000000,
+    "outstandingBalance": 204000000,
+    "interestRate": 4.75,
+    "interestType": "flytende",
+    "startDate": "2015-06-01",
+    "maturityDate": "2030-06-01",
+    "amortizationType": "annuitet",
+    "annualPayment": 18200000,
+    "covenants": [
+      { "type": "LTV", "threshold": 0.75, "status": "ok", "description": "LTV skal ikke overstige 75%" },
+      { "type": "DSCR", "threshold": 1.2, "status": "ok", "description": "DSCR skal minimum være 1,20" }
+    ]
+  },
+  {
+    "id": "loan-002",
+    "buildingId": "b-002",
+    "lender": "Nordea",
+    "loanAmount": 160000000,
+    "outstandingBalance": 142000000,
+    "interestRate": 4.50,
+    "interestType": "flytende",
+    "startDate": "2017-03-15",
+    "maturityDate": "2032-03-15",
+    "amortizationType": "annuitet",
+    "annualPayment": 12800000,
+    "covenants": [
+      { "type": "LTV", "threshold": 0.70, "status": "ok", "description": "LTV skal ikke overstige 70%" },
+      { "type": "DSCR", "threshold": 1.25, "status": "ok", "description": "DSCR skal minimum være 1,25" }
+    ]
+  },
+  {
+    "id": "loan-003",
+    "buildingId": "b-003",
+    "lender": "SpareBank 1 SR-Bank",
+    "loanAmount": 85000000,
+    "outstandingBalance": 72000000,
+    "interestRate": 5.10,
+    "interestType": "flytende",
+    "startDate": "2012-09-01",
+    "maturityDate": "2027-09-01",
+    "amortizationType": "serie",
+    "annualPayment": 8500000,
+    "covenants": [
+      { "type": "LTV", "threshold": 0.65, "status": "ok", "description": "LTV skal ikke overstige 65%" }
+    ]
+  },
+  {
+    "id": "loan-004",
+    "buildingId": "b-004",
+    "lender": "Handelsbanken",
+    "loanAmount": 52000000,
+    "outstandingBalance": 45000000,
+    "interestRate": 4.25,
+    "interestType": "fast",
+    "startDate": "2018-01-15",
+    "maturityDate": "2028-01-15",
+    "amortizationType": "avdragsfritt",
+    "annualPayment": 2210000,
+    "covenants": [
+      { "type": "LTV", "threshold": 0.70, "status": "ok", "description": "LTV skal ikke overstige 70%" },
+      { "type": "DSCR", "threshold": 1.15, "status": "ok", "description": "DSCR skal minimum være 1,15" }
+    ]
+  },
+  {
+    "id": "loan-005",
+    "buildingId": "b-006",
+    "lender": "DNB",
+    "loanAmount": 100000000,
+    "outstandingBalance": 95000000,
+    "interestRate": 5.25,
+    "interestType": "flytende",
+    "startDate": "2020-02-01",
+    "maturityDate": "2030-02-01",
+    "amortizationType": "annuitet",
+    "annualPayment": 10400000,
+    "covenants": [
+      { "type": "LTV", "threshold": 0.75, "status": "advarsel", "description": "LTV skal ikke overstige 75%" },
+      { "type": "DSCR", "threshold": 1.20, "status": "ok", "description": "DSCR skal minimum være 1,20" }
+    ],
+    "notes": "Refinansiering vurderes Q4 2026"
+  },
+  {
+    "id": "loan-006",
+    "buildingId": "b-008",
+    "lender": "Nordea",
+    "loanAmount": 75000000,
+    "outstandingBalance": 68000000,
+    "interestRate": 3.80,
+    "interestType": "fast",
+    "startDate": "2021-04-01",
+    "maturityDate": "2031-04-01",
+    "amortizationType": "annuitet",
+    "annualPayment": 8900000,
+    "covenants": [
+      { "type": "LTV", "threshold": 0.70, "status": "ok", "description": "LTV skal ikke overstige 70%" }
+    ]
+  }
+]

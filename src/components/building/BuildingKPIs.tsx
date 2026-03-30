@@ -40,7 +40,9 @@ export function BuildingKPIs({ building }: BuildingKPIsProps) {
       ? (noi / building.estimatedMarketValue) * 100
       : null;
 
-    return { noi, noiMargin, noiPerM2, wault, effectiveWault, vacancyCost, yield: yield_, activeContracts: active.length };
+    const felleskostPct = income > 0 ? (annualized / income) * 100 : 0;
+
+    return { noi, noiMargin, noiPerM2, wault, effectiveWault, vacancyCost, yield: yield_, activeContracts: active.length, income, felleskostPct };
   }, [building, contracts, costs]);
 
   return (
@@ -64,8 +66,12 @@ export function BuildingKPIs({ building }: BuildingKPIsProps) {
           <span className="building-kpis__value">{formatYears(kpis.effectiveWault)}</span>
         </div>
         <div className="building-kpis__metric">
-          <span className="building-kpis__label">NOI-margin</span>
-          <span className="building-kpis__value">{formatPercent(kpis.noiMargin)}</span>
+          <span className="building-kpis__label">Brutto leieinntekt</span>
+          <span className="building-kpis__value">{formatNOK(kpis.income)}</span>
+        </div>
+        <div className="building-kpis__metric">
+          <span className="building-kpis__label">Felleskost % av leie</span>
+          <span className="building-kpis__value">{formatPercent(kpis.felleskostPct)}</span>
         </div>
         <div className="building-kpis__metric">
           <span className="building-kpis__label">NOI per m²</span>
@@ -87,6 +93,12 @@ export function BuildingKPIs({ building }: BuildingKPIsProps) {
           <span className="building-kpis__label">Aktive kontrakter</span>
           <span className="building-kpis__value">{kpis.activeContracts}</span>
         </div>
+        {building.ownershipShare < 100 && (
+          <div className="building-kpis__metric">
+            <span className="building-kpis__label">Eierbrøk</span>
+            <span className="building-kpis__value">{formatPercent(building.ownershipShare)}</span>
+          </div>
+        )}
       </div>
     </div>
   );

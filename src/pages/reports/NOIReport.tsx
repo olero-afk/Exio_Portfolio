@@ -13,12 +13,7 @@ import './report-shared.css';
 /* ------------------------------------------------------------------ */
 
 function SectionA({ kpis }: { kpis: PortfolioKPIs }) {
-  const marginClass =
-    kpis.noiMargin >= 60
-      ? 'report-metric__value--positive'
-      : kpis.noiMargin >= 40
-        ? 'report-metric__value--warning'
-        : 'report-metric__value--danger';
+  const noiPerM2 = kpis.totalRentableM2 > 0 ? kpis.totalNOI / kpis.totalRentableM2 : 0;
 
   return (
     <div className="report-metrics">
@@ -35,8 +30,8 @@ function SectionA({ kpis }: { kpis: PortfolioKPIs }) {
         <span className={`report-metric__value ${kpis.totalNOI > 0 ? 'report-metric__value--positive' : ''}`}>{formatNOK(kpis.totalNOI)}</span>
       </div>
       <div className="report-metric">
-        <span className="report-metric__label">NOI-margin</span>
-        <span className={`report-metric__value ${marginClass}`}>{formatPercent(kpis.noiMargin)}</span>
+        <span className="report-metric__label">NOI per m²</span>
+        <span className="report-metric__value">{formatNOK(noiPerM2)}</span>
       </div>
     </div>
   );
@@ -54,10 +49,10 @@ interface BuildingNOI {
   expenses: number;
   noi: number;
   noiPerM2: number;
-  noiMargin: number;
+  felleskostPct: number;
 }
 
-type SortKey = 'name' | 'income' | 'expenses' | 'noi' | 'noiPerM2' | 'noiMargin';
+type SortKey = 'name' | 'income' | 'expenses' | 'noi' | 'noiPerM2' | 'felleskostPct';
 type SortDir = 'asc' | 'desc';
 
 /* ------------------------------------------------------------------ */
@@ -79,7 +74,7 @@ function useBuildingNOI(kpis: PortfolioKPIs): BuildingNOI[] {
 
       const noi = income - expenses;
       const noiPerM2 = b.totalRentableM2 > 0 ? noi / b.totalRentableM2 : 0;
-      const noiMargin = income > 0 ? (noi / income) * 100 : 0;
+      const felleskostPct = income > 0 ? (expenses / income) * 100 : 0;
 
       return {
         id: b.id,
@@ -89,7 +84,7 @@ function useBuildingNOI(kpis: PortfolioKPIs): BuildingNOI[] {
         expenses,
         noi,
         noiPerM2,
-        noiMargin,
+        felleskostPct,
       };
     });
   }, [kpis.filteredBuildings, contracts, costs]);
@@ -133,15 +128,12 @@ function SectionB({ kpis }: { kpis: PortfolioKPIs }) {
       expenses: totalExpenses,
       noi: totalNoi,
       noiPerM2: totalM2 > 0 ? totalNoi / totalM2 : 0,
-      noiMargin: totalIncome > 0 ? (totalNoi / totalIncome) * 100 : 0,
+      felleskostPct: totalIncome > 0 ? (totalExpenses / totalIncome) * 100 : 0,
     };
   }, [data]);
 
   const arrow = sortDir === 'asc' ? ' ▲' : ' ▼';
   const activeStyle = { color: '#FED092' };
-
-  const marginColor = (m: number) =>
-    m >= 60 ? 'var(--color-green)' : m >= 40 ? '#facc15' : 'var(--color-red)';
 
   const cols: { key: SortKey; label: string; align?: 'right' }[] = [
     { key: 'name', label: 'Bygg' },
@@ -149,7 +141,7 @@ function SectionB({ kpis }: { kpis: PortfolioKPIs }) {
     { key: 'expenses', label: 'Driftskostnader', align: 'right' },
     { key: 'noi', label: 'NOI', align: 'right' },
     { key: 'noiPerM2', label: 'NOI/m²', align: 'right' },
-    { key: 'noiMargin', label: 'NOI-margin', align: 'right' },
+    { key: 'felleskostPct', label: 'Felleskost %', align: 'right' },
   ];
 
   return (
@@ -180,7 +172,7 @@ function SectionB({ kpis }: { kpis: PortfolioKPIs }) {
               <td data-align="right">{formatNOK(row.expenses)}</td>
               <td data-align="right" style={{ color: row.noi > 0 ? 'var(--color-green)' : 'var(--color-red)' }}>{formatNOK(row.noi)}</td>
               <td data-align="right">{formatNOK(row.noiPerM2)}</td>
-              <td data-align="right" style={{ color: marginColor(row.noiMargin) }}>{formatPercent(row.noiMargin)}</td>
+              <td data-align="right">{formatPercent(row.felleskostPct)}</td>
             </tr>
           ))}
         </tbody>
@@ -191,7 +183,7 @@ function SectionB({ kpis }: { kpis: PortfolioKPIs }) {
             <td data-align="right">{formatNOK(totals.expenses)}</td>
             <td data-align="right" style={{ color: totals.noi > 0 ? 'var(--color-green)' : 'var(--color-red)' }}>{formatNOK(totals.noi)}</td>
             <td data-align="right">{formatNOK(totals.noiPerM2)}</td>
-            <td data-align="right" style={{ color: marginColor(totals.noiMargin) }}>{formatPercent(totals.noiMargin)}</td>
+            <td data-align="right">{formatPercent(totals.felleskostPct)}</td>
           </tr>
         </tfoot>
       </table>

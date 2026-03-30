@@ -90,6 +90,32 @@ export interface Building {
   standard: BuildingStandard | null;
   isArchived: boolean;
   source: 'placepoint' | 'manual' | 'csv';
+  ownershipShare: number; // 0-100, default 100
+}
+
+// §3.8 Financing
+export interface Covenant {
+  type: 'LTV' | 'DSCR' | 'ICR' | 'annet';
+  threshold: number;
+  currentValue?: number;
+  status: 'ok' | 'advarsel' | 'brudd';
+  description?: string;
+}
+
+export interface Loan {
+  id: string;
+  buildingId: string;
+  lender: string;
+  loanAmount: number;
+  outstandingBalance: number;
+  interestRate: number;
+  interestType: 'fast' | 'flytende';
+  startDate: string;
+  maturityDate: string;
+  amortizationType: 'annuitet' | 'serie' | 'avdragsfritt';
+  annualPayment?: number;
+  covenants?: Covenant[];
+  notes?: string;
 }
 
 // §3.4 Area Unit

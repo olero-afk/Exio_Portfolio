@@ -61,6 +61,7 @@ function convertToBuilding(ppb: PlacePointBuilding, portfolioId: string): { buil
     standard: null,
     isArchived: false,
     source: 'placepoint',
+    ownershipShare: 100,
   };
 
   const areaUnits: AreaUnit[] = ppb.bruksenheter.map((unit, ui) => ({

@@ -4,8 +4,16 @@
     "portfolioId": "p-001",
     "subPortfolioId": "sp-001",
     "name": "Aker Brygge Kontorbygg",
-    "address": { "street": "Bryggegata 6", "postalCode": "0250", "municipality": "Oslo", "country": "Norway" },
-    "coordinates": { "lat": 59.9110, "lng": 10.7270 },
+    "address": {
+      "street": "Bryggegata 6",
+      "postalCode": "0250",
+      "municipality": "Oslo",
+      "country": "Norway"
+    },
+    "coordinates": {
+      "lat": 59.911,
+      "lng": 10.727
+    },
     "matrikkelNr": "0301-210/45/0/0",
     "buildingType": "Kontor",
     "yearBuilt": 2001,
@@ -27,15 +35,24 @@
     "vacancyRate": 0.0294,
     "standard": "Høy",
     "isArchived": false,
-    "source": "placepoint"
+    "source": "placepoint",
+    "ownershipShare": 100
   },
   {
     "id": "b-002",
     "portfolioId": "p-001",
     "subPortfolioId": "sp-001",
     "name": "Vika Terrasse",
-    "address": { "street": "Munkedamsveien 62", "postalCode": "0270", "municipality": "Oslo", "country": "Norway" },
-    "coordinates": { "lat": 59.9135, "lng": 10.7230 },
+    "address": {
+      "street": "Munkedamsveien 62",
+      "postalCode": "0270",
+      "municipality": "Oslo",
+      "country": "Norway"
+    },
+    "coordinates": {
+      "lat": 59.9135,
+      "lng": 10.723
+    },
     "matrikkelNr": "0301-211/12/0/0",
     "buildingType": "Kontor",
     "yearBuilt": 1998,
@@ -57,15 +74,24 @@
     "vacancyRate": 0.0486,
     "standard": "Høy",
     "isArchived": false,
-    "source": "placepoint"
+    "source": "placepoint",
+    "ownershipShare": 100
   },
   {
     "id": "b-003",
     "portfolioId": "p-001",
     "subPortfolioId": "sp-002",
     "name": "Bergen Storsenter",
-    "address": { "street": "Torgallmenningen 8", "postalCode": "5014", "municipality": "Bergen", "country": "Norway" },
-    "coordinates": { "lat": 60.3913, "lng": 5.3242 },
+    "address": {
+      "street": "Torgallmenningen 8",
+      "postalCode": "5014",
+      "municipality": "Bergen",
+      "country": "Norway"
+    },
+    "coordinates": {
+      "lat": 60.3913,
+      "lng": 5.3242
+    },
     "matrikkelNr": "1201-165/23/0/0",
     "buildingType": "Handel",
     "yearBuilt": 1985,
@@ -87,15 +113,24 @@
     "vacancyRate": 0.1481,
     "standard": "Medium",
     "isArchived": false,
-    "source": "placepoint"
+    "source": "placepoint",
+    "ownershipShare": 50
   },
   {
     "id": "b-004",
     "portfolioId": "p-001",
     "subPortfolioId": "sp-003",
     "name": "Forus Logistikksenter",
-    "address": { "street": "Forusbeen 35", "postalCode": "4033", "municipality": "Stavanger", "country": "Norway" },
-    "coordinates": { "lat": 58.8924, "lng": 5.7310 },
+    "address": {
+      "street": "Forusbeen 35",
+      "postalCode": "4033",
+      "municipality": "Stavanger",
+      "country": "Norway"
+    },
+    "coordinates": {
+      "lat": 58.8924,
+      "lng": 5.731
+    },
     "matrikkelNr": "1103-42/89/0/0",
     "buildingType": "LogistikkLager",
     "yearBuilt": 2010,
@@ -117,15 +152,24 @@
     "vacancyRate": 0.1515,
     "standard": "Medium",
     "isArchived": false,
-    "source": "placepoint"
+    "source": "placepoint",
+    "ownershipShare": 100
   },
   {
     "id": "b-005",
     "portfolioId": "p-001",
     "subPortfolioId": "sp-001",
     "name": "Majorstuen Bygg",
-    "address": { "street": "Sørkedalsveien 10", "postalCode": "0369", "municipality": "Oslo", "country": "Norway" },
-    "coordinates": { "lat": 59.9304, "lng": 10.7134 },
+    "address": {
+      "street": "Sørkedalsveien 10",
+      "postalCode": "0369",
+      "municipality": "Oslo",
+      "country": "Norway"
+    },
+    "coordinates": {
+      "lat": 59.9304,
+      "lng": 10.7134
+    },
     "matrikkelNr": "0301-34/56/0/0",
     "buildingType": "Kombinasjon",
     "yearBuilt": 1975,
@@ -147,15 +191,24 @@
     "vacancyRate": 0.1714,
     "standard": "Lav",
     "isArchived": false,
-    "source": "placepoint"
+    "source": "placepoint",
+    "ownershipShare": 33.3
   },
   {
     "id": "b-006",
     "portfolioId": "p-001",
     "subPortfolioId": "sp-004",
     "name": "Lysaker Kontorpark",
-    "address": { "street": "Lysaker Torg 12", "postalCode": "1366", "municipality": "Bærum", "country": "Norway" },
-    "coordinates": { "lat": 59.9133, "lng": 10.6345 },
+    "address": {
+      "street": "Lysaker Torg 12",
+      "postalCode": "1366",
+      "municipality": "Bærum",
+      "country": "Norway"
+    },
+    "coordinates": {
+      "lat": 59.9133,
+      "lng": 10.6345
+    },
     "matrikkelNr": "0219-18/34/0/0",
     "buildingType": "Kontor",
     "yearBuilt": 2008,
@@ -177,15 +230,24 @@
     "vacancyRate": 0.3333,
     "standard": "Medium",
     "isArchived": false,
-    "source": "placepoint"
+    "source": "placepoint",
+    "ownershipShare": 100
   },
   {
     "id": "b-007",
     "portfolioId": "p-001",
     "subPortfolioId": "sp-004",
     "name": "Drammen Handelshus",
-    "address": { "street": "Bragernes Torg 2", "postalCode": "3017", "municipality": "Drammen", "country": "Norway" },
-    "coordinates": { "lat": 59.7440, "lng": 10.2045 },
+    "address": {
+      "street": "Bragernes Torg 2",
+      "postalCode": "3017",
+      "municipality": "Drammen",
+      "country": "Norway"
+    },
+    "coordinates": {
+      "lat": 59.744,
+      "lng": 10.2045
+    },
     "matrikkelNr": "0602-120/7/0/0",
     "buildingType": "Handel",
     "yearBuilt": 1992,
@@ -207,15 +269,24 @@
     "vacancyRate": 0.375,
     "standard": "Lav",
     "isArchived": false,
-    "source": "manual"
+    "source": "manual",
+    "ownershipShare": 100
   },
   {
     "id": "b-008",
     "portfolioId": "p-001",
     "subPortfolioId": "sp-004",
     "name": "Sandvika Helsehus",
-    "address": { "street": "Claude Monets Allé 5", "postalCode": "1338", "municipality": "Bærum", "country": "Norway" },
-    "coordinates": { "lat": 59.8897, "lng": 10.5267 },
+    "address": {
+      "street": "Claude Monets Allé 5",
+      "postalCode": "1338",
+      "municipality": "Bærum",
+      "country": "Norway"
+    },
+    "coordinates": {
+      "lat": 59.8897,
+      "lng": 10.5267
+    },
     "matrikkelNr": "0219-55/12/0/0",
     "buildingType": "Helse",
     "yearBuilt": 2015,
@@ -233,10 +304,11 @@
     "totalRentableM2": 4300,
     "totalCommonAreaM2": 900,
     "committedM2": 4300,
-    "occupancyRate": 1.0,
-    "vacancyRate": 0.0,
+    "occupancyRate": 1,
+    "vacancyRate": 0,
     "standard": "Høy",
     "isArchived": false,
-    "source": "placepoint"
+    "source": "placepoint",
+    "ownershipShare": 100
   }
 ]

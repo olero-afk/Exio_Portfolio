@@ -22,6 +22,7 @@ import { DiversificationReport } from './pages/reports/DiversificationReport.tsx
 import { CovenantReport } from './pages/reports/CovenantReport.tsx';
 import { BenchmarkReport } from './pages/reports/BenchmarkReport.tsx';
 import { NOIReport } from './pages/reports/NOIReport.tsx';
+import { BuildingFinancingPage } from './pages/BuildingFinancingPage.tsx';
 import { PlaceholderPage } from './pages/PlaceholderPage.tsx';
 import { FundViewPage } from './pages/FundViewPage.tsx';
 import { OnboardingPage } from './pages/OnboardingPage.tsx';
@@ -47,6 +48,7 @@ function App() {
               <Route path="bygg/:buildingId/forvalter" element={<BuildingTabPlaceholder tabName="Forvalter" />} />
               <Route path="bygg/:buildingId/energi" element={<BuildingTabPlaceholder tabName="Energi" />} />
               <Route path="bygg/:buildingId/okonomi" element={<BuildingFinancialsPage />} />
+              <Route path="bygg/:buildingId/finansiering" element={<BuildingFinancingPage />} />
               <Route path="rapporter" element={<ReportsPage />} />
               <Route path="rapporter/portefoljeoversikt" element={<PortfolioOverviewReport />} />
               <Route path="rapporter/noi" element={<NOIReport />} />

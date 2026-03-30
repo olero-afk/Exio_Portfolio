@@ -53,6 +53,12 @@ export function BuildingListPage() {
                 <span className="building-list__card-metric-label">Standard</span>
                 <span className="building-list__card-metric-value">{b.standard ?? '—'}</span>
               </div>
+              {b.ownershipShare < 100 && (
+                <div className="building-list__card-metric">
+                  <span className="building-list__card-metric-label">Eierbrøk</span>
+                  <span className="building-list__card-metric-value">{formatPercent(b.ownershipShare)}</span>
+                </div>
+              )}
             </div>
             {b.vacancyRate > 0.15 && (
               <div className="building-list__card-warning">
