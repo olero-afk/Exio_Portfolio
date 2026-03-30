@@ -93,10 +93,12 @@ export function BuildingKPIs({ building }: BuildingKPIsProps) {
           <span className="building-kpis__label">Aktive kontrakter</span>
           <span className="building-kpis__value">{kpis.activeContracts}</span>
         </div>
-        {building.ownershipShare < 100 && (
+        {building.owners.length > 1 && (
           <div className="building-kpis__metric">
             <span className="building-kpis__label">Eierbrøk</span>
-            <span className="building-kpis__value">{formatPercent(building.ownershipShare)}</span>
+            <span className="building-kpis__value">
+              {building.owners.map((o) => `${o.name.split(' ')[0]} ${formatPercent(o.ownershipShare)}`).join(' · ')}
+            </span>
           </div>
         )}
       </div>

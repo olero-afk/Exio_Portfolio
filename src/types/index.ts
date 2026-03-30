@@ -90,7 +90,15 @@ export interface Building {
   standard: BuildingStandard | null;
   isArchived: boolean;
   source: 'placepoint' | 'manual' | 'csv';
-  ownershipShare: number; // 0-100, default 100
+  owners: BuildingOwner[];
+}
+
+export interface BuildingOwner {
+  id: string;
+  name: string;
+  orgNr: string;
+  ownershipShare: number; // 0-100
+  role?: 'eier' | 'investor';
 }
 
 // §3.8 Financing

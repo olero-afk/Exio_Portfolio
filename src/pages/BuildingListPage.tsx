@@ -53,13 +53,17 @@ export function BuildingListPage() {
                 <span className="building-list__card-metric-label">Standard</span>
                 <span className="building-list__card-metric-value">{b.standard ?? '—'}</span>
               </div>
-              {b.ownershipShare < 100 && (
-                <div className="building-list__card-metric">
-                  <span className="building-list__card-metric-label">Eierbrøk</span>
-                  <span className="building-list__card-metric-value">{formatPercent(b.ownershipShare)}</span>
-                </div>
-              )}
             </div>
+            {b.owners.length > 1 && (
+              <Link
+                to={`/bygg/${b.id}/eiere`}
+                className="building-list__card-owners"
+                onClick={(e) => e.stopPropagation()}
+                style={{ color: '#9a9a9a', fontSize: '0.75rem', textDecoration: 'none', cursor: 'pointer', marginTop: 4 }}
+              >
+                Eierbrøk: {b.owners.map((o) => `${o.name.split(' ')[0]} ${formatPercent(o.ownershipShare)}`).join(' · ')}
+              </Link>
+            )}
             {b.vacancyRate > 0.15 && (
               <div className="building-list__card-warning">
                 Høy ledighet: {formatPercent(b.vacancyRate * 100)}

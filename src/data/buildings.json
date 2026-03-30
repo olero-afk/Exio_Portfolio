@@ -36,7 +36,14 @@
     "standard": "Høy",
     "isArchived": false,
     "source": "placepoint",
-    "ownershipShare": 100
+    "owners": [
+      {
+        "id": "owner-fje",
+        "name": "Fjordvest Eiendom AS",
+        "orgNr": "912345678",
+        "ownershipShare": 100
+      }
+    ]
   },
   {
     "id": "b-002",
@@ -75,7 +82,14 @@
     "standard": "Høy",
     "isArchived": false,
     "source": "placepoint",
-    "ownershipShare": 100
+    "owners": [
+      {
+        "id": "owner-fje",
+        "name": "Fjordvest Eiendom AS",
+        "orgNr": "912345678",
+        "ownershipShare": 100
+      }
+    ]
   },
   {
     "id": "b-003",
@@ -114,7 +128,20 @@
     "standard": "Medium",
     "isArchived": false,
     "source": "placepoint",
-    "ownershipShare": 50
+    "owners": [
+      {
+        "id": "owner-fje",
+        "name": "Fjordvest Eiendom AS",
+        "orgNr": "912345678",
+        "ownershipShare": 50
+      },
+      {
+        "id": "owner-vi",
+        "name": "Vestland Invest AS",
+        "orgNr": "987654321",
+        "ownershipShare": 50
+      }
+    ]
   },
   {
     "id": "b-004",
@@ -153,7 +180,14 @@
     "standard": "Medium",
     "isArchived": false,
     "source": "placepoint",
-    "ownershipShare": 100
+    "owners": [
+      {
+        "id": "owner-fje",
+        "name": "Fjordvest Eiendom AS",
+        "orgNr": "912345678",
+        "ownershipShare": 100
+      }
+    ]
   },
   {
     "id": "b-005",
@@ -192,7 +226,26 @@
     "standard": "Lav",
     "isArchived": false,
     "source": "placepoint",
-    "ownershipShare": 33.3
+    "owners": [
+      {
+        "id": "owner-fje",
+        "name": "Fjordvest Eiendom AS",
+        "orgNr": "912345678",
+        "ownershipShare": 33.3
+      },
+      {
+        "id": "owner-ok",
+        "name": "Oslo Kapital AS",
+        "orgNr": "923456789",
+        "ownershipShare": 33.3
+      },
+      {
+        "id": "owner-se",
+        "name": "Sentrum Eiendom AS",
+        "orgNr": "934567890",
+        "ownershipShare": 33.4
+      }
+    ]
   },
   {
     "id": "b-006",
@@ -231,7 +284,14 @@
     "standard": "Medium",
     "isArchived": false,
     "source": "placepoint",
-    "ownershipShare": 100
+    "owners": [
+      {
+        "id": "owner-fje",
+        "name": "Fjordvest Eiendom AS",
+        "orgNr": "912345678",
+        "ownershipShare": 100
+      }
+    ]
   },
   {
     "id": "b-007",
@@ -270,7 +330,14 @@
     "standard": "Lav",
     "isArchived": false,
     "source": "manual",
-    "ownershipShare": 100
+    "owners": [
+      {
+        "id": "owner-fje",
+        "name": "Fjordvest Eiendom AS",
+        "orgNr": "912345678",
+        "ownershipShare": 100
+      }
+    ]
   },
   {
     "id": "b-008",
@@ -309,6 +376,13 @@
     "standard": "Høy",
     "isArchived": false,
     "source": "placepoint",
-    "ownershipShare": 100
+    "owners": [
+      {
+        "id": "owner-fje",
+        "name": "Fjordvest Eiendom AS",
+        "orgNr": "912345678",
+        "ownershipShare": 100
+      }
+    ]
   }
 ]

@@ -123,7 +123,7 @@ export function StepFerdig() {
         standard: null,
         isArchived: false,
         source: 'placepoint',
-        ownershipShare: 100,
+        owners: [{ id: `owner-${buildingId}`, name: ppb.hjemmelshaver.navn, orgNr: ppb.hjemmelshaver.organisasjonsnummer, ownershipShare: 100 }],
       };
       allBuildings.push(building);
 
