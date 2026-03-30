@@ -6,10 +6,10 @@ import { formatNOK, formatM2, formatPercent, formatYears, formatNumber } from '.
 import './ReportsPage.css';
 
 const coreReports = [
-  { id: 'portefoljeoversikt', icon: '📊', title: 'Porteføljeoversikt', description: 'Komplett byggoversikt med areal, status og nøkkeldata.', path: '/rapporter/portefoljeoversikt' },
-  { id: 'noi', icon: '💰', title: 'NOI-analyse', description: 'Leieinntekter, kostnader og NOI per bygg og totalt.', path: '/rapporter/noi' },
-  { id: 'kontraktsanalyse', icon: '📋', title: 'Kontraktsanalyse', description: 'WAULT, utløpsprofil og inntekt i risiko.', path: '/rapporter/kontraktsanalyse' },
-  { id: 'ledighetsoversikt', icon: '🏢', title: 'Ledighetsoversikt', description: 'Ledighetskostnad i kroner og rangering per bygg.', path: '/rapporter/ledighetsoversikt' },
+  { id: 'portefoljeoversikt', icon: '📊', title: 'Porteføljeoversikt', description: 'Komplett byggoversikt med areal, status og nøkkeldata.', path: '/rapporter/portefoljeoversikt', sections: 6, unlocked: 4 },
+  { id: 'noi', icon: '💰', title: 'NOI-analyse', description: 'Leieinntekter, kostnader og NOI per bygg og totalt.', path: '/rapporter/noi', sections: 6, unlocked: 4 },
+  { id: 'kontraktsanalyse', icon: '📋', title: 'Kontraktsanalyse', description: 'WAULT, utløpsprofil og inntekt i risiko.', path: '/rapporter/kontraktsanalyse', sections: 6, unlocked: 4 },
+  { id: 'ledighetsoversikt', icon: '🏢', title: 'Ledighetsoversikt', description: 'Ledighetskostnad i kroner og rangering per bygg.', path: '/rapporter/ledighetsoversikt', sections: 7, unlocked: 5 },
 ];
 
 const otherReports = [
@@ -55,6 +55,14 @@ export function ReportsPage() {
             {summaries[r.id] && (
               <p className="reports-page__card-summary">{summaries[r.id]}</p>
             )}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 4, marginTop: 4 }}>
+              <span style={{ fontSize: '0.6875rem', color: '#7a7a7a' }}>
+                {r.unlocked} av {r.sections} seksjoner tilgjengelig
+              </span>
+              <div style={{ height: 4, background: '#2a2a2a', borderRadius: 2, overflow: 'hidden' }}>
+                <div style={{ height: '100%', width: `${(r.unlocked / r.sections) * 100}%`, background: '#22d4e8', borderRadius: 2 }} />
+              </div>
+            </div>
             <span className="reports-page__card-action">Åpne →</span>
           </Link>
         ))}

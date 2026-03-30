@@ -4,6 +4,8 @@ import ReactApexChart from 'react-apexcharts';
 import type { ApexOptions } from 'apexcharts';
 import { ReportLayout } from '../../components/reports/ReportLayout.tsx';
 import { formatNOK, formatM2, formatPercent, formatNumber } from '../../utils/formatters.ts';
+import { LockedSection } from '../../components/shared/LockedSection.tsx';
+import { mockVacancyTrendQuarters, mockVacancyTrendPct, mockPipelineData } from '../../data/lockedSectionMocks.ts';
 import type { PortfolioKPIs } from '../../hooks/usePortfolioKPI.ts';
 import './report-shared.css';
 
@@ -235,6 +237,58 @@ export function VacancyReport() {
           </div>
           <SectionD kpis={kpis} />
           <SectionE kpis={kpis} />
+          <LockedSection requiredLevel={2} currentLevel={1} title="Ledighetstrender over tid" description="Se historisk utvikling i ledighetsrate per kvartal">
+            <div className="report-section">
+              <h3 className="report-section__title">Ledighetsrate — trend</h3>
+              <table className="report-table">
+                <thead><tr>
+                  {mockVacancyTrendQuarters.map((q) => <th key={q} data-align="right">{q}</th>)}
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    {mockVacancyTrendPct.map((v, i) => (
+                      <td key={i} data-align="right" style={{ color: v > 25 ? '#f87171' : v > 15 ? '#facc15' : '#4ade80' }}>
+                        {formatPercent(v)}
+                      </td>
+                    ))}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </LockedSection>
+          <LockedSection requiredLevel={3} currentLevel={1} title="Utleiepipeline" description="Se prospekter og utleiestatus per ledig areal">
+            <div className="report-section">
+              <h3 className="report-section__title">Utleiepipeline</h3>
+              <table className="report-table">
+                <thead><tr>
+                  <th>Prospekt</th>
+                  <th>Bygg</th>
+                  <th data-align="right">Areal</th>
+                  <th>Status</th>
+                  <th>Forventet signering</th>
+                </tr></thead>
+                <tbody>
+                  {mockPipelineData.map((r) => {
+                    const stageColors: Record<string, string> = { 'Henvendelse': '#7a7a7a', 'Visning': '#22d4e8', 'Tilbud sendt': '#FED092', 'Forhandling': '#fb923c', 'Signert': '#4ade80' };
+                    const color = stageColors[r.stage] ?? '#9a9a9a';
+                    return (
+                      <tr key={r.prospect}>
+                        <td>{r.prospect}</td>
+                        <td>{r.building}</td>
+                        <td data-align="right">{formatM2(r.areaM2)}</td>
+                        <td>
+                          <span style={{ fontSize: '0.6rem', fontWeight: 800, textTransform: 'uppercase', padding: '2px 6px', borderRadius: 3, color, background: color + '15' }}>
+                            {r.stage}
+                          </span>
+                        </td>
+                        <td style={{ color: '#9a9a9a' }}>{r.expectedSign ?? '—'}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </LockedSection>
         </>
       )}
     </ReportLayout>

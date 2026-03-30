@@ -8,6 +8,8 @@ import { usePersona, EIER_BUILDING_IDS } from '../context/PersonaContext.tsx';
 import { FundFilter } from '../components/dashboard/FundFilter.tsx';
 import { PeriodSelector } from '../components/dashboard/PeriodSelector.tsx';
 import { formatNOK, formatPercent, formatYears, formatM2, formatNumber } from '../utils/formatters.ts';
+import { LockedSection } from '../components/shared/LockedSection.tsx';
+import { mockFinancialSummary, mockComplianceData } from '../data/lockedSectionMocks.ts';
 import './BoardReportPage.css';
 
 const DONUT_COLORS = ['#22d4e8', '#FED092', '#4ade80', '#a78bfa', '#fb923c', '#38bdf8', '#e879f9'];
@@ -177,6 +179,48 @@ export function BoardReportPage() {
             <div><h3 className="board-report__div-subtitle">Bransje</h3>{miniDonut(kpis.diversification.byTenantIndustry)}</div>
           </div>
         </section>
+
+        <LockedSection requiredLevel={2} currentLevel={1} title="Finansiell sammenstilling" description="Se budsjett vs. faktisk, yield og kostnad per m² — live fra ERP">
+          <section className="board-report__section">
+            <h2 className="board-report__section-title">Finansiell sammenstilling</h2>
+            <table className="board-report__table">
+              <thead><tr><th>Nøkkeltall</th><th style={{ textAlign: 'right' }}>Budsjett</th><th style={{ textAlign: 'right' }}>Faktisk</th><th style={{ textAlign: 'right' }}>Avvik</th></tr></thead>
+              <tbody>
+                {mockFinancialSummary.map((r) => (
+                  <tr key={r.metric}>
+                    <td>{r.metric}</td>
+                    <td style={{ textAlign: 'right' }}>{typeof r.budget === 'number' && r.budget > 100 ? formatNOK(r.budget) : formatPercent(r.budget)}</td>
+                    <td style={{ textAlign: 'right' }}>{typeof r.actual === 'number' && r.actual > 100 ? formatNOK(r.actual) : formatPercent(r.actual)}</td>
+                    <td style={{ textAlign: 'right', color: r.variance <= 0 ? '#4ade80' : '#f87171' }}>{typeof r.variance === 'number' && Math.abs(r.variance) > 100 ? formatNOK(r.variance) : formatPercent(r.variance)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+        </LockedSection>
+
+        <LockedSection requiredLevel={3} currentLevel={1} title="Kontraktsrisiko og compliance" description="Se covenant-compliance, fornyelsespipeline og risikovurdering">
+          <section className="board-report__section">
+            <h2 className="board-report__section-title">Covenant-compliance</h2>
+            <table className="board-report__table">
+              <thead><tr><th>Lån</th><th>Covenant</th><th style={{ textAlign: 'right' }}>Aktuell</th><th>Status</th></tr></thead>
+              <tbody>
+                {mockComplianceData.map((r, i) => {
+                  const color = r.status === 'ok' ? '#4ade80' : r.status === 'advarsel' ? '#facc15' : '#f87171';
+                  const label = r.status === 'ok' ? 'OK' : r.status === 'advarsel' ? 'Advarsel' : 'Brudd';
+                  return (
+                    <tr key={i}>
+                      <td>{r.loan}</td>
+                      <td>{r.covenant}</td>
+                      <td style={{ textAlign: 'right' }}>{r.current}</td>
+                      <td><span style={{ fontSize: '0.6rem', fontWeight: 800, textTransform: 'uppercase', padding: '2px 6px', borderRadius: 3, color, background: color + '15' }}>{label}</span></td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </section>
+        </LockedSection>
 
         <footer className="board-report__footer">
           <p>Generert av Exio Portfolio — {today}</p>

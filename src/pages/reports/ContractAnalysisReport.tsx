@@ -5,6 +5,8 @@ import type { ApexOptions } from 'apexcharts';
 import { ReportLayout } from '../../components/reports/ReportLayout.tsx';
 import { usePortfolioContext } from '../../context/PortfolioContext.tsx';
 import { formatNOK, formatPercent, formatNumber, formatYears } from '../../utils/formatters.ts';
+import { LockedSection } from '../../components/shared/LockedSection.tsx';
+import { mockLifecycleData, mockKPIRegData } from '../../data/lockedSectionMocks.ts';
 import type { PortfolioKPIs } from '../../hooks/usePortfolioKPI.ts';
 import './report-shared.css';
 
@@ -391,6 +393,63 @@ export function ContractAnalysisReport() {
           <SectionB kpis={kpis} />
           <SectionC kpis={kpis} />
           <SectionD kpis={kpis} />
+          <LockedSection requiredLevel={3} currentLevel={1} title="Kontraktslivssyklus" description="Se full livssyklus per kontrakt — fornyelse, oppsigelse og status">
+            <div className="report-section">
+              <h3 className="report-section__title">Kontraktslivssyklus</h3>
+              <table className="report-table">
+                <thead><tr>
+                  <th>Avtale</th>
+                  <th>Bygg</th>
+                  <th>Status</th>
+                  <th>Fornyelsesdato</th>
+                  <th>Neste handling</th>
+                </tr></thead>
+                <tbody>
+                  {mockLifecycleData.map((r) => {
+                    const statusColor = r.status === 'Aktiv' ? '#4ade80' : r.status === 'Til fornyelse' ? '#22d4e8' : r.status === 'Oppsagt' ? '#f87171' : '#FED092';
+                    return (
+                      <tr key={r.contract}>
+                        <td>{r.contract}</td>
+                        <td>{r.building}</td>
+                        <td>
+                          <span style={{ fontSize: '0.6rem', fontWeight: 800, textTransform: 'uppercase', padding: '2px 6px', borderRadius: 3, color: statusColor, background: statusColor + '15' }}>
+                            {r.status}
+                          </span>
+                        </td>
+                        <td style={{ color: '#9a9a9a' }}>{r.renewal}</td>
+                        <td style={{ color: '#9a9a9a' }}>{r.nextAction}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </LockedSection>
+          <LockedSection requiredLevel={3} currentLevel={1} title="KPI-reguleringshistorikk" description="Se automatisk KPI-regulering over tid per avtale">
+            <div className="report-section">
+              <h3 className="report-section__title">KPI-reguleringshistorikk</h3>
+              <table className="report-table">
+                <thead><tr>
+                  <th>Avtale</th>
+                  <th data-align="right">Opprinnelig leie</th>
+                  <th data-align="right">Gjeldende leie</th>
+                  <th data-align="right">KPI %</th>
+                  <th>Siste justering</th>
+                </tr></thead>
+                <tbody>
+                  {mockKPIRegData.map((r) => (
+                    <tr key={r.contract}>
+                      <td>{r.contract}</td>
+                      <td data-align="right">{formatNOK(r.originalRent)}</td>
+                      <td data-align="right">{formatNOK(r.currentRent)}</td>
+                      <td data-align="right" style={{ color: '#4ade80' }}>+{formatPercent(r.kpiPct)}</td>
+                      <td style={{ color: '#9a9a9a' }}>{r.lastAdjusted}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </LockedSection>
         </>
       )}
     </ReportLayout>

@@ -5,6 +5,8 @@ import type { ApexOptions } from 'apexcharts';
 import { ReportLayout } from '../../components/reports/ReportLayout.tsx';
 import { usePortfolioContext } from '../../context/PortfolioContext.tsx';
 import { formatNOK, formatPercent, formatNumber } from '../../utils/formatters.ts';
+import { LockedSection } from '../../components/shared/LockedSection.tsx';
+import { mockBudgetData, mockCostTrendMonths, mockCostTrendData } from '../../data/lockedSectionMocks.ts';
 import type { PortfolioKPIs } from '../../hooks/usePortfolioKPI.ts';
 import './report-shared.css';
 
@@ -376,6 +378,52 @@ export function NOIReport() {
           <SectionB kpis={kpis} />
           <SectionC kpis={kpis} />
           <SectionD kpis={kpis} />
+
+          <LockedSection requiredLevel={2} currentLevel={1} title="Budsjett vs. faktisk" description="Se avvik mellom budsjett og faktisk per bygg og kategori">
+            <div className="report-section">
+              <h3 className="report-section__title">Budsjett vs. faktisk</h3>
+              <table className="report-table">
+                <thead><tr>
+                  <th>Bygg</th>
+                  <th data-align="right">Budsjett</th>
+                  <th data-align="right">Faktisk</th>
+                  <th data-align="right">Avvik</th>
+                  <th data-align="right">Avvik %</th>
+                </tr></thead>
+                <tbody>
+                  {mockBudgetData.map((r) => (
+                    <tr key={r.building}>
+                      <td>{r.building}</td>
+                      <td data-align="right">{formatNOK(r.budget)}</td>
+                      <td data-align="right">{formatNOK(r.actual)}</td>
+                      <td data-align="right" style={{ color: r.variance <= 0 ? '#4ade80' : '#f87171' }}>{formatNOK(r.variance)}</td>
+                      <td data-align="right" style={{ color: r.pct <= 0 ? '#4ade80' : '#f87171' }}>{r.pct >= 0 ? '+' : ''}{formatPercent(r.pct)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </LockedSection>
+
+          <LockedSection requiredLevel={2} currentLevel={1} title="Kostnadstrend over tid" description="Se historisk kostnadsutvikling per kategori over 12 måneder">
+            <div className="report-section">
+              <h3 className="report-section__title">Kostnadstrend (tusen kr/mnd)</h3>
+              <table className="report-table">
+                <thead><tr>
+                  <th>Kategori</th>
+                  {mockCostTrendMonths.map((m) => <th key={m} data-align="right">{m}</th>)}
+                </tr></thead>
+                <tbody>
+                  {Object.entries(mockCostTrendData).map(([cat, values]) => (
+                    <tr key={cat}>
+                      <td style={{ textTransform: 'capitalize' }}>{cat}</td>
+                      {values.map((v, i) => <td key={i} data-align="right">{formatNumber(v)}</td>)}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </LockedSection>
         </>
       )}
     </ReportLayout>

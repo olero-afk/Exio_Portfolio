@@ -1,7 +1,9 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ReportLayout } from '../../components/reports/ReportLayout.tsx';
-import { formatM2, formatPercent, formatNumber } from '../../utils/formatters.ts';
+import { formatM2, formatPercent, formatNumber, formatNOK } from '../../utils/formatters.ts';
+import { LockedSection } from '../../components/shared/LockedSection.tsx';
+import { mockYieldData, mockPaymentData } from '../../data/lockedSectionMocks.ts';
 import type { PortfolioKPIs } from '../../hooks/usePortfolioKPI.ts';
 import type { Building } from '../../types/index.ts';
 import './report-shared.css';
@@ -285,6 +287,66 @@ export function PortfolioOverviewReport() {
           <SectionA kpis={kpis} />
           <SectionB kpis={kpis} />
           <SectionC kpis={kpis} />
+
+          <LockedSection requiredLevel={2} currentLevel={1} title="Verdivurdering og yield" description="Se NIY/Cap Rate, markedsverdi og yield-endring per bygg">
+            <div className="report-section">
+              <h3 className="report-section__title">Verdivurdering og yield</h3>
+              <table className="report-table">
+                <thead><tr>
+                  <th>Bygg</th>
+                  <th data-align="right">Markedsverdi</th>
+                  <th data-align="right">NOI</th>
+                  <th data-align="right">NIY</th>
+                  <th data-align="right">Yield Δ YoY</th>
+                </tr></thead>
+                <tbody>
+                  {mockYieldData.map((r) => (
+                    <tr key={r.building}>
+                      <td>{r.building}</td>
+                      <td data-align="right">{formatNOK(r.marketValue)}</td>
+                      <td data-align="right">{formatNOK(r.noi)}</td>
+                      <td data-align="right">{formatPercent(r.niy)}</td>
+                      <td data-align="right" style={{ color: r.yoyChange >= 0 ? '#4ade80' : '#f87171' }}>
+                        {r.yoyChange >= 0 ? '+' : ''}{formatPercent(r.yoyChange)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </LockedSection>
+
+          <LockedSection requiredLevel={3} currentLevel={1} title="Leietakeroversikt med betalingsstatus" description="Se betalingsstatus per leietaker — live fra Kontraktsforvaltning">
+            <div className="report-section">
+              <h3 className="report-section__title">Betalingsstatus per leietaker</h3>
+              <table className="report-table">
+                <thead><tr>
+                  <th>Leietaker</th>
+                  <th>Bygg</th>
+                  <th data-align="right">Årlig leie</th>
+                  <th>Status</th>
+                  <th>Siste betaling</th>
+                </tr></thead>
+                <tbody>
+                  {mockPaymentData.map((r) => (
+                    <tr key={r.tenant}>
+                      <td>{r.tenant}</td>
+                      <td>{r.building}</td>
+                      <td data-align="right">{formatNOK(r.annualRent)}</td>
+                      <td>
+                        <span style={{
+                          fontSize: '0.6rem', fontWeight: 800, textTransform: 'uppercase', padding: '2px 6px', borderRadius: 3,
+                          color: r.status === 'Betalt' ? '#4ade80' : r.status === 'Forfalt 14 dager' ? '#facc15' : '#f87171',
+                          background: r.status === 'Betalt' ? 'rgba(74,222,128,0.1)' : r.status === 'Forfalt 14 dager' ? 'rgba(250,204,21,0.1)' : 'rgba(248,113,113,0.1)',
+                        }}>{r.status}</span>
+                      </td>
+                      <td style={{ color: '#9a9a9a' }}>{r.lastPayment}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </LockedSection>
         </>
       )}
     </ReportLayout>
