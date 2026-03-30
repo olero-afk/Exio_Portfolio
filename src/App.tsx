@@ -24,6 +24,8 @@ import { BenchmarkReport } from './pages/reports/BenchmarkReport.tsx';
 import { NOIReport } from './pages/reports/NOIReport.tsx';
 import { BuildingFinancingPage } from './pages/BuildingFinancingPage.tsx';
 import { BuildingEierePage } from './pages/BuildingEierePage.tsx';
+import { BuildingMaturityPage } from './pages/BuildingMaturityPage.tsx';
+import { DatakvalitetPage } from './pages/DatakvalitetPage.tsx';
 import { PlaceholderPage } from './pages/PlaceholderPage.tsx';
 import { FundViewPage } from './pages/FundViewPage.tsx';
 import { OnboardingPage } from './pages/OnboardingPage.tsx';
@@ -50,6 +52,8 @@ function App() {
               <Route path="bygg/:buildingId/energi" element={<BuildingTabPlaceholder tabName="Energi" />} />
               <Route path="bygg/:buildingId/okonomi" element={<BuildingFinancialsPage />} />
               <Route path="bygg/:buildingId/finansiering" element={<BuildingFinancingPage />} />
+              <Route path="bygg/:buildingId/datakvalitet" element={<BuildingMaturityPage />} />
+              <Route path="datakvalitet" element={<DatakvalitetPage />} />
               <Route path="rapporter" element={<ReportsPage />} />
               <Route path="rapporter/portefoljeoversikt" element={<PortfolioOverviewReport />} />
               <Route path="rapporter/noi" element={<NOIReport />} />

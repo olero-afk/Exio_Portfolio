@@ -4,12 +4,16 @@ import { usePortfolioContext } from '../context/PortfolioContext.tsx';
 import { formatM2, formatPercent } from '../utils/formatters.ts';
 import { StatusBadge } from '../components/shared/StatusBadge.tsx';
 import { AddBuildingModal } from '../components/building/AddBuildingModal.tsx';
+import { MiniGauge } from '../components/shared/MaturityGauge.tsx';
+import { usePortfolioMaturity } from '../hooks/useMaturity.ts';
 import './BuildingListPage.css';
 
 export function BuildingListPage() {
   const { buildings } = usePortfolioContext();
   const active = buildings.filter((b) => !b.isArchived);
   const [showAddModal, setShowAddModal] = useState(false);
+  const maturity = usePortfolioMaturity();
+  const maturityMap = new Map(maturity.buildings.map((m) => [m.buildingId, m.percentage]));
 
   return (
     <div className="building-list">
@@ -28,10 +32,10 @@ export function BuildingListPage() {
           <Link key={b.id} to={`/bygg/${b.id}`} className="building-list__card">
             <div className="building-list__card-header">
               <h2 className="building-list__card-name">{b.name}</h2>
-              <StatusBadge
-                label={b.buildingType}
-                variant="muted"
-              />
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                <MiniGauge percentage={maturityMap.get(b.id) ?? 0} />
+                <StatusBadge label={b.buildingType} variant="muted" />
+              </div>
             </div>
             <p className="building-list__card-address">
               {b.address.street}, {b.address.postalCode} {b.address.municipality}
