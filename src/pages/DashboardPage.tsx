@@ -11,9 +11,11 @@ import { InsightCardGrid } from '../components/dashboard/InsightCardGrid.tsx';
 import { WelcomeWizard } from '../components/shared/WelcomeWizard.tsx';
 import { MaturityGauge } from '../components/shared/MaturityGauge.tsx';
 import { usePortfolioMaturity } from '../hooks/useMaturity.ts';
+import { usePageTitle } from '../hooks/usePageTitle.ts';
 import './DashboardPage.css';
 
 export function DashboardPage() {
+  usePageTitle('Dashboard');
   const navigate = useNavigate();
   const [showWizard, setShowWizard] = useState(false);
   const [demoLoaded, setDemoLoaded] = useState(true);

@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { usePortfolioContext } from '../../context/PortfolioContext.tsx';
 import type { CostEntry, StandardCostCategory } from '../../types/index.ts';
 import '../contracts/ContractModal.css';
@@ -26,15 +26,30 @@ export function CostModal({ buildingId: initialBuildingId, onClose }: CostModalP
   const [year, setYear] = useState(new Date().getFullYear());
   const [description, setDescription] = useState('');
 
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [onClose]);
+
   const activeBuildings = useMemo(() => buildings.filter((b) => !b.isArchived), [buildings]);
 
   const parsedAmount = parseFloat(amount.replace(/\s/g, '').replace(',', '.')) || 0;
   const annualized = period === 'monthly' ? parsedAmount * 12 : parsedAmount;
 
-  const isValid = buildingId && parsedAmount > 0;
 
   function handleSave() {
-    if (!isValid) return;
+    const errs: Record<string, string> = {};
+    if (!parsedAmount || parsedAmount <= 0) errs.amount = 'Beløp må være større enn 0';
+    if (!category) errs.category = 'Kategori er påkrevd';
+    if (!buildingId) errs.buildingId = 'Bygg er påkrevd';
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      return;
+    }
+    setErrors({});
 
     // Create 12 monthly entries (evenly distributed)
     const monthlyAmount = Math.round(annualized / 12);
@@ -94,7 +109,9 @@ export function CostModal({ buildingId: initialBuildingId, onClose }: CostModalP
               <label className="modal-field__label">Beløp (kr)</label>
               <input className="modal-field__input" type="text" placeholder="540 000" value={amount}
                 onChange={(e) => setAmount(e.target.value)}
+                style={errors.amount ? { borderColor: '#f87171' } : undefined}
               />
+              {errors.amount && <span style={{ color: '#f87171', fontSize: '0.7rem', marginTop: 2 }}>{errors.amount}</span>}
             </div>
             <div className="modal-field">
               <label className="modal-field__label">Periode</label>
@@ -134,7 +151,7 @@ export function CostModal({ buildingId: initialBuildingId, onClose }: CostModalP
 
         <div className="modal-card__footer">
           <button className="modal-card__btn-cancel" onClick={onClose}>Avbryt</button>
-          <button className="modal-card__btn-primary" disabled={!isValid} onClick={handleSave}>
+          <button className="modal-card__btn-primary" onClick={handleSave}>
             Lagre kostnad →
           </button>
         </div>

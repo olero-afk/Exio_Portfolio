@@ -5,6 +5,7 @@ import { BuildingTabs } from '../components/building/BuildingTabs.tsx';
 import { useBuildingMaturity, type CapabilityStatus } from '../hooks/useMaturity.ts';
 import { MaturityGauge } from '../components/shared/MaturityGauge.tsx';
 import { LEVEL_NAMES } from '../data/maturity.ts';
+import { usePageTitle } from '../hooks/usePageTitle.ts';
 import './BuildingDetailPage.css';
 
 type Filter = 'alle' | 'aktiv' | 'tilgjengelig' | 'krever_oppgradering';
@@ -73,6 +74,7 @@ export function BuildingMaturityPage() {
   const building = buildings.find((b) => b.id === buildingId);
   const maturity = useBuildingMaturity(buildingId ?? '');
   const [filter, setFilter] = useState<Filter>('alle');
+  usePageTitle(building ? `${building.name} — Innsiktsnivå` : 'Innsiktsnivå');
 
   if (!building || !buildingId || !maturity) return null;
 

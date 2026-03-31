@@ -2,12 +2,14 @@ import { useParams } from 'react-router-dom';
 import { usePortfolioContext } from '../context/PortfolioContext.tsx';
 import { BuildingTabs } from '../components/building/BuildingTabs.tsx';
 import { formatPercent } from '../utils/formatters.ts';
+import { usePageTitle } from '../hooks/usePageTitle.ts';
 import './BuildingDetailPage.css';
 
 export function BuildingEierePage() {
   const { buildingId } = useParams();
   const { buildings } = usePortfolioContext();
   const building = buildings.find((b) => b.id === buildingId);
+  usePageTitle(building ? `${building.name} — Eiere` : 'Eiere');
 
   if (!building) return null;
 

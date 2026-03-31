@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { usePortfolioContext } from '../context/PortfolioContext.tsx';
 import { usePersona, EIER_BUILDING_IDS } from '../context/PersonaContext.tsx';
 import { formatNOK, formatPercent, formatM2, formatNumber } from '../utils/formatters.ts';
+import { usePageTitle } from '../hooks/usePageTitle.ts';
 import './reports/report-shared.css';
 
 interface TenantSummary {
@@ -36,6 +37,7 @@ function getExpiryColor(dateStr: string): string {
 }
 
 export function LeietakerePage() {
+  usePageTitle('Leietakere');
   const { contracts, buildings } = usePortfolioContext();
   const { persona, clientBuildingIds } = usePersona();
 

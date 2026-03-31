@@ -3,6 +3,7 @@ import { usePersona, EIER_BUILDING_IDS } from '../context/PersonaContext.tsx';
 import { useFilterContext } from '../context/FilterContext.tsx';
 import { usePortfolioKPI } from '../hooks/usePortfolioKPI.ts';
 import { formatNOK, formatM2, formatPercent, formatYears, formatNumber } from '../utils/formatters.ts';
+import { usePageTitle } from '../hooks/usePageTitle.ts';
 import './ReportsPage.css';
 
 const coreReports = [
@@ -21,6 +22,7 @@ const otherReports = [
 ];
 
 export function ReportsPage() {
+  usePageTitle('Rapporter');
   const { persona, clientBuildingIds } = usePersona();
   const { selectedBuildingId } = useFilterContext();
 

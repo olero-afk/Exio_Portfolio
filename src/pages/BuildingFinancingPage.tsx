@@ -5,6 +5,7 @@ import { BuildingTabs } from '../components/building/BuildingTabs.tsx';
 import { LoanEntryModal } from '../components/financial/LoanEntryModal.tsx';
 import { formatNOK, formatPercent, formatNumber } from '../utils/formatters.ts';
 import type { Loan, Covenant } from '../types/index.ts';
+import { usePageTitle } from '../hooks/usePageTitle.ts';
 import './BuildingDetailPage.css';
 
 const dateFmt = new Intl.DateTimeFormat('nb-NO', { day: '2-digit', month: '2-digit', year: 'numeric' });
@@ -37,6 +38,7 @@ export function BuildingFinancingPage() {
   const { buildingId } = useParams();
   const { buildings, loans, contracts, costs } = usePortfolioContext();
   const building = buildings.find((b) => b.id === buildingId);
+  usePageTitle(building ? `${building.name} — Finansiering` : 'Finansiering');
 
   const [showLoanModal, setShowLoanModal] = useState(false);
   const [editMarketValue, setEditMarketValue] = useState('');

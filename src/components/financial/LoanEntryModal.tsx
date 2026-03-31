@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { usePortfolioContext } from '../../context/PortfolioContext.tsx';
 import type { Loan, Covenant } from '../../types/index.ts';
 import '../contracts/ContractModal.css';
@@ -28,10 +28,16 @@ export function LoanEntryModal({ buildingId, onClose }: LoanEntryModalProps) {
   const [covenants, setCovenants] = useState<CovenantDraft[]>([]);
   const [showCovenants, setShowCovenants] = useState(false);
   const [notes, setNotes] = useState('');
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [onClose]);
 
   const parseNum = (v: string): number => parseFloat(v.replace(/\s/g, '').replace(',', '.')) || 0;
 
-  const isValid =
     lender.trim() !== '' &&
     parseNum(loanAmount) > 0 &&
     parseNum(outstandingBalance) > 0 &&
@@ -54,7 +60,17 @@ export function LoanEntryModal({ buildingId, onClose }: LoanEntryModalProps) {
   }
 
   function handleSave() {
-    if (!isValid) return;
+    const errs: Record<string, string> = {};
+    if (!lender.trim()) errs.lender = 'Långiver er påkrevd';
+    if (!parseNum(outstandingBalance) || parseNum(outstandingBalance) <= 0) errs.outstandingBalance = 'Utestående må være større enn 0';
+    if (!parseNum(interestRate) || parseNum(interestRate) <= 0) errs.interestRate = 'Rente må være større enn 0';
+    if (!startDate) errs.startDate = 'Startdato er påkrevd';
+    if (!maturityDate) errs.maturityDate = 'Forfallsdato er påkrevd';
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      return;
+    }
+    setErrors({});
 
     const parsedCovenants: Covenant[] = covenants
       .filter((c) => parseNum(c.threshold) > 0)
@@ -105,7 +121,9 @@ export function LoanEntryModal({ buildingId, onClose }: LoanEntryModalProps) {
               placeholder="F.eks. DNB, Nordea"
               value={lender}
               onChange={(e) => setLender(e.target.value)}
+              style={errors.lender ? { borderColor: '#f87171' } : undefined}
             />
+            {errors.lender && <span style={{ color: '#f87171', fontSize: '0.7rem', marginTop: 2 }}>{errors.lender}</span>}
           </div>
 
           <div className="modal-field__row">
@@ -127,7 +145,9 @@ export function LoanEntryModal({ buildingId, onClose }: LoanEntryModalProps) {
                 placeholder="85 000 000"
                 value={outstandingBalance}
                 onChange={(e) => setOutstandingBalance(e.target.value)}
+                style={errors.outstandingBalance ? { borderColor: '#f87171' } : undefined}
               />
+              {errors.outstandingBalance && <span style={{ color: '#f87171', fontSize: '0.7rem', marginTop: 2 }}>{errors.outstandingBalance}</span>}
             </div>
           </div>
 
@@ -140,7 +160,9 @@ export function LoanEntryModal({ buildingId, onClose }: LoanEntryModalProps) {
                 placeholder="4,5"
                 value={interestRate}
                 onChange={(e) => setInterestRate(e.target.value)}
+                style={errors.interestRate ? { borderColor: '#f87171' } : undefined}
               />
+              {errors.interestRate && <span style={{ color: '#f87171', fontSize: '0.7rem', marginTop: 2 }}>{errors.interestRate}</span>}
             </div>
             <div className="modal-field" style={{ flex: 1 }}>
               <label className="modal-field__label">Rentetype</label>
@@ -188,7 +210,9 @@ export function LoanEntryModal({ buildingId, onClose }: LoanEntryModalProps) {
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
+                style={errors.startDate ? { borderColor: '#f87171' } : undefined}
               />
+              {errors.startDate && <span style={{ color: '#f87171', fontSize: '0.7rem', marginTop: 2 }}>{errors.startDate}</span>}
             </div>
             <div className="modal-field" style={{ flex: 1 }}>
               <label className="modal-field__label">Forfallsdato</label>
@@ -197,7 +221,9 @@ export function LoanEntryModal({ buildingId, onClose }: LoanEntryModalProps) {
                 type="date"
                 value={maturityDate}
                 onChange={(e) => setMaturityDate(e.target.value)}
+                style={errors.maturityDate ? { borderColor: '#f87171' } : undefined}
               />
+              {errors.maturityDate && <span style={{ color: '#f87171', fontSize: '0.7rem', marginTop: 2 }}>{errors.maturityDate}</span>}
             </div>
           </div>
 
@@ -282,7 +308,7 @@ export function LoanEntryModal({ buildingId, onClose }: LoanEntryModalProps) {
 
         <div className="modal-card__footer">
           <button className="modal-card__btn-cancel" onClick={onClose}>Avbryt</button>
-          <button className="modal-card__btn-primary" disabled={!isValid} onClick={handleSave}>
+          <button className="modal-card__btn-primary" onClick={handleSave}>
             Lagre lån →
           </button>
         </div>

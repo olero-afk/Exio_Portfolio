@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { usePortfolioContext } from '../../context/PortfolioContext.tsx';
 import { lookupCompany } from '../../data/brreg/companies.ts';
 import type { Contract, AssetClass } from '../../types/index.ts';
@@ -35,13 +35,20 @@ export function ContractModal({ buildingId: initialBuildingId, onClose }: Contra
   const [kpiPercent, setKpiPercent] = useState('');
   const [notes, setNotes] = useState('');
 
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [onClose]);
+
   const parsedArea = parseFloat(areaM2.replace(/\s/g, '').replace(',', '.')) || 0;
   const parsedRent = parseFloat(annualRent.replace(/\s/g, '').replace(',', '.')) || 0;
   const rentPerM2 = parsedArea > 0 ? Math.round(parsedRent / parsedArea) : 0;
 
   const activeBuildings = useMemo(() => buildings.filter((b) => !b.isArchived), [buildings]);
 
-  const isValid = buildingId && tenantName.trim() && parsedArea > 0 && parsedRent > 0 && startDate && endDate;
 
   async function handleBrregLookup() {
     if (!tenantOrgNr.trim()) return;
@@ -55,7 +62,17 @@ export function ContractModal({ buildingId: initialBuildingId, onClose }: Contra
   }
 
   function handleSave() {
-    if (!isValid) return;
+    const errs: Record<string, string> = {};
+    if (!tenantName.trim()) errs.tenantName = 'Leietaker er påkrevd';
+    if (!parsedArea || parsedArea <= 0) errs.areaM2 = 'Areal må være større enn 0';
+    if (!parsedRent || parsedRent <= 0) errs.annualRent = 'Årlig leie er påkrevd';
+    if (!startDate) errs.startDate = 'Startdato er påkrevd';
+    if (!endDate) errs.endDate = 'Sluttdato er påkrevd';
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      return;
+    }
+    setErrors({});
 
     const now = new Date();
     const end = new Date(endDate);
@@ -141,7 +158,9 @@ export function ContractModal({ buildingId: initialBuildingId, onClose }: Contra
             <label className="modal-field__label">Navn</label>
             <input className="modal-field__input" type="text" placeholder="Leietaker AS" value={tenantName}
               onChange={(e) => setTenantName(e.target.value)}
+              style={errors.tenantName ? { borderColor: '#f87171' } : undefined}
             />
+            {errors.tenantName && <span style={{ color: '#f87171', fontSize: '0.7rem', marginTop: 2 }}>{errors.tenantName}</span>}
             {tenantBankrupt && (
               <span className="modal-field__bankrupt">Konkurs — registrert i BRREG</span>
             )}
@@ -166,7 +185,9 @@ export function ContractModal({ buildingId: initialBuildingId, onClose }: Contra
               <label className="modal-field__label">Areal (m²)</label>
               <input className="modal-field__input" type="text" placeholder="1 200" value={areaM2}
                 onChange={(e) => setAreaM2(e.target.value)}
+                style={errors.areaM2 ? { borderColor: '#f87171' } : undefined}
               />
+              {errors.areaM2 && <span style={{ color: '#f87171', fontSize: '0.7rem', marginTop: 2 }}>{errors.areaM2}</span>}
             </div>
           </div>
 
@@ -177,7 +198,9 @@ export function ContractModal({ buildingId: initialBuildingId, onClose }: Contra
               <label className="modal-field__label">Årlig leie (kr)</label>
               <input className="modal-field__input" type="text" placeholder="3 600 000" value={annualRent}
                 onChange={(e) => setAnnualRent(e.target.value)}
+                style={errors.annualRent ? { borderColor: '#f87171' } : undefined}
               />
+              {errors.annualRent && <span style={{ color: '#f87171', fontSize: '0.7rem', marginTop: 2 }}>{errors.annualRent}</span>}
             </div>
             <div className="modal-field" style={{ flex: 1 }}>
               <label className="modal-field__label">Leie per m²</label>
@@ -194,13 +217,17 @@ export function ContractModal({ buildingId: initialBuildingId, onClose }: Contra
               <label className="modal-field__label">Startdato</label>
               <input className="modal-field__input" type="date" value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
+                style={errors.startDate ? { borderColor: '#f87171' } : undefined}
               />
+              {errors.startDate && <span style={{ color: '#f87171', fontSize: '0.7rem', marginTop: 2 }}>{errors.startDate}</span>}
             </div>
             <div className="modal-field" style={{ flex: 1 }}>
               <label className="modal-field__label">Sluttdato</label>
               <input className="modal-field__input" type="date" value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
+                style={errors.endDate ? { borderColor: '#f87171' } : undefined}
               />
+              {errors.endDate && <span style={{ color: '#f87171', fontSize: '0.7rem', marginTop: 2 }}>{errors.endDate}</span>}
             </div>
           </div>
           <div className="modal-field__row">
@@ -248,7 +275,7 @@ export function ContractModal({ buildingId: initialBuildingId, onClose }: Contra
 
         <div className="modal-card__footer">
           <button className="modal-card__btn-cancel" onClick={onClose}>Avbryt</button>
-          <button className="modal-card__btn-primary" disabled={!isValid} onClick={handleSave}>
+          <button className="modal-card__btn-primary" onClick={handleSave}>
             Lagre avtale →
           </button>
         </div>

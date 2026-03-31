@@ -21,8 +21,18 @@ const routeLabels: Record<string, string> = {
   eiere: 'EIERE',
   forvalter: 'FORVALTER',
   energi: 'ENERGI',
+  finansiering: 'FINANSIERING',
+  innsiktsniva: 'INNSIKTSNIVÅ',
   styrerapport: 'STYRERAPPORT',
   fond: 'FOND',
+  portefoljeoversikt: 'PORTEFØLJEOVERSIKT',
+  noi: 'NOI-ANALYSE',
+  kontraktsanalyse: 'KONTRAKTSANALYSE',
+  ledighetsoversikt: 'LEDIGHETSOVERSIKT',
+  diversifisering: 'DIVERSIFISERING',
+  benchmark: 'MARKEDSREFERANSE',
+  covenant: 'COVENANT-STATUS',
+  leietakeranalyse: 'LEIETAKERANALYSE',
 };
 
 export function Breadcrumb() {
@@ -100,6 +110,8 @@ export function Breadcrumb() {
         to: isEnd ? undefined : '/' + pathParts.slice(0, i + 1).join('/'),
       });
     }
+  } else if (pathParts[0] === 'innsiktsniva') {
+    segments.push({ label: 'INNSIKTSNIVÅ' });
   } else {
     // Other top-level routes
     const part = pathParts[0];

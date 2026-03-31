@@ -2,12 +2,14 @@ import { useParams } from 'react-router-dom';
 import { usePortfolioContext } from '../context/PortfolioContext.tsx';
 import { BuildingTabs } from '../components/building/BuildingTabs.tsx';
 import { CostSpreadsheet } from '../components/financial/CostSpreadsheet.tsx';
+import { usePageTitle } from '../hooks/usePageTitle.ts';
 import './BuildingDetailPage.css';
 
 export function BuildingFinancialsPage() {
   const { buildingId } = useParams();
   const { buildings } = usePortfolioContext();
   const building = buildings.find((b) => b.id === buildingId);
+  usePageTitle(building ? `${building.name} — Økonomi` : 'Økonomi');
 
   if (!building || !buildingId) return null;
 

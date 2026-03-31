@@ -6,9 +6,11 @@ import { StatusBadge } from '../components/shared/StatusBadge.tsx';
 import { AddBuildingModal } from '../components/building/AddBuildingModal.tsx';
 import { MiniGauge } from '../components/shared/MaturityGauge.tsx';
 import { usePortfolioMaturity } from '../hooks/useMaturity.ts';
+import { usePageTitle } from '../hooks/usePageTitle.ts';
 import './BuildingListPage.css';
 
 export function BuildingListPage() {
+  usePageTitle('Bygg');
   const { buildings } = usePortfolioContext();
   const active = buildings.filter((b) => !b.isArchived);
   const [showAddModal, setShowAddModal] = useState(false);

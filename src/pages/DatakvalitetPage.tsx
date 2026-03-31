@@ -4,6 +4,7 @@ import { MaturityGauge, MiniGauge } from '../components/shared/MaturityGauge.tsx
 import { LEVEL_NAMES } from '../data/maturity.ts';
 import { formatPercent } from '../utils/formatters.ts';
 import { usePortfolioContext } from '../context/PortfolioContext.tsx';
+import { usePageTitle } from '../hooks/usePageTitle.ts';
 
 const LEVEL_COLORS: Record<1 | 2 | 3, string> = {
   1: '#4ade80',
@@ -37,6 +38,7 @@ const tdStyle: React.CSSProperties = {
 };
 
 export function InnsiktsnivåPage() {
+  usePageTitle('Innsiktsnivå');
   const data = usePortfolioMaturity();
   const { buildings } = usePortfolioContext();
 

@@ -5,12 +5,14 @@ import { AreaCards } from '../components/building/AreaCards.tsx';
 import { BuildingKPIs } from '../components/building/BuildingKPIs.tsx';
 import { BuildingInfo } from '../components/building/BuildingInfo.tsx';
 import { MarketReference } from '../components/building/MarketReference.tsx';
+import { usePageTitle } from '../hooks/usePageTitle.ts';
 import './BuildingDetailPage.css';
 
 export function BuildingDetailPage() {
   const { buildingId } = useParams();
   const { buildings } = usePortfolioContext();
   const building = buildings.find((b) => b.id === buildingId);
+  usePageTitle(building ? building.name : 'Bygg');
 
   if (!building) {
     return (
