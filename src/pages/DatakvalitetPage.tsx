@@ -36,7 +36,7 @@ const tdStyle: React.CSSProperties = {
   color: '#c8c8c8',
 };
 
-export function DatakvalitetPage() {
+export function InnsiktsnivåPage() {
   const data = usePortfolioMaturity();
   const { buildings } = usePortfolioContext();
 
@@ -60,7 +60,7 @@ export function DatakvalitetPage() {
       {/* Page header */}
       <div>
         <h1 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--app-text)', margin: 0 }}>
-          Datakvalitet
+          Innsiktsnivå
         </h1>
         <span style={{ fontSize: '0.8125rem', color: '#9a9a9a' }}>Porteføljeoversikt</span>
       </div>
@@ -71,7 +71,7 @@ export function DatakvalitetPage() {
         <MaturityGauge
           percentage={data.averagePercentage}
           size={140}
-          label="Datakvalitet"
+          label="Innsiktsnivå"
           sublabel="Portefølje gjennomsnitt"
         />
 
@@ -190,7 +190,7 @@ export function DatakvalitetPage() {
             <tr>
               <th style={thStyle}>Bygg</th>
               <th style={thStyle}>Nivå</th>
-              <th style={thStyle}>Datakvalitet</th>
+              <th style={thStyle}>Innsiktsnivå</th>
               <th style={thStyle}>Nivå 1</th>
               <th style={thStyle}>Neste steg</th>
             </tr>
@@ -204,7 +204,7 @@ export function DatakvalitetPage() {
                 <tr key={m.buildingId}>
                   <td style={tdStyle}>
                     <Link
-                      to={`/bygg/${m.buildingId}/datakvalitet`}
+                      to={`/bygg/${m.buildingId}/innsiktsniva`}
                       style={{ color: '#e8e8e8', textDecoration: 'none', fontWeight: 500 }}
                     >
                       {building?.name ?? m.buildingId}

@@ -11,7 +11,7 @@ const tabs = [
   { path: '/energi', label: 'Energi' },
   { path: '/okonomi', label: 'Økonomi' },
   { path: '/finansiering', label: 'Finansiering' },
-  { path: '/datakvalitet', label: 'Datakvalitet' },
+  { path: '/innsiktsniva', label: 'Innsiktsnivå' },
 ] as const;
 
 export function BuildingTabs() {

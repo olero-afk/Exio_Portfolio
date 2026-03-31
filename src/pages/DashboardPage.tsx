@@ -46,8 +46,8 @@ export function DashboardPage() {
           <MaturityGauge
             percentage={maturity.averagePercentage}
             size={80}
-            label="Datakvalitet"
-            onClick={() => navigate('/datakvalitet')}
+            label="Innsiktsnivå"
+            onClick={() => navigate('/innsiktsniva')}
           />
         </div>
       </div>

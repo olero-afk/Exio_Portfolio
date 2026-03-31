@@ -104,7 +104,7 @@ export function BuildingMaturityPage() {
         <MaturityGauge
           percentage={maturity.percentage}
           size={120}
-          label="Datakvalitet"
+          label="Innsiktsnivå"
           sublabel={`Nivå ${maturity.currentLevel} — ${LEVEL_NAMES[maturity.currentLevel].name}`}
         />
         <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
