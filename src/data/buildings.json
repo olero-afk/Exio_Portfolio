@@ -43,7 +43,8 @@
         "orgNr": "912345678",
         "ownershipShare": 100
       }
-    ]
+    ],
+    "energyLabelDate": "2020-03-15"
   },
   {
     "id": "b-002",
@@ -89,7 +90,8 @@
         "orgNr": "912345678",
         "ownershipShare": 100
       }
-    ]
+    ],
+    "energyLabelDate": "2019-08-22"
   },
   {
     "id": "b-003",
@@ -141,7 +143,8 @@
         "orgNr": "987654321",
         "ownershipShare": 50
       }
-    ]
+    ],
+    "energyLabelDate": "2014-11-10"
   },
   {
     "id": "b-004",
@@ -187,7 +190,8 @@
         "orgNr": "912345678",
         "ownershipShare": 100
       }
-    ]
+    ],
+    "energyLabelDate": "2021-05-03"
   },
   {
     "id": "b-005",
@@ -245,7 +249,8 @@
         "orgNr": "934567890",
         "ownershipShare": 33.4
       }
-    ]
+    ],
+    "energyLabelDate": "2015-02-28"
   },
   {
     "id": "b-006",
@@ -291,7 +296,8 @@
         "orgNr": "912345678",
         "ownershipShare": 100
       }
-    ]
+    ],
+    "energyLabelDate": "2022-01-18"
   },
   {
     "id": "b-007",
@@ -337,7 +343,8 @@
         "orgNr": "912345678",
         "ownershipShare": 100
       }
-    ]
+    ],
+    "energyLabelDate": "2018-06-30"
   },
   {
     "id": "b-008",
@@ -383,6 +390,7 @@
         "orgNr": "912345678",
         "ownershipShare": 100
       }
-    ]
+    ],
+    "energyLabelDate": "2023-09-12"
   }
 ]

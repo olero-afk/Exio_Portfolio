@@ -26,6 +26,7 @@ import { BuildingFinancingPage } from './pages/BuildingFinancingPage.tsx';
 import { BuildingEierePage } from './pages/BuildingEierePage.tsx';
 import { BuildingMaturityPage } from './pages/BuildingMaturityPage.tsx';
 import { InnsiktsnivåPage } from './pages/DatakvalitetPage.tsx';
+import { LeietakerePage } from './pages/LeietakerePage.tsx';
 import { PlaceholderPage } from './pages/PlaceholderPage.tsx';
 import { FundViewPage } from './pages/FundViewPage.tsx';
 import { OnboardingPage } from './pages/OnboardingPage.tsx';
@@ -66,7 +67,7 @@ function App() {
               <Route path="rapporter/covenant" element={<CovenantReport />} />
               <Route path="avtaler" element={<PlaceholderPage title="Avtaler" />} />
               <Route path="produkter" element={<PlaceholderPage title="Produkter" />} />
-              <Route path="aktoerer" element={<PlaceholderPage title="Aktører" />} />
+              <Route path="aktoerer" element={<LeietakerePage />} />
               <Route path="sammenlign" element={<ComparisonPage />} />
               <Route path="innstillinger" element={<PlaceholderPage title="Innstillinger" />} />
             </Route>

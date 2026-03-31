@@ -4,6 +4,7 @@ import { ReportLayout } from '../../components/reports/ReportLayout.tsx';
 import { formatM2, formatPercent, formatNumber, formatNOK } from '../../utils/formatters.ts';
 import { LockedSection } from '../../components/shared/LockedSection.tsx';
 import { mockYieldData, mockPaymentData } from '../../data/lockedSectionMocks.ts';
+import { usePortfolioContext } from '../../context/PortfolioContext.tsx';
 import type { PortfolioKPIs } from '../../hooks/usePortfolioKPI.ts';
 import type { Building } from '../../types/index.ts';
 import './report-shared.css';
@@ -202,6 +203,12 @@ function SectionB({ kpis }: { kpis: PortfolioKPIs }) {
                       }}
                     >
                       {b.energyLabel}
+                      {b.energyLabelDate && (() => {
+                        const yr = new Date(b.energyLabelDate).getFullYear();
+                        const validYr = yr + 10;
+                        const isExpired = validYr <= new Date().getFullYear();
+                        return <span>{isExpired ? ' ⚠' : ''} ({yr})</span>;
+                      })()}
                     </span>
                   ) : (
                     <span style={{ color: 'var(--app-text-dim)' }}>—</span>
@@ -277,6 +284,132 @@ function SectionC({ kpis }: { kpis: PortfolioKPIs }) {
   );
 }
 
+/* ── Section D: Kontantstrøm ─────────────────────────────────── */
+
+function SectionD({ kpis }: { kpis: PortfolioKPIs }) {
+  const { contracts, costs, loans } = usePortfolioContext();
+
+  const waterfall = useMemo(() => {
+    const buildingIds = new Set(kpis.filteredBuildings.map(b => b.id));
+    const bruttoLeie = kpis.totalGrossRentalIncome;
+    const driftskostnader = kpis.totalOperatingExpenses;
+    const totalNOI = kpis.totalNOI;
+    const totalM2 = kpis.totalRentableM2;
+
+    const filteredLoans = loans.filter(l => buildingIds.has(l.buildingId));
+    const totalRentekostnad = filteredLoans.reduce((s, l) => s + (l.outstandingBalance * l.interestRate / 100), 0);
+    const totalGjeldsbetjening = filteredLoans.reduce((s, l) => s + (l.annualPayment ?? 0), 0);
+    const totalAvdrag = totalGjeldsbetjening - totalRentekostnad;
+    const nettoKontantstrom = totalNOI - totalGjeldsbetjening;
+    const dscr = totalGjeldsbetjening > 0 ? totalNOI / totalGjeldsbetjening : 0;
+    const totalDebt = filteredLoans.reduce((s, l) => s + l.outstandingBalance, 0);
+    const totalMarketValue = kpis.filteredBuildings.reduce((s, b) => s + (b.estimatedMarketValue ?? 0), 0);
+    const ltvVal = totalMarketValue > 0 ? (totalDebt / totalMarketValue) * 100 : 0;
+
+    const rows = [
+      { label: 'Brutto leieinntekt', value: bruttoLeie, perM2: totalM2 > 0 ? bruttoLeie / totalM2 : 0, color: '#4ade80', bold: false, separator: false },
+      { label: '− Driftskostnader', value: -driftskostnader, perM2: totalM2 > 0 ? -driftskostnader / totalM2 : 0, color: '#f87171', bold: false, separator: false },
+      { label: '= NOI', value: totalNOI, perM2: totalM2 > 0 ? totalNOI / totalM2 : 0, color: undefined, bold: true, separator: true },
+      { label: '− Rentekostnader', value: -totalRentekostnad, perM2: totalM2 > 0 ? -totalRentekostnad / totalM2 : 0, color: '#f87171', bold: false, separator: false },
+      { label: '− Avdrag', value: -totalAvdrag, perM2: totalM2 > 0 ? -totalAvdrag / totalM2 : 0, color: '#f87171', bold: false, separator: false },
+      { label: '= Netto kontantstrøm', value: nettoKontantstrom, perM2: totalM2 > 0 ? nettoKontantstrom / totalM2 : 0, color: nettoKontantstrom >= 0 ? '#4ade80' : '#f87171', bold: true, separator: true },
+    ];
+
+    return { rows, dscr, ltv: ltvVal };
+  }, [kpis, loans]);
+
+  const perBuilding = useMemo(() => {
+    return kpis.filteredBuildings.map(b => {
+      const income = contracts.filter(c => c.buildingId === b.id && (c.status === 'active' || c.status === 'expiring_soon')).reduce((s, c) => s + c.annualRent, 0);
+      const bc = costs.filter(c => c.buildingId === b.id);
+      const ms = new Set(bc.map(c => `${c.year}-${c.month}`)).size;
+      const totalCost = bc.reduce((s, c) => s + c.amount, 0);
+      const annualized = ms > 0 ? (totalCost / ms) * 12 : 0;
+      const bNoi = income - annualized;
+      const bLoans = loans.filter(l => l.buildingId === b.id);
+      const bRenter = bLoans.reduce((s, l) => s + (l.outstandingBalance * l.interestRate / 100), 0);
+      const bBetjening = bLoans.reduce((s, l) => s + (l.annualPayment ?? 0), 0);
+      const bAvdrag = bBetjening - bRenter;
+      const bNettoKS = bNoi - bBetjening;
+      const bDscr = bBetjening > 0 ? bNoi / bBetjening : 0;
+      const hasLoans = bLoans.length > 0;
+      return { building: b, income, annualized, noi: bNoi, renter: bRenter, avdrag: bAvdrag, nettoKS: bNettoKS, dscr: bDscr, hasLoans };
+    }).sort((a, b) => a.nettoKS - b.nettoKS);
+  }, [kpis.filteredBuildings, contracts, costs, loans]);
+
+  function dscrCellColor(v: number): string {
+    if (v > 1.5) return '#4ade80';
+    if (v >= 1.2) return '#facc15';
+    return '#f87171';
+  }
+
+  return (
+    <>
+      <div className="report-section">
+        <h3 className="report-section__title">Kontantstrøm — portefølje</h3>
+        <table className="report-table">
+          <thead><tr>
+            <th>Post</th>
+            <th data-align="right">Portefølje</th>
+            <th data-align="right">Per m²</th>
+          </tr></thead>
+          <tbody>
+            {waterfall.rows.map(({ label, value, perM2, color, bold, separator }) => (
+              <tr key={label} style={{ fontWeight: bold ? 700 : undefined, borderTop: separator ? '1px solid rgba(255,255,255,0.1)' : undefined }}>
+                <td>{label}</td>
+                <td data-align="right" style={{ color }}>{formatNOK(value)}</td>
+                <td data-align="right" style={{ color }}>{formatNOK(perM2)}</td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr><td>DSCR</td><td data-align="right">{formatNumber(waterfall.dscr, 2)}</td><td /></tr>
+            <tr><td>Belåningsgrad (LTV)</td><td data-align="right">{formatPercent(waterfall.ltv)}</td><td /></tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div className="report-section">
+        <h3 className="report-section__title">Kontantstrøm — per bygg</h3>
+        <table className="report-table">
+          <thead><tr>
+            <th>Bygg</th>
+            <th data-align="right">Brutto leie</th>
+            <th data-align="right">Driftskostn.</th>
+            <th data-align="right">NOI</th>
+            <th data-align="right">Renter</th>
+            <th data-align="right">Avdrag</th>
+            <th data-align="right">Netto KS</th>
+            <th data-align="right">DSCR</th>
+          </tr></thead>
+          <tbody>
+            {perBuilding.map(({ building: b, income, annualized, noi: bNoi, renter, avdrag, nettoKS, dscr: bDscr, hasLoans }) => (
+              <tr key={b.id}>
+                <td>
+                  <Link to={`/bygg/${b.id}`} className="report-table__link">
+                    {b.name}
+                  </Link>
+                </td>
+                <td data-align="right">{formatNOK(income)}</td>
+                <td data-align="right">{formatNOK(annualized)}</td>
+                <td data-align="right">{formatNOK(bNoi)}</td>
+                <td data-align="right">{hasLoans ? formatNOK(renter) : '—'}</td>
+                <td data-align="right">{hasLoans ? formatNOK(avdrag) : '—'}</td>
+                <td data-align="right" style={{ color: hasLoans ? (nettoKS >= 0 ? '#4ade80' : '#f87171') : undefined }}>
+                  {hasLoans ? formatNOK(nettoKS) : '—'}
+                </td>
+                <td data-align="right" style={{ color: hasLoans ? dscrCellColor(bDscr) : undefined }}>
+                  {hasLoans ? formatNumber(bDscr, 2) : '—'}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
+}
+
 /* ── Main export ─────────────────────────────────────────────── */
 
 export function PortfolioOverviewReport() {
@@ -287,6 +420,7 @@ export function PortfolioOverviewReport() {
           <SectionA kpis={kpis} />
           <SectionB kpis={kpis} />
           <SectionC kpis={kpis} />
+          <SectionD kpis={kpis} />
 
           <LockedSection requiredLevel={2} currentLevel={1} title="Verdivurdering og yield" description="Se NIY/Cap Rate, markedsverdi og yield-endring per bygg">
             <div className="report-section">

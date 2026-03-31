@@ -22,9 +22,15 @@ export function BuildingListPage() {
           <h1 className="building-list__title">Bygg</h1>
           <p className="building-list__count">{active.length} bygninger i porteføljen</p>
         </div>
-        <button className="building-list__add-btn" onClick={() => setShowAddModal(true)}>
-          + Legg til bygg
-        </button>
+        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+          <button className="building-list__add-btn" onClick={() => setShowAddModal(true)}>
+            + Legg til bygg
+          </button>
+          <span style={{ padding: '6px 12px', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 6, color: '#7a7a7a', fontSize: '0.75rem', fontWeight: 500, cursor: 'default', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+            Prosjektportefølje
+            <span style={{ fontSize: '0.55rem', fontWeight: 800, background: 'rgba(254,208,146,0.15)', color: '#FED092', padding: '1px 5px', borderRadius: 3 }}>Kommer snart</span>
+          </span>
+        </div>
       </div>
 
       <div className="building-list__grid">
@@ -51,7 +57,12 @@ export function BuildingListPage() {
               </div>
               <div className="building-list__card-metric">
                 <span className="building-list__card-metric-label">Energi</span>
-                <span className="building-list__card-metric-value">{b.energyLabel ?? '—'}</span>
+                <span className="building-list__card-metric-value">
+                  {b.energyLabel ?? '—'}
+                  {b.energyLabelDate && new Date(b.energyLabelDate).getFullYear() + 10 <= new Date().getFullYear() && (
+                    <span style={{ color: '#f87171', fontSize: '0.65rem', marginLeft: 3 }} title="Energimerke utløpt">⚠</span>
+                  )}
+                </span>
               </div>
               <div className="building-list__card-metric">
                 <span className="building-list__card-metric-label">Standard</span>

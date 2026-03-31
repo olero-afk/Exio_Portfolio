@@ -106,6 +106,7 @@ export function StepFerdig() {
         yearBuilt: ppb.byggeaar,
         numberOfFloors: ppb.antallEtasjer,
         energyLabel: mapEnergyLabel(ppb.energimerke?.karakter ?? null),
+        energyLabelDate: undefined,
         plotAreaM2: ppb.tomteareal,
         ownerName: ppb.hjemmelshaver.navn,
         ownershipMismatch: false,

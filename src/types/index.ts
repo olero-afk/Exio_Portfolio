@@ -70,6 +70,7 @@ export interface Building {
   yearBuilt: number | null;
   numberOfFloors: number | null;
   energyLabel: EnergyLabel | null;
+  energyLabelDate?: string;  // ISO date when the label was issued, e.g. "2019-06-15"
   plotAreaM2: number | null;
   ownerName: string | null;
   ownershipMismatch: boolean;
