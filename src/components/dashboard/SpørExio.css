@@ -21,6 +21,14 @@
   font-variant: small-caps;
 }
 
+.spor-exio__rate-limit {
+  font-size: 0.65rem;
+  color: var(--app-text-dim);
+  position: absolute;
+  top: 14px;
+  right: 20px;
+}
+
 .spor-exio__input-row {
   display: flex;
   align-items: center;

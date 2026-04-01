@@ -3,6 +3,7 @@ import { usePersona } from '../context/PersonaContext.tsx';
 import type { PortfolioKPIs } from './usePortfolioKPI.ts';
 import type { Insight } from './usePersonaInsights.ts';
 import { formatNOK, formatPercent, formatYears } from '../utils/formatters.ts';
+import { callExioAI } from '../utils/aiClient.ts';
 
 /**
  * Generates AI-style insight text for cards 1-4.
@@ -60,29 +61,15 @@ async function callAnthropicAPI(
 
   const cardDescriptions = insights.map((ins, i) => `Kort ${i + 1} (${ins.id}): Tittel="${ins.title}", Verdi="${ins.value}"`).join('\n');
 
-  const body = {
+  const data = await callExioAI(apiKey, {
     model: 'claude-haiku-4-5-20251001',
-    max_tokens: 400,
+    max_tokens: 500,
     messages: [{
       role: 'user',
       content: `Du er en norsk eiendomsanalytiker. Skriv 1-2 setninger med innsikt for hvert av disse 4 KPI-kortene. Bruk faktiske tall. Persona: ${persona}.\n\nPorteføljedata:\n${kpiSummary}\n\nKort:\n${cardDescriptions}\n\nSvar som JSON: {"kort1": "tekst", "kort2": "tekst", "kort3": "tekst", "kort4": "tekst"}`,
     }],
-  };
-
-  const resp = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': apiKey,
-      'anthropic-version': '2023-06-01',
-      'anthropic-dangerous-direct-browser-access': 'true',
-    },
-    body: JSON.stringify(body),
   });
 
-  if (!resp.ok) throw new Error(`API ${resp.status}`);
-
-  const data = await resp.json();
   const text = data.content?.[0]?.text ?? '';
 
   try {

@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { usePersona } from '../../context/PersonaContext.tsx';
 import type { PortfolioKPIs } from '../../hooks/usePortfolioKPI.ts';
 import { formatNOK, formatPercent, formatYears } from '../../utils/formatters.ts';
+import { getAIRequestCount } from '../../utils/aiRateLimit.ts';
 import './SpørExio.css';
 
 interface SpørExioProps {
@@ -101,6 +102,7 @@ export function SpørExio({ kpis }: SpørExioProps) {
   return (
     <div className="spor-exio">
       <span className="spor-exio__badge">✦ EXIO AI</span>
+      <span className="spor-exio__rate-limit">{getAIRequestCount()} av 20 AI-forespørsler brukt</span>
       <div className="spor-exio__input-row">
         <span className="spor-exio__sparkle">✦</span>
         <input
